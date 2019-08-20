@@ -1,1 +1,7 @@
-#Team B's Front End Git
+# Team B
+**B** *(ring excellence)*
+
+Team B's front end is being developed in React, and is part of the INgage program for the fourth generation of INgagers. 
+### What is this project about?
+
+The INgage project for our generation is an eShop called eCommerce, where we set up a project from scratch and, thanks to our wonderful mentors, work to deliver a product sprint after sprint.

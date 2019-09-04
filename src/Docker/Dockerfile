@@ -1,3 +1,11 @@
+# Dockerfile for react container
+
+# From the base directory mdc_team_b_front/src 
+# Use the follow command to create the image
+# docker build  -t deployment -f deployment/Dockerfile .
+# Use the follow command to start the container 
+# docker run 
+
 # stage: 1
 FROM node:12.9.0 as react-build
 WORKDIR /app
@@ -5,12 +13,6 @@ COPY package*.json /app/
 RUN npm install
 COPY . ./
 RUN npm run build
-
-# stage: 2 — the production environment
-FROM nginx:alpine
-COPY ./build /var/www
-COPY default.conf.template /etc/nginx/conf.d/default.conf.template
-COPY nginx.conf /etc/nginx/nginx.conf
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
-
-#CMD ["nginx", "-g", "daemon off;"]
+RUN npm install -g serve
+EXPOSE $PORT
+CMD serve -p $PORT -s ./build

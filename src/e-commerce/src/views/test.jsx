@@ -8,6 +8,7 @@ function Test() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <p>{process.env.REACT_APP_API_URL}<code>src/App.js</code> and save to reload.</p>
     </div>
   );
 }

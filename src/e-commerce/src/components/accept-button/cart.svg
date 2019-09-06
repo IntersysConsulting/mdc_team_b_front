@@ -1,0 +1,22 @@
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+<!-- #116cb4 Blue  #72C068 Green -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="502" width="502" y="-1" x="-1"/>
+  <g display="none" id="canvasGrid">
+   <!-- rect id="svg_1" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/ -->
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <line stroke="#116cb4" stroke-linecap="null" stroke-linejoin="null" id="svg_1" y2="70.242598" x2="89.205306" y1="70.242598" x1="28.13158" fill-opacity="null" stroke-opacity="null" stroke-width="19" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_2" y2="346.453125" x2="168.5" y1="63.453125" x1="80.5" fill-opacity="null" stroke-opacity="null" stroke-width="19" stroke="#116cb4" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_4" y2="339.453125" x2="424.5" y1="340.453125" x1="160.5" fill-opacity="null" stroke-opacity="null" stroke-width="62" stroke="#116cb4" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_5" y2="196.453125" x2="461.5" y1="345.453125" x1="416.5" fill-opacity="null" stroke-opacity="null" stroke-width="19" stroke="#116cb4" fill="none"/>
+  <ellipse ry="56" rx="56" id="svg_6" cy="411.453125" cx="162.5" fill-opacity="null" stroke-opacity="null" stroke-width="19" stroke="#116cb4" fill="#116cb4"/>
+  <ellipse ry="56" rx="56" id="svg_7" cy="411.453125" cx="415.5" fill-opacity="null" stroke-opacity="null" stroke-width="19" stroke="#116cb4" fill="#116cb4"/>
+  <ellipse stroke="#116cb4" transform="rotate(106.62591552734375 458.94409179687494,204.58992004394526) " ry="0.102881" rx="8.108888" id="svg_10" cy="204.589904" cx="458.944111" fill-opacity="null" stroke-opacity="null" stroke-width="19" fill="none"/>
+  <ellipse stroke="#116cb4" ry="0.013614" rx="9.009041" id="svg_11" cy="70.063366" cx="28.670907" fill-opacity="null" stroke-opacity="null" stroke-width="19" fill="none"/>
+ </g>
+</svg>

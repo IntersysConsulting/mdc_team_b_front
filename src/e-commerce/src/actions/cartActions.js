@@ -4,7 +4,7 @@ import { cartAPI } from '../api/cartAPI';
 /**
  * Consts to get posts from API implementing API request convention
  * @function fetchCartBegin
- * @function fetcCarthSuccess
+ * @function fetchCartSuccess
  * @function fetchCartError
  */
 

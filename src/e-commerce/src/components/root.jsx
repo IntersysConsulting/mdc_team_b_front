@@ -8,8 +8,8 @@ import Test from '../views/test'
 const Root = ({ store }) => (
     <Provider store={store}>
         <Router>
-            <Route path="/app" component={Test} />
-            <Route path="/test" component={App} />
+            <Route path="/test" component={Test} />
+            <Route path="/app" component={App} />
         </Router>
     </Provider>
 )

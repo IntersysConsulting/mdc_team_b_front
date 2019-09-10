@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 $body-color: #575a61;
 :root {
   --primary: #116cb4;
@@ -18,7 +19,8 @@ $theme-colors: (
   "purple": #7a63c7,
   "orange": #f98f3e,
   "green": #72c068,
-  "teal": #09c1b0
+  "teal": #09c1b0,
+  "red": #ff1500
 );
 
 @import "~bootstrap/scss/bootstrap.scss";

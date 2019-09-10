@@ -1,13 +1,16 @@
 .button {
   position: relative;
-  display: block;
-  width: 100%;
-  height: 57px;
-  text-align: center;
-  cursor: pointer;
+  min-height: 55px;
   overflow: hidden;
   user-select: none;
+  font-family: "Roboto", sans-serif;
+  border: none !important;
 }
+
+/* .btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+} */
 
 .button > p {
   display: inline-block;
@@ -20,10 +23,6 @@
   height: 100%;
 }
 
-.button:hover > * {
-  /* Generic response for hovering */
-  transform: scale(1.1);
-}
 .button::before {
   /* Vertical align helper */
   content: "";
@@ -40,7 +39,7 @@
 .button-icon-padding {
   /* Helps separate the icon and the text */
   display: inline-block;
-  width: 1%;
+  width: 15px;
 }
 
 .auto-height {
@@ -48,6 +47,35 @@
 }
 
 .icon-only > img {
-  max-height: 50px;
-  height: 35%;
+  max-height: 45px;
+  min-height: 10px;
+  height: 50%;
+}
+
+.icon-50x50 {
+  padding: 0 !important;
+  width: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  height: 50px !important;
+}
+
+.icon-50x50 > img {
+  margin-left: -25%;
+}
+
+.icon-22x22 {
+  padding: 0 !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  max-width: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+}
+
+.icon-22x22 > img {
+  height: 75%;
+  margin-left: -75%;
+  margin-top: -30%;
 }

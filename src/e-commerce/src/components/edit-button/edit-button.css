@@ -1,0 +1,15 @@
+.edit-button {
+  text-align: center;
+  cursor: pointer;
+  max-height: 50px;
+  min-width: 8rem;
+}
+.edit-button > img {
+  min-width: 10px;
+  max-width: 45px;
+  min-height: 10px;
+  max-height: 45px;
+  height: 2rem;
+  width: auto;
+  vertical-align: middle;
+}

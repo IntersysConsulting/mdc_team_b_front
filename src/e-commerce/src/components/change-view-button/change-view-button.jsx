@@ -1,11 +1,15 @@
 import React from "react";
-import Button from "../button/button.jsx";
 
-function CancelButton(props) {
+import Button from "../button/button.jsx";
+import "./change-view-button.css";
+
+function ChangeViewButton(props) {
   return (
     <Button
-      className={"text-white " + props.className}
-      variant="blue"
+      className={"change-button text-white " + props.className}
+      variant={"orange"}
+      height={props.height}
+      width={props.width}
       size={props.size}
       block={props.block}
       active={props.active}
@@ -17,4 +21,4 @@ function CancelButton(props) {
   );
 }
 
-export default CancelButton;
+export default ChangeViewButton;

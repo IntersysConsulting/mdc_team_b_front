@@ -1,14 +1,14 @@
 import React from "react";
-// import "./delete-button.css";
 import Button from "../button/button.jsx";
-import image from "./delete-button.svg";
+import Icon from "./edit-button.svg";
+import "./edit-button.css";
 
-function DeleteButton(props) {
+function EditButton(props) {
   return (
     <Button
-      className={"auto-height icon-only " + props.className}
-      variant={props.variant}
-      icon={image}
+      icon={props.icon ? Icon : undefined}
+      className={"edit-button text-white " + props.className}
+      variant="orange"
       width={props.width}
       height={props.height}
       size={props.size}
@@ -16,8 +16,10 @@ function DeleteButton(props) {
       active={props.active}
       disabled={props.disabled}
       onClick={props.onClick}
-    ></Button>
+    >
+      {props.children}
+    </Button>
   );
 }
 
-export default DeleteButton;
+export default EditButton;

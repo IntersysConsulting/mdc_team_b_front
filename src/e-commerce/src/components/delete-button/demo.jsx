@@ -1,42 +1,39 @@
 import React from "react";
 import DeleteButton from "./delete-button.jsx";
 
-function DeleteButtonDemo() {
+function DeleteButtonDemo(props) {
+  function AlertDelete() {
+    alert("You clicked on a delete button!");
+  }
+
   return (
     <div>
       <h1>Delete Button Demo</h1>
-      <div className="row">
-        <div className="col-4">
-          <DeleteButton
-            className="bg-orange"
-            width="300px"
-            height="150px"
-          ></DeleteButton>
-          Big Delete button
-        </div>
-        <div className="col-4">
-          <DeleteButton
-            className="bg-orange"
-            tinyFix
-            width="50px"
-            height="50px"
-          ></DeleteButton>
-          Medium Delete button
-        </div>
-        <div className="col-4">
-          <DeleteButton
-            className="bg-info"
-            tinyFix
-            width="22px"
-            height="22px"
-          ></DeleteButton>
-          Tiny Delete Button
-        </div>
+      <div className="row justify-content-md-center">
+        <DeleteButton
+          onClick={props.alerts ? AlertDelete : undefined}
+          className="col-4"
+          variant="orange"
+        ></DeleteButton>
 
-        <div className="col-6">
-          <DeleteButton className="bg-teal" height="70px"></DeleteButton>
-        </div>
-        <div className="col-6">This button is sized with bootstrap</div>
+        <DeleteButton
+          onClick={props.alerts ? AlertDelete : undefined}
+          className="icon-50x50 col-4"
+          variant="orange"
+        ></DeleteButton>
+
+        <DeleteButton
+          onClick={props.alerts ? AlertDelete : undefined}
+          className="icon-22x22 col-4"
+          variant="red"
+        ></DeleteButton>
+
+        <DeleteButton
+          onClick={props.alerts ? AlertDelete : undefined}
+          className="col-6"
+          height="70px"
+          variant="red"
+        ></DeleteButton>
       </div>
     </div>
   );

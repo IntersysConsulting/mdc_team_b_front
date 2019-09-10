@@ -9,7 +9,7 @@
  </g>
  <g>
   <title>Layer 1</title>
-  <line transform="rotate(45 116.50000000000007,118.99671936035153) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_1" y2="259.5403" x2="116.5" y1="-21.546875" x1="116.5" stroke-width="40.5" stroke="#000" fill="none"/>
-  <line transform="rotate(-45 117.50000000000001,118.99671936035156) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_2" y2="259.5403" x2="117.5" y1="-21.546875" x1="117.5" stroke-width="40.5" stroke="#000" fill="none"/>
+  <line transform="rotate(45 116.50000000000007,118.99671936035153) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_1" y2="259.5403" x2="116.5" y1="-21.546875" x1="116.5" stroke-width="40.5" stroke="#fff" fill="none"/>
+  <line transform="rotate(-45 117.50000000000001,118.99671936035156) " stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_2" y2="259.5403" x2="117.5" y1="-21.546875" x1="117.5" stroke-width="40.5" stroke="#fff" fill="none"/>
  </g>
 </svg>

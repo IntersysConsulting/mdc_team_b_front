@@ -1,14 +1,23 @@
 import React from "react";
 import Button from "../button/button.jsx";
 import CartIcon from "./cart.svg";
-
+import "./accept-button.css";
 function AcceptButton(props) {
   return (
     <Button
       className={
-        "bg-green text-white " + (props.border ? " border-2 border-blue" : "")
+        "accept-button text-white " +
+        (props.border ? "bg-green border-2 border-indigo " : "") +
+        (props.cart ? "cart-icon " : "") +
+        props.className
       }
+      variant={props.border ? "blue" : "green"}
       icon={props.cart ? CartIcon : undefined}
+      size={props.size}
+      block={props.block}
+      active={props.active}
+      disabled={props.disabled}
+      onClick={props.onClick}
     >
       {props.children}
     </Button>

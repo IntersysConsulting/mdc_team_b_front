@@ -17,7 +17,7 @@ function Cart(props) {
   return (
     <div className="cart-container" onClick={props.onClick}>
       <h1
-        id="cart-text-holder"
+        className="cart-text-holder"
         className={"text-green cart-text " + (value > 9 ? "cart-text-ten" : "")}
       >
         {display_text()}

@@ -21,7 +21,7 @@ const fetchCartError = (error) => {
     }
 }
 
-const fetchCartSuccess = (products) => {
+export const fetchCartSuccess = (products) => {
     return {
         type: cartConstans.FETCH_CART_SUCCES,
         products
@@ -32,7 +32,7 @@ const fetchCartSuccess = (products) => {
  * Function to get products from API implementing API request convention
  */
 
-export const getPosts = () => {
+export const getCart = () => {
     return (dispatch) => {
         dispatch(fetchCartBegin())
         cartAPI.getProducts().then(response => {

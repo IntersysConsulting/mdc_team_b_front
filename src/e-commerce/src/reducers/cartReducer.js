@@ -15,7 +15,7 @@ function cartReducer(state = INITIAL_STATE, action){
             return {...state, loading: false, data: action.payload};
 
         case 'FETCH_CART_ERROR':
-            return {...state, loading: false, erros: action.payload};
+            return {...state, loading: false, errors: action.payload};
         
         default:
             return state;

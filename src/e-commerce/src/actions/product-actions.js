@@ -1,5 +1,5 @@
-import {productConstants} from '../constants/productConstants';
-import { cartAPI } from '../api/cartAPI';
+import {productConstants} from '../constants/product-constants';
+import { productAPI } from '../api/product-api';
 
 /**
  * Consts to get posts from API implementing API request convention
@@ -35,7 +35,7 @@ export const fetchProductSuccess = (products) => {
 export const getProducts = () => {
     return (dispatch) => {
         dispatch(fetchProductBegin())
-        cartAPI.getProducts().then(response => {
+        productAPI.getProducts().then(response => {
             dispatch(fetchProductSuccess(response.data))
         }).catch((error) => {
             dispatch(fetchProductError(error))

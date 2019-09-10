@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import cartReducer from "./cartReducer";
-import productReducer from "./productReducer";
+import cartReducer from "./cart-reducer";
+import productReducer from "./product-reducer";
 
 
 // Whenever an action is dispatched, Redux will update each top-level application state property

@@ -1,5 +1,5 @@
-import {cartConstans} from '../constants/cartConstants';
-import { cartAPI } from '../api/cartAPI';
+import {cartConstans} from '../constants/cart-constants';
+import { cartAPI } from '../api/cart-api';
 
 /**
  * Consts to get posts from API implementing API request convention

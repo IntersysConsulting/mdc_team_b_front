@@ -43,7 +43,7 @@ const App = () => {
       <DeleteButtonDemo alerts={appState.alerts}></DeleteButtonDemo>
       <EditButtonDemo alerts={appState.alerts}></EditButtonDemo>
       <ManageInfoButtonDemo alerts={appState.alerts}></ManageInfoButtonDemo>
-      <MenuButtonDemo></MenuButtonDemo>
+      <MenuButtonDemo alerts={appState.alerts}></MenuButtonDemo>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

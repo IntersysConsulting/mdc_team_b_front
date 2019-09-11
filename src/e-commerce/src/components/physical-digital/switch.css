@@ -1,0 +1,50 @@
+.react-switch-checkbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+
+  .inLine{
+    display:inline;
+  }
+
+  #left{
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  #mid{
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 4px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  #right{
+    text-align:right;
+  }
+  
+  .react-switch-label {
+    display: block;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 220px;
+    height: 35px;
+    background: none;
+    border-radius: 100px;
+    position: relative;
+    transition: background-color .2s;
+  }
+
+  .react-switch-label #right {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .react-switch-checkbox:checked + .react-switch-label #left {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .react-switch-checkbox:checked + .react-switch-label #right {
+    color: rgba(0, 0, 0, 1);
+  }

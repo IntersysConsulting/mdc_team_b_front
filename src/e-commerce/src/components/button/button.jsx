@@ -2,7 +2,7 @@ import React from "react";
 import "./button.css";
 import { Button as _button } from "react-bootstrap";
 
-function Button(props) {
+const Button = props => {
   return (
     <_button
       className={"button rounded " + props.className}
@@ -22,6 +22,6 @@ function Button(props) {
       <img alt="" src={props.icon} className={props.icon ? "" : "hidden"}></img>
     </_button>
   );
-}
+};
 
 export default Button;

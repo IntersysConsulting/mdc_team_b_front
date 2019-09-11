@@ -1,10 +1,10 @@
 import React from "react";
 import ChangeViewButton from "./change-view-button.jsx";
 
-function ChangeViewButtonDemo(props) {
-  function AlertChangeView() {
+const ChangeViewButtonDemo = props => {
+  const AlertChangeView = () => {
     alert("You clicked on a change view button!");
-  }
+  };
 
   return (
     <div>
@@ -37,6 +37,6 @@ function ChangeViewButtonDemo(props) {
       </div>
     </div>
   );
-}
+};
 
 export default ChangeViewButtonDemo;

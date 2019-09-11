@@ -3,7 +3,7 @@ import Button from "../button/button.jsx";
 import Icon from "./edit-button.svg";
 import "./edit-button.css";
 
-function EditButton(props) {
+const EditButton = props => {
   return (
     <Button
       icon={props.icon ? Icon : undefined}
@@ -20,6 +20,6 @@ function EditButton(props) {
       {props.children}
     </Button>
   );
-}
+};
 
 export default EditButton;

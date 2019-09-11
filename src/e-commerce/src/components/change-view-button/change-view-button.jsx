@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../button/button.jsx";
 import "./change-view-button.css";
 
-function ChangeViewButton(props) {
+const ChangeViewButton = props => {
   return (
     <Button
       className={"change-button text-white " + props.className}
@@ -19,6 +19,6 @@ function ChangeViewButton(props) {
       {props.children}
     </Button>
   );
-}
+};
 
 export default ChangeViewButton;

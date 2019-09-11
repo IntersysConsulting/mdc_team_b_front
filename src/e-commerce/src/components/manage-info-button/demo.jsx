@@ -1,10 +1,10 @@
 import React from "react";
 import ManageInfoButton from "./manage-info-button.jsx";
 
-function ManageInfoButtonDemo(props) {
-  function AlertManageInfo() {
+const ManageInfoButtonDemo = props => {
+  const AlertManageInfo = () => {
     alert("You clicked on a manage info button!");
-  }
+  };
   return (
     <div>
       <h1>Manage Info Button Demo</h1>
@@ -25,6 +25,6 @@ function ManageInfoButtonDemo(props) {
       </div>
     </div>
   );
-}
+};
 
 export default ManageInfoButtonDemo;

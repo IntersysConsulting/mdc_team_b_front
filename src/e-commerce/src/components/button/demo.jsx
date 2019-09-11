@@ -1,7 +1,7 @@
 import React from "react";
 import AcceptButton from "./accept-button.jsx";
 
-function AcceptButtonDemo() {
+const AcceptButtonDemo = () => {
   return (
     <div>
       <div className={"col-1"}>
@@ -16,6 +16,6 @@ function AcceptButtonDemo() {
       <AcceptButton cart>Add to Cart</AcceptButton>
     </div>
   );
-}
+};
 
 export default AcceptButtonDemo;

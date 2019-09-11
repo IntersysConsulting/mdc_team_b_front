@@ -11,8 +11,9 @@ import EditButtonDemo from "./components/edit-button/demo.jsx";
 import ChangeViewButtonDemo from "./components/change-view-button/demo.jsx";
 import ManageInfoButtonDemo from "./components/manage-info-button/demo.jsx";
 import AcceptButton from "./components/accept-button/accept-button.jsx";
-function App() {
-  const [alerts, setAlerts] = useState(true);
+const App = () => {
+  const defaultAlerts = true;
+  const [appState, setAppState] = useState({ alerts: defaultAlerts });
 
   return (
     <div className="App">
@@ -25,21 +26,21 @@ function App() {
       >
         <AcceptButton
           onClick={() => {
-            setAlerts(!alerts);
+            setAppState({ alerts: !appState.alerts });
           }}
-          className={alerts ? "bg-green" : "bg-red"}
+          className={appState.alerts ? "bg-green" : "bg-red"}
         >
-          {alerts ? "Alerts are ON" : "Alerts are OFF"}
+          {appState.alerts ? "Alerts are ON" : "Alerts are OFF"}
         </AcceptButton>
       </div>
-      <AcceptButtonDemo alerts={alerts}></AcceptButtonDemo>
-      <AddButtonDemo alerts={alerts}></AddButtonDemo>
-      <CancelButtonDemo alerts={alerts}></CancelButtonDemo>
-      <CartDemo alerts={alerts}></CartDemo>
-      <ChangeViewButtonDemo alerts={alerts}></ChangeViewButtonDemo>
-      <DeleteButtonDemo alerts={alerts}></DeleteButtonDemo>
-      <EditButtonDemo alerts={alerts}></EditButtonDemo>
-      <ManageInfoButtonDemo alerts={alerts}></ManageInfoButtonDemo>
+      <AcceptButtonDemo alerts={appState.alerts}></AcceptButtonDemo>
+      <AddButtonDemo alerts={appState.alerts}></AddButtonDemo>
+      <CancelButtonDemo alerts={appState.alerts}></CancelButtonDemo>
+      <CartDemo alerts={appState.alerts}></CartDemo>
+      <ChangeViewButtonDemo alerts={appState.alerts}></ChangeViewButtonDemo>
+      <DeleteButtonDemo alerts={appState.alerts}></DeleteButtonDemo>
+      <EditButtonDemo alerts={appState.alerts}></EditButtonDemo>
+      <ManageInfoButtonDemo alerts={appState.alerts}></ManageInfoButtonDemo>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -56,6 +57,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;

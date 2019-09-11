@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "../button/button.jsx";
 
-function CancelButton(props) {
+const CancelButton = props => {
   return (
     <Button
       className={"text-white " + props.className}
-      variant="blue"
+      variant="indigo"
       size={props.size}
       block={props.block}
       active={props.active}
@@ -15,6 +15,6 @@ function CancelButton(props) {
       {props.children}
     </Button>
   );
-}
+};
 
 export default CancelButton;

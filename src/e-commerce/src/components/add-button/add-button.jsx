@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../button/button.jsx";
 import "./add-button.css";
 
-function AddButton(props) {
+const AddButton = props => {
   return (
     <Button
       className={
@@ -10,7 +10,7 @@ function AddButton(props) {
         (props.circle ? "rounded-circle bg-green auto-circle " : "") +
         props.className
       }
-      variant={props.square ? "indigo" : props.circle ? "green" : "error"}
+      variant={"green"}
       size={props.size}
       block={props.block}
       active={props.active}
@@ -22,6 +22,6 @@ function AddButton(props) {
       </h3>
     </Button>
   );
-}
+};
 
 export default AddButton;

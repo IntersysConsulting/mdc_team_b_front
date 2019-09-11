@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../button/button.jsx";
 import image from "./delete-button.svg";
 
-function DeleteButton(props) {
+const DeleteButton = props => {
   return (
     <Button
       className={"auto-height icon-only " + props.className}
@@ -18,6 +18,6 @@ function DeleteButton(props) {
       onClick={props.onClick}
     ></Button>
   );
-}
+};
 
 export default DeleteButton;

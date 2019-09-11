@@ -2,12 +2,12 @@ import React from "react";
 import Button from "../button/button.jsx";
 import "./manage-info-button.css";
 
-function ManageInfoButton(props) {
+const ManageInfoButton = props => {
   return (
     <Button
       height="auto"
       className={"manage-button text-white " + props.className}
-      variant="indigo"
+      variant="orange"
       size={props.size}
       block={props.block}
       active={props.active}
@@ -18,6 +18,6 @@ function ManageInfoButton(props) {
       <h1 className="regular-text">{props.children}</h1>
     </Button>
   );
-}
+};
 
 export default ManageInfoButton;

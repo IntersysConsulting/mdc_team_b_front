@@ -1,10 +1,10 @@
 import React from "react";
 import AcceptButton from "./accept-button.jsx";
 
-function AcceptButtonDemo(props) {
-  function AlertAccept() {
+const AcceptButtonDemo = props => {
+  const AlertAccept = () => {
     alert("You clicked on an accept button!");
-  }
+  };
 
   return (
     <div>
@@ -65,6 +65,6 @@ function AcceptButtonDemo(props) {
       </div>
     </div>
   );
-}
+};
 
 export default AcceptButtonDemo;

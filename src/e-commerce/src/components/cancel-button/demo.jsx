@@ -1,10 +1,10 @@
 import React from "react";
 import CancelButton from "./cancel-button.jsx";
 
-function CancelButtonDemo(props) {
-  function AlertCancel() {
+const CancelButtonDemo = props => {
+  const AlertCancel = () => {
     return alert("You clicked on a cancel button!");
-  }
+  };
 
   return (
     <div>
@@ -27,17 +27,17 @@ function CancelButtonDemo(props) {
           className="col-2"
           onClick={props.alerts ? AlertCancel : undefined}
         >
-          Cancel order
+          Cancel
         </CancelButton>
         <CancelButton
           className="col-2"
           onClick={props.alerts ? AlertCancel : undefined}
         >
-          Go back
+          No
         </CancelButton>
       </div>
     </div>
   );
-}
+};
 
 export default CancelButtonDemo;

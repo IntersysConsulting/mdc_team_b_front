@@ -1,10 +1,10 @@
 import React from "react";
 import EditButton from "./edit-button.jsx";
 
-function EditButtonDemo(props) {
-  function AlertEdit() {
+const EditButtonDemo = props => {
+  const AlertEdit = () => {
     alert("You clicked on an edit button!");
-  }
+  };
 
   return (
     <div>
@@ -42,6 +42,6 @@ function EditButtonDemo(props) {
       </div>
     </div>
   );
-}
+};
 
 export default EditButtonDemo;

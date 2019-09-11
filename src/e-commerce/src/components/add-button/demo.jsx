@@ -1,10 +1,10 @@
 import React from "react";
 import AddButton from "./add-button.jsx";
 
-function AddButtonDemo(props) {
-  function AlertAdd() {
+const AddButtonDemo = props => {
+  const AlertAdd = () => {
     alert("You clicked on an add button!");
-  }
+  };
 
   return (
     <div>
@@ -24,6 +24,6 @@ function AddButtonDemo(props) {
       </div>
     </div>
   );
-}
+};
 
 export default AddButtonDemo;

@@ -1,10 +1,10 @@
 import React from "react";
 import DeleteButton from "./delete-button.jsx";
 
-function DeleteButtonDemo(props) {
-  function AlertDelete() {
+const DeleteButtonDemo = props => {
+  const AlertDelete = () => {
     alert("You clicked on a delete button!");
-  }
+  };
 
   return (
     <div>
@@ -37,6 +37,6 @@ function DeleteButtonDemo(props) {
       </div>
     </div>
   );
-}
+};
 
 export default DeleteButtonDemo;

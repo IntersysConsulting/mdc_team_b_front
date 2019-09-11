@@ -1,0 +1,9 @@
+.cart-icon {
+  padding: 0 !important;
+  min-width: 160px !important;
+  height: 57px;
+}
+
+.accept-button {
+  min-width: 10rem;
+}

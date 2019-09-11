@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import cartReducer from "./cartReducer";
+import switchReducer from './switch-reducer';
 
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
@@ -8,7 +9,8 @@ import cartReducer from "./cartReducer";
 // the reducer acts on the corresponding ApplicationState property type.
 const rootReducer = combineReducers(
     {
-        cartState: cartReducer
+        cartState: cartReducer,
+        switchState: switchReducer
     }
 );
 

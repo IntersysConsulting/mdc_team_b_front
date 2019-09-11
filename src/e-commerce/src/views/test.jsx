@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg';
 import '../App.css';
+import Description from '../components/product/description';
 
 function Test() {
   return (
@@ -9,6 +10,7 @@ function Test() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <p>{process.env.REACT_APP_API_URL}<code>src/App.js</code> and save to reload.</p>
+      <Description description = {'ME GUSTAN LAS PUTAS'}></Description>
     </div>
   );
 }

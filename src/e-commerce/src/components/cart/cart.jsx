@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "./cart.css";
+import React, {useState} from 'react';
+import './cart.css';
 
-const Cart = props => {
+const Cart = (props) => {
   return (
     <div className="cart-container" onClick={props.onClick}>
-      <h1 className={"text-green cart-text " + props.isOverNine}>
+      <h1 className={'text-green cart-text ' + props.isOverNine}>
         {props.displayText}
       </h1>
       <p className={props.isOverNine}>{props.tooltipText}</p>

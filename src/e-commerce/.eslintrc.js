@@ -19,8 +19,20 @@ module.exports = {
   },
   'plugins': [
     'react',
+    "prefer-arrow"
   ],
   'rules': {
     "no-unused-vars": "off",
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "arrow-body-style": ["error", "always"],
+    "prefer-arrow-callback": "error",
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": true,
+        "singleReturnOnly": false,
+        "classPropertiesAllowed": false
+      }
+    ]
   },
 };

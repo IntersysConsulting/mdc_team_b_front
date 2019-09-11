@@ -4,10 +4,14 @@
   overflow: hidden;
   user-select: none;
   font-family: "Roboto", sans-serif;
-  border: none !important;
 }
 
-/* .btn:focus {
+.no-border {
+  border: none;
+}
+
+/* In case we want to get rid of the focus from react-bootstrap */
+/* .btn:focus {  
   outline: none !important;
   box-shadow: none !important;
 } */
@@ -29,11 +33,6 @@
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-}
-
-.border-2 {
-  /* Override border */
-  border: 2px solid transparent !important;
 }
 
 .button-icon-padding {

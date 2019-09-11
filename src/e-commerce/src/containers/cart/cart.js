@@ -1,16 +1,16 @@
-import Cart, { useState } from "../../components/cart/cart";
-import React from "react";
+import Cart, {useState} from '../../components/cart/cart';
+import React from 'react';
 
 // This container must have the logic
 
-const CartContainer = props => {
-  const [cartState, setCartState] = useState({ value: props.value });
+const CartContainer = (props) => {
+  const [cartState, setCartState] = useState({value: props.value});
 
-  const to_small_text = x => {
+  const toSmallText = (x) => {
     if (x <= 0) {
-      return "";
+      return '';
     } else if (x > 9) {
-      return "9+";
+      return '9+';
     } else {
       return x;
     }
@@ -18,7 +18,7 @@ const CartContainer = props => {
 
   return (
     <Cart
-      displayText={to_small_text(cartState.value)}
+      displayText={toSmallText(cartState.value)}
       tooltipText={cartState.value}
       isOverNine={cartState.value > 9}
       onClick={props.onClick}
@@ -26,17 +26,23 @@ const CartContainer = props => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.visibilityFilter
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    active: ownProps.filter === state.visibilityFilter,
+  };
+};
 
-const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch(fetchCartSuccess())
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClick: () => {
+      return dispatch(fetchCartSuccess());
+    },
+  };
+};
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Cart);
 
 // I am also not sure what I should be exporting here, since the two functions above were done by Christian and I fear I may break something by changing this.

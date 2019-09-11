@@ -1,9 +1,9 @@
-import React from "react";
-import logo from "./logo.svg";
-import { Button } from "react-bootstrap";
-import "./App.css";
+import React from 'react';
+import logo from './logo.svg';
+import {Button} from 'react-bootstrap';
+import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Button block variant="info" value="Button">
@@ -25,6 +25,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;

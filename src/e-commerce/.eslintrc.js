@@ -23,6 +23,7 @@ module.exports = {
   ],
   'rules': {
     "no-unused-vars": "off",
+    "max-len" : "off",
     "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
     "arrow-body-style": ["error", "always"],
     "prefer-arrow-callback": "error",

@@ -1,0 +1,35 @@
+.menu-button {
+  /* Mobile */
+  background: url("./burger.svg");
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  /* Small Desktop */
+  .menu-button {
+    width: 22px;
+    height: 22px;
+    background: url("./triangle-in.svg");
+    background-size: cover;
+  }
+
+  .hide {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url("./triangle-out.svg");
+    background-size: cover;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .menu-button {
+    display: none;
+  }
+}

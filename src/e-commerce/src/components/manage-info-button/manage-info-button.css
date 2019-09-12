@@ -1,0 +1,13 @@
+.small-text {
+  font-size: 15px;
+  margin: 0;
+  /* margin-top: -15px */
+}
+
+.regular-text {
+  font-size: 24px;
+}
+
+.manage-button {
+  min-width: 9rem !important;
+}

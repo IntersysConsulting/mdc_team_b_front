@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
-import './cart.css';
+import React, { useState } from "react";
+import "./cart.css";
 
-const Cart = (props) => {
+const Cart = props => {
   return (
     <div className="cart-container" onClick={props.onClick}>
-      <h1 className={'text-green cart-text ' + props.isOverNine}>
+      <h1
+        className={
+          "text-green cart-text " + (props.isOverNine ? "cart-text-ten" : "")
+        }
+      >
         {props.displayText}
       </h1>
-      <p className={props.isOverNine}>{props.tooltipText}</p>
+      <p className={props.isOverNine ? "cart-tooltip" : "hidden"}>
+        {props.tooltipText}
+      </p>
     </div>
   );
 };

@@ -1,28 +1,28 @@
-import Cart from "../../components/cart/cart";
-import React, { useState, useEffect } from "react";
+import Cart from '../../components/cart/cart';
+import React, {useState, useEffect} from 'react';
 
 // This container must have the logic
 
-const CartContainer = props => {
-  const [cartState, setCartState] = useState({ value: props.value });
+const CartContainer = (props) => {
+  const [cartState, setCartState] = useState({value: props.value});
 
   useEffect(() => {
     if (isNaN(Number(props.value))) {
-      setCartState({ value: 0 });
+      setCartState({value: 0});
     } else if (props.value > 99999) {
-      setCartState({ value: 99999 });
+      setCartState({value: 99999});
     } else {
-      setCartState({ value: props.value });
+      setCartState({value: props.value});
     }
   });
 
-  const toSmallText = x => {
-    var m = parseInt(x);
+  const toSmallText = (x) => {
+    const m = parseInt(x);
 
     if (m <= 0 || isNaN(m)) {
-      return "";
+      return '';
     } else if (m > 9) {
-      return "9+";
+      return '9+';
     } else {
       return m;
     }

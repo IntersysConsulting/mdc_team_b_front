@@ -1,3 +1,4 @@
+/* Hides the default browser checkbox */
 .react-switch-checkbox {
     height: 0;
     width: 0;
@@ -24,9 +25,9 @@
     text-align:right;
   }
   
+  /* Style the new "checkbox" which is a label */
   .react-switch-label {
     display: block;
-    align-items: center;
     justify-content: space-between;
     cursor: pointer;
     width: 220px;
@@ -37,14 +38,18 @@
     transition: background-color .2s;
   }
 
+  /* Sets "Digital" word as unselected by default by reducing its blackness*/
   .react-switch-label #right {
     color: rgba(0, 0, 0, 0.4);
   }
   
+  /* Sets "Physical" word as unselected when the checkbox is checked,
+  which means that the switch has been clicked on and "Digital" is now selected */
   .react-switch-checkbox:checked + .react-switch-label #left {
     color: rgba(0, 0, 0, 0.4);
   }
 
+  /* Sets "Digital" word as selected when the chekbox is checked, by adding blackness to it */
   .react-switch-checkbox:checked + .react-switch-label #right {
     color: rgba(0, 0, 0, 1);
   }

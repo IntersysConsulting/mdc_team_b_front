@@ -1,0 +1,16 @@
+.toggle-visibility-button {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.open-eye {
+  background: url("./open-eye.svg");
+  background-size: cover;
+}
+
+.closed-eye {
+  background: url("./closed-eye.svg");
+  background-size: cover;
+}

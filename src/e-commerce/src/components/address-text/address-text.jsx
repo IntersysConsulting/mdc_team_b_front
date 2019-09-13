@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./address-text.css";
 const AddressText = props => {
   return (
     <p className="address-text">

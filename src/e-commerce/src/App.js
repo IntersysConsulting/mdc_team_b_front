@@ -3,6 +3,7 @@ import DemoButton from './demos/demo-button';
 import DemoStatus from './demos/demo-status';
 import DemoCards from './demos/demo-cards';
 import DemoAddress from './demos/demo-address';
+import DemoPrice from './demos/demo-price.js';
 import './App.css';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <DemoStatus></DemoStatus>
       <DemoCards></DemoCards>
       <DemoAddress></DemoAddress>
+      <DemoPrice></DemoPrice>
     </div>
   );
 };

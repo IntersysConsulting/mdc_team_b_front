@@ -1,20 +1,9 @@
 import React from 'react';
 
 const Price = (props) => {
-  const validateAndRender = () => {
-    if (Number.isInteger(props.price)) {
-      const priceWithCents = props.price/100;
-      return (
-        <div>
-          <h2 style={{color: 'orange', display: 'inline'}}>USD ${priceWithCents}</h2>
-        </div>
-      )
-    } else {
-      return <div></div>;
-    }
-  };
-
-  return validateAndRender();
+  return return (
+    <p className="text-orange price-text"> {typeof props.price == Number?props.price/100:""} </p>
+  );
 };
 
 export default Price;

@@ -3,7 +3,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import Description from '../components/product/description';
 
-function Test() {
+const Test = () => {
   return (
     <div className="App">
       <header className="App-header">

@@ -10,4 +10,13 @@
 
 .manage-button {
   min-width: 9rem !important;
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  width: 100%;
+}
+
+.static {
+  /* This is made for the demo only and should not be assigned into the button */
+  position: static !important;
 }

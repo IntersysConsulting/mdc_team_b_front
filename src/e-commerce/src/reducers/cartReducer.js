@@ -1,5 +1,7 @@
-const INITIAL_STATE = {
-  getProducts: [],
+import cartConstants from '../constants/cartConstants';
+
+INITIAL_STATE = {
+  items: [],
   erros: undefined,
   loading: false,
 };
@@ -8,19 +10,19 @@ const INITIAL_STATE = {
 // everything will remain type-safe.
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'FETCH_CART_BEGIN':
+    case cartConstants.FETCH_CART_BEGIN:
       return {...state, loading: true};
 
-    case 'FETCH_CART_SUCCESS':
-      return {...state, loading: false, data: action.payload};
+    case cartConstants.FETCH_CART_SUCCESS:
+      return {...state, loading: false, items: action.payload};
 
-    case 'FETCH_CART_ERROR':
-      return {...state, loading: false, erros: action.payload};
+    case cartConstants.FETCH_CART_ERROR:
+      return {...state, loading: false, errors: action.payload};
 
     default:
       return state;
   }
-};
+}
 
 // Instead of using default export, we use named exports. That way we can group these exports
 // inside the `index.js` folder.

@@ -1,41 +1,36 @@
+// Example of how to implement this component:
+// <Switch leftWord="Filter" rightWord="Sort"/>
+
 import React, {useState} from 'react';
 import './switch.css'
 
-const SwitchStructure = ({ isOn, handleToggle, onColor }) => {
+const Switch = (props) => {
+
+    const [value, setValue] = useState(false);
+    const handleToggle= () => setValue(!value)
+
     return (
         <>
             <input
-                checked={isOn}
+                checked={props.isOn}
                 onChange={handleToggle}
                 className="react-switch-checkbox"
                 id={`react-switch-new`}
                 type="checkbox"
             />
             <label
-                style={{ background: isOn && onColor }}
+                style={{ background: props.isOn && props.onColor }}
                 className="react-switch-label"
                 htmlFor={`react-switch-new`}
             >
-                <h3 id="left" className="inLine">Physical</h3>
-                <h3 id="mid" className="inLine"> | </h3>
-                <h3 id="right" className="inLine">Digital</h3>
+                <h3 id="switch-left-parameter" className="inLine">{props.leftWord}</h3>
+                <h3 id="switch-mid-parameter" className="inLine"> | </h3>
+                <h3 id="switch-right-parameter" className="inLine">{props.rightWord}</h3>
                 <span className={`react-switch-button`} />
             </label>
+           {/* <p>{console.log(value)}</p> */}
         </>
     );
 };
-
-function Switch() {
-    const [value, setValue] = useState(false);
-    return (
-        <div>
-            <SwitchStructure
-                isOn={value}
-                onColor=""
-                handleToggle={() => setValue(!value)}
-            />
-        </div>
-    );
-}
 
 export default Switch;

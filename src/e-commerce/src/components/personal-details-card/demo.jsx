@@ -20,12 +20,11 @@ const PersonalDetailsCardDemo = props => {
           <PersonalDetailsCard
             detailName={"Shipping Address"}
             onClick={props.alerts ? AlertPersonalDetails : undefined}
-            detail={
-              <p>
-                John Smith, 2179 <br /> Rockford Mountain Lane. <br /> (NC),
-                27514
-              </p>
-            }
+            name={"John Smith"}
+            address={"Rockford Mountain Lane, 2179"}
+            country={"us"}
+            state={"nc"}
+            zipCode={"27514"}
           ></PersonalDetailsCard>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import AddressText from "../address-text/address-text.jsx";
 import ManageInfoButton from "../manage-info-button/manage-info-button.jsx";
 import "./personal-details-card.css";
 
@@ -21,18 +22,19 @@ const PersonalDetailsCard = props => {
     <Card className={"personal-details-card border-indigo"}>
       <Card.Title>Preferred {props.detailName}</Card.Title>
       <Card.Text className="text-container">
-        {props.detail ? props.detail : orByDefault()}
+        {props.name ? (
+          <AddressText
+            name={props.name}
+            address={props.address}
+            state={props.state}
+            country={props.country}
+            zipCode={props.zipCode}
+          ></AddressText>
+        ) : (
+          orByDefault()
+        )}
       </Card.Text>
-      <ManageInfoButton
-        // style={{
-        //   position: "absolute !important",
-        //   bottom: "-1px",
-        //   left: "0",
-        //   width: "100%"
-        // }}
-        className={"rounded-0"}
-        onClick={props.onClick}
-      >
+      <ManageInfoButton className={"rounded-0"} onClick={props.onClick}>
         {props.detailName}es
       </ManageInfoButton>
     </Card>

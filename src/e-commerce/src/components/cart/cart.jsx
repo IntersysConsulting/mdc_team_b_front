@@ -18,7 +18,9 @@ const Cart = (props) => {
       <h1 className={'text-green cart-text ' + props.isOverNine}>
         {props.displayText}
       </h1>
-      <p className={props.isOverNine}>{props.tooltipText}</p>
+      <p className={props.isOverNine ? "cart-tooltip" : "hidden"}>
+        {props.tooltipText}
+      </p>
     </div>
   );
 };

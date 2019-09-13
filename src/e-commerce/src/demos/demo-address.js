@@ -1,5 +1,5 @@
-import React from "react";
-import AddressManagementCardDemo from "../components/address-management-card/demo.jsx";
+import React from 'react';
+import AddressManagementCardDemo from '../components/address-management-card/demo.jsx';
 
 const DemoAddress = () => {
   return (

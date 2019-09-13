@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PasswordFieldContainer from "../../containers/password-field/password-field.js";
 
 const PasswordFieldDemo = props => {

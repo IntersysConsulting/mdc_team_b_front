@@ -1,20 +1,83 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
 import DemoButton from './demos/demo-button';
 import DemoStatus from './demos/demo-status';
 import DemoCards from './demos/demo-cards';
 import DemoAddress from './demos/demo-address';
 import './App.css';
+=======
+import React, { useState } from "react";
+import logo from "./logo.svg";
+
+import "./App.css";
+import CartDemo from "./components/cart/demo.jsx";
+import AcceptButtonDemo from "./components/accept-button/demo.jsx";
+import DeleteButtonDemo from "./components/delete-button/demo.jsx";
+import CancelButtonDemo from "./components/cancel-button/demo.jsx";
+import AddButtonDemo from "./components/add-button/demo.jsx";
+import EditButtonDemo from "./components/edit-button/demo.jsx";
+import ChangeViewButtonDemo from "./components/change-view-button/demo.jsx";
+import ManageInfoButtonDemo from "./components/manage-info-button/demo.jsx";
+import AcceptButton from "./components/accept-button/accept-button.jsx";
+import MenuButtonDemo from "./components/menu-button/demo.jsx";
+import LastOrderCardDemo from "./components/last-order-card/demo.jsx";
+>>>>>>> Made Last Order Card
 
 const App = () => {
   const defaultAlerts = true;
-  const [appState, setAppState] = useState({alerts: defaultAlerts});
+  const [appState, setAppState] = useState({ alerts: defaultAlerts });
 
   return (
     <div className="App">
+<<<<<<< HEAD
       <DemoButton></DemoButton>
       <DemoStatus></DemoStatus>
       <DemoCards></DemoCards>
       <DemoAddress></DemoAddress>
+=======
+      <div
+        style={{
+          position: "fixed",
+          right: 0,
+          zIndex: 1
+        }}
+      >
+        <AcceptButton
+          onClick={() => {
+            setAppState({ alerts: !appState.alerts });
+          }}
+          className={appState.alerts ? "bg-green" : "bg-red"}
+        >
+          {appState.alerts ? "Alerts are ON" : "Alerts are OFF"}
+        </AcceptButton>
+      </div>
+      <AcceptButtonDemo alerts={appState.alerts}></AcceptButtonDemo>
+      <AddButtonDemo alerts={appState.alerts}></AddButtonDemo>
+      <CancelButtonDemo alerts={appState.alerts}></CancelButtonDemo>
+      <CartDemo alerts={appState.alerts}></CartDemo>
+      <ChangeViewButtonDemo alerts={appState.alerts}></ChangeViewButtonDemo>
+      <DeleteButtonDemo alerts={appState.alerts}></DeleteButtonDemo>
+      <EditButtonDemo alerts={appState.alerts}></EditButtonDemo>
+      <ManageInfoButtonDemo alerts={appState.alerts}></ManageInfoButtonDemo>
+      <MenuButtonDemo alerts={appState.alerts}></MenuButtonDemo>
+      <div className="container">
+        <LastOrderCardDemo alerts={appState.alerts}></LastOrderCardDemo>
+      </div>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+>>>>>>> Made Last Order Card
     </div>
   );
 };

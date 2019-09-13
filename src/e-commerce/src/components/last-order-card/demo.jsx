@@ -7,12 +7,15 @@ const LastOrderCardDemo = props => {
   };
 
   return (
-    <div className="row justify-content-md-center">
-      <div className="col-md-auto">
-        <LastOrderCard
-          details=""
-          onClick={props.alerts ? AlertLastOrderCard : undefined}
-        ></LastOrderCard>
+    <div className="container">
+      <h1>Last Order Card Demo</h1>
+      <div className="row justify-content-md-center">
+        <div className="col-md-auto">
+          <LastOrderCard
+            details=""
+            onClick={props.alerts ? AlertLastOrderCard : undefined}
+          ></LastOrderCard>
+        </div>
       </div>
     </div>
   );

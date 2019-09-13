@@ -12,6 +12,7 @@ import ChangeViewButtonDemo from './components/change-view-button/demo.jsx';
 import ManageInfoButtonDemo from './components/manage-info-button/demo.jsx';
 import AcceptButton from './components/accept-button/accept-button.jsx';
 import MenuButtonDemo from './components/menu-button/demo.jsx';
+import PersonalDetailsCardDemo from './components/personal-details-card/demo.jsx';
 
 const App = () => {
   const defaultAlerts = true;
@@ -44,6 +45,9 @@ const App = () => {
       <EditButtonDemo alerts={appState.alerts}></EditButtonDemo>
       <ManageInfoButtonDemo alerts={appState.alerts}></ManageInfoButtonDemo>
       <MenuButtonDemo alerts={appState.alerts}></MenuButtonDemo>
+      <PersonalDetailsCardDemo
+        alerts={appState.alerts}
+      ></PersonalDetailsCardDemo>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

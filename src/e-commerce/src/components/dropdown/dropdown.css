@@ -1,0 +1,21 @@
+p {
+    display: inline;
+}
+
+.dropdown {
+    display: inline;
+    padding: 0 20px;
+}
+
+.dropdown-toggle {
+    width: 60px;
+}
+
+#month {
+    width: 120px;
+}
+
+.dropdown-container {
+    display: block;
+    padding: 2px 0;
+}

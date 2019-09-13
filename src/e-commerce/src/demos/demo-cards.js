@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PersonalDetailsCardDemo from "./components/personal-details-card/demo.jsx";
+import PersonalDetailsCardDemo from "../components/personal-details-card/demo.jsx";
 
 const DemoCards = () => {
   return (

@@ -1,4 +1,4 @@
-.text-container {
+.pdc-text-container {
   text-align: left;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -13,17 +13,17 @@
   margin-bottom: 1rem;
 }
 
-.card-title {
+.pdc-card-title {
   margin-top: 0.5rem;
   margin-bottom: 0rem;
   font-weight: bold;
 }
 
-.card-text {
+.pdc-card-text {
   line-height: 20px;
 }
 
-.card-text > p > a {
+.pdc-card-text > p > a {
   text-decoration: underline;
 }
 
@@ -36,7 +36,7 @@
 
     margin-bottom: 1rem;
   }
-  .card-title {
+  .pdc-card-title {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     font-weight: bold;
@@ -44,7 +44,7 @@
 }
 
 @media screen and (min-width: 1000px) {
-  .card-title {
+  .pdc-card-title {
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     font-weight: bold;
@@ -60,7 +60,7 @@
 
     margin-bottom: 1rem;
   }
-  .card-text {
+  .pdc-card-text {
     line-height: 22px;
   }
 }

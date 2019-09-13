@@ -1,4 +1,4 @@
-.card {
+.address-management-card {
   height: 114px;
   width: 320px;
   text-align: left;
@@ -6,7 +6,7 @@
   margin-bottom: 1rem;
 }
 
-.card-text {
+.address-management-card > .card-text {
   position: absolute;
   top: 1.5rem;
   margin-left: 1rem;
@@ -16,13 +16,13 @@
   font-size: 18px;
 }
 
-.card-title {
+.address-management-card > .card-title {
   margin-left: 0.1rem;
   margin-bottom: 0.1rem;
   font-weight: bold;
 }
 
-.button-holder {
+.address-management-card > .button-holder {
   width: 50px;
   height: 100%;
   position: absolute;
@@ -31,7 +31,7 @@
   padding: 0 !important;
 }
 
-.manage-edit-button {
+.address-management > .manage-edit-button {
   padding: 0 !important;
   height: 50px;
   width: 100% !important;
@@ -39,7 +39,7 @@
   max-width: 100% !important;
 }
 
-.manage-delete-button {
+.address-management > .delete-button {
   padding: 0 !important;
   height: 50px;
   width: 100% !important;

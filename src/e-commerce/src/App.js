@@ -3,7 +3,6 @@ import DemoButton from './demos/demo-button';
 import DemoStatus from './demos/demo-status';
 import './App.css';
 
-
 const App = () => {
   const defaultAlerts = true;
   const [appState, setAppState] = useState({alerts: defaultAlerts});

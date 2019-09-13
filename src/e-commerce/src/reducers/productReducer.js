@@ -2,7 +2,7 @@ import productConstants from '../constants/productConstants';
 
 const INITIAL_STATE = {
   products: [],
-  erros: undefined,
+  errors: undefined,
   loading: false,
 };
 
@@ -22,7 +22,7 @@ const productReducer = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-}
+};
 
 // Instead of using default export, we use named exports. That way we can group these exports
 // inside the `index.js` folder.

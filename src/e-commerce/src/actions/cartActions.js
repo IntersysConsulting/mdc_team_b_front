@@ -32,7 +32,7 @@ const fetchCartSuccess = (items) => {
  * Function to get products from API implementing API request convention
  */
 
-export const CartActions = () => {
+export const cartActions = () => {
   return (dispatch) => {
     dispatch(fetchCartBegin());
     cartApi.get_items().then((response) => {

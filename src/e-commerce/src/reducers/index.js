@@ -8,8 +8,8 @@ import productReducer from './productReducer';
 // the reducer acts on the corresponding ApplicationState property type.
 const rootReducer = combineReducers(
     {
-      cart_state: cartReducer,
-      product_state: productReducer,
+      cartState: cartReducer,
+      productState: productReducer,
     }
 );
 

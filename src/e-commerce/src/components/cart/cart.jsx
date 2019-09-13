@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import cart_actions from '../../actions/cartActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {cartActions} from '../../actions/cartActions';
 import './cart.css';
 
 const Cart = (props) => {
 
-  const [items, setItems] = useState('items');
+  const items = useSelector((state) => state.cartState.errors);
   const dispatch = useDispatch();
-  const GetItems = () => dispatch(cart_actions())
+  const getItems = () => dispatch(cartActions())
 
-  const onClick = () => {
+  const clicked = () => {
     console.log(items);
   }
 
   return (
-    <div className="cart-container" onClick={props.onClick}>
+    <div className="cart-container" onClick={clicked}>
       <h1 className={'text-green cart-text ' + props.isOverNine}>
         {props.displayText}
       </h1>
-      <p className={props.isOverNine} onClick={onClick}>{props.tooltipText}</p>
+      <p className={props.isOverNine}>{props.tooltipText}</p>
     </div>
   );
 };

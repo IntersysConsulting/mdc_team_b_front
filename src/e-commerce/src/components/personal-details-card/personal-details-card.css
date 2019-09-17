@@ -1,0 +1,66 @@
+.text-container {
+  text-align: left;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.personal-details-card {
+  position: relative;
+  width: 260px;
+  height: 190px;
+  border-width: 3px;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+  font-weight: bold;
+}
+
+.card-text {
+  line-height: 20px;
+}
+
+.card-text > p > a {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 600px) {
+  .personal-details-card {
+    position: relative;
+    width: 260px;
+    height: 235px;
+    border-width: 3px;
+
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .card-title {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 1.45rem;
+  }
+
+  .personal-details-card {
+    position: relative;
+    font-size: 1.33rem;
+    width: 320px;
+    height: 290px;
+    border-width: 3px;
+
+    margin-bottom: 1rem;
+  }
+  .card-text {
+    line-height: 22px;
+  }
+}

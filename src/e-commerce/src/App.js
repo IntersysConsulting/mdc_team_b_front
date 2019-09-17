@@ -3,8 +3,10 @@ import DemoButton from './demos/demo-button';
 import DemoStatus from './demos/demo-status';
 import DemoCards from './demos/demo-cards';
 import DemoPrice from './demos/demo-price.js';
+import DemoLayout from './demos/demo-layout.js';
 
 import './App.css';
+import DemoProduct from './demos/demo-product';
 
 const App = () => {
   const defaultAlerts = true;
@@ -15,6 +17,8 @@ const App = () => {
       <DemoStatus></DemoStatus>
       <DemoCards></DemoCards>
       <DemoPrice></DemoPrice>
+      <DemoLayout></DemoLayout>
+      <DemoProduct></DemoProduct>
     </div>
   );
 };

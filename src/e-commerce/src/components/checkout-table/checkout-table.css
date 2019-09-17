@@ -1,0 +1,22 @@
+.checkout-table {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+}
+
+.table-borderless td {
+  padding: 6px 12px 6px 12px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: #e0e0e0;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  color: #ffffff;
+  background: #4f4f4f;
+}
+
+.total-holder {
+  position: absolute;
+  right: 0;
+}

@@ -16,7 +16,29 @@
   background: #4f4f4f;
 }
 
-.total-holder {
+.total-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 25px;
   position: absolute;
-  right: 0;
+  left: 16px;
+}
+
+.total-number {
+  position: absolute;
+  right: 16px;
+}
+
+@media (min-width: 577px) {
+  .total-label {
+    position: initial;
+  }
+
+  .total-container {
+    position: absolute;
+    right: 16px;
+  }
+
+  .total-number {
+    position: initial;
+  }
 }

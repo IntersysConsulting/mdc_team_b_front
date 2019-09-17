@@ -15,7 +15,7 @@ const CheckoutTableDemo = props => {
   ];
 
   return (
-    <div>
+    <div className="col-12">
       <h1>Checkout Table Demo </h1>
       <CheckoutTable products={items}></CheckoutTable>
     </div>

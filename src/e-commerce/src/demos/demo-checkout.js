@@ -9,4 +9,4 @@ const DemoCheckout = (props) => {
   );
 };
 
-export default CheckoutTableDemo;
+export default DemoCheckout;

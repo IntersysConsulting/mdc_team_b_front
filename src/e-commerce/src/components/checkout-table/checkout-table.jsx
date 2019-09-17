@@ -9,9 +9,9 @@ const CheckoutTable = props => {
       return (
         <tr>
           <td>{product.name}</td>
-          <td>{(product.price / 100).toFixed(2)}</td>
+          <td>{"$" + (product.price / 100).toFixed(2)}</td>
           <td>{product.qty}</td>
-          <td>{(product.total / 100).toFixed(2)}</td>
+          <td>{"$" + (product.total / 100).toFixed(2)}</td>
         </tr>
       );
     });
@@ -40,11 +40,11 @@ const CheckoutTable = props => {
         </thead>
         <tbody>{MakeRows()}</tbody>
       </Table>
-      <div className="total-holder">
-        <p>
-          Total
+      <div className="total-container">
+        <span className="total-label"> Total </span>{" "}
+        <span className="total-number">
           <PriceText price={MakeTotal()}></PriceText>
-        </p>
+        </span>
       </div>
     </div>
   );

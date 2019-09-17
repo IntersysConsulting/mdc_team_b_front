@@ -3,16 +3,17 @@ import {Button, Card} from "react-bootstrap";
 
 const Product = (props) => (
     <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        {/* This is the price component */}
         <Card.Body>
             <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            {/* This is the price component */}
+            <EditButton
+                className="manage-edit-button icon-only icon-50x50 rounded-0"
+                onClick={props.edit}
+                icon
+            ></EditButton>
         </Card.Body>
     </Card>
 )
 
-export default Product
+export default cardProduct

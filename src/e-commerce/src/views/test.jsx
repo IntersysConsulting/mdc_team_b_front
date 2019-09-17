@@ -1,10 +1,10 @@
 import React from 'react';
-import Switch from '../components/2-word-switch/Switch'
+import Switch from '../components/2WordSwitch/Switch'
 import '../App.css';
 
 function Test() {
   return (
-    <div>
+    <div className="col-1">
       <Switch leftWord = "Physical" rightWord = "Digital"/>
     </div>
   );

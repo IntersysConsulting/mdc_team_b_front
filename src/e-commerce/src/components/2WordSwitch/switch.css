@@ -36,6 +36,7 @@
     border-radius: 100px;
     position: relative;
     transition: background-color .2s;
+    display: inline-block;
   }
 
   /* Sets the right word as unselected by default by reducing its blackness*/

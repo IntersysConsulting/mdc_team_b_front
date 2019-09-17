@@ -4,6 +4,7 @@ import DemoStatus from "./demos/demo-status";
 import DemoCards from "./demos/demo-cards";
 import DemoPrice from "./demos/demo-price.js";
 import DemoLayout from "./demos/demo-layout.js";
+import DemoCheckout from "./demos/demo-checkout.js";
 
 import "./App.css";
 

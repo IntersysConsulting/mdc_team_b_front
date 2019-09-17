@@ -7,6 +7,7 @@ import DemoLayout from './demos/demo-layout.js';
 import DemoCheckout from './demos/demo-checkout.js';
 
 import './App.css';
+import DemoProduct from './demos/demo-product';
 
 const App = () => {
   const defaultAlerts = true;
@@ -19,6 +20,8 @@ const App = () => {
       <DemoPrice></DemoPrice>
       <DemoLayout></DemoLayout>
       <DemoCheckout></DemoCheckout>
+      <DemoProduct></DemoProduct>
+
     </div>
   );
 };

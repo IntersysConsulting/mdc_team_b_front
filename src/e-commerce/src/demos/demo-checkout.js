@@ -1,7 +1,7 @@
-import React from "react";
-import CheckoutTableDemo from "../components/checkout-table/demo.jsx";
+import React from 'react';
+import CheckoutTableDemo from '../components/checkout-table/demo.jsx';
 
-const DemoCheckout = props => {
+const DemoCheckout = (props) => {
   return (
     <div className="container">
       <CheckoutTableDemo></CheckoutTableDemo>

@@ -2,7 +2,7 @@
 // <Switch leftWord="Filter" rightWord="Sort"/>
 
 import React, {useState} from 'react';
-import './switch.css'
+import './switch.css';
 
 const Switch = (props) => {
 

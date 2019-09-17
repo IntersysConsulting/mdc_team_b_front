@@ -11,14 +11,14 @@ const ManageInfoButtonDemo = props => {
       <div className="row justify-content-md-center">
         <ManageInfoButton
           onClick={props.alerts ? AlertManageInfo : undefined}
-          className="col-4"
+          className="col-4 static"
         >
           Shipping Info
         </ManageInfoButton>
         .
         <ManageInfoButton
           onClick={props.alerts ? AlertManageInfo : undefined}
-          className="col-2"
+          className="col-2 static"
         >
           Billing Info
         </ManageInfoButton>

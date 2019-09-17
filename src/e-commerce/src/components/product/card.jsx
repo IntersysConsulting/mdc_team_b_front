@@ -9,10 +9,12 @@ const CardProduct = (props) => (
             {/* This is the image component */}
             <Price price={30000}></Price>
             <EditButton
-                className="manage-edit-button icon-only icon-50x50 rounded-0"
-                onClick={props.edit}
+                className="col-1"
+                height="120px"
                 icon
-            ></EditButton>
+            >
+                Edit
+            </EditButton>
         </Card.Body>
     </Card>
 )

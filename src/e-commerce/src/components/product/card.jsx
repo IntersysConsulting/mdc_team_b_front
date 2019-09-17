@@ -1,12 +1,13 @@
 import React from "react";
-import {Button, Card} from "react-bootstrap";
+import {Card} from "react-bootstrap";
+import Price from "../price-text/price-text";
+import EditButton from "../edit-button/edit-button";
 
-const Product = (props) => (
+const CardProduct = (props) => (
     <Card style={{ width: '18rem' }}>
-        {/* This is the price component */}
         <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            {/* This is the price component */}
+            {/* This is the image component */}
+            <Price price={30000}></Price>
             <EditButton
                 className="manage-edit-button icon-only icon-50x50 rounded-0"
                 onClick={props.edit}
@@ -16,4 +17,4 @@ const Product = (props) => (
     </Card>
 )
 
-export default cardProduct
+export default CardProduct

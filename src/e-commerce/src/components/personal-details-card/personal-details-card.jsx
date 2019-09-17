@@ -21,7 +21,7 @@ const PersonalDetailsCard = props => {
   return (
     <Card className={"personal-details-card border-indigo"}>
       <Card.Title>Preferred {props.detailName}</Card.Title>
-      <Card.Text className="text-container">
+      <Card.Text className="pdc-text-container">
         {props.name ? (
           <AddressText
             name={props.name}

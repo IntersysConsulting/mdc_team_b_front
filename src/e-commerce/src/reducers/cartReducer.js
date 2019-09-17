@@ -1,4 +1,4 @@
-import {cartConstants} from '../constants/cartConstants';
+import {cartConstants} from '../constants/cartConstants'
 
 const INITIAL_STATE = {
   items: [],

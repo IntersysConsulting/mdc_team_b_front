@@ -13,7 +13,7 @@ const AddressManagementCardDemo = props => {
     <div className="container">
       <h1>Address Management Card Demo</h1>
       <div className="row justify-content-md-center mx-auto">
-        <div className="col-md-6 col-sm-12  pd-auto">
+        <div className="col-md-auto">
           <AddressManagementCard
             preferred
             name="John Smith"
@@ -25,7 +25,7 @@ const AddressManagementCardDemo = props => {
             delete={props.alerts ? alertDelete : undefined}
           ></AddressManagementCard>
         </div>
-        <div className="col-md-6 col-sm-12 ">
+        <div className="col-md-auto ">
           <AddressManagementCard
             name="Roy K Windburn"
             address="Andy Street 3958"
@@ -36,7 +36,7 @@ const AddressManagementCardDemo = props => {
             delete={props.alerts ? alertDelete : undefined}
           ></AddressManagementCard>
         </div>
-        <div className="col-md-6 col-sm-12 ">
+        <div className="col-md-auto ">
           <AddressManagementCard
             name="Paul C Porter"
             address="Grim Avenua 4825"
@@ -47,7 +47,7 @@ const AddressManagementCardDemo = props => {
             delete={props.alerts ? alertDelete : undefined}
           ></AddressManagementCard>
         </div>
-        <div className="col-md-6 col-sm-12 ">
+        <div className="col-md-auto ">
           <AddressManagementCard
             name="Rosaria K Stark"
             address="Sunrise Road 3470"

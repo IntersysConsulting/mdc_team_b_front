@@ -1,7 +1,7 @@
-import React from "react";
-import LoginDemo from "../components/login/demo.jsx";
+import React from 'react';
+import LoginDemo from '../components/login/demo.jsx';
 
-const DemoLogin = props => {
+const DemoLogin = (props) => {
   return (
     <div>
       <LoginDemo></LoginDemo>

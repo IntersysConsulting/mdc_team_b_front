@@ -1,13 +1,13 @@
-import PasswordField from "../../components/password-field/password-field";
-import React, { useState } from "react";
+import PasswordField from '../../components/password-field/password-field';
+import React, {useState} from 'react';
 
-const PasswordFieldContainer = props => {
+const PasswordFieldContainer = (props) => {
   const [demoState, setDemoState] = useState({
-    isOpen: false
+    isOpen: false,
   });
 
   const ToggleVisibility = () => {
-    setDemoState({ isOpen: !demoState.isOpen });
+    setDemoState({isOpen: !demoState.isOpen});
   };
   return (
     <PasswordField

@@ -7,7 +7,7 @@ import "./address-management-card.css";
 
 const AddressManagementCard = props => {
   return (
-    <Card className="border-indigo rounded-0">
+    <Card className="border-indigo rounded-0 address-management-card">
       <Card.Title className="text-orange">
         {props.preferred ? "Preferred" : ""}
       </Card.Title>
@@ -22,13 +22,13 @@ const AddressManagementCard = props => {
       </Card.Text>
       <div className="button-holder">
         <EditButton
-          className="manage-edit-button icon-only icon-50x50 rounded-0"
+          className="edit-button icon-only icon-50x50 rounded-0"
           onClick={props.edit}
           icon
         ></EditButton>
         <DeleteButton
           variant="orange"
-          className="manage-delete-button icon-50x50 rounded-0"
+          className="delete-button icon-50x50 rounded-0"
           onClick={props.delete}
         ></DeleteButton>
       </div>

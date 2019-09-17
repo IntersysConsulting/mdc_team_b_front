@@ -6,6 +6,7 @@ import DemoPrice from './demos/demo-price.js';
 import DemoLayout from './demos/demo-layout.js';
 
 import './App.css';
+import DemoProduct from './demos/demo-product';
 
 const App = () => {
   const defaultAlerts = true;
@@ -17,6 +18,7 @@ const App = () => {
       <DemoCards></DemoCards>
       <DemoPrice></DemoPrice>
       <DemoLayout></DemoLayout>
+      <DemoProduct></DemoProduct>
     </div>
   );
 };

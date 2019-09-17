@@ -4,6 +4,8 @@ import DemoStatus from './demos/demo-status';
 import DemoCards from './demos/demo-cards';
 import DemoPrice from './demos/demo-price';
 import DemoQuantity from './demos/demo-quantity';
+import DemoLayout from './demos/demo-layout';
+
 
 import './App.css';
 
@@ -18,6 +20,7 @@ const App = () => {
       <DemoCards></DemoCards>
       <DemoPrice></DemoPrice>
       <DemoQuantity alerts={appState.alerts}></DemoQuantity>
+      <DemoLayout></DemoLayout>
     </div>
   );
 };

@@ -5,9 +5,12 @@ import DemoCards from './demos/demo-cards';
 import DemoPrice from './demos/demo-price';
 import DemoQuantity from './demos/demo-quantity';
 import DemoLayout from './demos/demo-layout';
+import DemoCheckout from './demos/demo-checkout';
+import DemoLogin from './demos/demo-login';
 
 
 import './App.css';
+import DemoProduct from './demos/demo-product';
 
 const App = () => {
   const defaultAlerts = true;
@@ -15,12 +18,16 @@ const App = () => {
 
   return (
     <div className="App">
+      <DemoLogin></DemoLogin>
       <DemoButton></DemoButton>
       <DemoStatus></DemoStatus>
       <DemoCards></DemoCards>
       <DemoPrice></DemoPrice>
       <DemoQuantity alerts={appState.alerts}></DemoQuantity>
       <DemoLayout></DemoLayout>
+      <DemoCheckout></DemoCheckout>
+      <DemoProduct></DemoProduct>
+
     </div>
   );
 };

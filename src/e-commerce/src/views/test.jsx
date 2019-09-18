@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-import Description from '../components/product/description';
+import Alert from '../components/alert/alert';
 
 function Test() {
   return (
@@ -10,7 +10,7 @@ function Test() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <p>{process.env.REACT_APP_API_URL}<code>src/App.js</code> and save to reload.</p>
-      <Description description = {'ME GUSTAN LAS PUTAS'}></Description>
+      <Alert mainButtonTitle="Log out" no="Cancel" yes="Yes" children="Are you sure you want to log out?" url="/app"/>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export const cartConstans =
+export const cartConstants =
 {
   FETCH_CART_BEGIN: 'FETCH_CART_BEGIN',
   FETCH_CART_SUCCESS: 'FETCH_CART_SUCCESS',

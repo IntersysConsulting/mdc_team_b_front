@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import cartReducer from "./cartReducer";
 import switchReducer from './switch-reducer';
-
+import productReducer from './productReducer';
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
@@ -10,7 +10,8 @@ import switchReducer from './switch-reducer';
 const rootReducer = combineReducers(
     {
         cartState: cartReducer,
-        switchState: switchReducer
+        switchState: switchReducer,
+        productState: productReducer,
     }
 );
 

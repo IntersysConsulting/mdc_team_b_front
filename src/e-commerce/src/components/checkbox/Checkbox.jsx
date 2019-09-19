@@ -17,7 +17,7 @@ export default function Checkbox(props) {
     }
 
         const checkbox = (
-            <label className="container">{props.text}
+            <label className="checkbox-container">{props.text}
                     <input
                         type="checkbox"
                         id={`react-switch-new`}

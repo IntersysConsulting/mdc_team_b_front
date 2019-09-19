@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getProducts = () => {
+const getItems = () => {
   return new Promise( (resolve, reject) => {
     axios.get('').then((response) => {
       resolve(response);
@@ -10,6 +10,6 @@ const getProducts = () => {
   });
 };
 
-export const cartAPI = {
-  getProducts,
+export const cartApi = {
+  getItems,
 };

@@ -1,0 +1,42 @@
+.Logo{
+    height: 40px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.Logo:hover{
+    cursor: pointer;
+}
+
+.Logo img {
+    height: 40px;
+}
+
+
+@media(max-width: 767px) {
+    .Logo{
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media(min-width: 768px) {
+    .Logo{ 
+        height: 60px;
+    }
+
+    .Logo img {
+        height: 60px;
+    }
+}
+
+@media(min-width: 992px) {
+    .Logo{
+        height: 65px;
+    }
+
+    .Logo img {
+        height: 65px;
+    }
+}

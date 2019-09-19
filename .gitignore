@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 src/e-commerce/package-lock.json
-#node_modules
+node_modules

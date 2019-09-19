@@ -6,6 +6,8 @@ import DemoPrice from './demos/demo-price.js';
 import DemoLayout from './demos/demo-layout.js';
 import DemoCheckout from './demos/demo-checkout.js';
 import DemoLogin from './demos/demo-login.js';
+import DemoSwitch from './demos/demo-switch.js';
+import CheckboxDemo from './demos/demo-checkbox.js';
 
 
 import './App.css';
@@ -24,6 +26,8 @@ const App = () => {
       <DemoLayout></DemoLayout>
       <DemoCheckout></DemoCheckout>
       <DemoProduct></DemoProduct>
+      <DemoSwitch/>
+      <CheckboxDemo/>
 
     </div>
   );

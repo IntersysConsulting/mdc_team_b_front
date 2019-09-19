@@ -11,16 +11,14 @@ import Sigin from "../views/Sigin/Sigin.jsx";
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <Route exact path="/test" component={Test} />
-      <Route exact path="/admin/management/createPassword/:user/:code" component={CreatePassword} />
-      <Route exact path="/admin/management/sigin/:user/:password" component={Sigin} />
-      <Route exact path="/" component={App} />
+      <Route path="/test" component={Test} />
+      <Route path="/app" component={App} />
     </Router>
   </Provider>
-);
+)
 
 Root.propTypes = {
-  store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired
 };
 
 export default Root;

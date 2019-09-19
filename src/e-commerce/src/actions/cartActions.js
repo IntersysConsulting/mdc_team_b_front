@@ -1,44 +1,44 @@
-import {cartConstans} from '../constants/cartConstants';
-import { cartAPI } from '../api/cartAPI';
+import {cartConstants} from '../constants/cartConstants';
+import {cartApi} from '../api/cartApi';
 
 /**
  * Consts to get posts from API implementing API request convention
  * @function fetchCartBegin
- * @function fetcCarthSuccess
+ * @function fetchCartSuccess
  * @function fetchCartError
  */
 
 const fetchCartBegin = () => {
-    return {
-        type: cartConstans.FETCH_CART_BEGIN
-    }
-}
+  return {
+    type: cartConstants.FETCH_CART_BEGIN,
+  };
+};
 
 const fetchCartError = (error) => {
-    return {
-        type: cartConstans.FETCH_CART_ERROR,
-        errorMessage: error.message
-    }
-}
+  return {
+    type: cartConstants.FETCH_CART_ERROR,
+    payload: error.message,
+  };
+};
 
-const fetchCartSuccess = (products) => {
-    return {
-        type: cartConstans.FETCH_CART_SUCCES,
-        products
-    }
-}
+const fetchCartSuccess = (items) => {
+  return {
+    type: cartConstants.FETCH_CART_SUCCES,
+    payload: items,
+  };
+};
 
 /**
  * Function to get products from API implementing API request convention
  */
 
-export const getPosts = () => {
-    return (dispatch) => {
-        dispatch(fetchCartBegin())
-        cartAPI.getProducts().then(response => {
-            dispatch(fetchCartSuccess(response.data))
-        }).catch((error) => {
-            dispatch(fetchCartError(error))
-        })
-    }
-}
+export const cartActions = () => {
+  return (dispatch) => {
+    dispatch(fetchCartBegin());
+    cartApi.get_items().then((response) => {
+      dispatch(fetchCartSuccess(response.data));
+    }).catch((error) => {
+      dispatch(fetchCartError(error));
+    });
+  };
+};

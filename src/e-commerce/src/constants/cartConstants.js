@@ -1,6 +1,0 @@
-export const cartConstans =
-{
-    FETCH_CART_BEGIN : 'FETCH_CART_BEGIN',
-    FETCH_CART_SUCCESS : 'FETCH_CART_SUCCESS',
-    FETCH_CART_ERROR : 'FETCH_CART_ERROR'
-}

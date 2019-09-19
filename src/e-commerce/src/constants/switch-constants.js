@@ -1,0 +1,5 @@
+export const switchConstants =
+{
+    PHYSICAL_SELECTED : 'PHYSICAL_SELECTED',
+    DIGITAL_SELECTED : 'DIGITAL_SELECTED'
+}

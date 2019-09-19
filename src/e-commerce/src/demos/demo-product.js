@@ -1,10 +1,12 @@
 import React from 'react';
-import DemoStorefrontImage from '../components/storefrontImage/demo';
+import DemoStorefrontImage from '../components/storefront-image/demo';
+import ProductManagmentDemo from '../components/product-managment/demo';
 
 const DemoProduct = () => {
   return (
     <div className="container">
-      <DemoStorefrontImage></DemoStorefrontImage>
+      {/*<DemoStorefrontImage></DemoStorefrontImage>*/}
+      <ProductManagmentDemo></ProductManagmentDemo>
     </div>
   );
 };

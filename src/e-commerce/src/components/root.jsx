@@ -4,12 +4,17 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "../App";
 import Test from "../views/test";
+import CreatePassword from "../views/CreatePassword/createPassword.jsx";
+import Sigin from "../views/Sigin/Sigin.jsx";
+
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <Route path="/test" component={Test} />
-      <Route path="/" component={App} />
+      <Route exact path="/test" component={Test} />
+      <Route exact path="/admin/management/createPassword/:user/:code" component={CreatePassword} />
+      <Route exact path="/admin/management/sigin/:user/:password" component={Sigin} />
+      <Route exact path="/" component={App} />
     </Router>
   </Provider>
 );

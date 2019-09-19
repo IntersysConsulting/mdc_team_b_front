@@ -3,12 +3,7 @@ import '../App.css';
 
 function Test() {
   return (
-<<<<<<< HEAD
-    <div>
-
-=======
-    <div className="App">
->>>>>>> master
+    <div >
     </div>
   );
 }

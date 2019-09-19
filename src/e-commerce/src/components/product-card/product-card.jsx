@@ -1,13 +1,10 @@
 import React from "react";
 import Price from "../price-text/price-text";
-import EditButton from "../edit-button/edit-button";
 import StorefrontImage from "../storefront-image/storefront-image";
-import './product-managment-card.css';
-import DeleteButton from "../delete-button/delete-button";
+import './product-card.css';
 
 const CardProduct = (props) => (
     <div className="pruduct-managment-container">
-        <DeleteButton className="btn-delete-product icon-22x22 btn-red"></DeleteButton>
         <div className="image-container">
             <StorefrontImage url={props.url}></StorefrontImage>
         </div>
@@ -19,9 +16,6 @@ const CardProduct = (props) => (
                     <Price price={props.price}/>
                 </div>
                 </div>
-            <div>
-                <EditButton className="card-button-product" icon>Edit</EditButton>
-            </div>
         </div>
     </div>
 )

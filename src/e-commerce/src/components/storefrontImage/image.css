@@ -1,0 +1,20 @@
+.image-container {
+    width: 120px;
+    height: 110px;
+    border-style: solid;
+    border-color: #e6e6e6;
+}
+
+.image-container::before{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+/* resize images */
+.image-container img {
+    width: 100%;   
+    max-height: 110px;
+    vertical-align: middle;
+}

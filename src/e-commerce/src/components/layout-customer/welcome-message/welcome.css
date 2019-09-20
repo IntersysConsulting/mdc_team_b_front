@@ -1,0 +1,42 @@
+.WelcomeMessage{
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    padding: 5px 13px;
+    text-align: right;
+}
+
+.WelcomeMessage:hover{
+    color: white;
+}
+
+@media(max-width: 767px) {
+    .WelcomeMessage{
+        display: none;
+    }
+}
+
+.WelcomeMessageMobile{
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    padding: 5px 13px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.WelcomeMessageMobile:hover{
+    color: white;
+}
+
+@media(min-width: 768px) {
+    .WelcomeMessageMobile{
+        display: none;
+    }
+}

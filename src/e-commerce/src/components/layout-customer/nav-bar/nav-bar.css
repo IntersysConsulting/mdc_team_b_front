@@ -1,0 +1,55 @@
+.Navbar {
+    height: 106px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient( #589AD3, 15%, #116cb4);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 2000;
+}
+
+.Navbar nav {
+    height: 100%;
+}
+
+.Search {
+    padding-top: 22px;
+    padding-left: 40px;
+}
+
+.CartSpace{
+    padding-top: 15px;
+    padding-left: 20px;
+}
+
+@media(max-width: 767px) {
+    .Search {
+        padding: 10px 20px 0px 20px;
+    }
+
+    .Navbar{
+        height: 120px;
+    }
+
+    .CartSpace{
+        margin-top: -110px;
+        padding-left: 80%;
+    }
+}
+
+@media(min-width: 1600px) {
+    .CartSpace{
+        padding-left: 100px;
+    }
+}
+
+/* On screens smaller than 350 there's no way to fit the cart */
+@media(max-width: 350px) {
+    .CartSpace{
+        display: none;
+    }
+}

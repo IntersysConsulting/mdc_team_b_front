@@ -1,0 +1,26 @@
+.DrawerToggle {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.burgerIcon {
+    height: 30px;
+    width: 30px;
+    margin-left: 32px;
+    margin-top: 2px;
+}
+
+@media(min-width: 768px) {
+    .burgerIcon{
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+}

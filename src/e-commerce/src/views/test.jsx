@@ -4,7 +4,7 @@ import Alert from '../components/alert/alert';
 
 function Test() {
   return (
-    <div>
+    <div >
     </div>
   );
 }

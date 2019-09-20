@@ -11,9 +11,11 @@ const AlertDemo = () => {
         <div>
             <h1>Alert Demo</h1>
             <Button variant="primary" onClick={handleShow}>
-                Log Out
+                Kill all humans
             </Button>
-            <Alert show={show} handleClose={handleShow} no="Cancel" yes="Yes" text="Are you sure you want to log out?" url="/dommieURL" />
+            <Alert show={show} handleShow={handleShow} no="Uh oh :(" yes="I hate 'em :)" url="/AllHumansAreDeadNow">
+                Are you sure you want to kill them all? You will no longer have the possibility to procreate
+            </Alert>
         </div>
     );
 };

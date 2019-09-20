@@ -1,7 +1,3 @@
-// Example of how to implement this component: 
-// import Alert from '../components/alert/alert';
-// <Alert mainButtonTitle="Log out" no="Cancel" yes="Yes" children="Are you sure you want to log out?" url="/app"/>
-
 import React, { useState } from 'react'
 import {Redirect} from 'react-router-dom'
 import '../alert/alert.css'
@@ -17,10 +13,10 @@ const Alert = (props) => {
         <>
         {redirect ? <Redirect to={props.url} /> : null}
 
-            <Modal id="alert-modal" show={props.show} onHide={props.handleClose}>
-                <Modal.Body id="modal-text">{props.text}</Modal.Body>
+            <Modal id="alert-modal" show={props.show} onHide={props.handleShow}>
+                <Modal.Body id="modal-text">{props.children}</Modal.Body>
                 <div id="buttons-container">
-                    <CancelButton onClick={props.handleClose}>{props.no}</CancelButton>
+                    <CancelButton onClick={props.handleShow}>{props.no}</CancelButton>
                     <AcceptButton border onClick={handleRedirect}>{props.yes}</AcceptButton>
                 </div>
             </Modal>

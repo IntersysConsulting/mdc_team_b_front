@@ -7,6 +7,7 @@ import {
 export default function authReducer(state = {}, auth) {
   switch(auth.type) {
     case AUTHENTICATED:
+      console.log('woooooo muchas cosas')
       // if(auth.code) {
       //   const res = axios.post(`${URL}/admin/management/${auth.email}/${auth.code}`)
       //   localStorage.setItem('token', res.data.token)

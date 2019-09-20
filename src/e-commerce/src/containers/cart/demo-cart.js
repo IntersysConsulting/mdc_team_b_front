@@ -14,7 +14,7 @@ const CartContainer = (props) => {
     } else {
       setCartState({value: props.value});
     }
-  });
+  }, [props.value]);
 
   const toSmallText = (x) => {
     const m = parseInt(x);

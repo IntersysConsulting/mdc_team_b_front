@@ -1,5 +1,7 @@
 import Cart, {useState} from '../../components/cart/cart';
 import React from 'react';
+import {getPosts} from '../../actions/cartActions';
+import connect from 'react-redux';
 
 // This container must have the logic
 
@@ -35,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: () => {
-      return dispatch(fetchCartSuccess());
+      return dispatch(getPosts());
     },
   };
 };

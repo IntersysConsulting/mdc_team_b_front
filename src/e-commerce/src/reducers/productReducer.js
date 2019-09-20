@@ -1,22 +1,22 @@
-import {cartConstants} from '../constants/cartConstants';
+import productConstants from '../constants/productConstants';
 
 const INITIAL_STATE = {
-  items: [],
+  products: [],
   errors: undefined,
   loading: false,
 };
 
 // Thanks to Redux 4's much simpler typings, we can take away a lot of typings on the reducer side,
 // everything will remain type-safe.
-const cartReducer = (state = INITIAL_STATE, action) => {
+const productReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case cartConstants.FETCH_CART_BEGIN:
+    case productConstants.FETCH_PRODUCT_BEGIN:
       return {...state, loading: true};
 
-    case cartConstants.FETCH_CART_SUCCESS:
-      return {...state, loading: false, items: action.payload};
+    case productConstants.FETCH_PRODUCT_SUCCESS:
+      return {...state, loading: false, products: action.payload};
 
-    case cartConstants.FETCH_CART_ERROR:
+    case productConstants.FETCH_PRPDUCT_ERROR:
       return {...state, loading: false, errors: action.payload};
 
     default:
@@ -26,4 +26,4 @@ const cartReducer = (state = INITIAL_STATE, action) => {
 
 // Instead of using default export, we use named exports. That way we can group these exports
 // inside the `index.js` folder.
-export default cartReducer;
+export default productReducer;

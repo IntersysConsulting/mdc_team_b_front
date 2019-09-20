@@ -7,6 +7,9 @@ import DemoQuantity from './demos/demo-quantity';
 import DemoLayout from './demos/demo-layout';
 import DemoCheckout from './demos/demo-checkout';
 import DemoLogin from './demos/demo-login';
+import DemoSwitch from './demos/demo-switch';
+import CheckboxDemo from './demos/demo-checkbox';
+
 
 
 import './App.css';
@@ -27,6 +30,8 @@ const App = () => {
       <DemoLayout></DemoLayout>
       <DemoCheckout></DemoCheckout>
       <DemoProduct></DemoProduct>
+      <DemoSwitch/>
+      <CheckboxDemo/>
 
     </div>
   );

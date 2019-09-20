@@ -1,8 +1,8 @@
 import React from 'react';
-import StorefrontImage from "./storefrontImage"
-import digital from './images/digital.jpg'
-import not from './images/not.jpg'
-import physical from './images/physical.jpg'
+import StorefrontImage from "./storefront-image"
+import digital from '../../assets/images/digital.jpg'
+import not from '../../assets/images/not.jpg'
+import physical from '../../assets/images/physical.jpg'
 import {Col, Row} from 'react-bootstrap';
 
 const DemoStorefrontImage = () => (

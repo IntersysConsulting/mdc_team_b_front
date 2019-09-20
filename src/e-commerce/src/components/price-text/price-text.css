@@ -1,6 +1,8 @@
 .price-text {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 16px;
   font-family: "Roboto", sans-serif;
+  margin: 0!important;
+  text-align: start;
   display: inline;
 }

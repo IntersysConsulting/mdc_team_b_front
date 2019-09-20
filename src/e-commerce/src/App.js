@@ -8,7 +8,6 @@ import DemoCheckout from './demos/demo-checkout.js';
 import DemoLogin from './demos/demo-login.js';
 import DemoSwitch from './demos/demo-switch.js';
 import CheckboxDemo from './demos/demo-checkbox.js';
-import AlertDemo from './demos/demo-alert.js';
 
 
 import './App.css';
@@ -29,7 +28,6 @@ const App = () => {
       <DemoProduct></DemoProduct>
       <DemoSwitch/>
       <CheckboxDemo/>
-      <AlertDemo/>
 
     </div>
   );

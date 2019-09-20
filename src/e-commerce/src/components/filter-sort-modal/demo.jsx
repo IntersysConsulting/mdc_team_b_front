@@ -1,11 +1,11 @@
 import React from "react";
-import FilterModal from "./filter-modal.jsx";
+import FilterSortModal from "./filter-sort-modal.jsx";
 
 const FilterModalDemo = props => {
   return (
     <div>
       <h1>Filter Modal</h1>
-      <FilterModal></FilterModal>
+      <FilterSortModal></FilterSortModal>
     </div>
   );
 };

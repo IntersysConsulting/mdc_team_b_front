@@ -6,16 +6,16 @@ import App from "../App";
 import Test from "../views/test";
 
 const Root = ({ store }) => (
-    <Provider store={store}>
-        <Router>
-            <Route path="/test" component={Test} />
-            <Route path="/app" component={App} />
-        </Router>
-    </Provider>
-)
+  <Provider store={store}>
+    <Router>
+      <Route path="/test" component={Test} />
+      <Route path="/" component={App} />
+    </Router>
+  </Provider>
+);
 
 Root.propTypes = {
-    store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired
 };
 
 export default Root;

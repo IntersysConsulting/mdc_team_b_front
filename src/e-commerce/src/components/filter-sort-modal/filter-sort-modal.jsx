@@ -4,11 +4,13 @@ import "./filter-sort-modal.css";
 import ChangeViewButton from "../change-view-button/change-view-button.jsx";
 import RadioButton from "../radio-button/radio-button.jsx";
 import CancelButton from "../cancel-button/cancel-button.jsx";
+import Switch from "../2WordSwitch/Switch.jsx";
 
 const FilterSortModal = props => {
-  const [filterSortState, setFilterSortState] = useState({
+  const [modalState, setModalState] = useState({
     sort: "oldest",
-    filter: "none"
+    filter: "none",
+    selectedSort: true
   });
 
   const radioIds = ["a-z", "z-a", "cheapest", "priciest", "newest", "oldest"];
@@ -18,11 +20,32 @@ const FilterSortModal = props => {
   };
 
   const setSortState = e => {
-    setFilterSortState({ sort: e.target.id, filter: filterSortState.filter });
+    setModalState({
+      sort: e.target.id,
+      filter: modalState.filter,
+      selectedSort: modalState.selectedSort
+    });
+  };
+
+  const setFilterState = e => {
+    setModalState({
+      sort: modalState.sort,
+      filter: e.target.filter,
+      selectedSort: modalState.selectedSort
+    });
+  };
+
+  const flipSwitch = e => {
+    console.log("Switch was hit. E= " + e);
+    setModalState({
+      sort: modalState.sort,
+      filter: modalState.filter,
+      selectedSort: !modalState.selectedSort
+    });
   };
 
   const clearAll = () => {
-    setFilterSortState({});
+    setModalState({});
   };
 
   const sortBody = () => {
@@ -35,21 +58,21 @@ const FilterSortModal = props => {
               label="A-Z"
               id={radioIds[0]}
               onChange={setSortState}
-              checked={filterSortState.sort == radioIds[0]}
+              checked={modalState.sort == radioIds[0]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Lowest Price"
               id={radioIds[2]}
               onChange={setSortState}
-              checked={filterSortState.sort == radioIds[2]}
+              checked={modalState.sort == radioIds[2]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Newest"
               id={radioIds[4]}
               onChange={setSortState}
-              checked={filterSortState.sort == radioIds[4]}
+              checked={modalState.sort == radioIds[4]}
             ></RadioButton>
           </Form.Group>
           <Form.Group as={Col}>
@@ -58,21 +81,21 @@ const FilterSortModal = props => {
               label="Z-A"
               id={radioIds[1]}
               onChange={setSortState}
-              checked={filterSortState.sort == radioIds[1]}
+              checked={modalState.sort == radioIds[1]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Highest Price"
               id={radioIds[3]}
               onChange={setSortState}
-              checked={filterSortState.sort == radioIds[3]}
+              checked={modalState.sort == radioIds[3]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Oldest"
               id={radioIds[5]}
               onChange={setSortState}
-              checked={filterSortState.sort == radioIds[5]}
+              checked={modalState.sort == radioIds[5]}
             ></RadioButton>
           </Form.Group>
         </Form.Row>
@@ -84,7 +107,14 @@ const FilterSortModal = props => {
     <div>
       <Modal.Dialog className="filter-sort-modal">
         <Modal.Header>
-          <Modal.Title>Sort</Modal.Title>
+          <Modal.Title>
+            <Switch
+              leftWord="Filter"
+              rightWord="Sort"
+              isOn={modalState.selectedSort}
+              onClick={flipSwitch}
+            ></Switch>
+          </Modal.Title>
           <CancelButton className="filter-sort-clear-button">
             Clear
           </CancelButton>

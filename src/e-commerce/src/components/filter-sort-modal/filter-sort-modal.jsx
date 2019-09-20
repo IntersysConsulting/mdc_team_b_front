@@ -21,9 +21,9 @@ const FilterSortModal = props => {
     setFilterSortState({ sort: e.target.id, filter: filterSortState.filter });
   };
 
-  const clearAll () =>{
-    setFilterSortState({})
-  }
+  const clearAll = () => {
+    setFilterSortState({});
+  };
 
   const sortBody = () => {
     return (

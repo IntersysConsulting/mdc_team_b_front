@@ -19,7 +19,7 @@ const LayoutCustomer = (props) => {
     }
 
     return (
-        <div className="LayoutWindowCustomer">
+        <div className="LayoutWindow">
             <Navbar 
                 accessLevel = {props.accessLevelState.accesses[0]} 
                 drawerToggledClicked={SideDrawerToggleHandler} />
@@ -27,7 +27,6 @@ const LayoutCustomer = (props) => {
                 open = {sideDrawerState.showSideDrawer} 
                 closed = {SideDrawerClosedHandler}
                 accessLevel = { props.accessLevelState.accesses[0] } />
-            <div>{props.children}</div>
         </div>
     )
 }

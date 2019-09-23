@@ -1,21 +1,15 @@
 import React, {useState} from 'react';
-import LayoutCustomer from '../components/layout/layout-customer';
-import LayoutAdmin from '../components/layout/layout-admin';
-import DemoCards from '../demos/demo-cards';
+import LayoutCustomer from '../components/layout-customer/layout-customer';
 
-const LayoutDemo = (props) => {
+const LayoutDemo = () => {
   const [accessLevelState, setAccessLevelState] = useState({ 
     accesses: [
         {role: 'registeredUser', name: 'John Smith'},
-        {role: 'guest', name: 'Guest'},
-        {role: 'admin', name: 'Richard Nichols'}
+        {role: 'guest', name: 'Guest'}
     ],
   });
 
-  return(
-  <LayoutCustomer accessLevelState = {accessLevelState}>
-    <DemoCards/>
-  </LayoutCustomer>);
+  return(<LayoutCustomer accessLevelState = {accessLevelState} />);
 };
 
 export default LayoutDemo;

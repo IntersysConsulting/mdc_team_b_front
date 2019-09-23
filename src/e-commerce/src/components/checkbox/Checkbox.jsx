@@ -19,7 +19,7 @@ const Checkbox = props => {
   );
 
   return (
-    <label className="checkbox-container">
+    <label className={"checkbox-container " + props.className}>
       {props.text}
       <input
         type="checkbox"

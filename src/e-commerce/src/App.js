@@ -10,7 +10,8 @@ import DemoLogin from './demos/demo-login';
 import DemoSwitch from './demos/demo-switch';
 import CheckboxDemo from './demos/demo-checkbox';
 import DemoProduct from './demos/demo-product';
-import LayoutDemo from './demos/demo-layout'
+import LayoutDemo from './demos/demo-layout';
+import AlertDemo from './demos/demo-alert';
 
 const App = () => {
   const defaultAlerts = true;
@@ -19,7 +20,6 @@ const App = () => {
   return (
     <div className="App">
       <DemoLayout/>
-      
       <DemoCards/>
       <DemoCheckout/>
       <DemoProduct/>

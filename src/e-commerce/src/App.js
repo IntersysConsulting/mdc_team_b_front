@@ -9,11 +9,8 @@ import DemoCheckout from './demos/demo-checkout';
 import DemoLogin from './demos/demo-login';
 import DemoSwitch from './demos/demo-switch';
 import CheckboxDemo from './demos/demo-checkbox';
-
-
-
-import './App.css';
 import DemoProduct from './demos/demo-product';
+import LayoutDemo from './demos/demo-layout'
 
 const App = () => {
   const defaultAlerts = true;
@@ -21,18 +18,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <DemoLogin></DemoLogin>
-      <DemoButton></DemoButton>
-      <DemoStatus></DemoStatus>
-      <DemoCards></DemoCards>
-      <DemoPrice></DemoPrice>
-      <DemoQuantity alerts={appState.alerts}></DemoQuantity>
-      <DemoLayout></DemoLayout>
-      <DemoCheckout></DemoCheckout>
-      <DemoProduct></DemoProduct>
-      <DemoSwitch/>
-      <CheckboxDemo/>
-
+      <DemoLayout/>
+      
+      <DemoCards/>
+      <DemoCheckout/>
+      <DemoProduct/>
+      
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
       <Route exact path="/test" component={Test} />
-      <Route exact path="/admin/management/createPassword/:code" component={CreatePassword} />
+      <Route exact path="/admin/management/createPassword/:email/:code" component={CreatePassword} />
       <Route exact path="/admin/management/sigin/:user/:password" component={Sigin} />
       <Route exact path="/" component={App} />
     </Router>

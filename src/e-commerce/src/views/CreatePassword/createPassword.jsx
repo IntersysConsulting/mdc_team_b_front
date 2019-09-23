@@ -8,6 +8,7 @@ import { fetchAuth } from '../../actions/authenticationCreator.jsx'
 
 function CreatePassword(props) {
   const code  = props.match.params.code
+  const email  = props.match.params.email
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -30,7 +31,8 @@ function CreatePassword(props) {
     if (password === confirmPassword) {
       sigin({
         password,
-        code
+        code,
+        email
       })
     }
   }

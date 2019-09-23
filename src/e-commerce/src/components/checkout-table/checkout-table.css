@@ -28,6 +28,10 @@
   right: 16px;
 }
 
+.checkout-table-container {
+  margin-bottom: 2.5rem;
+}
+
 @media (min-width: 577px) {
   .total-label {
     position: initial;

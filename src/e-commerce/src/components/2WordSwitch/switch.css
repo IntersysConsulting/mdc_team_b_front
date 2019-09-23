@@ -5,8 +5,9 @@
   visibility: hidden;
 }
 
-.inLine {
+.switch-text {
   display: inline;
+  user-select: none;
 }
 
 #switch-left-parameter {

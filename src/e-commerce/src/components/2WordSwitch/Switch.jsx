@@ -9,16 +9,13 @@ const Switch = props => {
 
   useEffect(
     e => {
-      console.log(props.isOn);
       setSwitchState({ isOn: props.isOn });
     },
     [props.isOn]
   );
 
-  //   const handleToggle = () => setValue(!value);
-
   return (
-    <div onClick={props.onClick}>
+    <>
       <input
         checked={switchState.isOn}
         onChange={props.onClick}
@@ -28,19 +25,19 @@ const Switch = props => {
       />
 
       <label className="react-switch-label" htmlFor="react-switch-new">
-        <h3 id="switch-left-parameter" className="inLine">
+        <h3 id="switch-left-parameter" className="switch-text">
           {props.leftWord}
         </h3>
-        <h3 id="switch-mid-parameter" className="inLine">
+        <h3 id="switch-mid-parameter" className="switch-text">
           {" "}
           |{" "}
         </h3>
-        <h3 id="switch-right-parameter" className="inLine">
+        <h3 id="switch-right-parameter" className="switch-text">
           {props.rightWord}
         </h3>
         <span className="react-switch-button" />
       </label>
-    </div>
+    </>
   );
 };
 

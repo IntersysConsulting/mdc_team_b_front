@@ -19,11 +19,6 @@ const App = () => {
   return (
     <div className="App">
       <DemoLayout/>
-      
-      <DemoCards/>
-      <DemoCheckout/>
-      <DemoProduct/>
-      
     </div>
   );
 };

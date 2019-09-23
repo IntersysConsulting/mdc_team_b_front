@@ -1,0 +1,12 @@
+.LayoutWindowAdmin{
+    padding-top: 140px;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+
+@media(min-width: 768px) {
+    .LayoutWindowAdmin{
+        padding-left: 150px;
+    }
+}

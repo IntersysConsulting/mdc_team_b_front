@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import Logo from "../layout-customer/logo/logo.png";
+import Logo from "../layout/logo/logo.png";
 import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
 

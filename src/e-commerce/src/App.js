@@ -33,7 +33,6 @@ const App = () => {
 
       <DemoPrice></DemoPrice>
       <DemoQuantity alerts={appState.alerts}></DemoQuantity>
-
       <DemoSwitch />
       <CheckboxDemo />
     </div>

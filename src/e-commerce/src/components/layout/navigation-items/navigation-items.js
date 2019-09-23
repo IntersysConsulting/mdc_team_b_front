@@ -8,6 +8,21 @@ const navigationItems = (props) => {
     console.log(props.accessLevel);
 
     switch(props.accessLevel){
+        case('admin'):
+        component = (
+            <ul className="NavigationItems">
+                <div class = "TitlesContainer">
+                    <p class="SectionTitle">Admin</p>
+                </div>
+                <Item link="/">Dashboard</Item>
+                <Item link="/">Products</Item>
+                <Item link="/">Orders</Item>
+                <Item link="/">Staff</Item>
+                <Item link="/">Banners</Item>
+                <Item link="/">Log out</Item>
+            </ul>
+        );
+        break;
         case('registeredUser'):
         component = (
             <ul className="NavigationItems">

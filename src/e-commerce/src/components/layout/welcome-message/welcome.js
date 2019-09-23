@@ -8,7 +8,7 @@ const WelcomeMessage = (props) => {
      }
 
     return(
-        props.accessLevel.role == 'registeredUser' 
+        (props.accessLevel.role == 'registeredUser' ||  props.accessLevel.role == 'admin')
         ? <a href={"/"} class={attachedClass}>Welcome {props.accessLevel.name}! </a> 
         : <a href={"/"} class={attachedClass}> Welcome, please log in! </a> 
     );

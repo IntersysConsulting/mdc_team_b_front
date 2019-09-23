@@ -15,29 +15,19 @@ const Switch = props => {
   );
 
   return (
-    <>
-      <input
-        checked={switchState.isOn}
-        onChange={props.onClick}
-        className="react-switch-checkbox"
-        id="react-switch-new"
-        type="checkbox"
-      />
-
-      <label className="react-switch-label" htmlFor="react-switch-new">
-        <h3 id="switch-left-parameter" className="switch-text">
-          {props.leftWord}
-        </h3>
-        <h3 id="switch-mid-parameter" className="switch-text">
-          {" "}
-          |{" "}
-        </h3>
-        <h3 id="switch-right-parameter" className="switch-text">
-          {props.rightWord}
-        </h3>
-        <span className="react-switch-button" />
-      </label>
-    </>
+    <h3 className="switch-text" onClick={props.onClick}>
+      <span
+        className={"switch-text-" + (!switchState.isOn ? "active" : "passive")}
+      >
+        {props.leftWord}
+      </span>{" "}
+      |{" "}
+      <span
+        className={"switch-text-" + (switchState.isOn ? "active" : "passive")}
+      >
+        {props.rightWord}
+      </span>
+    </h3>
   );
 };
 

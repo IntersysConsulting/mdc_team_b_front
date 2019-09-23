@@ -13,6 +13,9 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  width: 10rem;
+  height: auto;
 }
 /* Hide the browser's default checkbox */
 .checkbox-container input {

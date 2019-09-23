@@ -1,56 +1,15 @@
 /* Hides the default browser checkbox */
-.react-switch-checkbox {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
 
 .switch-text {
   display: inline;
   user-select: none;
-}
-
-#switch-left-parameter {
-  text-align: left;
-  color: rgba(82, 87, 100, 1);
-}
-
-#switch-mid-parameter {
-  text-align: center;
-  padding-left: 2px;
-  padding-right: 4px;
-  color: rgba(82, 87, 100, 1);
-}
-
-#switch-right-parameter {
-  text-align: right;
-}
-
-/* Style the new "checkbox" which is a label */
-.react-switch-label {
-  justify-content: space-between;
   cursor: pointer;
-  /* width: 220px;
-  height: 35px; */
-  background: none;
-  border-radius: 100px;
-  position: relative;
-  transition: background-color 0.2s;
-  display: inline;
 }
 
-/* Sets the right word as unselected by default by reducing its blackness*/
-.react-switch-label #switch-right-parameter {
-  color: rgba(82, 87, 100, 0.4);
+.switch-text-active {
+  opacity: 1;
 }
 
-/* Sets the left word as unselected when the checkbox is checked,
-  which means that the switch has been clicked on and the right word is now selected */
-.react-switch-checkbox:checked + .react-switch-label #switch-left-parameter {
-  color: rgba(82, 87, 100, 0.4);
-}
-
-/* Sets the right word as selected when the chekbox is checked, by adding blackness to it */
-.react-switch-checkbox:checked + .react-switch-label #switch-right-parameter {
-  color: rgba(82, 87, 100, 1);
+.switch-text-passive {
+  opacity: 0.5;
 }

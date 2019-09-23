@@ -26,7 +26,6 @@ const App = () => {
       <DemoCheckout />
       <DemoProduct />
 
-      <DemoModals></DemoModals>
       <DemoLogin></DemoLogin>
       <DemoButton></DemoButton>
       <DemoStatus></DemoStatus>

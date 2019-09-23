@@ -6,7 +6,16 @@ const FilterModalDemo = props => {
   // This was also integrated in search-bar.js
   const [demoState, setDemoState] = useState({ show: false });
 
-  const filterOptions = ["Bears", "Dogs", "Horses", "Donkeys"];
+  const filterOptions = [
+    "Bears",
+    "Dogs",
+    "Horses",
+    "Donkeys",
+    "Puppers",
+    "Chonkers",
+    "Bofers",
+    "Awooers"
+  ];
 
   const handleClose = () => {
     setDemoState({ show: false });

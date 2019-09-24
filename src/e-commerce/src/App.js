@@ -23,7 +23,7 @@ const App = () => {
       <DemoCards/>
       <DemoCheckout/>
       <DemoProduct/>
-      
+      <AlertDemo/>
     </div>
   );
 };

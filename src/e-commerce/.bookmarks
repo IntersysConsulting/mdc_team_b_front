@@ -1,0 +1,3 @@
+let l:bm_file_version = 1
+let l:bm_sessions = {'default': {'/home/bnd/.config/nvim/conf/keyboard.vim': [{'sign_idx': 9500, 'line_nr': 347, 'content': 'nmap <leader>. :BufExplorer<cr><Plug>(easymotion-s)'},],}}
+let l:bm_current_session = 'default'

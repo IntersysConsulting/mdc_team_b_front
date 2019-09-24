@@ -1,5 +1,8 @@
 .login-holder {
+  z-index: 60;
+  background: #fff;
   max-width: 500px;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -85,6 +88,12 @@
   top: 25%;
 }
 
+/* @media (max-width: 768px) { */
+/*   .accept-button { */
+/*     width: 60px; */
+/*   } */
+/* } */
+
 .login-button {
   position: absolute;
   min-height: 30px;
@@ -94,8 +103,8 @@
 }
 
 .login-link-holder {
-  position: relative;
-  bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
 }
 
 .login-link-holder a {
@@ -103,20 +112,15 @@
   font-size: 12px;
 }
 
-.login-link-holder .text-left {
-  display: inline-block;
-  position: absolute;
-  left: 5rem;
+.login-link-holder .text-help {
+  padding-left: 2rem;
 }
 
-.login-link-holder .text-right {
-  display: inline-block;
-  position: absolute;
-  right: 5rem;
+.login-link-holder .text-conditions {
+  text-align: center;
 }
 
-.login-link-holder .text-center {
-  display: inline-block;
-  position: relative;
-  top: -5px;
+.login-link-holder .text-privacy {
+  text-align: right;
+  padding-right: 2rem;
 }

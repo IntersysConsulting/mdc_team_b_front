@@ -1,0 +1,19 @@
+language: node_js
+node_js: 12.9.0
+cache:
+  directories:
+  - src/e-commcerce/node_modules
+before_script:
+- npm install
+script:
+- npm test
+- npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: pILJzyYD+po1Q5rvd9J3fL4zNnuAv/uid/PbZwXFlxKCezRqM+MIk6iAGA566F/WbKGtLo2HoPM+HVN9BVG+fQodwF2+jTP4PN3U/NAFqs67V/RRAjG+LFCjzjQEloqUm+JV84xdILEw6Lw6KWFwH75qfoDrCeeGcJ9MD+Bs5ApuSdMChAWOh6I8I/UwFJpetfHVaE/aan0QhzJ6aCsrhC/Eem3YX2Sd2s1fJDWFFYgA7vpnMZlGJnrPoxo6W5LTH8d4TEz4imw3T445zLRGxgARqII9egSVZRAfiYEP6N2DIip6fmctEeUpCLLtR420+FndhdtNNtSsJXt2vjBcPZQMfM+ePmq+wMMG4GwpkZqHhPhlTR6Clgw5037rLH6DL87RKXn9yqnxWDZGCPbgc7/Ko+E0tMFhViEBtk/cGbmvZupnQDMoBrPSgVz7SPpnTrONfa1Ppzyrd/w0FbhfqWuZj50Jmy6pq/28lrCUzbkhPirZ3SuxynwP/XTCOK7rzAsA8SUggPGiCoZWit22cyIWmWPYxBnpuuqkiJx+YSoiI0i3u1BEEmyxmiwugLnGmCwdbR5qv6XuDtN1N2dmJQOF/eNiqS1xDvFwORHlFo8hmQmoyk1oIjqGc58mOCfwwAYqYM/EAzKd62HAd79QkM1w2t7ijOy9aQe95pL6/Ws=
+  app: reactintersys
+  on:
+    branche: christianahvilla/travis
+true:
+  branche: master

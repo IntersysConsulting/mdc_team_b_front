@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Link} from  'react-router-dom';
+import {Link} from  'react-router-dom';
 import "./welcome.css";
 
 const WelcomeMessage = (props) => {
@@ -7,9 +7,9 @@ const WelcomeMessage = (props) => {
     let attachedClass = "WelcomeMessage";
     if(props.smallView){
         attachedClass = "WelcomeMessageMobile";
-     }
+    }
 
-     switch(props.accessLevel.role){
+    switch(props.accessLevel.role){
         case("registeredUser"):
             component = (<Link class={attachedClass} to={"/account"}>Welcome {props.accessLevel.name}!</Link>) 
         break;
@@ -19,6 +19,8 @@ const WelcomeMessage = (props) => {
         case("admin"):
             component = (<Link class={attachedClass} to={"/admin"}>Welcome {props.accessLevel.name}!</Link>) 
         break;
+        default:
+            ;
     }
 
     return(component);

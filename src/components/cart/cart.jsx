@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {cartActions} from '../../actions/cartActions';
+import React from 'react';
+//import {useDispatch, useSelector} from 'react-redux';
+//import {cartActions} from '../../actions/cartActions';
 import './cart.css';
 
 const Cart = (props) => {
 
-  const items = useSelector((state) => state.cartState.errors);
-  const dispatch = useDispatch();
-  const getItems = () => dispatch(cartActions())
+  //const items = useSelector((state) => state.cartState.errors);
+  //const dispatch = useDispatch();
+  //const getItems = () => dispatch(cartActions())
 
   const clicked = () => {
-    console.log(items);
+    
   }
 
   return (

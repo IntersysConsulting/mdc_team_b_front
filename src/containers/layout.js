@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import WorkInProgress from '../views/work-in-progress/in-progress'
 import NotFound from '../views/not-found/404'
@@ -13,7 +13,7 @@ const LayoutContainer = (props) => {
 
     /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.
     */
-    if(props.accessLevelState.role == "admin"){
+    if(props.accessLevelState.role === "admin"){
         layout = (
             <LayoutAdmin accessLevelState = {props.accessLevelState}>
                 <Switch> 

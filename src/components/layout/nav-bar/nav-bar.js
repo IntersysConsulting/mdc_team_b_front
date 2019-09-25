@@ -9,7 +9,7 @@ import DrawerToggle from "../side-drawer/drawer-toggle/drawer-toggle";
 const Navbar = props => {
   let component = null;
 
-  props.accessLevel.role == "admin"
+  props.accessLevel.role === "admin"
     ? (component = (
         <header className="Navbar">
           <div className="row">

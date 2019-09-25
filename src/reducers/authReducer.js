@@ -1,7 +1,6 @@
 import {
   AUTHENTICATED,
   UNAUTHENTICATED,
-  AUTHENTICATION_ERROR
 } from "../actions/authenticationCreator.jsx";
 
 export default function authReducer(state = {}, auth) {

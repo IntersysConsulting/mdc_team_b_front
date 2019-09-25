@@ -19,7 +19,7 @@ const LayoutAdmin = (props) => {
     }
 
     let attachedClasses = "LayoutWindowAdmin";
-    if(sideDrawerState.showSideDrawer == true){
+    if(sideDrawerState.showSideDrawer === true){
         attachedClasses = "DrawerOpenAdmin";
     }
 

@@ -21,14 +21,14 @@ const LayoutCustomer = (props) => {
 
     let showLayout = null;
     
-    if(props.accessLevelState.role == "external" ){
+    if(props.accessLevelState.role === "external" ){
         showLayout = (
             <div>{props.children}</div>
         )
     }
     else{
         let attachedClasses = "LayoutWindowCustomer";
-        if(sideDrawerState.showSideDrawer == true){
+        if(sideDrawerState.showSideDrawer === true){
             attachedClasses = "DrawerOpenCustomer";
         }
 

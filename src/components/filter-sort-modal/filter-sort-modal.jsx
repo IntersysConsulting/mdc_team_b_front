@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Form, Row, Col, Spinner } from "react-bootstrap";
 import "./filter-sort-modal.css";
 import ChangeViewButton from "../change-view-button/change-view-button.jsx";
@@ -20,7 +20,7 @@ const FilterSortModal = props => {
     show: false
   });
 
-  // ComponentDidMount
+  /* ComponentDidMount
   useEffect(() => {
     var filterList = [];
     props.filters.forEach((value, index, array) => {
@@ -36,6 +36,7 @@ const FilterSortModal = props => {
       show: props.show
     });
   }, []);
+  */
 
   //#region Variants of SetState
 
@@ -222,7 +223,7 @@ const FilterSortModal = props => {
             <Form.Control
               type="text"
               placeholder="Min"
-              value={modalState.minPrice == 0 ? "" : modalState.minPrice} // Checks if the value is the default, then ignores for display
+              value={modalState.minPrice === 0 ? "" : modalState.minPrice} // Checks if the value is the default, then ignores for display
               onChange={setMinimumPrice}
             ></Form.Control>
           </Col>
@@ -231,7 +232,7 @@ const FilterSortModal = props => {
               type="text"
               placeholder="Max"
               value={
-                modalState.maxPrice == -1 // Checks if the value is the default, then ignores for display
+                modalState.maxPrice === -1 // Checks if the value is the default, then ignores for display
                   ? ""
                   : modalState.maxPrice
               }

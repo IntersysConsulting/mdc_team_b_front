@@ -1,5 +1,4 @@
 import axios from '../hoc/axios'
-import {log} from 'util'
 
 export const AUTHENTICATED        = 'authenticated_user'
 export const UNAUTHENTICATED      = 'unauthenticated_user'

@@ -4,7 +4,7 @@ import menu from "./menu.png";
 
 const drawerToggle = (props) => (
     <div className="DrawerToggle" onClick = {props.clicked}>
-        <img src={menu} class="burgerIcon"/>
+        <img src={menu} alt="Menu" class="burgerIcon"/>
     </div>
 );
 

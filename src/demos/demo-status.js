@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Status from '../components/status-label/status';
 
 const DemoStatus = () => {
-  const [statusState, setStatusState] = useState({
+  const [statusState] = useState({
     allStatus: [
       {status: 'Awaiting Payment'},
       {status: 'Awaiting Fullfillment'},

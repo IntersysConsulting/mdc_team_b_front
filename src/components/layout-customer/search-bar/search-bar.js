@@ -6,12 +6,12 @@ import './search-bar.css';
 
 const SearchBar = props => {
 
-  const searchDownHandler = () => {
-      alert("This will trigger a search");
-  }
+    const searchDownHandler = () => {
+        alert("This will trigger a search");
+    }
 
   const filterDownHandler = () => {
-      alert("This will show filter/sort modal");
+        alert("This will show filter/sort modal");
   }
 
   return (
@@ -23,7 +23,7 @@ const SearchBar = props => {
           </InputGroup.Append>
           <InputGroup.Append>
               <Button className="search" onClick={searchDownHandler}>
-                  <img src={search} class="searchIcon"/>
+                  <img src={search} alt="Search" class="searchIcon"/>
               </Button>
           </InputGroup.Append>
       </InputGroup> 

@@ -12,9 +12,11 @@ const SearchBar = props => {
     alert("This will trigger a search");
   };
 
+  /*
   const filterDownHandler = () => {
     alert("This will show filter/sort modal");
   };
+  */
 
   const handleModalClose = () => {
     setSearchBarState({ show: false });
@@ -40,7 +42,7 @@ const SearchBar = props => {
         </InputGroup.Append>
         <InputGroup.Append>
           <Button className="search" onClick={searchDownHandler}>
-            <img src={search} class="searchIcon" />
+            <img src={search} alt="Search" class="searchIcon" />
           </Button>
         </InputGroup.Append>
       </InputGroup>

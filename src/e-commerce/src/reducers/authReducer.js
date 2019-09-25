@@ -19,8 +19,8 @@ export default function authReducer(state = {}, auth) {
       return { ...state, authenticated: true }
     case UNAUTHENTICATED:
       return { ...state, authenticated: false }
-    case AUTHENTICATION_ERROR:
-      return { ...state, error: payload }
+    // case AUTHENTICATION_ERROR:
+    //   return { ...state, error: payload }
     default:
       return state
   }

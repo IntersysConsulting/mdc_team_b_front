@@ -38,26 +38,24 @@ const Login = props => {
           </a>
         </div>
         <div className="login-footer mt-4 px-4 mb-2">
-          <a href="#" className="login-signup text-indigo">
-            Sign up instead!
-          </a>
-          <AcceptButton border className="login-button" onClick={props.onClick}>
-            Log in
-          </AcceptButton>
+            <a href="#" className="login-signup text-indigo">
+              Sign up instead!
+            </a>
+            <AcceptButton border className="login-button" onClick={props.onClick}>
+              Log in
+            </AcceptButton>
         </div>
       </div>
       <div className="text-dark login-link-holder">
-        <p>
-          <a href="#" className="text-dark text-left">
-            Help
-          </a>
-          <a href="#" className="text-dark text-center ">
-            Conditions
-          </a>
-          <a href="#" className="text-dark text-right">
-            Privacy
-          </a>
-        </p>
+        <a href="#" className="text-dark text-help">
+          Help
+        </a>
+        <a href="#" className="text-dark text-conditions">
+          Conditions
+        </a>
+        <a href="#" className="text-dark text-privacy">
+          Privacy
+        </a>
       </div>
     </div>
   );

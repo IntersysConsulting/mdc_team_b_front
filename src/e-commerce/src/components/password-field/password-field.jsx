@@ -9,7 +9,7 @@ const PasswordField = props => {
         <Form.Control
           className="col-11 mr-4 border-dark border-2 rounded"
           type={props.open ? "text" : "password"}
-          placeholder="Password"
+          placeholder={props.placeholder}
           onChange={props.onChange}
         ></Form.Control>
         <InputGroup.Append>

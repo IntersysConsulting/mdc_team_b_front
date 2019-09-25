@@ -1,6 +1,8 @@
 import React,{ useState } from 'react';
 import { useDispatch } from 'react-redux'
-import Input from '../../components/input/Input'
+import PasswordField from "../../containers/password-field/password-field.js";
+import AcceptButton from "../../components/accept-button/accept-button";
+import Title from "../../components/title/title";
 import './createPassword.css'
 import { fetchAuth } from '../../actions/authenticationCreator.jsx'
 // import {log} from 'util';
@@ -39,18 +41,18 @@ function CreatePassword(props) {
 
   return (
     <div className={"createPaswordContainer"}>
-      <form onSubmit={submit} encType='application/json'>
-        <Input
-          placeholder='New Password'
-          value={password}
-          onChange={changePassword}
-        />
-        <Input
-          placeholder='Confirm Password'
-          value={confirmPassword}
-          onChange={changeConfirm}
-        />
-        <input type="submit" value="Submit"/>
+      <form className={"createPassword-form"} encType='application/json'>
+        <div className="col-12 createPassword-title">
+          <Title >
+            Reset your password
+          </Title>
+        </div>
+        <PasswordField placeholder="Password" onChange={changePassword}></PasswordField>
+        <PasswordField placeholder="Confirm Password" onChange={changeConfirm}></PasswordField>
+        <div className="col-12">
+          <AcceptButton onClick={submit} block>Done</AcceptButton>
+        </div>
+
       </form>
     </div>
   );

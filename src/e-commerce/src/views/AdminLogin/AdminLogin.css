@@ -1,0 +1,17 @@
+.AdminLogin {
+  display: grid;
+  grid-template-columns: 10px auto 10px;
+}
+
+.AdminLogin-bg {
+  grid-row: 1;
+  grid-column: 1 / 4;
+  background: #116CB4;
+  height: 150px;
+}
+
+.AdminLogin-login {
+  grid-row: 1;
+  grid-column: 2;
+  margin-top: 103px;
+}

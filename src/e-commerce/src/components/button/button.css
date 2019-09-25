@@ -10,6 +10,16 @@
   border: none;
 }
 
+@media screen and (min-width: 425px) {
+  .button::before {
+    /* Vertical align helper */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
 /* In case we want to get rid of the focus from react-bootstrap */
 /* .btn:focus {  
   outline: none !important;

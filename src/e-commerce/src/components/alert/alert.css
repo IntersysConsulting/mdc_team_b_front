@@ -1,0 +1,39 @@
+#buttons-container{
+    padding: 10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#buttons-container > .button {
+    width: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 3px;
+    min-width: 8rem;
+}
+
+#alert-modal{
+    margin-top: 200px;
+    height: auto;
+    min-height: 150px;
+    border-style: solid;
+    border-color: #589ad3;
+    align-self: center;
+}
+
+#modal-text{
+    margin: auto;
+    height: auto;
+    min-height: 150px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.modal-content{
+    background-color: rgb(240, 240, 240);
+    color: #575a61;
+}

@@ -1,36 +1,29 @@
 import React, {useState} from 'react';
-import DemoButton from './demos/demo-button';
-import DemoStatus from './demos/demo-status';
-import DemoCards from './demos/demo-cards';
-import DemoPrice from './demos/demo-price.js';
-import DemoLayout from './demos/demo-layout.js';
-import DemoCheckout from './demos/demo-checkout.js';
-import DemoLogin from './demos/demo-login.js';
-import DemoSwitch from './demos/demo-switch.js';
-import CheckboxDemo from './demos/demo-checkbox.js';
+import { Route, Switch } from 'react-router-dom'
+import PropTypes from "prop-types";
+import { Provider } from "react-redux";
+import LayoutContainer from "./containers/layout"
+
+const App = ({ store }) => {
+  //possible roles: "registeredUser", "guest", "admin", "external"
+  const [accessLevelState, setAccessLevelState] = useState({ 
+    role: "registeredUser",
+    name: "John Smith"
+  });
 
 
-import './App.css';
-import DemoProduct from './demos/demo-product';
+  //Once you finish your views, you should import them inside layout container, and replace component={DemoSomething}
+  //with component={YourImport} under the corresponding route
+  return(
+  <Provider store={store}>
+    <LayoutContainer accessLevelState = {accessLevelState}></LayoutContainer>
+  </Provider>
+  ); 
+};
 
-const App = () => {
-  const defaultAlerts = true;
 
-  return (
-    <div className="App">
-      <DemoLogin></DemoLogin>
-      <DemoButton></DemoButton>
-      <DemoStatus></DemoStatus>
-      <DemoCards></DemoCards>
-      <DemoPrice></DemoPrice>
-      <DemoLayout></DemoLayout>
-      <DemoCheckout></DemoCheckout>
-      <DemoProduct></DemoProduct>
-      <DemoSwitch/>
-      <CheckboxDemo/>
-
-    </div>
-  );
+App.propTypes = {
+  store: PropTypes.object.isRequired
 };
 
 export default App;

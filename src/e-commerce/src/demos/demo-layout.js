@@ -1,30 +1,22 @@
 import React, {useState} from 'react';
-import SearchBar from '../components/search-bar/search-bar';
-import Logo from '../components/logo/logo';
-import Blocker from '../components/blocker/blocker';
-import Button from '../components/button/button';
+import LayoutCustomer from '../components/layout/layout-customer';
+import LayoutAdmin from '../components/layout/layout-admin';
+import DemoCards from '../demos/demo-cards';
 
-const LayoutDemo = () => {
-  const [blockerState, setBlockerState] = useState({show: false});
+const LayoutDemo = (props) => {
+  const [accessLevelState, setAccessLevelState] = useState({ 
+    accesses: [
+        {role: 'registeredUser', name: 'John Smith'},
+        {role: 'guest', name: 'Guest'},
+        {role: 'admin', name: 'Richard Nichols'}
+    ],
+  });
 
-  const BlockerHandler = () => {
-    console.log(blockerState.show);
-    setBlockerState({show: !blockerState.show});
-  };
-
-  const closed = () => {
-    setBlockerState({show: !blockerState.show});
-  };
-
-  return (
-    <div>
-      <h1>Demo Layout Components</h1>
-      <SearchBar></SearchBar>
-      <Logo link="/"/>
-      <br/><Button onClick={BlockerHandler}>Press to block view</Button>
-      <Blocker show = {blockerState.show} clicked={closed} ></Blocker>
-    </div>
-  );
+  return(
+  <LayoutAdmin accessLevelState = {accessLevelState}>
+    <DemoCards/>
+  </LayoutAdmin>);
 };
 
 export default LayoutDemo;
+

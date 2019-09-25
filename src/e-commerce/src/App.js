@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import LayoutContainer from "./containers/layout"
 
-
 const App = ({ store }) => {
   //possible roles: "registeredUser", "guest", "admin", "external"
   const [accessLevelState, setAccessLevelState] = useState({ 

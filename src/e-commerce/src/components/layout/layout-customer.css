@@ -1,12 +1,8 @@
 .LayoutWindowCustomer{
     padding-top: 140px;
-    padding-left: auto;
-    padding-right: auto;
 }
 
-
-@media(min-width: 768px) {
-    .LayoutWindowCustomer{
-        padding-left: 150px;
-    }
+.DrawerOpenCustomer{
+    padding-top: 140px;
+    padding-left: 200px;
 }

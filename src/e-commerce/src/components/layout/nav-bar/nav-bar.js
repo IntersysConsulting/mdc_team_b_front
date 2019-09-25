@@ -14,7 +14,7 @@ const Navbar = (props) => {
         <div className = "row">
             <DrawerToggle clicked={props.drawerToggledClicked} />
             <div className="LogoSpaceAdmin">
-                <Logo link = "/"/>
+                <Logo link = "/admin"/>
                 <div className = "row">
                     <p className="AdminTextUnderLogo">Admin</p>
                 </div>

@@ -1,17 +1,27 @@
 import React from "react";
+import {Route, Link} from  'react-router-dom';
 import "./welcome.css";
 
 const WelcomeMessage = (props) => {
+    let component = null;
     let attachedClass = "WelcomeMessage";
     if(props.smallView){
         attachedClass = "WelcomeMessageMobile";
      }
 
-    return(
-        (props.accessLevel.role == 'registeredUser' ||  props.accessLevel.role == 'admin')
-        ? <a href={"/"} class={attachedClass}>Welcome {props.accessLevel.name}! </a> 
-        : <a href={"/"} class={attachedClass}> Welcome, please log in! </a> 
-    );
+     switch(props.accessLevel.role){
+        case("registeredUser"):
+            component = (<Link class={attachedClass} to={"/account"}>Welcome {props.accessLevel.name}!</Link>) 
+        break;
+        case("guest"):
+            component = (<Link class={attachedClass} to={"/login"}>Welcome, please log in!</Link>) 
+        break;
+        case("admin"):
+            component = (<Link class={attachedClass} to={"/admin"}>Welcome {props.accessLevel.name}!</Link>) 
+        break;
+    }
+
+    return(component);
 };
 
 export default WelcomeMessage;

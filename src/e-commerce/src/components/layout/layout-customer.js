@@ -18,18 +18,34 @@ const LayoutCustomer = (props) => {
         } );
     }
 
-    return (
-        <div className="LayoutWindowCustomer">
-            <Navbar 
-                accessLevel = {props.accessLevelState.accesses[0]} 
-                drawerToggledClicked={SideDrawerToggleHandler} />
-            <SideDrawer 
-                open = {sideDrawerState.showSideDrawer} 
-                closed = {SideDrawerClosedHandler}
-                accessLevel = { props.accessLevelState.accesses[0] } />
+
+    let showLayout = null;
+    
+    if(props.accessLevelState.role == "external" ){
+        showLayout = (
             <div>{props.children}</div>
-        </div>
-    )
+        )
+    }
+    else{
+        let attachedClasses = "LayoutWindowCustomer";
+        if(sideDrawerState.showSideDrawer == true){
+            attachedClasses = "DrawerOpenCustomer";
+        }
+
+        showLayout = (
+            <div className= {attachedClasses}>
+                <Navbar 
+                    accessLevel = {props.accessLevelState} 
+                    drawerToggledClicked={SideDrawerToggleHandler} />
+                <SideDrawer 
+                    open = {sideDrawerState.showSideDrawer} 
+                    closed = {SideDrawerClosedHandler}
+                    accessLevel = { props.accessLevelState} />
+                <div>{props.children}</div>
+            </div>
+        )
+    }
+    return (showLayout)
 }
 
 export default LayoutCustomer;

@@ -13,9 +13,9 @@ const LayoutDemo = (props) => {
   });
 
   return(
-  <LayoutCustomer accessLevelState = {accessLevelState}>
+  <LayoutAdmin accessLevelState = {accessLevelState}>
     <DemoCards/>
-  </LayoutCustomer>);
+  </LayoutAdmin>);
 };
 
 export default LayoutDemo;

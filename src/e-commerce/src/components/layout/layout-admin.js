@@ -18,15 +18,20 @@ const LayoutAdmin = (props) => {
         } );
     }
 
+    let attachedClasses = "LayoutWindowAdmin";
+    if(sideDrawerState.showSideDrawer == true){
+        attachedClasses = "DrawerOpenAdmin";
+    }
+
     return (
-        <div className="LayoutWindowAdmin">
+        <div className= {attachedClasses}>
             <Navbar 
-                accessLevel = {props.accessLevelState.accesses[2]} 
+                accessLevel = { props.accessLevelState } 
                 drawerToggledClicked={SideDrawerToggleHandler} />
             <SideDrawer 
                 open = {sideDrawerState.showSideDrawer} 
                 closed = {SideDrawerClosedHandler}
-                accessLevel = { props.accessLevelState.accesses[2] } />
+                accessLevel = { props.accessLevelState } />
                 <div>{props.children}</div>
         </div>
     )

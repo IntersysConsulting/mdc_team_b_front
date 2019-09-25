@@ -1,6 +1,5 @@
 import React from "react";
 import "./navigation-items.css"
-import "./item"
 import Item from "./item";
 
 const navigationItems = (props) => {
@@ -14,12 +13,12 @@ const navigationItems = (props) => {
                 <div class = "TitlesContainer">
                     <p class="SectionTitle">Admin</p>
                 </div>
-                <Item link="/">Dashboard</Item>
-                <Item link="/">Products</Item>
-                <Item link="/">Orders</Item>
-                <Item link="/">Staff</Item>
-                <Item link="/">Banners</Item>
-                <Item link="/">Log out</Item>
+                <Item link="/admin">Dashboard</Item>
+                <Item link="/admin/products">Products</Item>
+                <Item link="/admin/orders">Orders</Item>
+                <Item link="/admin/staff">Staff</Item>
+                <Item link="/admin/banners">Banners</Item>
+                <Item>Log out</Item>
             </ul>
         );
         break;
@@ -30,15 +29,15 @@ const navigationItems = (props) => {
                     <p class="SectionTitle">Navigation</p>
                 </div>
                 <Item link="/">Storefront</Item>
-                <Item link="/">My cart</Item>
+                <Item link="/cart">My cart</Item>
                 <div className = "TitlesContainer"> <hr className="Dividers"/></div>
                 <div className = "TitlesContainer">
                     <p className="SectionTitle">My Account</p>
                 </div>
-                <Item link="/">Summary</Item>
-                <Item link="/">Billing Info</Item>
-                <Item link="/">Shipping Info</Item>
-                <Item link="/">Orders</Item>
+                <Item link="/summary">Summary</Item>
+                <Item link="/billing-info">Billing Info</Item>
+                <Item link="/shipping-info">Shipping Info</Item>
+                <Item link="/orders">Orders</Item>
             </ul>
         );
         break;
@@ -50,7 +49,7 @@ const navigationItems = (props) => {
                     <p class="SectionTitle">Navigation</p>
                 </div>
                 <Item link="/"> Storefront </Item>
-                <Item link="/">My cart</Item>
+                <Item link="/cart">My cart</Item>
             </ul>
         );
         break;

@@ -1,10 +1,11 @@
 import React from "react"
+import {Route, Link} from  "react-router-dom";
 import "./logo.css";
 import logo from "./logo.png"
 
 const Logo = (props) => (
     <div className="Logo">
-        <a href={props.link}><img src={logo} alt= "Intersys logo"/></a>
+        <Link to={props.link}><img src={logo} alt= "Intersys logo"/></Link>
     </div>
     
 );

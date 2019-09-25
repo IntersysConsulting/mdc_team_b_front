@@ -15,3 +15,5 @@ deploy:
   app: reactintersys
   on:
     branche: christianahvilla/travis
+true:
+  branche: master

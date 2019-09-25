@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./layout-customer.css";
+import "./layout-admin.css";
 import Navbar from "./nav-bar/nav-bar"
 import SideDrawer from "./side-drawer/side-drawer"
 
-const LayoutCustomer = (props) => {
+const LayoutAdmin = (props) => {
     const [sideDrawerState, setSideDrawerState] = useState({ showSideDrawer: false });
 
     const SideDrawerClosedHandler = () => {
@@ -18,17 +18,23 @@ const LayoutCustomer = (props) => {
         } );
     }
 
+    let attachedClasses = "LayoutWindowAdmin";
+    if(sideDrawerState.showSideDrawer == true){
+        attachedClasses = "DrawerOpenAdmin";
+    }
+
     return (
-        <div className="LayoutWindow">
+        <div className= {attachedClasses}>
             <Navbar 
-                accessLevel = {props.accessLevelState.accesses[0]} 
+                accessLevel = { props.accessLevelState } 
                 drawerToggledClicked={SideDrawerToggleHandler} />
             <SideDrawer 
                 open = {sideDrawerState.showSideDrawer} 
                 closed = {SideDrawerClosedHandler}
-                accessLevel = { props.accessLevelState.accesses[0] } />
+                accessLevel = { props.accessLevelState } />
+                <div>{props.children}</div>
         </div>
     )
 }
 
-export default LayoutCustomer;
+export default LayoutAdmin;

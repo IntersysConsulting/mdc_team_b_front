@@ -1,0 +1,20 @@
+.InProgress{
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+    color:#575a61;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+}
+
+.ComeBackSoon{
+    font-family: "Roboto", sans-serif;
+    font-size: 80px;
+    color:#575a61;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font-weight: 800px; 
+}

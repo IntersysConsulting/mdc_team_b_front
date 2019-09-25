@@ -1,0 +1,21 @@
+/* .custom-control-label::before {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.custom-control-label::after {
+  position: absolute;
+  top: 0rem;
+  left: -1.75rem;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  content: "";
+  background: no-repeat 50% / 50% 50%;
+} */
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #7a63c7;
+  background-color: #7a63c7;
+}

@@ -1,0 +1,92 @@
+.button {
+  position: relative;
+  min-height: 55px;
+  overflow: hidden;
+  user-select: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.no-border {
+  border: none;
+}
+
+@media screen and (min-width: 425px) {
+  .button::before {
+    /* Vertical align helper */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+/* In case we want to get rid of the focus from react-bootstrap */
+/* .btn:focus {  
+  outline: none !important;
+  box-shadow: none !important;
+} */
+
+.button > p {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  margin: 0px;
+}
+.button > img {
+  /* Icon handling */
+  height: 100%;
+}
+
+@media screen and (min-width: 425px) {
+  .button::before {
+    /* Vertical align helper */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.button-icon-padding {
+  /* Helps separate the icon and the text */
+  display: inline-block;
+  width: 15px;
+}
+
+.auto-height {
+  height: 100%;
+}
+
+.icon-only > img {
+  max-height: 45px;
+  min-height: 10px;
+  height: 50%;
+}
+
+.icon-50x50 {
+  padding: 0 !important;
+  width: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  height: 50px !important;
+}
+
+.icon-50x50 > img {
+  margin-left: -25%;
+}
+
+.icon-22x22 {
+  padding: 0 !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  max-width: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+}
+
+.icon-22x22 > img {
+  height: 75%;
+  margin-left: -75%;
+  margin-top: -30%;
+}

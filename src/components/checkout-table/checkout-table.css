@@ -1,0 +1,48 @@
+.checkout-table {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+}
+
+.table-borderless td {
+  padding: 6px 12px 6px 12px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: #e0e0e0;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  color: #ffffff;
+  background: #4f4f4f;
+}
+
+.total-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 25px;
+  position: absolute;
+  left: 16px;
+}
+
+.total-number {
+  position: absolute;
+  right: 16px;
+}
+
+.checkout-table-container {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 577px) {
+  .total-label {
+    position: initial;
+  }
+
+  .total-container {
+    position: absolute;
+    right: 16px;
+  }
+
+  .total-number {
+    position: initial;
+  }
+}

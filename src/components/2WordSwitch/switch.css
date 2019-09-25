@@ -1,0 +1,15 @@
+/* Hides the default browser checkbox */
+
+.switch-text {
+  display: inline;
+  user-select: none;
+  cursor: pointer;
+}
+
+.switch-text-active {
+  opacity: 1;
+}
+
+.switch-text-passive {
+  opacity: 0.5;
+}

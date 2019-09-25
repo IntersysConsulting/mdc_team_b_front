@@ -2,12 +2,12 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR
-} from '../actions/authenticationCreator.jsx'
+} from "../actions/authenticationCreator.jsx";
 
 export default function authReducer(state = {}, auth) {
-  switch(auth.type) {
+  switch (auth.type) {
     case AUTHENTICATED:
-      console.log('woooooo muchas cosas')
+      console.log("woooooo muchas cosas");
       // if(auth.code) {
       //   const res = axios.post(`${URL}/admin/management/${auth.email}/${auth.code}`)
       //   localStorage.setItem('token', res.data.token)
@@ -16,12 +16,12 @@ export default function authReducer(state = {}, auth) {
       //   localStorage.setItem('token', res.data.token)
       // }
       // window.history.push('/')
-      return { ...state, authenticated: true }
+      return { ...state, authenticated: true };
     case UNAUTHENTICATED:
-      return { ...state, authenticated: false }
+      return { ...state, authenticated: false };
     // case AUTHENTICATION_ERROR:
     //   return { ...state, error: payload }
     default:
-      return state
+      return state;
   }
 }

@@ -8,10 +8,12 @@ const CheckoutTable = props => {
     return props.products.map(product => {
       return (
         <tr>
-          <td>{product.name}</td>
+          <td className="text-left">{product.name}</td>
           <td>{"$" + (product.price / 100).toFixed(2)}</td>
           <td>{product.qty}</td>
-          <td>{"$" + (product.total / 100).toFixed(2)}</td>
+          <td className="text-right">
+            {"$" + (product.total / 100).toFixed(2)}
+          </td>
         </tr>
       );
     });
@@ -21,21 +23,20 @@ const CheckoutTable = props => {
     var sumTotal = 0;
 
     for (var i in props.products) {
-      console.log("ST = " + sumTotal + " + " + props.products[i].total);
       sumTotal += Number(props.products[i].total);
     }
     return sumTotal;
   };
 
   return (
-    <div>
+    <div className="checkout-table-container">
       <Table striped borderless className="checkout-table">
         <thead>
           <tr>
-            <th>Product</th>
+            <th className="text-left">Product</th>
             <th>Price</th>
             <th>Qty</th>
-            <th>Total</th>
+            <th className="text-right">Total</th>
           </tr>
         </thead>
         <tbody>{MakeRows()}</tbody>

@@ -8,7 +8,6 @@ import CreatePassword from "../views/CreatePassword/createPassword.jsx";
 import Sigin from "../views/Sigin/Sigin.jsx";
 import AdminLogin from "../views/AdminLogin/AdminLogin";
 
-
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
@@ -22,7 +21,7 @@ const Root = ({ store }) => (
 );
 
 Root.propTypes = {
-    store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired
 };
 
 export default Root;

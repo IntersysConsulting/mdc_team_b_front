@@ -7,7 +7,6 @@ const QuantityButton = props => {
       className={"value-button " + props.className}
       id={props.idVal}
       onClick={() => props.onClick()}
-      value="Decrease Value"
     >
       {props.symbol}
     </div>
@@ -20,7 +19,7 @@ const Quantity = props => {
   const decrease = () => {
     let val = quantityState.value;
     val = isNaN(val) ? 0 : val;
-    val < 1 ? (val = 1) : (val = val);
+    val < 1 ? (val = 1) : (val=val);
     val--;
     setQuantityState({ value: val });
     props.onChange();

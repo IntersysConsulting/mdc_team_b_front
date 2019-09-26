@@ -1,0 +1,17 @@
+.UserLogin {
+  display: grid;
+  grid-template-columns: 10px auto 10px;
+}
+
+.UserLogin-bg {
+  grid-row: 1;
+  grid-column: 1 / 4;
+  background: #116CB4;
+  height: 150px;
+}
+
+.UserLogin-login {
+  grid-row: 1;
+  grid-column: 2;
+  margin-top: 103px;
+}

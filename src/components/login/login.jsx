@@ -34,9 +34,6 @@ const Login = props => {
             ></Form.Control>
             <PasswordField placeholder="Password" onChange={onChangePassword}></PasswordField>
           </Form>
-          <Link className="login-forgot text-dark" to={'/recovery-Password'}>
-            Forgot my password
-          </Link>
           <Link to={"/recovery-password"} className="login-forgot text-dark">
             Forgot my password
           </Link>

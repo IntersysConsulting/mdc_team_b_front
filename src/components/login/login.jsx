@@ -52,10 +52,10 @@ const Login = props => {
           Help
         </Link>
         <Link to={"/conditions"} className="text-dark login-conditions">
-          Help
+          Conditions
         </Link>
         <Link to={"/privacy"} className="text-dark login-privacy">
-          privacy
+          Privacy
         </Link>
       </div>
     </div>

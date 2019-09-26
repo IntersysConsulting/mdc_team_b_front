@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "../App";
 import Test from "../views/test";
-import CreatePassword from "../views/CreatePassword/createPassword.jsx";
-import Sigin from "../views/Sigin/Sigin.jsx";
+import CreatePassword from "../views/CreatePassword/createPassword";
+import Sigin from "../views/Sigin/Sigin";
 import AdminLogin from "../views/AdminLogin/AdminLogin";
 
 const Root = ({ store }) => (

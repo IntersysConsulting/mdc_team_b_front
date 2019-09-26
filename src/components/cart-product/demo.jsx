@@ -1,9 +1,6 @@
 import React from "react";
 import CartProduct from "./cart-product.jsx";
 import digital from '../../assets/images/digital.jpg';
-import not from '../../assets/images/not.jpg';
-import physical from '../../assets/images/physical.jpg';
-import bears from '../../assets/images/bears.jpg';
 
 const CartProductDemo = props => {
     return (

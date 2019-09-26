@@ -5,9 +5,9 @@ import Logo from "../layout/logo/logo.png";
 import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
 
-import "./login.css";
+import "./signup.css";
 
-const Login = props => {
+const Signup = props => {
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
   const onChangeEmail = e => {
@@ -37,6 +37,7 @@ const Login = props => {
               className="border-dark border-2 mb-4"
             ></Form.Control>
             <PasswordField placeholder="Password" onChange={onChangePassword}></PasswordField>
+            <PasswordField placeholder="Confirm Password" onChange={onChangePassword}></PasswordField>
           </Form>
           <Link to={"/recovery-password"} className="login-forgot text-dark">
             Forgot my password
@@ -66,4 +67,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default Signup;

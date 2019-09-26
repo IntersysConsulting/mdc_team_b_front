@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { Link } from "react-router-dom"
 import Logo from "../layout/logo/logo.png";
 import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
@@ -33,29 +34,32 @@ const Login = props => {
             ></Form.Control>
             <PasswordField placeholder="Password" onChange={onChangePassword}></PasswordField>
           </Form>
-          <a className="login-forgot text-dark" href="#">
+          <Link className="login-forgot text-dark" to={'/recovery-Password'}>
             Forgot my password
-          </a>
+          </Link>
+          <Link to={"/recovery-password"} className="login-forgot text-dark">
+            Forgot my password
+          </Link>
         </div>
         <div className="login-footer mt-4 px-4 mb-2">
-            <a href="#" className="login-signup text-indigo">
-              Sign up instead!
-            </a>
-            <AcceptButton border className="login-button" onClick={props.onClick}>
-              Log in
-            </AcceptButton>
+          <Link to={"/signup"} className="login-signup text-indigo">
+            Sign up instead!
+          </Link>
+          <AcceptButton border className="login-button" onClick={props.onClick}>
+            Log in
+          </AcceptButton>
         </div>
       </div>
       <div className="text-dark login-link-holder">
-        <a href="#" className="text-dark text-help">
+        <Link to={"/help"} className="text-dark login-help">
           Help
-        </a>
-        <a href="#" className="text-dark text-conditions">
-          Conditions
-        </a>
-        <a href="#" className="text-dark text-privacy">
-          Privacy
-        </a>
+        </Link>
+        <Link to={"/conditions"} className="text-dark login-conditions">
+          Help
+        </Link>
+        <Link to={"/privacy"} className="text-dark login-privacy">
+          privacy
+        </Link>
       </div>
     </div>
   );

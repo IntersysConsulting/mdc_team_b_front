@@ -88,13 +88,21 @@
   top: 25%;
 }
 
-/* @media (max-width: 768px) { */
-/*   .accept-button { */
-/*     width: 60px; */
-/*   } */
-/* } */
+@media (max-width: 500px) {
+  .login-button {
+    min-width: 1px !important;
+    width: 5rem !important;
+  }
+
+  .login-signup {
+    padding: 0 !important;
+    width: 5rem !important;
+    top: 0;
+  }
+}
 
 .login-button {
+  text-align: center;
   position: absolute;
   min-height: 30px;
   height: 40px;

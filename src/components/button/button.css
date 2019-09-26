@@ -37,14 +37,12 @@
   height: 100%;
 }
 
-@media screen and (min-width: 425px) {
-  .button::before {
-    /* Vertical align helper */
-    content: "";
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
+.button::before {
+  /* Vertical align helper */
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .button-icon-padding {

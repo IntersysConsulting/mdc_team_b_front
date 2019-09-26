@@ -1,10 +1,10 @@
 import React from "react";
 import "./button.css";
-import { Button as bButton} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-const Button = props => {
+const ButtonComponent = props => {
   return (
-    <bButton
+    <Button
       className={"button rounded " + props.className}
       style={{
         width: props.width,
@@ -20,8 +20,8 @@ const Button = props => {
       <p className="">{props.children}</p>
       <div className={props.icon ? "button-icon-padding" : "hidden"}></div>
       <img alt="" src={props.icon} className={props.icon ? "" : "hidden"}></img>
-    </bButton>
+    </Button>
   );
 };
 
-export default Button;
+export default ButtonComponent;

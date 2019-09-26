@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import WorkInProgress from '../views/work-in-progress/in-progress'
 import AdminLogin from "../views/AdminLogin/AdminLogin";
+import Signup from "../views/Signup/Signup"
 import UserLogin from "../views/UserLogin/UserLogin";
 import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
@@ -20,6 +21,7 @@ const LayoutContainer = (props) => {
       <Switch>
         <Route path = "/login" exact component={UserLogin} />
         <Route path = "/admin/login" exact component={AdminLogin} />
+        <Route path = "/signup" exact component={Signup} />
       </Switch>
     )
   } else if(props.accessLevelState.role === "admin"){

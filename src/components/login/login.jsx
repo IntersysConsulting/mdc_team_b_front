@@ -48,13 +48,13 @@ const Login = props => {
         </div>
       </div>
       <div className="text-dark login-link-holder">
-        <Link to={"/help"} className="text-dark login-help">
+        <Link to={"/help"} className="text-dark text-help">
           Help
         </Link>
-        <Link to={"/conditions"} className="text-dark login-conditions">
+        <Link to={"/conditions"} className="text-dark text-conditions">
           Conditions
         </Link>
-        <Link to={"/privacy"} className="text-dark login-privacy">
+        <Link to={"/privacy"} className="text-dark text-privacy">
           Privacy
         </Link>
       </div>

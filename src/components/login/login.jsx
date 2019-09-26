@@ -20,7 +20,7 @@ const Login = props => {
     <div className="login-holder">
       <div className="login-card border-indigo">
         <div className="login-header">
-          <img src={Logo}></img>
+          <img alt="logo" src={Logo}></img>
         </div>
         <div className="login-body px-4">
           <Form>
@@ -31,7 +31,7 @@ const Login = props => {
               value={loginState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField onChange={onChangePassword}></PasswordField>
+            <PasswordField placeholder="Password" onChange={onChangePassword}></PasswordField>
           </Form>
           <a className="login-forgot text-dark" href="#">
             Forgot my password

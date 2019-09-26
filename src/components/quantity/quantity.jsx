@@ -19,8 +19,7 @@ const Quantity = props => {
   const decrease = () => {
     let val = quantityState.value;
     val = isNaN(val) ? 0 : val;
-    val < 1 ? (val = 1) : (val=val);
-    val--;
+    val < 1 ? (val = 0) : (val--);
     setQuantityState({ value: val });
     props.onChange();
   };

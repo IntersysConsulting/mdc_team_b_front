@@ -1,6 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Provider } from "react-redux";
+import LayoutContainer from "./containers/layout";
 
 function App() {
   const App = ({ store }) => {
@@ -13,24 +14,15 @@ function App() {
     //Once you finish your views, you should import them inside layout container, and replace component={DemoSomething}
     //with component={YourImport} under the corresponding route
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <Provider store={store}>
+      <LayoutContainer accessLevelState={accessLevelState}></LayoutContainer>
+    </Provider>
     );
   }
 }
+
+App.propTypes = {
+  store: PropTypes.object.isRequired
+};
 
 export default App;

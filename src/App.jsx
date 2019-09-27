@@ -20,9 +20,3 @@ function App() {
     );
   }
 }
-
-App.propTypes = {
-  store: PropTypes.object.isRequired
-};
-
-export default App;

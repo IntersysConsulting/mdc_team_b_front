@@ -7,33 +7,13 @@ import AcceptButton from "../accept-button/accept-button.jsx";
 import Checkbox from "../checkbox/Checkbox";
 
 import "./signup.css";
+import changeInput from "../../utils/changeInput"
 
 const Signup = props => {
-  const [signupState, setSignupState] = useState({ email: "", password: "" });
+  const [signupState, setSignupState] = useState({ firstName:"" , lastName:"" , email:"" , password:"", accepted: false });
 
-  const changeInput = e => {
-    let name = e.target.name
-    let value = e.target.value
-
-    let signup = {
-      'email': () => {
-        let signupValues = {...signupState}
-        signupValues.email = value
-        setSignupState(signupValues)
-      },
-      'password': () => {
-        let signupValues = {...signupState}
-        signupValues.password = value
-        setSignupState(signupValues)
-      },
-      'confirm': () => {
-        let signupValues = {...signupState}
-        signupValues.confirm = value
-        setSignupState(signupValues)
-      },
-      'default': () => 'Wrong name'
-    }
-    return (signup[name] || signup['default'])
+  const input = e => {
+    changeInput(e, signupState, setSignupState)
   }
 
   return (
@@ -48,19 +28,21 @@ const Signup = props => {
               <div className="signup-fullname">
                 <div className="signup-name">
                   <Form.Control
+                    name="firstName"
                     type="text"
                     placeholder="First Name"
-                    onChange={changeInput}
-                    value={signupState.email}
+                    onChange={input}
+                    value={signupState.firstName}
                     className="border-dark border-2 mb-4"
                   ></Form.Control>
                 </div>
                 <div className="signup-last">
                   <Form.Control
+                    name="lastName"
                     type="text"
                     placeholder="Last Name"
-                    onChange={changeInput}
-                    value={signupState.email}
+                    onChange={input}
+                    value={signupState.lastName}
                     className="border-dark border-2 mb-4"
                   ></Form.Control>
                 </div>
@@ -68,15 +50,16 @@ const Signup = props => {
             </div>
             <Form.Control
               type="email"
+              name="email"
               placeholder="Email"
-              onChange={changeInput}
+              onChange={input}
               value={signupState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField placeholder="Password" name="password" onChange={changeInput}></PasswordField>
-            <PasswordField placeholder="Confirm Password" name="confirm" onChange={changeInput}></PasswordField>
+            <PasswordField placeholder="Password" name="password" onChange={input}></PasswordField>
+            <PasswordField placeholder="Confirm Password" name="confirm" onChange={input}></PasswordField>
           </Form>
-          <Checkbox className="signup-checkbox">
+          <Checkbox checked={signupState.accepted} className="signup-checkbox">
             I have read and accept <Link  className="text-orange" to={'/terms'}>Terms of service</Link>.
           </Checkbox>
         </div>

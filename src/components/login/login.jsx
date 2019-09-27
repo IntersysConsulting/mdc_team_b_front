@@ -6,20 +6,14 @@ import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
 
 import "./login.css";
+import changeInput from "../../utils/changeInput"
 
 const Login = props => {
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
-  const onChangeEmail = e => {
-    let login = {...loginState}
-    login['email'] = e.target.value
-    setLoginState(login);
-  };
-  const onChangePassword = e => {
-    let login = {...loginState}
-    login['password'] = e.target.value
-    setLoginState(login);
-  };
+  const input = e => {
+    changeInput(e, loginState, setLoginState)
+  }
 
   return (
     <div className="login-holder">
@@ -30,20 +24,21 @@ const Login = props => {
         <div className="login-body px-4">
           <Form>
             <Form.Control
+              name="email"
               type="email"
               placeholder="Email"
-              onChange={onChangeEmail}
+              onChange={input}
               value={loginState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField placeholder="Password" onChange={onChangePassword}></PasswordField>
+            <PasswordField placeholder="Password" name="password" onChange={input}></PasswordField>
           </Form>
           <Link to={"/recovery-password"} className="login-forgot text-dark">
             Forgot my password
           </Link>
         </div>
         <div className="login-footer mt-4 px-4 mb-2">
-          <Link to={"/signup"} className="login-signup text-indigo">
+          <Link to={"/login"} className="login-signup text-indigo">
             Sign up instead!
           </Link>
           <AcceptButton border className="login-button" onClick={props.onClick}>

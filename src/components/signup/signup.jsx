@@ -59,7 +59,7 @@ const Signup = props => {
             <PasswordField placeholder="Password" name="password" onChange={input}></PasswordField>
             <PasswordField placeholder="Confirm Password" name="confirm" onChange={input}></PasswordField>
           </Form>
-          <Checkbox checked={signupState.accepted} className="signup-checkbox">
+          <Checkbox checked={signupState.accepted} onClick={input} name="accepted" className="signup-checkbox">
             I have read and accept <Link  className="text-orange" to={'/terms'}>Terms of service</Link>.
           </Checkbox>
         </div>

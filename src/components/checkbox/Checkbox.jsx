@@ -22,10 +22,11 @@ const Checkbox = props => {
     <label className={"checkbox-container " + props.className}>
       {props.children}
       <input
+        name={props.name}
         type="checkbox"
         id={props.id}
         onClick={props.onClick}
-        checked={checkboxState.checked}
+        defaultChecked={checkboxState.checked}
       />
       <span className="checkmark"></span>
     </label>

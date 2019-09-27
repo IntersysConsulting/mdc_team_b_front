@@ -1,17 +1,18 @@
-.AdminLogin {
+.signup {
   display: grid;
   grid-template-columns: 10px auto 10px;
+  margin-top: 50px;
 }
 
-.AdminLogin-bg {
+.signup-bg {
+  margin-top: 465px;
   grid-row: 1;
   grid-column: 1 / 4;
-  background: #116CB4;
-  height: 150px;
+  background:  #7A63C7;
+  height: 100%;
 }
 
-.AdminLogin-login {
+.signup-login {
   grid-row: 1;
   grid-column: 2;
-  margin-top: 103px;
 }

@@ -20,7 +20,7 @@ const Checkbox = props => {
 
   return (
     <label className={"checkbox-container " + props.className}>
-      {props.text}
+      {props.children}
       <input
         type="checkbox"
         id={props.id}

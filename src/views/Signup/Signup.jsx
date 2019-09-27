@@ -5,14 +5,14 @@ import './Signup.css'
 const signup = props => {
   return(
     <div className={"signup"}>
+      <div className="signup-bg"></div>
       <div className="signup-login">
         <Signup
           onClick={() => {
-            alert("You attempted to log in!");
+            alert("You attempted to sign up!");
           }}
         ></Signup>
       </div>
-      <div className="signup-bg"></div>
     </div>
   )
 };

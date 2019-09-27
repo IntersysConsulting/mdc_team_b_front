@@ -1,74 +1,34 @@
-.login-holder {
+.signup-holder {
   z-index: 60;
-  background: #fff;
   max-width: 500px;
   margin: 0 auto;
   width: 100%;
 }
 
-.login-card {
+.signup-card {
+  background: #fff;
   margin-bottom: 1rem;
   font-family: "Roboto", sans-serif;
-  border-style: solid;
-  border-width: 2px;
+  border: 4px solid;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
-.login-header {
+.signup-header {
   height: 45px;
-  text-align: left;
-  margin-bottom: 0.5rem;
-  /* Background linear gradient */
-  background: rgba(88, 154, 211, 1);
-  background: -moz-linear-gradient(
-    left,
-    rgba(88, 154, 211, 1) 0%,
-    rgba(255, 255, 255, 0.53) 15%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background: -webkit-gradient(
-    left top,
-    right top,
-    color-stop(0%, rgba(88, 154, 211, 1)),
-    color-stop(15%, rgba(255, 255, 255, 0.53)),
-    color-stop(100%, rgba(255, 255, 255, 0))
-  );
-  background: -webkit-linear-gradient(
-    left,
-    rgba(88, 154, 211, 1) 0%,
-    rgba(255, 255, 255, 0.53) 15%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background: -o-linear-gradient(
-    left,
-    rgba(88, 154, 211, 1) 0%,
-    rgba(255, 255, 255, 0.53) 15%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background: -ms-linear-gradient(
-    left,
-    rgba(88, 154, 211, 1) 0%,
-    rgba(255, 255, 255, 0.53) 15%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background: linear-gradient(
-    to right,
-    rgba(88, 154, 211, 1) 0%,
-    rgba(255, 255, 255, 0.53) 15%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#589ad3', endColorstr='#ffffff', GradientType=1 );
+  background: #fff;
 }
 
-.login-header > img {
+.signup-header > img {
   height: 100%;
 }
 
-.login-body {
+.signup-body {
   display: block;
   width: 100%;
 }
 
-.login-forgot {
+.signup-forgot {
   display: block;
   text-align: left;
   margin-top: -1rem;
@@ -76,59 +36,59 @@
   font-weight: bold;
 }
 
-.login-footer {
-  position: relative;
+.signup-footer {
   height: 50px;
+  display: grid;
+  grid-template-columns: 100%;
 }
 
-.login-signup {
-  display: inline-block;
-  position: absolute;
-  left: 26px;
-  top: 25%;
-}
-
-@media (max-width: 500px) {
-  .login-button {
-    min-width: 1px !important;
-    width: 5rem !important;
-  }
-
-  .login-signup {
-    padding: 0 !important;
-    width: 5rem !important;
-    top: 0;
-  }
-}
-
-.login-button {
+.signup-textlogin {
   text-align: center;
-  position: absolute;
-  min-height: 30px;
-  height: 40px;
-  right: 26px;
-  top: 0px;
 }
 
-.login-link-holder {
+.signup-button {
+  border: 2px solid #575A61 !important;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  min-height: 3rem !important;
+  height: 21px !important;
+}
+
+.signup-link-holder {
+  background:  #7A63C7;
   display: grid;
   grid-template-columns: repeat(3, 1fr)
 }
 
-.login-link-holder a {
+.signup-link-holder a {
+  color: white !important;
   font-weight: bold;
   font-size: 12px;
 }
 
-.login-link-holder .text-help {
+.signup-link-holder .text-help {
   padding-left: 2rem;
 }
 
-.login-link-holder .text-conditions {
+.signup-link-holder .text-conditions {
   text-align: center;
 }
 
-.login-link-holder .text-privacy {
+.signup-link-holder .text-privacy {
   text-align: right;
   padding-right: 2rem;
+}
+
+.signup-fullname {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.signup-name {
+  margin-right: 1rem;
+}
+
+.signup-checkbox {
+  width: 100%;
 }

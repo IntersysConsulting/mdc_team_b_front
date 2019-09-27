@@ -79,7 +79,7 @@ class Quantity extends React.Component {
     });
 
     let val = parseInt(event.target.value, 10);
-    if(isNaN(val) || val === 0) {
+    if(isNaN(val) || val <= 0) {
       alert("You can't have 0 of a product, use delete instead");
       val = 1;
     }

@@ -1,9 +1,6 @@
 const changeInput = ( e, value, setValue ) => {
-  console.log(value)
   let name  = e.target.name
-  console.log(name)
   let valueInput = e.target.value
-  console.log(valueInput)
   let newValue = {...value}
 
   let inputs = {
@@ -25,6 +22,10 @@ const changeInput = ( e, value, setValue ) => {
     },
     'confirm': () => {
       newValue.confirm = valueInput
+      setValue(newValue)
+    },
+    'accepted': () => {
+      newValue.accepted = !newValue.accepted
       setValue(newValue)
     },
     'default': () => console.log('Wrong name')

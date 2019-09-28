@@ -30,7 +30,12 @@ const changeInput = ( e, value, setValue ) => {
     },
     'default': () => console.log('Wrong name')
   }
-  return (inputs[name]() || inputs['default']())
+
+  if (inputs[name]) {
+    inputs[name]()
+  } else {
+    inputs.defalt()
+  }
 }
 
 export default changeInput

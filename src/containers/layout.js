@@ -14,9 +14,8 @@ const LayoutContainer = (props) => {
     let layout = null;
 
 
-    /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.
-    */
-  if(props.accessLevelState.login) {
+    /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
+  if(props.accessLevelState.role === "external") {
     layout = (
       <Switch>
         <Route path = "/login" exact component={UserLogin} />

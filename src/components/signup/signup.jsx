@@ -7,13 +7,14 @@ import AcceptButton from "../accept-button/accept-button.jsx";
 import Checkbox from "../checkbox/Checkbox";
 
 import "./signup.css";
-import changeInput from "../../utils/changeInput"
 
 const Signup = props => {
   const [signupState, setSignupState] = useState({ firstName:"" , lastName:"" , email:"" , password:"", accepted: false });
 
-  const input = e => {
-    changeInput(e, signupState, setSignupState)
+  const changeInput = e => {
+    let newValue = {...signupState}
+      newValue[e.target.name] = e.target.value
+      setSignupState(newValue)
   }
 
   return (
@@ -31,7 +32,7 @@ const Signup = props => {
                     name="firstName"
                     type="text"
                     placeholder="First Name"
-                    onChange={input}
+                    onChange={changeInput}
                     value={signupState.firstName}
                     className="border-dark border-2 mb-4"
                   ></Form.Control>
@@ -41,7 +42,7 @@ const Signup = props => {
                     name="lastName"
                     type="text"
                     placeholder="Last Name"
-                    onChange={input}
+                    onChange={changeInput}
                     value={signupState.lastName}
                     className="border-dark border-2 mb-4"
                   ></Form.Control>
@@ -52,14 +53,14 @@ const Signup = props => {
               type="email"
               name="email"
               placeholder="Email"
-              onChange={input}
+              onChange={changeInput}
               value={signupState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField placeholder="Password" name="password" onChange={input}></PasswordField>
-            <PasswordField placeholder="Confirm Password" name="confirm" onChange={input}></PasswordField>
+            <PasswordField placeholder="Password" name="password" onChange={changeInput}></PasswordField>
+            <PasswordField placeholder="Confirm Password" name="confirm" onChange={changeInput}></PasswordField>
           </Form>
-          <Checkbox checked={signupState.accepted} onClick={input} name="accepted" className="signup-checkbox">
+          <Checkbox checked={signupState.accepted} onClick={changeInput} name="accepted" className="signup-checkbox">
             I have read and accept <Link  className="text-orange" to={'/terms'}>Terms of service</Link>.
           </Checkbox>
         </div>

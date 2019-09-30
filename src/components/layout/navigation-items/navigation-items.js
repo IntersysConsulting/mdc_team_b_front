@@ -25,8 +25,8 @@ const navigationItems = (props) => {
         case('registeredUser'):
         component = (
             <ul className="NavigationItems">
-                <div class = "TitlesContainer">
-                    <p class="SectionTitle">Navigation</p>
+                <div className= "TitlesContainer">
+                    <p className="SectionTitle">Navigation</p>
                 </div>
                 <Item link="/">Storefront</Item>
                 <Item link="/cart">My cart</Item>
@@ -45,8 +45,8 @@ const navigationItems = (props) => {
         default:
         component = (
             <ul className="NavigationItems">
-                <div class = "TitlesContainer">
-                    <p class="SectionTitle">Navigation</p>
+                <div className="TitlesContainer">
+                    <p className="SectionTitle">Navigation</p>
                 </div>
                 <Item link="/"> Storefront </Item>
                 <Item link="/cart">My cart</Item>

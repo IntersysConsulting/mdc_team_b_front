@@ -6,13 +6,14 @@ import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
 
 import "./login.css";
-import changeInput from "../../utils/changeInput"
 
 const Login = props => {
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
-  const input = e => {
-    changeInput(e, loginState, setLoginState)
+  const changeInput = e => {
+    let newValue = {...loginState}
+      newValue[e.target.name] = e.target.value
+      setLoginState(newValue)
   }
 
   return (
@@ -27,11 +28,11 @@ const Login = props => {
               name="email"
               type="email"
               placeholder="Email"
-              onChange={input}
+              onChange={changeInput}
               value={loginState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField placeholder="Password" name="password" onChange={input}></PasswordField>
+            <PasswordField placeholder="Password" name="password" onChange={changeInput}></PasswordField>
           </Form>
           <Link to={"/recovery-password"} className="login-forgot text-dark">
             Forgot my password

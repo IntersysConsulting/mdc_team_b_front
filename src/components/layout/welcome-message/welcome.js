@@ -11,13 +11,13 @@ const WelcomeMessage = (props) => {
 
     switch(props.accessLevel.role){
         case("registeredUser"):
-            component = (<Link class={attachedClass} to={"/account"}>Welcome {props.accessLevel.name}!</Link>) 
+            component = (<Link className={attachedClass} to={"/account"}>Welcome {props.accessLevel.name}!</Link>) 
         break;
         case("guest"):
-            component = (<Link class={attachedClass} to={"/login"}>Welcome, please log in!</Link>) 
+            component = (<Link className={attachedClass} to={"/login"}>Welcome, please log in!</Link>) 
         break;
         case("admin"):
-            component = (<Link class={attachedClass} to={"/admin"}>Welcome {props.accessLevel.name}!</Link>) 
+            component = (<Link className={attachedClass} to={"/admin"}>Welcome {props.accessLevel.name}!</Link>) 
         break;
         default:
             ;

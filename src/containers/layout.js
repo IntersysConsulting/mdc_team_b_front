@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import WorkInProgress from '../views/work-in-progress/in-progress'
-import AdminLogin from "../views/AdminLogin/AdminLogin";
-import UserLogin from "../views/UserLogin/UserLogin";
 import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
 import LayoutAdmin from '../components/layout/layout-admin';
@@ -24,7 +22,7 @@ const LayoutContainer = (props) => {
           <Route path = "/admin/orders" exact component={WorkInProgress} />
           <Route path = "/admin/staff" exact component={WorkInProgress} />
           <Route path = "/admin/banners" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={WorkInProgress} />
+          <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutAdmin>
     )

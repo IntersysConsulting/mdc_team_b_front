@@ -1,5 +1,7 @@
 import React from 'react';
 import CartProduct from '../../components/cart-product/cart-product';
+import AcceptButton from '../../components/accept-button/accept-button';
+import Price from "../../components/price-text/price-text";
 
 import './cart-view.css';
 
@@ -35,6 +37,13 @@ const CartView = (props) => {
     const change = () =>{
         alert("You changed the quantity");
       }
+    const AlertAccept = () => {
+        alert("You clicked on an accept button!");
+    };
+
+    let subtotal = 0;
+
+
     const renderItem = (i) =>{
         const item = hardcodedData[i];
         return (
@@ -42,6 +51,7 @@ const CartView = (props) => {
         );
     }
     const allItems = hardcodedData.map((e,i) => {
+        subtotal += e.price;
         return renderItem(i);
     });
     if(hardcodedData.length>0)
@@ -50,16 +60,22 @@ const CartView = (props) => {
             <div className="cart-view-items-container">
                 <div className="cart-view-top-text">
                     <h3>My cart</h3>
-                    <p>You have <span>{hardcodedData.length}</span> products in your cart</p>
+                    <p>You have <span>{hardcodedData.length}</span> products in your cart.</p>
                 </div>
                 {allItems}
             </div>
             <div className="cart-view-checkout">
                 <div className="cart-view-subtotal">
-
+                    <p className="cart-view-subtotal-text">SUBTOTAL: </p>
+                    <Price currency={'MXN'} price={subtotal}/>
                 </div>
                 <div className="cart-view-checkout-button">
-
+                    <AcceptButton
+                    border
+                    block
+                    onClick={props.alerts ? AlertAccept : undefined}>
+                        Proceed to checkout
+                    </AcceptButton>
                 </div>
             </div>
         </div>

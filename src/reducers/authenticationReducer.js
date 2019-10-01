@@ -5,17 +5,18 @@ import {
 } from "../constants/authenticationConstants";
 
 const initialState = {
-  role: "external",
-  name: "John Smith",
+  login: false,
+  name: "Guest",
 };
 
-export default function authenticationReducer(state = initialState, auth) {
+export default function authenticationReducer(state = initialState, {type, auth}) {
   let newState = {...state}
-  switch (auth.type) {
+  switch (type) {
     case AUTHENTICATED:
-      // newState.role = "registeredUser"
-      console.log(auth.auth.data.access_token)
-      localStorage.setItem('token', auth.auth.data.access_token)
+      newState.login = true
+      console.log(auth.data.access_token)
+      localStorage.setItem('access_token', auth.data.access_token)
+      localStorage.setItem('refresh_token', auth.data.refresh_token)
       break
     case UNAUTHENTICATED:
       break

@@ -6,7 +6,6 @@ cache:
 before_script:
 - npm install
 script:
-- npm run test a
 - npm run build
 deploy:
   provider: heroku

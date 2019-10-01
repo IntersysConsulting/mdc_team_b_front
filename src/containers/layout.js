@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux';
 import WorkInProgress from '../views/work-in-progress/in-progress'
 import AdminLogin from "../views/AdminLogin/AdminLogin";
 import UserLogin from "../views/UserLogin/UserLogin";
@@ -11,20 +12,20 @@ import CartProductDemo from '../components/cart-product/demo';
 
 const LayoutContainer = (props) => {
 
-    let layout = null;
+  let layout = null;
 
 
     /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
-  if(props.accessLevelState.role === "external") {
+  if(props.role === "external") {
     layout = (
       <Switch>
         <Route path = "/login" exact component={UserLogin} />
         <Route path = "/admin/login" exact component={AdminLogin} />
       </Switch>
     )
-  } else if(props.accessLevelState.role === "admin"){
+  } else if(props.role === "admin"){
     layout = (
-      <LayoutAdmin accessLevelState = {props.accessLevelState}>
+      <LayoutAdmin accessLevelState = {props.role}>
         <Switch> 
           <Route path = "/admin" exact component={WorkInProgress} /> 
           <Route path = "/admin/products" exact component={WorkInProgress} />
@@ -56,5 +57,11 @@ const LayoutContainer = (props) => {
 
     return (layout)
 }
-  
-  export default LayoutContainer;
+
+const mapStateToProps = (state) =>  {
+  return {
+    role: state.authenticationState.role
+  }
+}
+
+export default connect(mapStateToProps)(LayoutContainer);

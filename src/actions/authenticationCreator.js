@@ -39,7 +39,13 @@ export function login(data) {
   return async function(dispatch) {
     try {
       await fetchToken(data).then(
-        response => dispatch(authenticatedAction(response)),
+        response => {
+          if(response.data.stateCode === 200) {
+            dispatch(authenticatedAction(response))
+          } else {
+            dispatch( authentication_error(response))
+          }
+        },
         error => console.log('An error accurred', error))
     } catch (e) {
       console.log(e)

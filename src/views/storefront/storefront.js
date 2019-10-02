@@ -1,0 +1,116 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './storefront.css'
+import Spinner from 'react-bootstrap/Spinner'
+import CardProduct from '../../components/product-card/product-card'
+import Banner from '../../components/banner/banner'
+
+const Storefront = (props) => {
+    //State
+    const [productsRetrieved, setProductsRetrieved] = useState({
+       products: [],
+       existingTotal : 0
+    });
+    const [currentPage, setCurrentPage] = useState({
+        page : 0,
+        loading: true
+    })
+    const [pageSize, setPageSize] = useState({page_size : 15})
+    const [isLoading, setIsLoading] = useState({ loading: true})
+
+    //Effects
+    useEffect(() => {
+        setIsLoading({
+            loading: true
+        })
+        axios.get('http://localhost:5000/api/v1/products/', {
+            params: {
+                page: currentPage.page,
+                page_size: pageSize.page_size
+            }
+        })
+        .then(response => {
+            setIsLoading({
+                loading: false
+            })
+            setProductsRetrieved( {
+                products: response.data.data,
+                existingTotal: response.data.total
+            })
+            console.log(response.data);
+        })
+    }, [currentPage, pageSize]);
+
+
+    //Methods
+
+    let products = productsRetrieved.products.map(product => {
+        return <CardProduct className="ProductSpace" 
+            key={product._id} 
+            name={product.name} 
+            price={product.price} 
+            url={product.img}
+            productPage={"/product/" + product._id}
+            />;
+    })
+
+    let pages = [];
+    for(let i = 0; i < (productsRetrieved.existingTotal/pageSize.page_size) ; i++) {
+        pages.push(
+            <div key={i} className="SinglePage" onClick={()=>{
+                setCurrentPage({page : i})}}>
+                {i+1}
+            </div>
+        );
+    }
+
+    let component = null;
+    (isLoading.loading) 
+    ? component = (
+        <div>
+            <Banner/>
+            <div className="ProductsDisplay">
+                <Spinner className="Spinner" animation="border" variant="warning" />
+            </div>
+        </div>
+    )
+    : component = (
+        <div>
+            <Banner/>
+            <section className= "ProductsDisplay">
+                {products}
+            </section>
+            <section className= "PagesDisplay">
+                {pages}
+            </section>
+        </div>
+    )
+
+    //Results
+    return(
+        <div>
+            {component}
+        </div>
+    );
+}
+  
+  export default Storefront;
+
+
+  // This was made as a draft for future implementation of dynamic page_size
+    /*const updatePageSize = () => {
+        let innerWidth = window.innerWidth;
+        if(innerWidth >= 1600)
+            setPageSize( {page_size: 20} )
+        else if(innerWidth >= 992)
+            setPageSize( {page_size: 16} )
+        else if(innerWidth >= 768)
+            setPageSize( {page_size: 12} )
+        else
+            setPageSize( {page_size: 8} )
+    } 
+
+    useEffect(() => {
+        window.addEventListener("resize", updatePageSize);
+        return () => window.removeEventListener("resize", updatePageSize);
+    }); */

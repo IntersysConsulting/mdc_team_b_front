@@ -1,0 +1,94 @@
+.Spinner{
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.ImageSpaceBootstrap {
+    border: 2px solid #575a61;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+}
+
+.ImageSpaceBootstrap img{
+    flex: 1;
+    height: 100%;
+}
+
+.DetailSpaceBootstrap{
+    padding-left: 40px;
+    padding-right: 40px;
+    max-height: 400px;
+    
+}
+
+
+@media(max-width: 992px) {
+    .ImageSpaceBootstrap{
+        width: 250px;
+        height: 250px;
+    }
+
+    .DetailSpaceBootstrap{
+        max-height: 250px !important;
+        overflow: auto;
+    }
+}
+
+@media(max-width: 767px) {
+    .ImageSpaceBootstrap{
+        width: 180px;
+        height: 180px;
+    }
+
+    .DetailSpaceBootstrap{
+        max-height: 100% !important;
+    }
+
+    .NameText{
+        margin-top: 15px;
+    }
+}
+
+.ButtonBootstrap{
+    width: 100%;
+    margin-top: 25px;
+    border-width: 0px;
+    background-color: #f98f3e;
+}
+
+.ButtonBootstrap:hover{
+    background-color: #F9842B;
+}
+
+.NameText{
+    color: #116cb4;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+
+.PriceText{
+   font-weight: bold;
+   color: black;
+   font-size: 22px;
+   margin-left: 10px;
+}
+
+.PriceLabel{
+    color: #f98f3e;
+    font-size: 24px;
+    font-weight: bold;
+    text-justify: auto;
+}
+
+.DescriptionText{
+    color:  #575a61;
+    text-align: justify;
+    font-size: 18px;
+}

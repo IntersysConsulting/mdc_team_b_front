@@ -5,6 +5,9 @@ import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
+import Storefront from '../views/storefront/storefront'
+import SingleProduct from '../views/single-product/product'
+import CustomerLogin from '../views/UserLogin/UserLogin'
 
 
 const LayoutContainer = (props) => {
@@ -30,16 +33,16 @@ const LayoutContainer = (props) => {
     layout = (
       <LayoutCustomer accessLevelState = {props.accessLevelState}>
         <Switch>
-          <Route path = "/" exact component={WorkInProgress} />
+          <Route path = "/" exact component={Storefront} />
           <Route path = "/cart" exact component={CartProductDemo} />
-          <Route path = "/product/*" exact component={WorkInProgress} />
+          <Route path = "/product/*" exact component={SingleProduct} />
           <Route path = "/account" exact component={WorkInProgress} />
           <Route path = "/summary" exact component={WorkInProgress} />
           <Route path = "/billing-info" exact component={WorkInProgress} />
           <Route path = "/shipping-info" exact component={WorkInProgress} />
           <Route path = "/orders" exact component={WorkInProgress} />
 
-          <Route path = "/login" exact component={WorkInProgress} />
+          <Route path = "/login" exact component={CustomerLogin} />
           <Route path = "/login-admin" exact component={WorkInProgress} />
           <Route path = "/sign-up" exact component={WorkInProgress} />
           <Route path = "/help" exact component={WorkInProgress} />

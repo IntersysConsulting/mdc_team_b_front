@@ -5,7 +5,7 @@ import axios from 'axios';
 import './product.css'
 
 const SingleProduct = (props) => {
-    let url = (window.location.pathname).replace("/product/", "");
+    let [url] = useState( (window.location.pathname).replace("/product/", "") );
     const [productDisplayed, setProductDisplayed] = useState({ currentProduct: {} })
     const [isLoading, setIsLoading] = useState({ loading: true})
 
@@ -32,7 +32,7 @@ const SingleProduct = (props) => {
         <div className="container-fluid">
             <div className="row justify-content-center">
                 <div className="ImageSpaceBootstrap">
-                    <img src= {productDisplayed.currentProduct.img} alt= "Item picture"/>
+                    <img src= {productDisplayed.currentProduct.img} alt= "Product"/>
                 </div>
                 <div className="col-xs-12 col-md-5 col-lg-4 DetailSpaceBootstrap">
                     <div className="row justify-content-center justify-content-md-start">

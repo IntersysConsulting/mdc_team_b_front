@@ -15,7 +15,7 @@ const Storefront = (props) => {
         page : 0,
         loading: true
     })
-    const [pageSize, setPageSize] = useState({page_size : 15})
+    const [pageSize] = useState({page_size : 15})
     const [isLoading, setIsLoading] = useState({ loading: true})
 
     //Effects
@@ -95,22 +95,3 @@ const Storefront = (props) => {
 }
   
   export default Storefront;
-
-
-  // This was made as a draft for future implementation of dynamic page_size
-    /*const updatePageSize = () => {
-        let innerWidth = window.innerWidth;
-        if(innerWidth >= 1600)
-            setPageSize( {page_size: 20} )
-        else if(innerWidth >= 992)
-            setPageSize( {page_size: 16} )
-        else if(innerWidth >= 768)
-            setPageSize( {page_size: 12} )
-        else
-            setPageSize( {page_size: 8} )
-    } 
-
-    useEffect(() => {
-        window.addEventListener("resize", updatePageSize);
-        return () => window.removeEventListener("resize", updatePageSize);
-    }); */

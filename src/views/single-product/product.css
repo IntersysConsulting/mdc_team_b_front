@@ -24,7 +24,7 @@
     padding-left: 40px;
     padding-right: 40px;
     max-height: 400px;
-    
+    overflow: auto;
 }
 
 
@@ -36,7 +36,6 @@
 
     .DetailSpaceBootstrap{
         max-height: 250px !important;
-        overflow: auto;
     }
 }
 

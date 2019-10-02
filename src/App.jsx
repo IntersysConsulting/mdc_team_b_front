@@ -6,7 +6,7 @@ import LayoutContainer from "./containers/layout";
 const App = ({ store }) => {
   //possible roles: "registeredUser", "guest", "admin", "external"
   const [accessLevelState] = useState({
-    role: "external",
+    role: "registredUser",
     name: "John Smith",
     login: true
   });

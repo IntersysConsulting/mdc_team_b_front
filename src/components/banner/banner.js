@@ -13,18 +13,21 @@ const Banner = (props) => {
                 <img
                 className="d-block w-100"
                 src={banner}
+                alt = "Intersys Banner"
                 />
             </Carousel.Item>
             <Carousel.Item>
                 <img
                 className="d-block w-100"
                 src={banner2}
+                alt = "Intersys Banner"
                 />
             </Carousel.Item>
             <Carousel.Item>
                 <img
                 className="d-block w-100"
                 src={banner3}
+                alt = "Intersys Banner"
                 />
             </Carousel.Item>
         </Carousel>

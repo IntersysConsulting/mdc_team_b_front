@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
-import CartBtn from '../../components/accept-button/accept-button'
 import './product.css'
 
 const SingleProduct = (props) => {

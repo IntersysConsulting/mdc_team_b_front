@@ -42,7 +42,7 @@ const SearchBar = props => {
         </InputGroup.Append>
         <InputGroup.Append>
           <Button className="search" onClick={searchDownHandler}>
-            <img src={search} alt="Search" class="searchIcon" />
+            <img src={search} alt="Search" className="searchIcon" />
           </Button>
         </InputGroup.Append>
       </InputGroup>

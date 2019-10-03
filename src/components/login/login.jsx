@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import Logo from "../layout/logo/logo.png";
+import { login } from "../../actions/authenticationCreator";
+import { connect } from 'react-redux';
 import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
 
@@ -10,11 +12,19 @@ import "./login.css";
 const Login = props => {
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
-  const changeInput = e => {
+  const Send = event => {
+    event.preventDefault();
+    let formData = new FormData()
+    formData.set('email', loginState.email)
+    formData.set('password', loginState.password)
+    props.login(formData)
+  };
+
+  const onChangeInput = event => {
     let newValue = {...loginState}
-      newValue[e.target.name] = e.target.value
-      setLoginState(newValue)
-  }
+    newValue[event.target.name] = event.target.value
+    setLoginState(newValue)
+  };
 
   return (
     <div className="login-holder">
@@ -27,12 +37,13 @@ const Login = props => {
             <Form.Control
               name="email"
               type="email"
+              name="email"
               placeholder="Email"
-              onChange={changeInput}
+              onChange={onChangeInput}
               value={loginState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField placeholder="Password" name="password" onChange={changeInput}></PasswordField>
+            <PasswordField name="password" placeholder="Password" onChange={onChangeInput}></PasswordField>
           </Form>
           <Link to={"/recovery-password"} className="login-forgot text-dark">
             Forgot my password
@@ -42,7 +53,7 @@ const Login = props => {
           <Link to={"/login"} className="login-signup text-indigo">
             Sign up instead!
           </Link>
-          <AcceptButton border className="login-button" onClick={props.onClick}>
+          <AcceptButton border className="login-button" onClick={Send}>
             Log in
           </AcceptButton>
         </div>
@@ -62,4 +73,16 @@ const Login = props => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) =>  {
+  return {
+    role: state.authenticationState.role
+  }
+}
+
+const mapDispatchToProps = (dispach) => {
+  return {
+    login: (loginState) => dispach(login(loginState))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

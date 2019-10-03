@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import TermsOfService from '../terms-of-service-modal/terms-of-service-modal';
+import PrivacyPolicy from './privacy-policy-modal';
 import {Button} from 'react-bootstrap';
 
 
-const TermsOfServiceDemo = () =>{
+const PrivacyPolicyDemo = () =>{
 
     const [demoState, setDemoState] = useState({ show: false });
 
@@ -17,3 +17,5 @@ const TermsOfServiceDemo = () =>{
         </div>
     );
 }
+
+export default PrivacyPolicyDemo;

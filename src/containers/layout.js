@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import WorkInProgress from '../views/work-in-progress/in-progress'
 import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
+import AdminLogin from "../views/AdminLogin/AdminLogin";
+import Signup from "../views/Signup/Signup"
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import UserLogin from '../views/UserLogin/UserLogin';
@@ -39,10 +41,9 @@ const LayoutContainer = (props) => {
           <Route path = "/billing-info" exact component={WorkInProgress} />
           <Route path = "/shipping-info" exact component={WorkInProgress} />
           <Route path = "/orders" exact component={WorkInProgress} />
-
           <Route path = "/login" exact component={UserLogin} />
-          <Route path = "/login-admin" exact component={WorkInProgress} />
-          <Route path = "/sign-up" exact component={WorkInProgress} />
+          <Route path = "/login-admin" exact component={AdminLogin} />
+          <Route path = "/sign-up" exact component={Signup} />
           <Route path = "/help" exact component={WorkInProgress} />
           <Route path = "/conditions" exact component={WorkInProgress} />
           <Route path = "/privacy" exact component={WorkInProgress} />

@@ -8,6 +8,7 @@ import Signup from "../views/Signup/Signup"
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import UserLogin from '../views/UserLogin/UserLogin';
+import Contactus from '../views/Contactus/Contactus'
 
 
 const LayoutContainer = (props) => {
@@ -47,6 +48,7 @@ const LayoutContainer = (props) => {
           <Route path = "/help" exact component={WorkInProgress} />
           <Route path = "/conditions" exact component={WorkInProgress} />
           <Route path = "/privacy" exact component={WorkInProgress} />
+          <Route path = "/contact-us" exact component={Contactus} />
           <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>

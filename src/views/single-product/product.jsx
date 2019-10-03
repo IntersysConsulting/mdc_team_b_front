@@ -19,7 +19,7 @@ const SingleProduct = (props) => {
                 currentProduct: response.data.data
             })
         })
-    }, []);
+    }, [url]);
 
     let component = null;
     (isLoading.loading) 

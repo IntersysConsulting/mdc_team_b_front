@@ -37,7 +37,6 @@ const Storefront = (props) => {
                 products: response.data.data,
                 existingTotal: response.data.total
             })
-            console.log(response.data);
         })
     }, [currentPage, pageSize]);
 

@@ -35,7 +35,6 @@ const Login = props => {
         <div className="login-body px-4">
           <Form>
             <Form.Control
-              name="email"
               type="email"
               name="email"
               placeholder="Email"

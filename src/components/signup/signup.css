@@ -1,0 +1,94 @@
+.signup-holder {
+  z-index: 60;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.signup-card {
+  background: #fff;
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+  border: 4px solid;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.signup-header {
+  height: 45px;
+  background: #fff;
+}
+
+.signup-header > img {
+  height: 100%;
+}
+
+.signup-body {
+  display: block;
+  width: 100%;
+}
+
+.signup-forgot {
+  display: block;
+  text-align: left;
+  margin-top: -1rem;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.signup-footer {
+  height: 50px;
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.signup-textlogin {
+  text-align: center;
+}
+
+.signup-button {
+  border: 2px solid #575A61 !important;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  min-height: 3rem !important;
+  height: 21px !important;
+}
+
+.signup-link-holder {
+  background:  #7A63C7;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
+}
+
+.signup-link-holder a {
+  color: white !important;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.signup-link-holder .text-help {
+  padding-left: 2rem;
+}
+
+.signup-link-holder .text-conditions {
+  text-align: center;
+}
+
+.signup-link-holder .text-privacy {
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.signup-fullname {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.signup-name {
+  margin-right: 1rem;
+}
+
+.signup-checkbox {
+  width: 100%;
+}

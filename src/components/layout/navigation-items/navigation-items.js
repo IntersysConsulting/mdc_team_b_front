@@ -11,7 +11,7 @@ const navigationItems = (props) => {
         component = (
             <ul className="NavigationItems">
                 <div class = "TitlesContainer">
-                    <p class="SectionTitle">Admin</p>
+                    <p className="SectionTitle">Admin</p>
                 </div>
                 <Item link="/admin">Dashboard</Item>
                 <Item link="/admin/products">Products</Item>

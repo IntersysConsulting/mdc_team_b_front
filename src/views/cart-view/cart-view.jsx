@@ -82,8 +82,8 @@ const CartView = (props) => {
         );
     else
         return(
-            <div className="container cart-view">
-                <div className="cart-view-top-text">
+            <div className="container cart-view-empty">
+                <div className="cart-view-empty-text">
                     <h3>Your cart is empty!</h3>
                     <p>Why not <a href="#/">start shopping now</a>?</p>
                 </div>

@@ -41,7 +41,6 @@ const LayoutContainer = (props) => {
           <Route path = "/billing-info" exact component={WorkInProgress} />
           <Route path = "/shipping-info" exact component={WorkInProgress} />
           <Route path = "/orders" exact component={WorkInProgress} />
-
           <Route path = "/login" exact component={UserLogin} />
           <Route path = "/login-admin" exact component={AdminLogin} />
           <Route path = "/sign-up" exact component={Signup} />

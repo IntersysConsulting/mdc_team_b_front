@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import WorkInProgress from '../views/work-in-progress/in-progress'
-import AdminLogin from "../views/AdminLogin/AdminLogin";
-import UserLogin from "../views/UserLogin/UserLogin";
 import NotFound from '../views/not-found/404'
-import Contactus from '../views/Contactus/Contactus'
 import LayoutCustomer from '../components/layout/layout-customer';
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
+import UserLogin from '../views/UserLogin/UserLogin';
+import Contactus from '../views/Contactus/Contactus'
+
 
 const LayoutContainer = (props) => {
 
@@ -15,14 +15,7 @@ const LayoutContainer = (props) => {
 
 
     /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
-  if(props.accessLevelState.role === "external") {
-    layout = (
-      <Switch>
-        <Route path = "/login" exact component={UserLogin} />
-        <Route path = "/admin/login" exact component={AdminLogin} />
-      </Switch>
-    )
-  } else if(props.accessLevelState.role === "admin"){
+   if(props.accessLevelState.role === "admin"){
     layout = (
       <LayoutAdmin accessLevelState = {props.accessLevelState}>
         <Switch> 
@@ -31,24 +24,30 @@ const LayoutContainer = (props) => {
           <Route path = "/admin/orders" exact component={WorkInProgress} />
           <Route path = "/admin/staff" exact component={WorkInProgress} />
           <Route path = "/admin/banners" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={WorkInProgress} />
+          <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutAdmin>
     )
-  } else {
+    }else {
     layout = (
       <LayoutCustomer accessLevelState = {props.accessLevelState}>
         <Switch>
           <Route path = "/" exact component={WorkInProgress} />
-          <Route path = "/contactus" exact component={Contactus} />
           <Route path = "/cart" exact component={CartProductDemo} />
+          <Route path = "/product/*" exact component={WorkInProgress} />
           <Route path = "/account" exact component={WorkInProgress} />
           <Route path = "/summary" exact component={WorkInProgress} />
           <Route path = "/billing-info" exact component={WorkInProgress} />
           <Route path = "/shipping-info" exact component={WorkInProgress} />
           <Route path = "/orders" exact component={WorkInProgress} />
-          <Route path = "/login" exact component={WorkInProgress} />
+
+          <Route path = "/login" exact component={UserLogin} />
+          <Route path = "/login-admin" exact component={WorkInProgress} />
           <Route path = "/sign-up" exact component={WorkInProgress} />
+          <Route path = "/help" exact component={WorkInProgress} />
+          <Route path = "/conditions" exact component={WorkInProgress} />
+          <Route path = "/privacy" exact component={WorkInProgress} />
+          <Route path = "/contact-us" exact component={Contactus} />
           <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>

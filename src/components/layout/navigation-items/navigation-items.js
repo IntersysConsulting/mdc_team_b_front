@@ -4,13 +4,12 @@ import Item from "./item";
 
 const navigationItems = (props) => {
     let component = null 
-    console.log(props.accessLevel);
 
     switch(props.accessLevel){
         case('admin'):
         component = (
             <ul className="NavigationItems">
-                <div class = "TitlesContainer">
+                <div className = "TitlesContainer">
                     <p className="SectionTitle">Admin</p>
                 </div>
                 <Item link="/admin">Dashboard</Item>
@@ -25,7 +24,7 @@ const navigationItems = (props) => {
         case('registeredUser'):
         component = (
             <ul className="NavigationItems">
-                <div className= "TitlesContainer">
+                <div className = "TitlesContainer">
                     <p className="SectionTitle">Navigation</p>
                 </div>
                 <Item link="/">Storefront</Item>
@@ -45,7 +44,7 @@ const navigationItems = (props) => {
         default:
         component = (
             <ul className="NavigationItems">
-                <div className="TitlesContainer">
+                <div className = "TitlesContainer">
                     <p className="SectionTitle">Navigation</p>
                 </div>
                 <Item link="/"> Storefront </Item>

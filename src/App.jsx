@@ -6,8 +6,8 @@ import LayoutContainer from "./containers/layout";
 const App = ({ store }) => {
   //possible roles: "registeredUser", "guest", "admin", "external"
   const [accessLevelState] = useState({
-    role: "external",
-    name: "John Smith",
+    role: "registeredUser",
+    name: "John Smith"
   });
 
   //Once you finish your views, you should import them inside layout container, and replace component={DemoSomething}

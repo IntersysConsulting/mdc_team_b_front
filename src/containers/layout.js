@@ -7,7 +7,10 @@ import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import Storefront from '../views/storefront/storefront'
 import SingleProduct from '../views/single-product/product'
-import CustomerLogin from '../views/UserLogin/UserLogin'
+import UserLogin from '../views/UserLogin/UserLogin';
+import AdminLogin from "../views/AdminLogin/AdminLogin";
+import Signup from "../views/Signup/Signup"
+import Help from '../views/Contactus/Contactus'
 
 
 const LayoutContainer = (props) => {
@@ -42,10 +45,10 @@ const LayoutContainer = (props) => {
           <Route path = "/shipping-info" exact component={WorkInProgress} />
           <Route path = "/orders" exact component={WorkInProgress} />
 
-          <Route path = "/login" exact component={CustomerLogin} />
-          <Route path = "/login-admin" exact component={WorkInProgress} />
-          <Route path = "/sign-up" exact component={WorkInProgress} />
-          <Route path = "/help" exact component={WorkInProgress} />
+          <Route path = "/login" exact component={UserLogin} />
+          <Route path = "/login-admin" exact component={AdminLogin} />
+          <Route path = "/sign-up" exact component={Signup} />
+          <Route path = "/help" exact component={Help} />
           <Route path = "/conditions" exact component={WorkInProgress} />
           <Route path = "/privacy" exact component={WorkInProgress} />
           <Route path = "/*" exact component={NotFound} />

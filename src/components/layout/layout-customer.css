@@ -4,5 +4,12 @@
 
 .DrawerOpenCustomer{
     padding-top: 140px;
-    padding-left: 200px;
+    padding-left: 165px;
+}
+
+@media(max-width: 768px) {
+    .DrawerOpenCustomer{
+        padding-top: 140px;
+        padding-left: 0px;
+    }
 }

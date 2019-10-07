@@ -10,110 +10,57 @@ import Switch from "../2WordSwitch/Switch.jsx";
 const FilterSortModal = props => {
   const radioIds = ["a-z", "z-a", "cheapest", "priciest", "newest", "oldest"];
   var Checkboxes = [];
-  const [modalState, setModalState] = useState({
-    sort: radioIds[5],
-    filter: undefined,
-    isSortMenuSelected: false,
-    isLoading: true,
-    minPrice: 0,
-    maxPrice: -1,
-    show: false
-  });
+
+  const [sort, setSort] = useState({ value: radioIds[5] });
+  const [filter, setFilter] = useState({ value: undefined });
+  const [menuSelected, setMenuSelected] = useState({ sortMenu: true });
+  const [isLoading, setIsLoading] = useState({ loading: true });
+  const [minPrice, setMinPrice] = useState({ value: 0 });
+  const [maxPrice, setMaxPrice] = useState({ value: -1 });
+  // const [show, setShow] = useState({ value: false });
 
   useEffect(() => {
     var filterList = [];
-    props.filters.forEach((value, index, array) => {
-      filterList.push({ id: "checkbox-" + value, checked: true });
-    });
-    setModalState({
-      sort: modalState.sort,
-      filter: filterList,
-      isSortMenuSelected: modalState.isSortMenuSelected,
-      isLoading: false,
-      minPrice: modalState.minPrice,
-      maxPrice: modalState.maxPrice,
-      show: props.show
-    });
-  }, []);
+    if (isLoading.loading) {
+      props.filters.forEach((value, index, array) => {
+        filterList.push({ id: "checkbox-" + value, checked: true });
+      });
+      setFilter({ value: filterList });
+      setIsLoading({ value: false });
+    }
+  }, [isLoading, props.filters]);
 
   //#region Variants of SetState
 
   const setSortState = e => {
-    setModalState({
-      sort: e.target.id,
-      filter: modalState.filter,
-      isSortMenuSelected: modalState.isSortMenuSelected,
-      isLoading: modalState.isLoading,
-      minPrice: modalState.minPrice,
-      maxPrice: modalState.maxPrice,
-      show: props.show
-    });
+    setSort({ value: e.target.id });
   };
 
   const setFilterState = e => {
-    setModalState({
-      sort: modalState.sort,
-      filter: e,
-      isSortMenuSelected: modalState.isSortMenuSelected,
-      isLoading: modalState.isLoading,
-      minPrice: modalState.minPrice,
-      maxPrice: modalState.maxPrice,
-      show: props.show
-    });
+    setFilter({ value: e });
   };
 
   const flipSwitch = e => {
-    console.log("Switch button was clicked");
-    setModalState({
-      sort: modalState.sort,
-      filter: modalState.filter,
-      isSortMenuSelected: !modalState.isSortMenuSelected,
-      isLoading: modalState.isLoading,
-      minPrice: modalState.minPrice,
-      maxPrice: modalState.maxPrice,
-      show: props.show
-    });
+    setMenuSelected({ sortMenu: !menuSelected.sortMenu });
   };
 
   const setMinimumPrice = e => {
-    setModalState({
-      sort: modalState.sort,
-      filter: modalState.filter,
-      isSortMenuSelected: modalState.isSortMenuSelected,
-      isLoading: modalState.isLoading,
-      minPrice: e.target.value,
-      maxPrice: modalState.maxPrice,
-      show: props.show
-    });
+    setMinPrice({ value: e.target.value });
   };
 
   const setMaximumPrice = e => {
-    setModalState({
-      sort: modalState.sort,
-      filter: modalState.filter,
-      isSortMenuSelected: modalState.isSortMenuSelected,
-      isLoading: modalState.isLoading,
-      minPrice: modalState.minPrice,
-      maxPrice: e.target.value,
-      show: props.show
-    });
+    setMaxPrice({ value: e.target.value });
   };
 
   const clearAll = () => {
-    var cleanFilter = modalState.filter;
+    var cleanFilter = filter.value;
     cleanFilter.forEach((value, index, array) => {
       value.checked = props.show;
     });
-
-    setModalState({
-      sort: radioIds[5],
-      filter: cleanFilter,
-      isSortMenuSelected: modalState.isSortMenuSelected,
-      isLoading: modalState.isLoading,
-      minPrice: 0,
-      maxPrice: -1,
-      show: props.show
-    });
+    setSort({ value: radioIds[5] });
+    setFilter({ value: cleanFilter });
+    setMinPrice({ value: 0 });
+    setMaxPrice({ value: -1 });
   };
 
   //#endregion
@@ -124,24 +71,24 @@ const FilterSortModal = props => {
       Checkboxes.push(
         <Checkbox
           text={value}
-          id={modalState.filter[index].id}
-          checked={modalState.filter[index].checked}
+          id={filter.value[index].id}
+          key={filter.value[index].id}
+          checked={filter.value[index].checked}
           onClick={handleCheckboxMark}
         />
       );
     });
   };
   const handleCheckboxMark = e => {
-    console.log(e.target);
     const target = e.target.id;
-    var filter = modalState.filter;
-    filter.forEach((value, index, array) => {
+    var _filter = filter.value;
+    _filter.forEach((value, index, array) => {
       if (value.id === target) {
-        console.log(value.id + " " + index + " " + value.checked);
+        console.log(value.id + " " + index + " is now " + !value.checked);
         value.checked = !value.checked;
       }
     });
-    setFilterState(filter);
+    setFilterState(_filter);
   };
   //#endregion Checkboxes
 
@@ -157,21 +104,21 @@ const FilterSortModal = props => {
               label="A-Z"
               id={radioIds[0]}
               onChange={setSortState}
-              checked={modalState.sort === radioIds[0]}
+              checked={sort.value === radioIds[0]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Lowest Price"
               id={radioIds[2]}
               onChange={setSortState}
-              checked={modalState.sort === radioIds[2]}
+              checked={sort.value === radioIds[2]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Newest"
               id={radioIds[4]}
               onChange={setSortState}
-              checked={modalState.sort === radioIds[4]}
+              checked={sort.value === radioIds[4]}
             ></RadioButton>
           </Form.Group>
           <Form.Group as={Col}>
@@ -180,21 +127,21 @@ const FilterSortModal = props => {
               label="Z-A"
               id={radioIds[1]}
               onChange={setSortState}
-              checked={modalState.sort === radioIds[1]}
+              checked={sort.value === radioIds[1]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Highest Price"
               id={radioIds[3]}
               onChange={setSortState}
-              checked={modalState.sort === radioIds[3]}
+              checked={sort.value === radioIds[3]}
             ></RadioButton>
             <RadioButton
               name="sort-radios"
               label="Oldest"
               id={radioIds[5]}
               onChange={setSortState}
-              checked={modalState.sort === radioIds[5]}
+              checked={sort.value === radioIds[5]}
             ></RadioButton>
           </Form.Group>
         </Form.Row>
@@ -205,7 +152,7 @@ const FilterSortModal = props => {
   const filterBody = () => {
     return (
       <Form>
-        {modalState.isLoading ? (
+        {isLoading.value ? (
           <Spinner animation="border" variant="warning" />
         ) : (
           makeCheckboxes()
@@ -221,7 +168,7 @@ const FilterSortModal = props => {
             <Form.Control
               type="text"
               placeholder="Min"
-              value={modalState.minPrice === 0 ? "" : modalState.minPrice} // Checks if the value is the default, then ignores for display
+              value={minPrice.value === 0 ? "" : minPrice.value} // Checks if the value is the default, then ignores for display
               onChange={setMinimumPrice}
             ></Form.Control>
           </Col>
@@ -230,9 +177,9 @@ const FilterSortModal = props => {
               type="text"
               placeholder="Max"
               value={
-                modalState.maxPrice === -1 // Checks if the value is the default, then ignores for display
+                maxPrice.value === -1 // Checks if the value is the default, then ignores for display
                   ? ""
-                  : modalState.maxPrice
+                  : maxPrice.value
               }
               onChange={setMaximumPrice}
             ></Form.Control>
@@ -256,7 +203,7 @@ const FilterSortModal = props => {
             <Switch
               leftWord="Filter"
               rightWord="Sort"
-              isOn={modalState.isSortMenuSelected}
+              isOn={menuSelected.sortMenu}
               onClick={flipSwitch}
             ></Switch>
           </Modal.Title>
@@ -265,7 +212,7 @@ const FilterSortModal = props => {
           </CancelButton>
         </Modal.Header>
         <Modal.Body className="filter-sort-modal-body-text">
-          {modalState.isSortMenuSelected ? sortBody() : filterBody()}
+          {menuSelected.sortMenu ? sortBody() : filterBody()}
         </Modal.Body>
         <Modal.Footer>
           <ChangeViewButton

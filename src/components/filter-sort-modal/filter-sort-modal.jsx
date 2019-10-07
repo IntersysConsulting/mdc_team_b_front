@@ -193,7 +193,7 @@ const FilterSortModal = props => {
   return (
     <div className="row">
       <Modal
-        dialogClassName="filter-sort-modal "
+        dialogClassName="filter-sort-modal mx-auto "
         show={props.show}
         onHide={props.handleCloseModal}
         centered

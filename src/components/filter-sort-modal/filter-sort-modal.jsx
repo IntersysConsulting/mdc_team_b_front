@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Form, Row, Col, Spinner } from "react-bootstrap";
 import "./filter-sort-modal.css";
 import ChangeViewButton from "../change-view-button/change-view-button.jsx";
@@ -20,7 +20,6 @@ const FilterSortModal = props => {
     show: false
   });
 
-  /* ComponentDidMount
   useEffect(() => {
     var filterList = [];
     props.filters.forEach((value, index, array) => {
@@ -36,7 +35,6 @@ const FilterSortModal = props => {
       show: props.show
     });
   }, []);
-  */
 
   //#region Variants of SetState
 

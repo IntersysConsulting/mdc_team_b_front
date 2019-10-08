@@ -66,5 +66,5 @@ const LayoutContainer = (props) => {
     return (layout)
 }
   
-const router = withRouter(LayoutContainer)
-export default router;
+const layoutWithRouter = withRouter(LayoutContainer)
+export default layoutWithRouter;

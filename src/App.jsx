@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor } from './store';
 import LayoutContainer from "./containers/layout";
+import LoadingView from "./components/LoadingView/LoadingView";
 
 const App = ({ store }) => {
 
@@ -9,7 +12,9 @@ const App = ({ store }) => {
   //with component={YourImport} under the corresponding route
   return (
     <Provider store={store}>
-      <LayoutContainer/>
+      <PersistGate loading={<LoadingView />} persistor={persistor}>
+        <LayoutContainer/>
+      </PersistGate>
     </Provider>
   );
 };
@@ -19,3 +24,4 @@ App.propTypes = {
 };
 
 export default App;
+

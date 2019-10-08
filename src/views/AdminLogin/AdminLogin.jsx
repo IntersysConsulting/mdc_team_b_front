@@ -7,11 +7,7 @@ const AdminLogin = props => {
     <div className={"AdminLogin"}>
       <div className="AdminLogin-bg"></div>
       <div className="AdminLogin-login">
-        <Login
-          onClick={() => {
-            alert("You attempted to log in!");
-          }}
-        ></Login>
+      <Login admin/>
       </div>
     </div>
   )

@@ -17,7 +17,7 @@ const navigationItems = (props) => {
                 <Item link="/admin/orders">Orders</Item>
                 <Item link="/admin/staff">Staff</Item>
                 <Item link="/admin/banners">Banners</Item>
-                <Item>Log out</Item>
+                <Item link="/admin/logout">Log out</Item>
             </ul>
         );
         break;

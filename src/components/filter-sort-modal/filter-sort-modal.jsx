@@ -81,14 +81,14 @@ const FilterSortModal = props => {
   };
   const handleCheckboxMark = e => {
     const target = e.target.id;
-    var _filter = filter.value;
-    _filter.forEach((value, index, array) => {
+    var newFilter = filter.value;
+    newFilter.forEach((value, index, array) => {
       if (value.id === target) {
         console.log(value.id + " " + index + " is now " + !value.checked);
         value.checked = !value.checked;
       }
     });
-    setFilterState(_filter);
+    setFilterState(newFilter);
   };
   //#endregion Checkboxes
 

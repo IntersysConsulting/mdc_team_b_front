@@ -1,5 +1,6 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import React,{ useEffect } from 'react';
+import { Route, Switch, withRouter  } from 'react-router-dom'
+import { useSelector } from "react-redux";
 import WorkInProgress from '../views/work-in-progress/in-progress'
 import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
@@ -11,27 +12,36 @@ import UserLogin from '../views/UserLogin/UserLogin';
 
 
 const LayoutContainer = (props) => {
-
     let layout = null;
+    const accessLevelState = useSelector(state => state.authenticationState);
 
+    useEffect(() => {
+      if(accessLevelState.role === "admin"){
+        props.history.push("/admin")
+      } 
+      if(accessLevelState.role === "registeredUser"){
+        props.history.push("/")
+      } 
+      console.log(accessLevelState)
+    },[accessLevelState, props.history])
 
     /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
-   if(props.accessLevelState.role === "admin"){
+   if(accessLevelState.role === "admin"){
     layout = (
-      <LayoutAdmin accessLevelState = {props.accessLevelState}>
+      <LayoutAdmin accessLevelState = {accessLevelState}>
         <Switch> 
           <Route path = "/admin" exact component={WorkInProgress} /> 
           <Route path = "/admin/products" exact component={WorkInProgress} />
           <Route path = "/admin/orders" exact component={WorkInProgress} />
           <Route path = "/admin/staff" exact component={WorkInProgress} />
           <Route path = "/admin/banners" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={NotFound} />
+          <Route path = "/*" exact component={WorkInProgress} />
         </Switch>
       </LayoutAdmin>
     )
     }else {
     layout = (
-      <LayoutCustomer accessLevelState = {props.accessLevelState}>
+      <LayoutCustomer accessLevelState = {accessLevelState}>
         <Switch>
           <Route path = "/" exact component={WorkInProgress} />
           <Route path = "/cart" exact component={CartProductDemo} />
@@ -56,4 +66,5 @@ const LayoutContainer = (props) => {
     return (layout)
 }
   
-  export default LayoutContainer;
+const router = withRouter(LayoutContainer)
+export default router;

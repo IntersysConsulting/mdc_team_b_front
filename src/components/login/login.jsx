@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import Logo from "../layout/logo/logo.png";
-import { login } from "../../actions/authenticationCreator";
-import { connect } from 'react-redux';
+import { login } from "../../api/authenticationApi";
 import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
-
 import "./login.css";
 
 const Login = props => {
+  const dispach = useDispatch();
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
   const Send = event => {
@@ -17,7 +17,7 @@ const Login = props => {
     let formData = new FormData()
     formData.set('email', loginState.email)
     formData.set('password', loginState.password)
-    props.login(formData)
+    dispach(login(formData, props.admin))
   };
 
   const onChangeInput = event => {
@@ -72,16 +72,4 @@ const Login = props => {
   );
 };
 
-const mapStateToProps = (state) =>  {
-  return {
-    role: state.authenticationState.role
-  }
-}
-
-const mapDispatchToProps = (dispach) => {
-  return {
-    login: (loginState) => dispach(login(loginState))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

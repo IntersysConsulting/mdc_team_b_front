@@ -16,11 +16,12 @@ const CartView = (props) => {
      });
      const [isLoading, setIsLoading] = useState({ loading: true})
      const url = 'http://localhost:5000/api/v1/carts/';
-     const defaultHeaders = {
+     const createOrderUrl = 'http://localhost:5000/api/v1/orders/';
+     const [defaultHeaders] = useState({
         headers: {
             Authorization : token
         }
-    }
+     }) 
 
      useEffect(() => {
         setIsLoading({
@@ -34,14 +35,13 @@ const CartView = (props) => {
             setCartProducts({
                 products : response.data.data.cart.products
             });
-            console.log(response);
         }).catch(error => {
             setIsLoading({
                 loading: false
             })
         })
-    }, []);
-    //PUT request
+    }, [defaultHeaders]);
+    
     const updateCart = (id,quantity) =>{
         setIsLoading({
             loading: true
@@ -60,7 +60,6 @@ const CartView = (props) => {
             setIsLoading({
                 loading: false
             });
-            console.log(response);
         })
         .catch(error=>{
             setIsLoading({
@@ -69,7 +68,6 @@ const CartView = (props) => {
         })
     }
 
-    //DELETE request
     const deleteItem = (id) =>{
         setIsLoading({
             loading: true
@@ -78,10 +76,8 @@ const CartView = (props) => {
         body.data = {
             product_id:id
         }
-        console.log(defaultHeaders)
         axios.delete(url, body)
         .then(response => {
-            console.log(response)
             const newCartProducts = cartProducts.products.slice().filter(x => x._id !== id)
             setCartProducts({
                 products: newCartProducts
@@ -90,17 +86,30 @@ const CartView = (props) => {
                 loading: false
             });            
         }).catch(error => {
-            console.log(error)
             setIsLoading({
                 loading: false
             }); 
         })
     }
 
+    const createOrder = () =>{
+        setIsLoading({
+            loading: true
+        });
 
-    const AlertAccept = () => {
-        alert("You clicked on an accept button!");
-    };
+        axios.post(createOrderUrl, {}, defaultHeaders)
+        .then(response => {
+            setIsLoading({
+                loading: false
+            });
+            props.history.push('/checkout')
+        })
+        .catch(error=>{
+            setIsLoading({
+                loading: false
+            })
+        })
+    }
 
     let subtotal = 0;
 
@@ -108,6 +117,7 @@ const CartView = (props) => {
     const renderItem = (i) =>{
         return (
             <CartProduct 
+                key={i._id}
                 price={i.price} 
                 quantity={i.quantity}
                 url={i.image}
@@ -130,7 +140,7 @@ const CartView = (props) => {
     } else {
         if(cartProducts.products.length>0) {
             const allItems = cartProducts.products.map((e) => {
-                subtotal += e.price;
+                subtotal += e.price*e.quantity;
                 return renderItem(e);
             });
             component = (
@@ -151,7 +161,7 @@ const CartView = (props) => {
                             <AcceptButton
                             border
                             block
-                            onClick={props.alerts ? AlertAccept : undefined}>
+                            onClick={createOrder}>
                                 Proceed to checkout
                             </AcceptButton>
                         </div>

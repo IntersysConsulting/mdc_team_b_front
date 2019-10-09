@@ -1,7 +1,8 @@
 import {
     authenticatedAction,
     unauthenticatedAction,
-    authentication_error
+    authentication_error,
+    validate_authentication
 } from '../actions/authenticationCreator'
 import { request } from '../hoc/axios'
 
@@ -18,8 +19,9 @@ export function login(data, admin = false) {
       try {
         await fetchToken(data, admin).then(
           response => {
-            if(response.status === 200) {
+            if(response.data.statusCode === 200) {
               dispatch(authenticatedAction(response))
+              return true
             } else {
               dispatch(authentication_error(response))
             }
@@ -32,15 +34,14 @@ export function login(data, admin = false) {
 }
 
 function deleteToken(admin) {
-  let access_token = localStorage.getItem('access_token')
-  if(admin) {
-    return request(access_token).delete('admin/session/')
+  if(admin === "admin") {
+    return request().delete('admin/session/')
   } else {
-    return request(access_token).delete('session/')
+    return request().delete('session/')
   }
 }
 
-export function logout(admin = false) {
+export function logoutApi(admin = false) {
   return async function(dispatch) {
     try {
       await deleteToken(admin).then(
@@ -57,4 +58,21 @@ export function logout(admin = false) {
     }
   }
 }
-  
+
+export function validateAuthentication() {
+  return async function(dispatch) {
+    try {
+      await request().get("identity/").then(
+        response => {
+          if(response.status === 200) {
+            dispatch(validate_authentication(response))
+          } else {
+            dispatch(authentication_error(response))
+          }
+        },
+        error => console.log('An error accurred', error))
+    } catch (e) {
+      console.log(e)
+    }
+  } 
+} 

@@ -1,6 +1,6 @@
 import React,{ useEffect } from 'react';
 import { Route, Switch, withRouter  } from 'react-router-dom'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import WorkInProgress from '../views/work-in-progress/in-progress'
 import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
@@ -9,21 +9,19 @@ import Signup from "../views/Signup/Signup"
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import UserLogin from '../views/UserLogin/UserLogin';
-
+import { validateAuthentication } from "../api/authenticationApi"
 
 const LayoutContainer = (props) => {
     let layout = null;
     const accessLevelState = useSelector(state => state.authenticationState);
+    const token = localStorage.getItem("access_token")
+    const dispatch = useDispatch()
 
     useEffect(() => {
-      if(accessLevelState.role === "admin"){
-        props.history.push("/admin")
-      } 
-      if(accessLevelState.role === "registeredUser"){
-        props.history.push("/")
-      } 
-      console.log(accessLevelState)
-    },[accessLevelState, props.history])
+      if(token) {
+         dispatch(validateAuthentication())
+      }
+    },[dispatch, token])
 
     /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
    if(accessLevelState.role === "admin"){

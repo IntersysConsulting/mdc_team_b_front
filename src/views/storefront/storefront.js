@@ -23,7 +23,6 @@ const Storefront = props => {
   useEffect(() => {
     let url = props.location.search.substr(1);
     let searchParameters = queryString.parse(url);
-    console.log(searchParameters);
 
     setIsLoading({
       loading: true

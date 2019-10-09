@@ -1,31 +1,24 @@
-// Example of how to insert this component:
-// import Checkbox from '../components/checkbox/Checkbox';
-// <Checkbox text = "Are you human?" />
-// This checkbox should return a TRUE or FALSE statement
-
-import React, { useState, useEffect } from "react";
-import "../../custom.scss";
+import React, {useState} from "react";
+import "./upload-image.css";
 
 const UploadImage = props => {
-    
-    const [checkboxState, setCheckboxState] = useState({
-    checked: props.checked
-    });
 
-    useEffect(
-        e => {
-        setCheckboxState({ checked: props.checked });
-        },
-        [props.checked]
-    );
+    const [image, setImage] = useState(props.src ? props.src : "http://cdn.onlinewebfonts.com/svg/img_234957.png");
+
+    const parseFile = (e) => {
+        if(e.target.files.length > 0)
+            setImage(URL.createObjectURL(e.target.files[0]))
+    }
 
     return (
-        <label className={"checkbox-container " + props.className}>
-            {props.children}
-            <input name={props.name} type="checkbox" id={props.id} onClick={props.onClick} defaultChecked={checkboxState.checked}/>
-            <span className="checkmark"></span>
-        </label>
+        <div class="image-upload">
+            <label for="file-input">
+                <img src={image} 
+                    alt ={props.alt}/>
+            </label>
+            <input id="file-input" type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" onChange={(e) => parseFile(e)}/>
+        </div>
     );
-};
+}
 
 export default UploadImage;

@@ -9,6 +9,8 @@ import Signup from "../views/Signup/Signup"
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import UserLogin from '../views/UserLogin/UserLogin';
+import Storefront from '../views/storefront/storefront';
+import DemoImage from '../components/upload-image/demo-image';
 
 
 const LayoutContainer = (props) => {
@@ -20,7 +22,7 @@ const LayoutContainer = (props) => {
         props.history.push("/admin")
       } 
       if(accessLevelState.role === "registeredUser"){
-        props.history.push("/")
+        props.history.push("/image")
       } 
       console.log(accessLevelState)
     },[accessLevelState, props.history])
@@ -43,7 +45,8 @@ const LayoutContainer = (props) => {
     layout = (
       <LayoutCustomer accessLevelState = {accessLevelState}>
         <Switch>
-          <Route path = "/" exact component={WorkInProgress} />
+          <Route path = "/" exact component={Storefront} />
+          <Route path = "/image" exact component={DemoImage} />
           <Route path = "/cart" exact component={CartProductDemo} />
           <Route path = "/product/*" exact component={WorkInProgress} />
           <Route path = "/account" exact component={WorkInProgress} />

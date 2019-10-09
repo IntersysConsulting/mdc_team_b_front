@@ -1,6 +1,10 @@
 .UserLogin {
   display: grid;
   grid-template-columns: 10px auto 10px;
+  z-index: 50000;
+  position: fixed;
+  top:0;
+  width: 100%
 }
 
 .UserLogin-bg {

@@ -5,25 +5,37 @@ import {
 } from "../constants/authenticationConstants";
 
 const initialState = {
-  login: false,
+  role: "guest",
   name: "Guest",
+  access_token: null,
+  refresh_token: null 
 };
 
+const autenticationTypes = {
+  [AUTHENTICATED]: (newState, data) => {
+    newState.name = (
+      data.customer_name ? data.customer_name : 
+      data.admin_name ? data.admin_name : newState.name
+    )
+    newState.role = ( data.message === "Welcome admin" ? "admin" :  "registeredUser" ) 
+
+    newState.access_token = data.access_token 
+    newState.refresh_token = data.refresh_token 
+ 
+    return newState
+  },
+  [UNAUTHENTICATED]: (newState) => {
+    newState.access_token = null
+    newState.refresh_token = null
+    return newState;
+  },
+  [AUTHENTICATION_ERROR]: () => alert("Error in authentication request")
+}
+
 export default function authenticationReducer(state = initialState, {type, auth}) {
-  let newState = {...state}
-  switch (type) {
-    case AUTHENTICATED:
-      newState.login = true
-      console.log(auth.data.access_token)
-      localStorage.setItem('access_token', auth.data.access_token)
-      localStorage.setItem('refresh_token', auth.data.refresh_token)
-      break
-    case UNAUTHENTICATED:
-      break
-    case AUTHENTICATION_ERROR:
-      break
-    default:
-      return state;
+  if(autenticationTypes.hasOwnProperty(type)){
+    return autenticationTypes[type]({...state}, auth.data)
+  } else {
+    return state
   }
-  return newState
 }

@@ -96,16 +96,22 @@
 .cart-product-image-container img {
     max-width: 100%;
     max-height: 100%;
-    width: 100%;
 }
 
 .cart-product-image-container {
     display: none;
 }
 
+.cart-product-image-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 @media (min-width: 366px) {
     .cart-product-image-container {
         display: flex;
+        align-items: center;
         justify-content: center;
         flex-shrink: 0;
         width: 100px;

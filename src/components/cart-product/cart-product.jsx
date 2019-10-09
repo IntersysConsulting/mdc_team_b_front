@@ -8,7 +8,7 @@ import './cart-product.css';
 const CartProduct = (props) => {
 
     const deleteHandler = () => {
-        props.deleteFn(props._id);
+        props.deleteFn(props.id);
     }
 
     return(
@@ -33,7 +33,7 @@ const CartProduct = (props) => {
                     <Quantity 
                         className="cart-product-quantity-container" 
                         quantity={props.quantity} 
-                        _id={props._id}
+                        id={props.id}
                         onChange={props.onChange}/>
                 </div>                
                 <p className="cart-product-delete-text"  onClick={deleteHandler}>Delete</p>

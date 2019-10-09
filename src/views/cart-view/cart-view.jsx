@@ -8,7 +8,7 @@ import {Link} from  'react-router-dom';
 
 import './cart-view.css';
 
-let token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzA1NDYzOTEsIm5iZiI6MTU3MDU0NjM5MSwianRpIjoiYjEyZjc2NjItNjBjYS00NTYzLTg1MjAtYTYxNjdmMzViODg3IiwiZXhwIjoxNTcwNjMyNzkxLCJpZGVudGl0eSI6IjVkOWNhMmQ2NWE1MjVkMmYxZDAzNDM4NCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.v6Ok2Bdixn16Os6PclddOnpN4KW0tv_sYWooP7P_enQ";
+let token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzA2MzE5NDAsIm5iZiI6MTU3MDYzMTk0MCwianRpIjoiMGEyOTFjMzAtNTE5NS00YzljLTg0MDQtNzA0MGRlMjdiNTEyIiwiZXhwIjoxNTcwNzE4MzQwLCJpZGVudGl0eSI6IjVkOWRmMTAzMzViNDQ4MTQyYTA1MDljNyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Kl9c8NaL0l196uBaDx_ohywX7Pa__DSRYhp1JJSWoN4";
 
 const CartView = (props) => {
     const [cartProducts, setCartProducts] = useState({
@@ -122,7 +122,7 @@ const CartView = (props) => {
                 quantity={i.quantity}
                 url={i.image}
                 name={i.name} 
-                _id ={i._id}
+                id ={i._id}
                 onChange={updateCart}
                 deleteFn={deleteItem}
                 productPage={"/product/" + i._id}/>

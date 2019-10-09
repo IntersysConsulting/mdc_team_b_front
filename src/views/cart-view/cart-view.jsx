@@ -8,13 +8,13 @@ import {Link} from  'react-router-dom';
 
 import './cart-view.css';
 
-let token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzA2MzE5NDAsIm5iZiI6MTU3MDYzMTk0MCwianRpIjoiMGEyOTFjMzAtNTE5NS00YzljLTg0MDQtNzA0MGRlMjdiNTEyIiwiZXhwIjoxNTcwNzE4MzQwLCJpZGVudGl0eSI6IjVkOWRmMTAzMzViNDQ4MTQyYTA1MDljNyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Kl9c8NaL0l196uBaDx_ohywX7Pa__DSRYhp1JJSWoN4";
+let token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzA2Mzc2NzAsIm5iZiI6MTU3MDYzNzY3MCwianRpIjoiNTM2ZDQ4MjYtYjIzZC00OTcxLTg2OGUtZWZlZDlmYWY3NTUxIiwiZXhwIjoxNTcwNzI0MDcwLCJpZGVudGl0eSI6IjVkOWUwNzY1NzFmNTdkODJlMGYzYTBkNyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.z4VJoNRTuljmq9CDblXQAWTW6Ryywzlbn5Pd7FUIWjs";
 
 const CartView = (props) => {
     const [cartProducts, setCartProducts] = useState({
         products: []
      });
-     const [isLoading, setIsLoading] = useState({ loading: true})
+     const [isLoading, setIsLoading] = useState({ loading: true, updating: false})
      const url = 'http://localhost:5000/api/v1/carts/';
      const createOrderUrl = 'http://localhost:5000/api/v1/orders/';
      const [defaultHeaders] = useState({
@@ -32,9 +32,11 @@ const CartView = (props) => {
             setIsLoading({
                 loading: false
             });
-            setCartProducts({
-                products : response.data.data.cart.products
-            });
+            if(Object.keys(response.data.data.cart).length !== 0){
+                setCartProducts({
+                    products : response.data.data.cart.products
+                });
+            }            
         }).catch(error => {
             setIsLoading({
                 loading: false
@@ -44,11 +46,11 @@ const CartView = (props) => {
     
     const updateCart = (id,quantity) =>{
         setIsLoading({
-            loading: true
+            updating: true
         });
         const newCartProducts = cartProducts.products.slice()
         newCartProducts.map(x => x._id === id ? x.quantity = quantity : x)
-        
+        console.log(id)
         axios.put(url, {
             product_id: id,
             quantity: quantity
@@ -58,19 +60,19 @@ const CartView = (props) => {
                 products: newCartProducts
             })
             setIsLoading({
-                loading: false
-            });
+                updating: false
+            }); 
         })
         .catch(error=>{
             setIsLoading({
-                loading: false
+                updating: false
             })
         })
     }
 
     const deleteItem = (id) =>{
         setIsLoading({
-            loading: true
+            updating: true
         });
         const body = {...defaultHeaders};
         body.data = {
@@ -83,30 +85,30 @@ const CartView = (props) => {
                 products: newCartProducts
             })
             setIsLoading({
-                loading: false
+                updating: false
             });            
         }).catch(error => {
             setIsLoading({
-                loading: false
+                updating: false
             }); 
         })
     }
 
     const createOrder = () =>{
         setIsLoading({
-            loading: true
+            updating: true
         });
 
         axios.post(createOrderUrl, {}, defaultHeaders)
         .then(response => {
             setIsLoading({
-                loading: false
+                updating: false
             });
             props.history.push('/checkout')
         })
         .catch(error=>{
             setIsLoading({
-                loading: false
+                updating: false
             })
         })
     }
@@ -129,6 +131,20 @@ const CartView = (props) => {
         );
     }
 
+    let updatingSpinner;
+    if(isLoading.updating) {
+        updatingSpinner = (
+            <Spinner className="cart-view-spinner" animation="border" variant="warning" />
+        )
+    }
+    else{
+        updatingSpinner = (
+            <div>
+
+            </div>
+        )
+    }
+
     //Rendering
     let component = null;
     if(isLoading.loading) {
@@ -147,7 +163,10 @@ const CartView = (props) => {
                 <div className="container cart-view">
                     <div className="cart-view-items-container">
                         <div className="cart-view-top-text">
-                            <h3>My cart</h3>
+                            <div className="cart-view-title">
+                                <h3>My cart</h3>
+                                {updatingSpinner}
+                            </div>
                             <p>You have <span>{cartProducts.products.length}</span> products in your cart.</p>
                         </div>
                         {allItems}

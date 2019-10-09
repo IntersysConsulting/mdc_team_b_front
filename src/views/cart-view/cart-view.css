@@ -21,6 +21,17 @@
     font-weight: bold;
 }
 
+.cart-view-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cart-view-spinner {
+    width: 50px;
+    height: 50px;
+}
+
 .cart-view-top-text>* {
     font-size: 23px;
 }

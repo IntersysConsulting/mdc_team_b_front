@@ -7,8 +7,9 @@ import LayoutCustomer from '../components/layout/layout-customer';
 import AdminLogin from "../views/AdminLogin/AdminLogin";
 import Signup from "../views/Signup/Signup"
 import LayoutAdmin from '../components/layout/layout-admin';
-import CartProductDemo from '../components/cart-product/demo';
+import CartView from '../views/cart-view/cart-view';
 import UserLogin from '../views/UserLogin/UserLogin';
+import Storefront from '../views/storefront/storefront';
 
 
 const LayoutContainer = (props) => {
@@ -43,8 +44,8 @@ const LayoutContainer = (props) => {
     layout = (
       <LayoutCustomer accessLevelState = {accessLevelState}>
         <Switch>
-          <Route path = "/" exact component={WorkInProgress} />
-          <Route path = "/cart" exact component={CartProductDemo} />
+          <Route path = "/" exact component={Storefront} />
+          <Route path = "/cart" exact component={CartView} />
           <Route path = "/product/*" exact component={WorkInProgress} />
           <Route path = "/account" exact component={WorkInProgress} />
           <Route path = "/summary" exact component={WorkInProgress} />

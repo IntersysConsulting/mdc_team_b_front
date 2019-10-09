@@ -50,7 +50,6 @@ const CartView = (props) => {
         });
         const newCartProducts = cartProducts.products.slice()
         newCartProducts.map(x => x._id === id ? x.quantity = quantity : x)
-        console.log(id)
         axios.put(url, {
             product_id: id,
             quantity: quantity

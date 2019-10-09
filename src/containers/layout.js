@@ -6,6 +6,7 @@ import LayoutCustomer from '../components/layout/layout-customer';
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import Storefront from '../views/storefront/storefront'
+import Checkout from '../views/Checkout/checkout'
 import SingleProduct from '../views/single-product/product'
 import UserLogin from '../views/UserLogin/UserLogin';
 import AdminLogin from "../views/AdminLogin/AdminLogin";
@@ -44,6 +45,7 @@ const LayoutContainer = (props) => {
           <Route path = "/billing-info" exact component={WorkInProgress} />
           <Route path = "/shipping-info" exact component={WorkInProgress} />
           <Route path = "/orders" exact component={WorkInProgress} />
+          <Route path = "/checkout" exact component={Checkout} />
 
           <Route path = "/login" exact component={UserLogin} />
           <Route path = "/login-admin" exact component={AdminLogin} />

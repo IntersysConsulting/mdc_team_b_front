@@ -1,0 +1,104 @@
+
+#payment-card-whole{
+    width: 400px;
+    height: 100px;
+    /* margin-bottom: 30px; */
+    border-top: 2px;
+    border-top: solid;
+    border-top-color: lightgrey;
+    margin-right: 70px;
+}
+
+
+
+
+#payment-card-button-container{
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#payment-card-button-container input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+#payment-card-button-checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    margin-top: 13px;
+    border-color: black;
+    border: solid;
+    border-width: 1px;
+    border-radius: 50%;
+}
+
+#payment-card-button-container:hover input ~ #payment-card-button-checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  #payment-card-button-container input:checked ~ #payment-card-button-checkmark {
+    /* background-color: #2196F3; */
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  #payment-card-button-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  #payment-card-button-container input:checked ~ #payment-card-button-checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  #payment-card-button-container #payment-card-button-checkmark:after {
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #72c068;
+  }
+
+
+
+#payment-card-icon{
+    /* margin-top: -50px; */
+    height: 30px;
+    width: 38px;
+    margin-left: 40px;
+}
+
+#payment-card-number{
+    font-weight: bold;
+    color: #116cb4;
+    float: right;
+    margin-top: -40px;
+    margin-right: 40px;
+    font-size: 30px;
+}
+
+#payment-card-owner{
+    color: #f98f3e;
+    font-size: 20px;
+    float: right;
+    margin-right: 40px;
+    /* margin-top: -20px; */
+}

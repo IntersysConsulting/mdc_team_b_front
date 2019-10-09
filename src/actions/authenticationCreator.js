@@ -40,7 +40,7 @@ export function login(data) {
     try {
       await fetchToken(data).then(
         response => {
-          if(response.data.stateCode === 200) {
+          if(response.status === 200) {
             dispatch(authenticatedAction(response))
           } else {
             dispatch( authentication_error(response))

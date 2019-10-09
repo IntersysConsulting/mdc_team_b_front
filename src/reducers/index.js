@@ -4,6 +4,7 @@ import cartReducer from "./cartReducer";
 import switchReducer from './switch-reducer';
 import productReducer from './productReducer';
 import authenticationReducer from './authenticationReducer';
+import checkoutReducer from './checkoutReducer';
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
@@ -13,7 +14,8 @@ const rootReducer = combineReducers(
         cartState: cartReducer,
         switchState: switchReducer,
         productState: productReducer,
-        authenticationState: authenticationReducer
+        authenticationState: authenticationReducer,
+        checkoutState: checkoutReducer
     }
 );
 

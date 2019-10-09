@@ -1,13 +1,11 @@
 import axios from 'axios';
 
 const getItems = () => {
-  return new Promise( (resolve, reject) => {
     axios.get('').then((response) => {
-      resolve(response);
+      return response;
     }).catch( (error) => {
-      reject(error);
+      return error
     });
-  });
 };
 
 export const cartApi = {

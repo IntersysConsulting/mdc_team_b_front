@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import Logo from "../layout/logo/logo.png";
@@ -12,19 +12,26 @@ import "./login.css";
 const Login = props => {
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({ email: "", password: "" });
+  const message = useSelector(store => store.authenticationState.message);
+
+  useEffect(() => {
+    if(message !== "" ){
+      if(props.admin && message === "ok" ){
+        props.history.push("/admin")
+      } else if(message === "ok") {
+        props.history.push("/") 
+      } else {
+        alert(message)
+      }
+    }
+  },[message, props.history, props.admin])
 
   const Send = (event) => {
     event.preventDefault();
     let formData = new FormData()
     formData.set('email', loginState.email)
     formData.set('password', loginState.password)
-    dispatch(login(formData, props.admin)).then(() => {
-      if(props.admin){
-        props.history.push("/admin")
-      } else {
-        props.history.push("/") 
-      }
-    })
+    dispatch(login(formData, props.admin))
   };
 
   const onChangeInput = event => {
@@ -79,5 +86,4 @@ const Login = props => {
   );
 };
 
-const loginWithRouter = withRouter(Login)
-export default loginWithRouter;
+export default withRouter(Login)

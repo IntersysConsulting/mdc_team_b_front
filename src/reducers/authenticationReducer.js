@@ -8,6 +8,7 @@ import {
 const initialState = {
   role: "guest",
   name: "Guest",
+  message: "",
 };
 
 const autenticationTypes = {
@@ -21,16 +22,23 @@ const autenticationTypes = {
     localStorage.setItem("access_token", data.access_token)
     localStorage.setItem("refresh_token", data.refresh_token)
  
+    newState.message = "ok"
+
     return newState
   },
   [UNAUTHENTICATED]: (newState) => {
     localStorage.removeItem("access_token")
     localStorage.removeItem("refresh_token")
-    newState.role = "guest"
-    newState.name = "Guest"
+    return {
+      role: "guest",
+      name: "Guest",
+      message:""
+    }
+  },
+  [AUTHENTICATION_ERROR]: (newState, data) => {
+    newState.message = data.message
     return newState
   },
-  [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {
     let role = data.role.toLowerCase()
     role = (role === "customer" ? "registeredUser" : role)
@@ -42,6 +50,7 @@ const autenticationTypes = {
       return {
         role: "guest",
         name: "Guest",
+        message:""
       }
     }
   }

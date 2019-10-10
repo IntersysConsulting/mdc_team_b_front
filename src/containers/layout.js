@@ -55,7 +55,7 @@ const LayoutContainer = (props) => {
           <Route path = "/help" exact component={WorkInProgress} />
           <Route path = "/conditions" exact component={WorkInProgress} />
           <Route path = "/privacy" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={NotFound} />
+          <Route path = "/*" component={NotFound} />
         </Switch>
       </LayoutCustomer>
     )
@@ -64,5 +64,4 @@ const LayoutContainer = (props) => {
     return (layout)
 }
   
-const layoutWithRouter = withRouter(LayoutContainer)
-export default layoutWithRouter;
+export default withRouter(LayoutContainer)

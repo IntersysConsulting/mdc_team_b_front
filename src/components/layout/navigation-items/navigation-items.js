@@ -1,6 +1,6 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import "./navigation-items.css"
 import Item from "./item";
 import { logoutApi } from "../../../api/authenticationApi"
@@ -8,16 +8,21 @@ import { logoutApi } from "../../../api/authenticationApi"
 const NavigationItems = (props) => {
     let component = null;
     const dispatch = useDispatch()
+    const message = useSelector(store => store.authenticationState.message);
+
+
+    useEffect(() => {
+        if(message === "" ){
+            props.history.push("/");
+        }
+    },[message, props.history])
+
 
     const logout = () => {
         if (props.accessLevel.role === "admin") {   
-            dispatch(logoutApi(true)).then(() => {
-                props.history.push("/");
-            })
+            dispatch(logoutApi(true))
         } else {
-            dispatch(logoutApi()).then(() => {
-                props.history.push("/");
-            })
+            dispatch(logoutApi())
         }
     }
 
@@ -75,5 +80,4 @@ const NavigationItems = (props) => {
     return component;
 };
 
-const navigationItemsWithRouter = withRouter(NavigationItems)
-export default navigationItemsWithRouter;
+export default withRouter(NavigationItems)

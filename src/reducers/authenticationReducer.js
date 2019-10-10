@@ -17,7 +17,7 @@ const autenticationTypes = {
       data.admin_name ? data.admin_name : newState.name
     )
     newState.role = ( data.message === "Welcome admin" ? "admin" :  "registeredUser" ) 
-    delete newState.logout
+  
     localStorage.setItem("access_token", data.access_token)
     localStorage.setItem("refresh_token", data.refresh_token)
  

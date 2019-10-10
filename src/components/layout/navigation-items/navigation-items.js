@@ -9,16 +9,15 @@ const NavigationItems = (props) => {
     let component = null;
     const dispatch = useDispatch()
 
-    const logout = async () => {
-        try {
-            if (props.accessLevel.role === "admin") {   
-                dispatch(logoutApi(true))
-            } else {
-                dispatch(logoutApi())
-            }
-            props.history.push("/");
-        } catch (error) {
-            console.log(error)
+    const logout = () => {
+        if (props.accessLevel.role === "admin") {   
+            dispatch(logoutApi(true)).then(() => {
+                props.history.push("/");
+            })
+        } else {
+            dispatch(logoutApi()).then(() => {
+                props.history.push("/");
+            })
         }
     }
 

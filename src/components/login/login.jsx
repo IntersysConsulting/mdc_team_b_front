@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import Logo from "../layout/logo/logo.png";
@@ -12,27 +12,19 @@ import "./login.css";
 const Login = props => {
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({ email: "", password: "" });
-  const accessLevelState = useSelector(state => state.authenticationState);
 
-  useEffect(() => {
-    if(accessLevelState.role === "admin"){
-      props.history.push("/admin")
-    } 
-    if(accessLevelState.role === "registeredUser"){
-      props.history.push("/") 
-    } 
-  }, [accessLevelState, props.history])
-
-  const Send = async (event) => {
-    try {
-      event.preventDefault();
-      let formData = new FormData()
-      formData.set('email', loginState.email)
-      formData.set('password', loginState.password)
-      dispatch(login(formData, props.admin))
-    } catch (error) {
-      console.log("Login error", error)
-    }
+  const Send = (event) => {
+    event.preventDefault();
+    let formData = new FormData()
+    formData.set('email', loginState.email)
+    formData.set('password', loginState.password)
+    dispatch(login(formData, props.admin)).then(() => {
+      if(props.admin){
+        props.history.push("/admin")
+      } else {
+        props.history.push("/") 
+      }
+    })
   };
 
   const onChangeInput = event => {

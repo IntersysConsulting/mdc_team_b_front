@@ -26,7 +26,7 @@ export function login(data, admin = false) {
               dispatch(authentication_error(response))
             }
           },
-          error => console.log('An error accurred', error))
+          error => console.log('An error ocurred', error))
       } catch (e) {
         console.log(e)
       }

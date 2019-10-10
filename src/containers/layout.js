@@ -33,7 +33,7 @@ const LayoutContainer = (props) => {
           <Route path = "/admin/orders" exact component={WorkInProgress} />
           <Route path = "/admin/staff" exact component={WorkInProgress} />
           <Route path = "/admin/banners" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={WorkInProgress} />
+          <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutAdmin>
     )

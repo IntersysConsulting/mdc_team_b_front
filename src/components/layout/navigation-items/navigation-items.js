@@ -1,11 +1,27 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux"
 import "./navigation-items.css"
 import Item from "./item";
+import { logoutApi } from "../../../api/authenticationApi"
 
-const navigationItems = (props) => {
-    let component = null 
+const NavigationItems = (props) => {
+    let component = null;
+    const dispatch = useDispatch()
 
-    switch(props.accessLevel){
+    const logout = () => {
+        if (props.accessLevel.role === "admin") {   
+            dispatch(logoutApi(true)).then(() => {
+                props.history.push("/");
+            })
+        } else {
+            dispatch(logoutApi()).then(() => {
+                props.history.push("/");
+            })
+        }
+    }
+
+    switch(props.accessLevel) {
         case('admin'):
         component = (
             <ul className="NavigationItems">
@@ -16,8 +32,8 @@ const navigationItems = (props) => {
                 <Item link="/admin/products">Products</Item>
                 <Item link="/admin/orders">Orders</Item>
                 <Item link="/admin/staff">Staff</Item>
-                <Item link="/admin/banners">Banners</Item>
-                <Item link="/admin/logout">Log out</Item>
+                <Item link="/admin/banners">Banner</Item>
+                <Item onClick={logout}>Log out</Item>
             </ul>
         );
         break;
@@ -37,6 +53,8 @@ const navigationItems = (props) => {
                 <Item link="/billing-info">Billing Info</Item>
                 <Item link="/shipping-info">Shipping Info</Item>
                 <Item link="/orders">Orders</Item>
+                <Item onClick={logout}>Log out</Item>
+
             </ul>
         );
         break;
@@ -55,7 +73,7 @@ const navigationItems = (props) => {
     }
 
     return component;
-
 };
 
-export default navigationItems;
+const navigationItemsWithRouter = withRouter(NavigationItems)
+export default navigationItemsWithRouter;

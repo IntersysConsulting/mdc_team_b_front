@@ -1,42 +1,42 @@
-import React, { useEffect } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
-import WorkInProgress from "../views/work-in-progress/in-progress";
-import NotFound from "../views/not-found/404";
-import LayoutCustomer from "../components/layout/layout-customer";
+import React,{ useEffect } from 'react';
+import { Route, Switch, withRouter  } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux";
+import WorkInProgress from '../views/work-in-progress/in-progress'
+import NotFound from '../views/not-found/404'
+import LayoutCustomer from '../components/layout/layout-customer';
 import AdminLogin from "../views/AdminLogin/AdminLogin";
+
 import CartView from '../views/cart-view/cart-view';
 import UserLogin from '../views/UserLogin/UserLogin';
 import Storefront from '../views/storefront/storefront';
 import Signup from "../views/Signup/Signup";
 import LayoutAdmin from "../components/layout/layout-admin";
 import Product from "../views/single-product/product";
+import { validateAuthentication } from "../api/authenticationApi"
 
-const LayoutContainer = props => {
-  let layout = null;
-  const accessLevelState = useSelector(state => state.authenticationState);
+const LayoutContainer = (props) => {
+    let layout = null;
+    const accessLevelState = useSelector(state => state.authenticationState);
+    const token = localStorage.getItem("access_token")
+    const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (accessLevelState.role === "admin") {
-      props.history.push("/admin");
-    }
-    if (accessLevelState.role === "registeredUser") {
-      props.history.push("/");
-    }
-    console.log(accessLevelState);
-  }, [accessLevelState, props.history]);
+    useEffect(() => {
+      if(token) {
+         dispatch(validateAuthentication())
+      }
+    },[dispatch, token])
 
-  /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
-  if (accessLevelState.role === "admin") {
+    /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
+   if(accessLevelState.role === "admin"){
     layout = (
-      <LayoutAdmin accessLevelState={accessLevelState}>
-        <Switch>
-          <Route path="/admin" exact component={WorkInProgress} />
-          <Route path="/admin/products" exact component={WorkInProgress} />
-          <Route path="/admin/orders" exact component={WorkInProgress} />
-          <Route path="/admin/staff" exact component={WorkInProgress} />
-          <Route path="/admin/banners" exact component={WorkInProgress} />
-          <Route path="/*" exact component={WorkInProgress} />
+      <LayoutAdmin accessLevelState = {accessLevelState}>
+        <Switch> 
+          <Route path = "/admin" exact component={WorkInProgress} /> 
+          <Route path = "/admin/products" exact component={WorkInProgress} />
+          <Route path = "/admin/orders" exact component={WorkInProgress} />
+          <Route path = "/admin/staff" exact component={WorkInProgress} />
+          <Route path = "/admin/banners" exact component={WorkInProgress} />
+          <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutAdmin>
     );

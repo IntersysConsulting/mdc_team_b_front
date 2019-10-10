@@ -89,6 +89,10 @@
     background-color: brown;
 }
 
+.cart-view-subtotal {
+    padding-bottom: 15px;
+}
+
 .cart-view-subtotal>* {
     font-size: 30px;
     margin: 0;

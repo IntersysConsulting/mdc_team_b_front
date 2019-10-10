@@ -37,6 +37,7 @@ const Navbar = props => {
               <div>
                 <SearchBar
                   filters={["Bears", "are", "sorta", "cool"]}
+                  search_redirect_base="/"
                 ></SearchBar>
               </div>
               <div className="row">
@@ -44,7 +45,7 @@ const Navbar = props => {
               </div>
             </div>
             <div className="CartSpace">
-              <CartContainer value={9} />
+              <CartContainer value={0} />
             </div>
           </div>
         </header>

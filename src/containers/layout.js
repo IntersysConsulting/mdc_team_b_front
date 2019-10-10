@@ -36,33 +36,33 @@ const LayoutContainer = (props) => {
           <Route path = "/*" exact component={NotFound} />
         </Switch>
       </LayoutAdmin>
-    )
-    }else {
+    );
+  } else {
     layout = (
-      <LayoutCustomer accessLevelState = {accessLevelState}>
+      <LayoutCustomer accessLevelState={accessLevelState}>
         <Switch>
-          <Route path = "/" exact component={WorkInProgress} />
-          <Route path = "/cart" exact component={CartProductDemo} />
-          <Route path = "/product/*" exact component={WorkInProgress} />
-          <Route path = "/account" exact component={WorkInProgress} />
-          <Route path = "/summary" exact component={WorkInProgress} />
-          <Route path = "/billing-info" exact component={WorkInProgress} />
-          <Route path = "/shipping-info" exact component={WorkInProgress} />
-          <Route path = "/orders" exact component={WorkInProgress} />
-          <Route path = "/login" exact component={UserLogin} />
-          <Route path = "/login-admin" exact component={AdminLogin} />
-          <Route path = "/sign-up" exact component={Signup} />
-          <Route path = "/help" exact component={WorkInProgress} />
-          <Route path = "/conditions" exact component={WorkInProgress} />
-          <Route path = "/privacy" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={NotFound} />
+          <Route path="/" exact component={Storefront} />
+          <Route path="/cart" exact component={CartProductDemo} />
+          <Route path="/product/*" exact component={Product} />
+          <Route path="/account" exact component={WorkInProgress} />
+          <Route path="/summary" exact component={WorkInProgress} />
+          <Route path="/billing-info" exact component={WorkInProgress} />
+          <Route path="/shipping-info" exact component={WorkInProgress} />
+          <Route path="/orders" exact component={WorkInProgress} />
+          <Route path="/login" exact component={UserLogin} />
+          <Route path="/login-admin" exact component={AdminLogin} />
+          <Route path="/sign-up" exact component={Signup} />
+          <Route path="/help" exact component={WorkInProgress} />
+          <Route path="/conditions" exact component={WorkInProgress} />
+          <Route path="/privacy" exact component={WorkInProgress} />
+          <Route path="/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>
-    )
+    );
   }
 
-    return (layout)
-}
-  
-const layoutWithRouter = withRouter(LayoutContainer)
+  return layout;
+};
+
+const layoutWithRouter = withRouter(LayoutContainer);
 export default layoutWithRouter;

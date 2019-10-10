@@ -8,8 +8,9 @@ import {Link} from  'react-router-dom';
 
 import './cart-view.css';
 
-let token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzA2Mzc2NzAsIm5iZiI6MTU3MDYzNzY3MCwianRpIjoiNTM2ZDQ4MjYtYjIzZC00OTcxLTg2OGUtZWZlZDlmYWY3NTUxIiwiZXhwIjoxNTcwNzI0MDcwLCJpZGVudGl0eSI6IjVkOWUwNzY1NzFmNTdkODJlMGYzYTBkNyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.z4VJoNRTuljmq9CDblXQAWTW6Ryywzlbn5Pd7FUIWjs";
-
+//let token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzA2Mzc2NzAsIm5iZiI6MTU3MDYzNzY3MCwianRpIjoiNTM2ZDQ4MjYtYjIzZC00OTcxLTg2OGUtZWZlZDlmYWY3NTUxIiwiZXhwIjoxNTcwNzI0MDcwLCJpZGVudGl0eSI6IjVkOWUwNzY1NzFmNTdkODJlMGYzYTBkNyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.z4VJoNRTuljmq9CDblXQAWTW6Ryywzlbn5Pd7FUIWjs";
+let token = "Bearer " + localStorage.getItem('access_token');
+console.log(token)
 const CartView = (props) => {
     const [cartProducts, setCartProducts] = useState({
         products: []

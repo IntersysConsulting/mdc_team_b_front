@@ -11,6 +11,7 @@ const PasswordFieldContainer = (props) => {
   };
   return (
     <PasswordField
+      name={props.name}
       placeholder={props.placeholder}
       open={demoState.isOpen}
       onClick={ToggleVisibility}

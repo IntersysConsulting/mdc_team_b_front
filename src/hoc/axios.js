@@ -1,18 +1,36 @@
 import axios from 'axios'
 
-// const instance = (config) => {
-//   config ?  axios.create({
-//       baseURL: config.url
-//     }) : axios.create({
-//       baseURL: 'http://127.0.0.1:5000'
-//     })
-// }
-
 const URL = 'http://127.0.0.1:5000/api/v1/'
-
-const instance = axios.create({
+const configDefault = {
   baseURL: URL,
-  responseType: "json"
-})
+  responseType: "json",
+  headers: {'Content-Type': 'multipart/form-data' }
+}
 
-export default instance
+export function request (config = configDefault)  {
+  const access_token = localStorage.getItem("access_token")
+  if(access_token) {
+    config.headers['Authorization'] = `Bearer ${access_token}`
+  }
+  return axios.create(config)
+} 
+
+export function requestRefreshUser (config = configDefault)  {
+  const token = localStorage.getItem("refresh_token")
+
+  if(token) {
+    config.headers['Authorization'] = `Bearer ${token}`
+  }
+
+  return axios.create(config).put('session/')
+} 
+
+export function requestRefreshAdmin (config = configDefault)  {
+  const token = localStorage.getItem("refresh_token")
+
+  if(token) {
+    config.headers['Authorization'] = `Bearer ${token}`
+  }
+
+  return axios.create(config).put('admin/session/')
+} 

@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 // Thanks to Redux 4's much simpler typings, we can take away a lot of typings on the reducer side,
 // everything will remain type-safe.
 const productReducer = (state = INITIAL_STATE, action) => {
+
   switch (action.type) {
     case productConstants.FETCH_PRODUCT_BEGIN:
       return {...state, loading: true};

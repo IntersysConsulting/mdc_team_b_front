@@ -18,7 +18,6 @@ const CardProduct = props => {
   };
 
   const handleButtonClick = () => {
-    console.log("Is loading == true");
     setIsLoading({ loading: true });
     setTimeout(isOnCart.value ? requestRemoveProduct : requestAddProduct, 10);
   };
@@ -64,9 +63,7 @@ const CardProduct = props => {
     let access_token = localStorage.getItem("access_token");
 
     if (access_token) {
-      let formData = new FormData();
-      formData.set("product_id", props.product_id);
-      formData.set("quantity", 1);
+      let formData = { product_id: props.product_id, quantity: 1 };
       request
         .put("http://localhost:5000/api/v1/carts/", formData, {
           headers: { Authorization: "Bearer " + access_token }

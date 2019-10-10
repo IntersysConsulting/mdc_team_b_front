@@ -67,9 +67,7 @@ const SingleProduct = props => {
     let access_token = localStorage.getItem("access_token");
 
     if (access_token) {
-      let formData = new FormData();
-      formData.set("product_id", url);
-      formData.set("quantity", 1);
+      let formData = { product_id: url, quantity: 1 };
       request
         .put("http://localhost:5000/api/v1/carts/", formData, {
           headers: { Authorization: "Bearer " + access_token }

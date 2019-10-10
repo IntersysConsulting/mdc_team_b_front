@@ -14,32 +14,31 @@ import Product from "../views/single-product/product"
 import DemoImage from '../components/upload-image/demo-image';
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
 
-const LayoutContainer = (props) => {
-    let layout = null;
-    const accessLevelState = useSelector(state => state.authenticationState);
-    const token = localStorage.getItem("access_token");
-    const dispatch = useDispatch();
+const LayoutContainer = props => {
+  let layout = null;
+  const accessLevelState = useSelector(state => state.authenticationState);
+  const token = localStorage.getItem("access_token");
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-      if(token) {
-          dispatch(validateAuthentication());
-      }
-      else{
-          dispatch(requestGuest())
-      }
-    },[dispatch, token])
+  useEffect(() => {
+    if (token) {
+      dispatch(validateAuthentication());
+    } else {
+      dispatch(requestGuest());
+    }
+  }, [dispatch, token]);
 
-    /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
-    if(accessLevelState.role === "admin"){
+  /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
+  if (accessLevelState.role === "admin") {
     layout = (
-      <LayoutAdmin accessLevelState = {accessLevelState}>
-        <Switch> 
-          <Route path = "/admin" exact component={WorkInProgress} /> 
-          <Route path = "/admin/products" exact component={WorkInProgress} />
-          <Route path = "/admin/orders" exact component={WorkInProgress} />
-          <Route path = "/admin/staff" exact component={WorkInProgress} />
-          <Route path = "/admin/banners" exact component={WorkInProgress} />
-          <Route path = "/*" exact component={NotFound} />
+      <LayoutAdmin accessLevelState={accessLevelState}>
+        <Switch>
+          <Route path="/admin" exact component={WorkInProgress} />
+          <Route path="/admin/products" exact component={WorkInProgress} />
+          <Route path="/admin/orders" exact component={WorkInProgress} />
+          <Route path="/admin/staff" exact component={WorkInProgress} />
+          <Route path="/admin/banners" exact component={WorkInProgress} />
+          <Route path="/*" exact component={NotFound} />
         </Switch>
       </LayoutAdmin>
     );
@@ -62,7 +61,7 @@ const LayoutContainer = (props) => {
           <Route path="/conditions" exact component={WorkInProgress} />
           <Route path="/privacy" exact component={WorkInProgress} />
           <Route path="/*" exact component={NotFound} />
-          <Route path = "/image" exact component={DemoImage} />
+          <Route path="/image" exact component={DemoImage} />
         </Switch>
       </LayoutCustomer>
     );

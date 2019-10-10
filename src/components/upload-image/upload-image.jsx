@@ -3,7 +3,7 @@ import "./upload-image.css";
 
 const UploadImage = props => {
 
-    const [image, setImage] = useState(props.src ? props.src : "http://cdn.onlinewebfonts.com/svg/img_234957.png");
+    const [image, setImage] = useState(props.src ? props.src : "https://i.imgur.com/mkv5uIQ.png");
 
     const parseFile = (e) => {
         if(e.target.files.length > 0)

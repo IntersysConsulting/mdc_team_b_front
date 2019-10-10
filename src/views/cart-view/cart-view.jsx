@@ -133,13 +133,21 @@ const CartView = (props) => {
     let updatingSpinner;
     if(isLoading.updating) {
         updatingSpinner = (
-            <Spinner className="cart-view-spinner" animation="border" variant="warning" />
+            <div className="cart-view-checkout-button">
+                    <Spinner className="cart-view-spinner" animation="border" variant="warning" />
+            </div>
+            
         )
     }
     else{
         updatingSpinner = (
-            <div>
-
+            <div className="cart-view-checkout-button">
+                <AcceptButton
+                    border
+                    block
+                    onClick={createOrder}>
+                        Proceed to checkout
+                </AcceptButton>
             </div>
         )
     }
@@ -164,7 +172,6 @@ const CartView = (props) => {
                         <div className="cart-view-top-text">
                             <div className="cart-view-title">
                                 <h3>My cart</h3>
-                                {updatingSpinner}
                             </div>
                             <p>You have <span>{cartProducts.products.length}</span> products in your cart.</p>
                         </div>
@@ -175,14 +182,7 @@ const CartView = (props) => {
                             <p className="cart-view-subtotal-text">SUBTOTAL: </p>
                             <Price currency={'MXN'} price={subtotal}/>
                         </div>
-                        <div className="cart-view-checkout-button">
-                            <AcceptButton
-                            border
-                            block
-                            onClick={createOrder}>
-                                Proceed to checkout
-                            </AcceptButton>
-                        </div>
+                        {updatingSpinner}
                     </div>
                 </div>
             );

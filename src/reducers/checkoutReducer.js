@@ -17,7 +17,7 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
             return { ...state, order_loading: true };
 
         case checkoutConstants.FETCH_CHECKOUT_ORDER_SUCCESS:
-            return { ...state, order_loading: false, order: action.payload };
+            return { ...state, order_loading: false, items: action.payload };
 
         case checkoutConstants.FETCH_CHECKOUT_ORDER_ERROR:
             return { ...state, order_loading: false, errors: action.payload };

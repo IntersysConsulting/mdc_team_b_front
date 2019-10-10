@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
@@ -13,5 +13,5 @@ const persistConfig = {
 
 const pReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(pReducer, applyMiddleware(thunk));
+export const store = createStore(pReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 export const persistor = persistStore(store);

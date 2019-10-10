@@ -91,7 +91,7 @@ export const checkoutOrderActions = () => {
     return (dispatch) => {
         dispatch(fetchCheckoutOrderBegin());
         checkoutOrderApi.getOrderInfo().then((response) => {
-            dispatch(fetchCheckoutOrderSuccess(response.data.data.products));
+            dispatch(fetchCheckoutOrderSuccess(response.data.data[0].products));
         }).catch((error) => {
             dispatch(fetchCheckoutOrderError(error));
         });
@@ -102,7 +102,7 @@ export const checkoutShippingAddressActions = () => {
     return (dispatch) => {
         dispatch(fetchCheckoutShippingAddressBegin());
         shippingApi.getAllShippingAddresses().then((response) => {
-            dispatch(fetchCheckoutShippingAddressSuccess(response.data.data.shipping_addresses));
+            dispatch(fetchCheckoutShippingAddressSuccess(response.data.data[0].shipping_addresses));
         }).catch((error) => {
             dispatch(fetchCheckoutShippingAddressError(error));
         });
@@ -113,7 +113,7 @@ export const checkoutBillingAddressActions = () => {
     return (dispatch) => {
         dispatch(fetchCheckoutBillingAddressBegin());
         billingApi.getAllBillingAddresses().then((response) => {
-            dispatch(fetchCheckoutBillingAddressSuccess(response.data.data.billing_addresses));
+            dispatch(fetchCheckoutBillingAddressSuccess(response.data.data[0].billing_addresses));
         }).catch((error) => {
             dispatch(fetchCheckoutBillingAddressError(error));
         });

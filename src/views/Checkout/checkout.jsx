@@ -14,7 +14,6 @@ import { checkoutOrderActions } from '../../actions/checkoutActions';
 import { checkoutShippingAddressActions } from '../../actions/checkoutActions';
 import { checkoutBillingAddressActions } from '../../actions/checkoutActions';
 
-
 const Checkout = () => {
 
     const loading = useSelector((state) => state.checkoutState.billing_loading);
@@ -37,22 +36,15 @@ const Checkout = () => {
     // const order = useSelector((state) => state.checkoutState.order)
     const shipping_address = useSelector((state) => state.checkoutState.shipping_address);
     const billing_address = useSelector((state) => state.checkoutState.billing_address);
+    const items = useSelector((state) => state.checkoutState.items)
 
     const dispatch = useDispatch();
-
     
     useEffect(() => {
         dispatch(checkoutOrderActions());
         dispatch(checkoutShippingAddressActions());
         dispatch(checkoutBillingAddressActions());
-    },[]);
-
-
-    var items = [
-        { name: "Belt of the lookout", price: "1800", qty: "2", total: "3600" },
-        { name: "Lance of the bronze dragon", price: "50000", qty: "3", total: "150000"},
-        { name: "Ring of the performer", price: "20000", qty: "1", total: "20000" }
-    ];
+    }, [dispatch]);
 
     switch (currentView) {
 

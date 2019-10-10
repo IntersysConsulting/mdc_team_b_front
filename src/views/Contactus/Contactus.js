@@ -16,7 +16,6 @@ const Contactus = props => {
 
   const sendForm = (event) => {
     event.preventDefault();
-    console.log('Send message')
   }
 
   return (

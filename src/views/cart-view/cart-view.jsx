@@ -9,21 +9,20 @@ import {Link} from  'react-router-dom';
 import './cart-view.css';
 
 let token = "Bearer " + localStorage.getItem('access_token');
-console.log(token)
 const CartView = (props) => {
     const [cartProducts, setCartProducts] = useState({
         products: []
-     });
-     const [isLoading, setIsLoading] = useState({ loading: true, updating: false})
-     const url = 'http://localhost:5000/api/v1/carts/';
-     const createOrderUrl = 'http://localhost:5000/api/v1/orders/';
-     const [defaultHeaders] = useState({
+    });
+    const [isLoading, setIsLoading] = useState({ loading: true, updating: false})
+    const url = 'http://localhost:5000/api/v1/carts/';
+    const createOrderUrl = 'http://localhost:5000/api/v1/orders/';
+    const [defaultHeaders] = useState({
         headers: {
             Authorization : token
         }
-     }) 
+    }) 
 
-     useEffect(() => {
+    useEffect(() => {
         setIsLoading({
             loading: true
         })

@@ -23,10 +23,10 @@ const Storefront = props => {
   useEffect(() => {
     let url = props.location.search.substr(1);
     let searchParameters = queryString.parse(url);
-
     setIsLoading({
       loading: true
     });
+
     axios
       .get("http://localhost:5000/api/v1/products/", {
         params: {
@@ -56,6 +56,7 @@ const Storefront = props => {
         name={product.name}
         price={product.price}
         url={product.img}
+        product_id={product._id}
         productPage={"/product/" + product._id}
       />
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './privacy-and-terms-modal.css'
 import { Modal } from 'react-bootstrap'
 import Title from '../title/title'

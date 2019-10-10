@@ -97,12 +97,12 @@ const Login = props => {
         </Link>
         </div>
         <div className="text-dark text-conditions">
-          <a onClick={conditionsModalHandleShow}>
+          <a onClick={conditionsModalHandleShow} href>
             Conditions
           </a>
         </div>
         <div className="text-dark text-privacy">
-          <a onClick={privacyModalHandleShow}>
+          <a onClick={privacyModalHandleShow} href>
             Privacy
           </a>
         </div>

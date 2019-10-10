@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import queryString from "querystring";
 import axios from "axios";
 import "./storefront.css";
 import Spinner from "react-bootstrap/Spinner";
 import CardProduct from "../../components/product-card/product-card";
 import Banner from "../../components/banner/banner";
+import { requestGuest } from "../../api/authenticationApi";
 
 const Storefront = props => {
   //State
@@ -18,15 +20,20 @@ const Storefront = props => {
   });
   const [pageSize] = useState({ page_size: 15 });
   const [isLoading, setIsLoading] = useState({ loading: true });
+  const dispatch = useDispatch();
 
   //Effects
   useEffect(() => {
     let url = props.location.search.substr(1);
     let searchParameters = queryString.parse(url);
-
     setIsLoading({
       loading: true
     });
+
+    if (!localStorage.getItem("access_token")) {
+      dispatch(requestGuest());
+    }
+
     axios
       .get("http://localhost:5000/api/v1/products/", {
         params: {
@@ -44,7 +51,7 @@ const Storefront = props => {
           existingTotal: response.data.total
         });
       });
-  }, [currentPage, pageSize, props.location.search]);
+  }, [currentPage, pageSize, props.location.search, dispatch]);
 
   //Methods
 
@@ -56,6 +63,7 @@ const Storefront = props => {
         name={product.name}
         price={product.price}
         url={product.img}
+        product_id={product._id}
         productPage={"/product/" + product._id}
       />
     );

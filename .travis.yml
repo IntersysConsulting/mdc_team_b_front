@@ -16,5 +16,3 @@ deploy:
     branche: master
 true:
   branche: master
-notifications:
-  slack: intersysconsulting:tm8ruzNu4pTlNUU916sAKPpP

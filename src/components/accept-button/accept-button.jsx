@@ -11,7 +11,9 @@ const AcceptButton = props => {
         (props.cart ? "cart-icon " : "") +
         props.className
       }
-      variant={props.border ? "blue" : "green"}
+      variant={
+        props.variant ? props.variant : props.border ? "indigo" : "green"
+      }
       icon={props.cart ? CartIcon : undefined}
       size={props.size}
       block={props.block}

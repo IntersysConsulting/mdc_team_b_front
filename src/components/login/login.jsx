@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import Logo from "../layout/logo/logo.png";
 import { login } from "../../api/authenticationApi";
 import PasswordField from "../../containers/password-field/password-field.js";
@@ -13,24 +12,18 @@ const Login = props => {
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
-  const Send = (event) => {
+  const Send = event => {
     event.preventDefault();
-    let formData = new FormData()
-    formData.set('email', loginState.email)
-    formData.set('password', loginState.password)
-    dispatch(login(formData, props.admin)).then(() => {
-      if(props.admin){
-        props.history.push("/admin")
-      } else {
-        props.history.push("/") 
-      }
-    })
+    let formData = new FormData();
+    formData.set("email", loginState.email);
+    formData.set("password", loginState.password);
+    dispatch(login(formData, props.admin));
   };
 
   const onChangeInput = event => {
-    let newValue = {...loginState}
-    newValue[event.target.name] = event.target.value
-    setLoginState(newValue)
+    let newValue = { ...loginState };
+    newValue[event.target.name] = event.target.value;
+    setLoginState(newValue);
   };
 
   return (
@@ -49,7 +42,11 @@ const Login = props => {
               value={loginState.email}
               className="border-dark border-2 mb-4"
             ></Form.Control>
-            <PasswordField name="password" placeholder="Password" onChange={onChangeInput}></PasswordField>
+            <PasswordField
+              name="password"
+              placeholder="Password"
+              onChange={onChangeInput}
+            ></PasswordField>
           </Form>
           <Link to={"/recovery-password"} className="login-forgot text-dark">
             Forgot my password
@@ -79,5 +76,4 @@ const Login = props => {
   );
 };
 
-const loginWithRouter = withRouter(Login)
-export default loginWithRouter;
+export default Login;

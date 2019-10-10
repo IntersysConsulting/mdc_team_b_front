@@ -63,3 +63,11 @@ export default function authenticationReducer(
     return state;
   }
 }
+
+export default function authenticationReducer(state = initialState, { type, auth }) {
+    if (autenticationTypes.hasOwnProperty(type)) {
+        return autenticationTypes[type]({...state }, auth.data)
+    } else {
+        return state
+    }
+}

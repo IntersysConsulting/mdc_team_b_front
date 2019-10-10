@@ -91,7 +91,7 @@ export const checkoutOrderActions = () => {
     return (dispatch) => {
         dispatch(fetchCheckoutOrderBegin());
         checkoutOrderApi.getOrderInfo().then((response) => {
-            dispatch(fetchCheckoutOrderSuccess(response.data.data));
+            dispatch(fetchCheckoutOrderSuccess(response.data.data.products));
         }).catch((error) => {
             dispatch(fetchCheckoutOrderError(error));
         });

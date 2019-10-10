@@ -1,17 +1,17 @@
-import React,{ useEffect } from 'react';
-import { Route, Switch, withRouter  } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import WorkInProgress from '../views/work-in-progress/in-progress'
-import NotFound from '../views/not-found/404'
-import LayoutCustomer from '../components/layout/layout-customer';
+import WorkInProgress from "../views/work-in-progress/in-progress";
+import NotFound from "../views/not-found/404";
+import LayoutCustomer from "../components/layout/layout-customer";
 import AdminLogin from "../views/AdminLogin/AdminLogin";
-import Signup from "../views/Signup/Signup"
-import LayoutAdmin from '../components/layout/layout-admin';
-import CartView from '../views/cart-view/cart-view';
-import UserLogin from '../views/UserLogin/UserLogin';
-import Storefront from "../views/storefront/storefront"
-import Product from "../views/single-product/product"
-import DemoImage from '../components/upload-image/demo-image';
+import Signup from "../views/Signup/Signup";
+import LayoutAdmin from "../components/layout/layout-admin";
+import CartView from "../views/cart-view/cart-view";
+import UserLogin from "../views/UserLogin/UserLogin";
+import Storefront from "../views/storefront/storefront";
+import Product from "../views/single-product/product";
+import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
 
 const LayoutContainer = props => {
@@ -46,7 +46,7 @@ const LayoutContainer = props => {
     layout = (
       <LayoutCustomer accessLevelState={accessLevelState}>
         <Switch>
-          <Route path = "/cart" exact component={CartView} />
+          <Route path="/cart" exact component={CartView} />
           <Route path="/" exact component={Storefront} />
           <Route path="/product/*" exact component={Product} />
           <Route path="/account" exact component={WorkInProgress} />

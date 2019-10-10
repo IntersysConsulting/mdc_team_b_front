@@ -5,10 +5,12 @@ import WorkInProgress from '../views/work-in-progress/in-progress'
 import NotFound from '../views/not-found/404'
 import LayoutCustomer from '../components/layout/layout-customer';
 import AdminLogin from "../views/AdminLogin/AdminLogin";
-import Signup from "../views/Signup/Signup"
+import Signup from "../views/Signup/Signup";
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import UserLogin from '../views/UserLogin/UserLogin';
+import Storefront from '../views/storefront/storefront';
+import Checkout from '../views/Checkout/checkout';
 
 
 const LayoutContainer = (props) => {
@@ -26,7 +28,7 @@ const LayoutContainer = (props) => {
     },[accessLevelState, props.history])
 
     /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
-   if(accessLevelState.role === "admin"){
+  if(accessLevelState.role === "admin"){
     layout = (
       <LayoutAdmin accessLevelState = {accessLevelState}>
         <Switch> 
@@ -43,13 +45,14 @@ const LayoutContainer = (props) => {
     layout = (
       <LayoutCustomer accessLevelState = {accessLevelState}>
         <Switch>
-          <Route path = "/" exact component={WorkInProgress} />
+          <Route path = "/" exact component={Storefront} />
           <Route path = "/cart" exact component={CartProductDemo} />
           <Route path = "/product/*" exact component={WorkInProgress} />
           <Route path = "/account" exact component={WorkInProgress} />
           <Route path = "/summary" exact component={WorkInProgress} />
           <Route path = "/billing-info" exact component={WorkInProgress} />
           <Route path = "/shipping-info" exact component={WorkInProgress} />
+          <Route path = "/checkout" exact component={Checkout}/>
           <Route path = "/orders" exact component={WorkInProgress} />
           <Route path = "/login" exact component={UserLogin} />
           <Route path = "/login-admin" exact component={AdminLogin} />

@@ -10,9 +10,8 @@ const persistConfig = {
     key: 'root',
     storage: storage,
     stateReconciler: autoMergeLevel2 // see "Merge Process" section for details.
-   };
+};
 
-   
 const pReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(pReducer, applyMiddleware(thunk));

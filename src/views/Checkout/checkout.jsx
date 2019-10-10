@@ -10,26 +10,20 @@ import { Form } from 'react-bootstrap';
 import EditButton from '../../components/edit-button/edit-button';
 import CheckoutAddressModal from '../../components/checkout-address-modal/checkout-address-modal';
 import NextPageButton from '../../components/next-page-button/next-page-button';
+import { checkoutOrderActions } from '../../actions/checkoutActions';
 import { checkoutShippingAddressActions } from '../../actions/checkoutActions';
 import { checkoutBillingAddressActions } from '../../actions/checkoutActions';
-
-
-var items = [
-    { name: "Bear", price: "1000", qty: "5", total: "5000" },
-    { name: "Belt of the lookout", price: "1800", qty: "2", total: "3600" },
-    {
-        name: "Lance of the bronze dragon",
-        price: "50000",
-        qty: "3",
-        total: "150000"
-    },
-    { name: "Ring of the performer", price: "20000", qty: "1", total: "20000" }
-];
 
 
 const Checkout = () => {
 
     const loading = useSelector((state) => state.checkoutState.billing_loading);
+
+    const [displayedShippingAddress, setDisplayedShippingAddress] = useState({});
+    const selectedShippingAddress = (obj) => {setDisplayedShippingAddress(obj); shippingHandleShow(false)};
+
+    const [displayedBillingAddress, setDisplayedBillingAddress] = useState({});
+    const selectedBillingAddress = (obj) => {setDisplayedBillingAddress(obj); billingHandleShow(false)};
 
     const [shippingShow, shippingSetShow] = useState(false);
     const shippingHandleShow = () => shippingSetShow(!shippingShow);
@@ -40,6 +34,7 @@ const Checkout = () => {
     const [currentView, setCurrentView] = useState(0);
     const changeCurrentView = () => setCurrentView(currentView + 1);
 
+    // const order = useSelector((state) => state.checkoutState.order)
     const shipping_address = useSelector((state) => state.checkoutState.shipping_address);
     const billing_address = useSelector((state) => state.checkoutState.billing_address);
 
@@ -47,10 +42,17 @@ const Checkout = () => {
 
     
     useEffect(() => {
+        dispatch(checkoutOrderActions());
         dispatch(checkoutShippingAddressActions());
         dispatch(checkoutBillingAddressActions());
     },[]);
 
+
+    var items = [
+        { name: "Belt of the lookout", price: "1800", qty: "2", total: "3600" },
+        { name: "Lance of the bronze dragon", price: "50000", qty: "3", total: "150000"},
+        { name: "Ring of the performer", price: "20000", qty: "1", total: "20000" }
+    ];
 
     switch (currentView) {
 
@@ -65,13 +67,13 @@ const Checkout = () => {
                                 <Title>Shipping Address</Title>
                             </div>
 
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={shipping_address[0].first_name +" " +shipping_address[0].last_name}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={shipping_address[0].address}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={shipping_address[0].zip_code}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={shipping_address[0].state}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={shipping_address[0].country}></Form.Control>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.name ? displayedShippingAddress.name : shipping_address[0].first_name +" " +shipping_address[0].last_name} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.address ? displayedShippingAddress.address : shipping_address[0].address} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.zipCode ? displayedShippingAddress.zipCode : shipping_address[0].zip_code} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.state ? displayedShippingAddress.state : shipping_address[0].state} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.country ? displayedShippingAddress.country : shipping_address[0].country} readonly="readonly"/>
                             <EditButton className="col-12" onClick={shippingHandleShow}>Change</EditButton>
-                            <CheckoutAddressModal type="shipping" title="Shipping Info" subtitle="Select one" show={shippingShow} handleShow={shippingHandleShow} url="/newShippingAdd">
+                            <CheckoutAddressModal type="shipping" title="Shipping Info" subtitle="Select one" show={shippingShow} handleShow={shippingHandleShow} url="/newShippingAdd" onClick={selectedShippingAddress}>
                                 shipping
                         </CheckoutAddressModal>
                         </Form>
@@ -80,13 +82,13 @@ const Checkout = () => {
                             <div id="billing-address-title">
                                 <Title>Billing Address</Title>
                             </div>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={billing_address[0].first_name +" " +billing_address[0].last_name}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={billing_address[0].address}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={billing_address[0].zip_code}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={billing_address[0].state}></Form.Control>
-                            <Form.Control className="border-dark rounded margin-bottom" defaultValue={billing_address[0].country}></Form.Control>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.name ? displayedBillingAddress.name : billing_address[0].first_name + " " +billing_address[0].last_name} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.address ? displayedBillingAddress.address : billing_address[0].address} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.zipCode ? displayedBillingAddress.zipCode : billing_address[0].zip_code} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.state ? displayedBillingAddress.state : billing_address[0].state} readonly="readonly"/>
+                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.country ? displayedBillingAddress.country : billing_address[0].country} readonly="readonly"/>
                             <EditButton className="col-12" onClick={billingHandleShow}>Change</EditButton>
-                            <CheckoutAddressModal type="billing" title="Billing Info" subtitle="Select one" show={billingShow} handleShow={billingHandleShow} url="/newBillingAdd">
+                            <CheckoutAddressModal type="billing" title="Billing Info" subtitle="Select one" show={billingShow} handleShow={billingHandleShow} url="/newBillingAdd" onClick={selectedBillingAddress}>
                                 billing
                         </CheckoutAddressModal>
                         </Form>

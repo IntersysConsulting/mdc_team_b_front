@@ -1,7 +1,7 @@
 import { checkoutConstants } from '../constants/checkoutConstants';
-import {billingApi} from '../api/billingApi'
 import { checkoutOrderApi } from '../api/checkoutOrderApi';
 import { shippingApi } from '../api/shippingApi';
+import { billingApi } from '../api/billingApi';
 
 /**
  * Consts to get posts from API implementing API request convention
@@ -91,7 +91,7 @@ export const checkoutOrderActions = () => {
     return (dispatch) => {
         dispatch(fetchCheckoutOrderBegin());
         checkoutOrderApi.getOrderInfo().then((response) => {
-            dispatch(fetchCheckoutOrderSuccess(response.data));
+            dispatch(fetchCheckoutOrderSuccess(response.data.data));
         }).catch((error) => {
             dispatch(fetchCheckoutOrderError(error));
         });

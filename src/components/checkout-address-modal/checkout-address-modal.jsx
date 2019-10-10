@@ -27,6 +27,7 @@ const CheckoutAddressModal = (props) => {
         country={shipping_addresses[i].country} 
         state={shipping_addresses[i].state} 
         zipCode={shipping_addresses[i].zip_code}
+        onClick={props.onClick}
         />)
     }
 
@@ -38,6 +39,7 @@ const CheckoutAddressModal = (props) => {
         country={billing_addresses[i].country} 
         state={billing_addresses[i].state} 
         zipCode={billing_addresses[i].zip_code}
+        onClick={props.onClick}
         />)
     }
 

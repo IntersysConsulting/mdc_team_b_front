@@ -7,11 +7,17 @@ import Logo from "../layout/logo/logo.png";
 import { login } from "../../api/authenticationApi";
 import PasswordField from "../../containers/password-field/password-field.js";
 import AcceptButton from "../accept-button/accept-button.jsx";
-import "./login.css";
+import PrivacyAndTermsModal from "../privacy-and-terms-modal/privacy-and-terms-modal";
+import "./login.css"
 
 const Login = props => {
+
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({ email: "", password: "" });
+  const [conditionsModalShow, conditionsModalSetShow] = useState(false);
+  const conditionsModalHandleShow = () => conditionsModalSetShow(!conditionsModalShow);
+  const [privacyModalShow, privacyModalSetShow] = useState(false);
+  const privacyModalHandleShow = () => privacyModalSetShow(!privacyModalShow);
 
   const Send = (event) => {
     event.preventDefault();
@@ -19,22 +25,42 @@ const Login = props => {
     formData.set('email', loginState.email)
     formData.set('password', loginState.password)
     dispatch(login(formData, props.admin)).then(() => {
-      if(props.admin){
+      if (props.admin) {
         props.history.push("/admin")
       } else {
-        props.history.push("/") 
+        props.history.push("/")
       }
     })
   };
 
   const onChangeInput = event => {
-    let newValue = {...loginState}
+    let newValue = { ...loginState }
     newValue[event.target.name] = event.target.value
     setLoginState(newValue)
   };
 
   return (
+
     <div className="login-holder">
+
+      <PrivacyAndTermsModal title="Terms and Conditions" show={conditionsModalShow} handleShow={conditionsModalHandleShow}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis velit turpis, vitae pellentesque sem elementum nec.
+        Mauris purus mi, posuere id dolor et, finibus euismod massa. Suspendisse potenti. Sed purus leo, euismod eu facilisis ut,
+        tempor pretium augue. Phasellus quis laoreet erat, id rhoncus velit. In tristique tortor non mi malesuada rutrum.
+        Proin quis maximus mi, ultricies convallis ante. Nunc sagittis purus ipsum, nec suscipit libero egestas ut. Fusce feugiat dui
+        nec vehicula tempor. Quisque sem lorem, finibus ac quam nec, cursus vestibulum sem. Aenean eget nisi eleifend purus fringilla
+        tempus vitae et ante.
+      </PrivacyAndTermsModal>
+
+      <PrivacyAndTermsModal title="Privacy Policy" show={privacyModalShow} handleShow={privacyModalHandleShow}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce venenatis velit turpis, vitae pellentesque sem
+        elementum nec. Mauris purus mi, posuere id dolor et, finibus euismod massa. Suspendisse potenti. Sed purus leo,
+        euismod eu facilisis ut, tempor pretium augue. Phasellus quis laoreet erat, id rhoncus velit. In tristique tortor
+        non mi malesuada rutrum. Proin quis maximus mi, ultricies convallis ante. Nunc sagittis purus ipsum, nec suscipit
+        libero egestas ut. Fusce feugiat dui nec vehicula tempor. Quisque sem lorem, finibus ac quam nec, cursus vestibulum
+        sem. Aenean eget nisi eleifend purus fringilla tempus vitae et ante.
+      </PrivacyAndTermsModal>
+
       <div className="login-card border-indigo">
         <div className="login-header">
           <img alt="logo" src={Logo}></img>
@@ -65,15 +91,21 @@ const Login = props => {
         </div>
       </div>
       <div className="text-dark login-link-holder">
-        <Link to={"/help"} className="text-dark text-help">
-          Help
+        <div className="text-dark text-help">
+          <Link to={"/help"} className="text-dark text-help">
+            Help
         </Link>
-        <Link to={"/conditions"} className="text-dark text-conditions">
-          Conditions
-        </Link>
-        <Link to={"/privacy"} className="text-dark text-privacy">
-          Privacy
-        </Link>
+        </div>
+        <div className="text-dark text-conditions">
+          <a onClick={conditionsModalHandleShow}>
+            Conditions
+          </a>
+        </div>
+        <div className="text-dark text-privacy">
+          <a onClick={privacyModalHandleShow}>
+            Privacy
+          </a>
+        </div>
       </div>
     </div>
   );

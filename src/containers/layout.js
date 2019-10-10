@@ -9,6 +9,8 @@ import Signup from "../views/Signup/Signup"
 import LayoutAdmin from '../components/layout/layout-admin';
 import CartProductDemo from '../components/cart-product/demo';
 import UserLogin from '../views/UserLogin/UserLogin';
+import Storefront from "../views/storefront/storefront"
+import Product from "../views/single-product/product"
 import { validateAuthentication } from "../api/authenticationApi"
 
 const LayoutContainer = (props) => {

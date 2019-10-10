@@ -1,18 +1,19 @@
 import React,{ useEffect } from 'react';
-import { Route, Switch, withRouter  } from 'react-router-dom'
+import { Route, Switch, withRouter  } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import WorkInProgress from '../views/work-in-progress/in-progress'
-import NotFound from '../views/not-found/404'
+import WorkInProgress from '../views/work-in-progress/in-progress';
+import NotFound from '../views/not-found/404';
 import LayoutCustomer from '../components/layout/layout-customer';
 import AdminLogin from "../views/AdminLogin/AdminLogin";
-import Signup from "../views/Signup/Signup"
-import LayoutAdmin from '../components/layout/layout-admin';
-import CartProductDemo from '../components/cart-product/demo';
+
+import CartView from '../views/cart-view/cart-view';
 import UserLogin from '../views/UserLogin/UserLogin';
-import Storefront from "../views/storefront/storefront"
-import Product from "../views/single-product/product"
-import DemoImage from '../components/upload-image/demo-image';
+import Storefront from '../views/storefront/storefront';
+import Signup from "../views/Signup/Signup";
+import LayoutAdmin from "../components/layout/layout-admin";
+import Product from "../views/single-product/product";
 import { validateAuthentication } from "../api/authenticationApi";
+import DemoImage from '../components/upload-image/demo-image';
 
 const LayoutContainer = (props) => {
     let layout = null;
@@ -45,7 +46,7 @@ const LayoutContainer = (props) => {
       <LayoutCustomer accessLevelState={accessLevelState}>
         <Switch>
           <Route path="/" exact component={Storefront} />
-          <Route path="/cart" exact component={CartProductDemo} />
+          <Route path="/cart" exact component={CartView} />
           <Route path="/product/*" exact component={Product} />
           <Route path="/account" exact component={WorkInProgress} />
           <Route path="/summary" exact component={WorkInProgress} />

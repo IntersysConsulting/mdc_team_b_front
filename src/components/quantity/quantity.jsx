@@ -34,7 +34,7 @@ class Quantity extends React.Component {
             isDebouncing:false,
             debounceTimer: 0
           })
-          this.props.onChange(this.props._id, this.state.value);          
+          this.props.onChange(this.props.id, this.state.value);          
         }
       }
     },100)

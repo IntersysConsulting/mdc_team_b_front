@@ -84,7 +84,6 @@ const FilterSortModal = props => {
     var newFilter = filter.value;
     newFilter.forEach((value, index, array) => {
       if (value.id === target) {
-        console.log(value.id + " " + index + " is now " + !value.checked);
         value.checked = !value.checked;
       }
     });

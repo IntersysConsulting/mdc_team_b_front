@@ -12,7 +12,7 @@ import UserLogin from '../views/UserLogin/UserLogin';
 import Storefront from "../views/storefront/storefront"
 import Product from "../views/single-product/product"
 import DemoImage from '../components/upload-image/demo-image';
-import { validateAuthentication } from "../api/authenticationApi";
+import { validateAuthentication, requestGuest } from "../api/authenticationApi";
 
 const LayoutContainer = (props) => {
     let layout = null;
@@ -23,6 +23,9 @@ const LayoutContainer = (props) => {
     useEffect(() => {
       if(token) {
           dispatch(validateAuthentication());
+      }
+      else{
+          dispatch(requestGuest())
       }
     },[dispatch, token])
 

@@ -7,50 +7,59 @@ import {
 
 const initialState = {
   role: "guest",
-  name: "Guest",
+  name: "Guest"
 };
 
 const autenticationTypes = {
   [AUTHENTICATED]: (newState, data) => {
-    newState.name = (
-      data.customer_name ? data.customer_name : 
-      data.admin_name ? data.admin_name : newState.name
-    )
-    newState.role = ( data.message === "Welcome admin" ? "admin" :  "registeredUser" ) 
-  
-    localStorage.setItem("access_token", data.access_token)
-    localStorage.setItem("refresh_token", data.refresh_token)
- 
-    return newState
+    newState.name = data.customer_name
+      ? data.customer_name
+      : data.admin_name
+      ? data.admin_name
+      : newState.name;
+    newState.role =
+      data.message === "Welcome admin"
+        ? "admin"
+        : data.message === "Welcome guest!"
+        ? "guest"
+        : "registeredUser";
+
+    localStorage.setItem("access_token", data.access_token);
+    localStorage.setItem("refresh_token", data.refresh_token);
+
+    return newState;
   },
-  [UNAUTHENTICATED]: (newState) => {
-    localStorage.removeItem("access_token")
-    localStorage.removeItem("refresh_token")
-    newState.role = "guest"
-    newState.name = "Guest"
-    return newState
+  [UNAUTHENTICATED]: newState => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    newState.role = "guest";
+    newState.name = "Guest";
+    return newState;
   },
   [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {
-    let role = data.role.toLowerCase()
-    role = (role === "customer" ? "registeredUser" : role)
-    if(newState.role === role) {
-      return newState
+    let role = data.role.toLowerCase();
+    role = role === "customer" ? "registeredUser" : role;
+    if (newState.role === role) {
+      return newState;
     } else {
-      localStorage.removeItem("access_token")
-      localStorage.removeItem("refresh_token")
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
       return {
         role: "guest",
-        name: "Guest",
-      }
+        name: "Guest"
+      };
     }
   }
-}
+};
 
-export default function authenticationReducer(state = initialState, {type, auth}) {
-  if(autenticationTypes.hasOwnProperty(type)){
-    return autenticationTypes[type]({...state}, auth.data)
+export default function authenticationReducer(
+  state = initialState,
+  { type, auth }
+) {
+  if (autenticationTypes.hasOwnProperty(type)) {
+    return autenticationTypes[type]({ ...state }, auth.data);
   } else {
-    return state
+    return state;
   }
 }

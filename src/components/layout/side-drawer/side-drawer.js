@@ -10,7 +10,6 @@ const sideDrawer = (props) => {
         attachedClasses = ["SideDrawer", "Open"];
     }
     
-    console.log(props.accessLevel.role)
     return(
         <div>
             <Backdrop show={props.open} clicked={props.closed} />

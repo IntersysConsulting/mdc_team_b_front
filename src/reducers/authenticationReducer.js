@@ -1,14 +1,13 @@
 import {
   AUTHENTICATED,
   UNAUTHENTICATED,
-  AUTHENTICATION_ERROR
+  AUTHENTICATION_ERROR,
+  VALIDATE_AUTHENTICATION
 } from "../constants/authenticationConstants";
 
 const initialState = {
   role: "guest",
   name: "Guest",
-  access_token: null,
-  refresh_token: null 
 };
 
 const autenticationTypes = {
@@ -18,18 +17,34 @@ const autenticationTypes = {
       data.admin_name ? data.admin_name : newState.name
     )
     newState.role = ( data.message === "Welcome admin" ? "admin" :  "registeredUser" ) 
-
-    newState.access_token = data.access_token 
-    newState.refresh_token = data.refresh_token 
+  
+    localStorage.setItem("access_token", data.access_token)
+    localStorage.setItem("refresh_token", data.refresh_token)
  
     return newState
   },
   [UNAUTHENTICATED]: (newState) => {
-    newState.access_token = null
-    newState.refresh_token = null
-    return newState;
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("refresh_token")
+    newState.role = "guest"
+    newState.name = "Guest"
+    return newState
   },
-  [AUTHENTICATION_ERROR]: () => alert("Error in authentication request")
+  [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
+  [VALIDATE_AUTHENTICATION]: (newState, data) => {
+    let role = data.role.toLowerCase()
+    role = (role === "customer" ? "registeredUser" : role)
+    if(newState.role === role) {
+      return newState
+    } else {
+      localStorage.removeItem("access_token")
+      localStorage.removeItem("refresh_token")
+      return {
+        role: "guest",
+        name: "Guest",
+      }
+    }
+  }
 }
 
 export default function authenticationReducer(state = initialState, {type, auth}) {

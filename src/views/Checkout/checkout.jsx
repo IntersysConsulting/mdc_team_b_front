@@ -2,33 +2,21 @@ import React, { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner'
 import '../Checkout/checkout.css';
-import Title from '../../components/title/title';
-import CheckoutTable from '../../components/checkout-table/checkout-table';
 import PaymentCard from '../../components/payment-card/payment-card';
 import AcceptButton from '../../components/accept-button/accept-button';
-import { Form } from 'react-bootstrap';
-import EditButton from '../../components/edit-button/edit-button';
-import CheckoutAddressModal from '../../components/checkout-address-modal/checkout-address-modal';
 import NextPageButton from '../../components/next-page-button/next-page-button';
-import { checkoutOrderActions } from '../../actions/checkoutActions';
-import { checkoutShippingAddressActions } from '../../actions/checkoutActions';
-import { checkoutBillingAddressActions } from '../../actions/checkoutActions';
+import { checkoutBillingAddressActions, checkoutProductActions, checkoutShippingAddressActions, checkoutOrderActions} from '../../actions/checkoutActions';
+
 
 const Checkout = () => {
 
     const loading = useSelector((state) => state.checkoutState.billing_loading);
 
     const [displayedShippingAddress, setDisplayedShippingAddress] = useState({});
-    const selectedShippingAddress = (obj) => {setDisplayedShippingAddress(obj); shippingHandleShow(false)};
+    const selectedShippingAddress = (obj) => {setDisplayedShippingAddress(obj);};
 
     const [displayedBillingAddress, setDisplayedBillingAddress] = useState({});
-    const selectedBillingAddress = (obj) => {setDisplayedBillingAddress(obj); billingHandleShow(false)};
-
-    const [shippingShow, shippingSetShow] = useState(false);
-    const shippingHandleShow = () => shippingSetShow(!shippingShow);
-
-    const [billingShow, billingSetShow] = useState(false);
-    const billingHandleShow = () => billingSetShow(!billingShow);
+    const selectedBillingAddress = (obj) => {setDisplayedBillingAddress(obj);};
 
     const [currentView, setCurrentView] = useState(0);
     const changeCurrentView = () => setCurrentView(currentView + 1);
@@ -36,14 +24,15 @@ const Checkout = () => {
     // const order = useSelector((state) => state.checkoutState.order)
     const shipping_address = useSelector((state) => state.checkoutState.shipping_address);
     const billing_address = useSelector((state) => state.checkoutState.billing_address);
-    const items = useSelector((state) => state.checkoutState.items)
+    const products = useSelector((state) => state.checkoutState.products)
 
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(checkoutOrderActions());
+        dispatch(checkoutProductActions());
         dispatch(checkoutShippingAddressActions());
         dispatch(checkoutBillingAddressActions());
+        dispatch(checkoutOrderActions())
     }, [dispatch]);
 
     switch (currentView) {
@@ -54,36 +43,6 @@ const Checkout = () => {
 
                     <div id="both-addresses-main-container" className="row justify-content-center">
 
-                        <Form id="shipping-address" className="col-xs-12 col-md-5 col-lg-4">
-                            <div id="shipping-address-title">
-                                <Title>Shipping Address</Title>
-                            </div>
-
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.name ? displayedShippingAddress.name : shipping_address[0].first_name +" " +shipping_address[0].last_name} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.address ? displayedShippingAddress.address : shipping_address[0].address} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.zipCode ? displayedShippingAddress.zipCode : shipping_address[0].zip_code} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.state ? displayedShippingAddress.state : shipping_address[0].state} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedShippingAddress.country ? displayedShippingAddress.country : shipping_address[0].country} readonly="readonly"/>
-                            <EditButton className="col-12" onClick={shippingHandleShow}>Change</EditButton>
-                            <CheckoutAddressModal type="shipping" title="Shipping Info" subtitle="Select one" show={shippingShow} handleShow={shippingHandleShow} url="/newShippingAdd" onClick={selectedShippingAddress}>
-                                shipping
-                        </CheckoutAddressModal>
-                        </Form>
-
-                        <Form id="billing-address" className="col-xs-12 col-md-5 col-lg-4">
-                            <div id="billing-address-title">
-                                <Title>Billing Address</Title>
-                            </div>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.name ? displayedBillingAddress.name : billing_address[0].first_name + " " +billing_address[0].last_name} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.address ? displayedBillingAddress.address : billing_address[0].address} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.zipCode ? displayedBillingAddress.zipCode : billing_address[0].zip_code} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.state ? displayedBillingAddress.state : billing_address[0].state} readonly="readonly"/>
-                            <Form.Control className="border-dark rounded margin-bottom" value={displayedBillingAddress.country ? displayedBillingAddress.country : billing_address[0].country} readonly="readonly"/>
-                            <EditButton className="col-12" onClick={billingHandleShow}>Change</EditButton>
-                            <CheckoutAddressModal type="billing" title="Billing Info" subtitle="Select one" show={billingShow} handleShow={billingHandleShow} url="/newBillingAdd" onClick={selectedBillingAddress}>
-                                billing
-                        </CheckoutAddressModal>
-                        </Form>
 
                     </div>
 
@@ -100,9 +59,7 @@ const Checkout = () => {
 
                 <div className="container-fluid">
 
-                    <div id="checkout-payment-title" className="offset-1">
-                        <Title>Payment</Title>
-                    </div>
+                    
 
                     <div id="payment-cards-table" className="row offset-1">
 
@@ -135,9 +92,7 @@ const Checkout = () => {
             return (
                 <div id="puchase-complete-whole">
 
-                    <div id="purchase-complete-title" className="text-center">
-                        <Title>Purchase Complete</Title>
-                    </div>
+                    
 
                     <div>
                         <p id="purchase-complete-text" className="text-center">
@@ -152,42 +107,9 @@ const Checkout = () => {
 
         default: {
 
-            let mainView = null;
-
-            (loading) ? mainView = (
-                <div className="container-fluid">
-
-                <Title>Order Summary</Title>
-
-                <div id="checkout-table" className="col-10 offset-1">
-                    <CheckoutTable products={items}></CheckoutTable>
-                </div>
-
-                <div id ="next-addresses-button-loading" className="text-right">
-                    <Spinner className="Spinner" animation="border" variant="warning"/>
-                </div>
-
-            </div>
-            )
-            : mainView = (
-                <div className="container-fluid">
-
-                <Title>Order Summary</Title>
-
-                <div id="checkout-table" className="col-10 offset-1">
-                    <CheckoutTable products={items}></CheckoutTable>
-                </div>
-
-                <div id="next-addresses-button" className="text-right offset-right-4">
-                    <NextPageButton title="Next" text="Shipping and Billing" onClick={changeCurrentView} />
-                </div>
-
-            </div>
-            )
-
             return (
                 <div>
-                    {mainView}
+                    {/*mainView*/}
                 </div>
             )
 

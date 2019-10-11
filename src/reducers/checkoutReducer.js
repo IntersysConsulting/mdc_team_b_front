@@ -1,8 +1,13 @@
 import { checkoutConstants } from '../constants/checkoutConstants';
 
 const INITIAL_STATE = {
-    items: [],
-    order: {},
+    products: [],
+    order: {
+        billing: 0,
+        shipping: 0,
+        payment: "fake",
+        products: []
+    },
     shipping_address: [],
     billing_address: [],
     errors: undefined,
@@ -13,40 +18,22 @@ const INITIAL_STATE = {
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case checkoutConstants.FETCH_CHECKOUT_ORDER_BEGIN:
-            return { ...state, order_loading: true };
 
-        case checkoutConstants.FETCH_CHECKOUT_ORDER_SUCCESS:
-            return { ...state, order_loading: false, items: action.payload };
-
-        case checkoutConstants.FETCH_CHECKOUT_ORDER_ERROR:
+        //Actions for checkout order
+        case checkoutConstants.FETCH_ORDER_BEGIN:
+            return { ...state, order_loading: true }
+        case checkoutConstants.FETCH_ORDER_SUCCESS:
+            return { ...state, order_loading: false, order: action.payload };
+        case checkoutConstants.FETCH_ORDER_ERROR:
             return { ...state, order_loading: false, errors: action.payload };
 
-
-
-
-
-
-        case checkoutConstants.FETCH_CHECKOUT_SHIPPING_ADDRESS_BEGIN:
-            return { ...state, shipping_loading: true };
-
-        case checkoutConstants.FETCH_CHECKOUT_SHIPPING_ADDRESS_SUCCESS:
-            return { ...state, shipping_loading: false, shipping_address: action.payload };
-
-        case checkoutConstants.FETCH_CHECKOUT_SHIPPING_ADDRESS_ERROR:
-            return { ...state, shipping_loading: false, errors: action.payload };
-
-
-
-
-        case checkoutConstants.FETCH_CHECKOUT_BILLING_ADDRESS_BEGIN:
-            return { ...state, billing_loading: true };
-
-        case checkoutConstants.FETCH_CHECKOUT_BILLING_ADDRESS_SUCCESS:
-            return { ...state, billing_loading: false, billing_address: action.payload };
-
-        case checkoutConstants.FETCH_CHECKOUT_BILLING_ADDRESS_ERROR:
-            return { ...state, billing_loading: false, errors: action.payload };
+        //Actions for checkout order
+        case checkoutConstants.FETCH_CUSTOMER_BEGIN:
+            return { ...state, order_loading: true };
+        case checkoutConstants.FETCH_CUSTOMER_SUCCESS:
+            return { ...state, order_loading: false, products: action.payload };
+        case checkoutConstants.FETCH_CUSTOMER_ERROR:
+            return { ...state, order_loading: false, errors: action.payload };
 
         default:
             return state;

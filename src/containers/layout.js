@@ -33,7 +33,7 @@ const LayoutContainer = props => {
     } else {
       dispatch(requestGuest());
     }
-  }, []);
+  }, [dispatch, token]);
 
   /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
   if (accessLevelState.role === "admin") {

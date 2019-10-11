@@ -20,13 +20,20 @@ const LayoutContainer = props => {
   const token = localStorage.getItem("access_token");
   const dispatch = useDispatch();
 
+  useEffect(() => {},[])
+
+
   useEffect(() => {
-    if (token) {
+    dispatch(validateAuthentication());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!token) {
       dispatch(validateAuthentication());
     } else {
       dispatch(requestGuest());
     }
-  }, [dispatch, token]);
+  }, []);
 
   /* Route "/" for customer should lead to storefront. "/admin" should lead to dashboard.*/
   if (accessLevelState.role === "admin") {

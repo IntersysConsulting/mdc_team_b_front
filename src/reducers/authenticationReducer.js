@@ -50,33 +50,16 @@ const autenticationTypes = {
       return {
         role: "guest",
         name: "Guest",
-        message:""
+        message: "",
       }
     }
   }
 }
 
 export default function authenticationReducer(state = initialState, { type, auth }) {
-    if (autenticationTypes.hasOwnProperty(type)) {
-        return autenticationTypes[type]({...state }, auth.data)
-    } else {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      return {
-        role: "guest",
-        name: "Guest"
-      };
-    }
-  }
-};
-
-export default function authenticationReducer(
-  state = initialState,
-  { type, auth }
-) {
   if (autenticationTypes.hasOwnProperty(type)) {
-    return autenticationTypes[type]({ ...state }, auth.data);
+      return autenticationTypes[type]({...state }, auth.data)
   } else {
     return state;
   }
-}
+};

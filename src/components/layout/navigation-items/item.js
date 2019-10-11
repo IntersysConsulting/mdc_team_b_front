@@ -5,7 +5,7 @@ import "./item.css"
 const Item = (props) => { 
     return(
     <li className="Item">
-        <Link to={props.link}>{props.children}</Link>
+        <Link onClick={props.onClick} to={props.link}>{props.children}</Link>
     </li>
 );
 

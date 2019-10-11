@@ -3,13 +3,16 @@ import { Form, InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import search from "./search.svg";
 import FilterSortModal from "../../filter-sort-modal/filter-sort-modal.jsx";
+import { withRouter } from "react-router-dom";
 import "./search-bar.css";
 
-const SearchBar = props => {
+const SearchBarUnrouted = props => {
   const [searchBarState, setSearchBarState] = useState({ show: false });
+  const [searchBarValue, setSearchBarValue] = useState({ search: "" });
 
-  const searchDownHandler = () => {
-    alert("This will trigger a search");
+  const searchHandler = () => {
+    let route = props.search_redirect_base + "?search=" + searchBarValue.search;
+    props.history.push(route);
   };
 
   /*
@@ -34,14 +37,26 @@ const SearchBar = props => {
   return (
     <div>
       <InputGroup className="justify-content-center">
-        <Form.Control className="bar" type="text" placeholder="Search" />
+        <Form.Control
+          className="bar"
+          type="text"
+          placeholder="Search"
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              searchHandler();
+            }
+          }}
+          onChange={e => {
+            setSearchBarValue({ search: e.target.value });
+          }}
+        />
         <InputGroup.Append>
           <Button className="filter" onClick={handleModalOpen}>
             Filter
           </Button>
         </InputGroup.Append>
         <InputGroup.Append>
-          <Button className="search" onClick={searchDownHandler}>
+          <Button className="search" onClick={searchHandler}>
             <img src={search} alt="Search" className="searchIcon" />
           </Button>
         </InputGroup.Append>
@@ -55,5 +70,7 @@ const SearchBar = props => {
     </div>
   );
 };
+
+const SearchBar = withRouter(SearchBarUnrouted);
 
 export default SearchBar;

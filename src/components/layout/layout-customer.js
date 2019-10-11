@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from 'react-router-dom'
 import "./layout-customer.css";
 import Navbar from "./nav-bar/nav-bar"
 import SideDrawer from "./side-drawer/side-drawer"
@@ -18,15 +19,11 @@ const LayoutCustomer = (props) => {
         } );
     }
 
-
     let showLayout = null;
     
-    if(props.accessLevelState.role === "external" ){
-        showLayout = (
-            <div>{props.children}</div>
-        )
-    }
-    else{
+    if(props.location.pathname === "/login" || props.location.pathname === "/login-admin" ){
+        showLayout = <React.Fragment>{props.children}</React.Fragment>
+    } else {
         let attachedClasses = "LayoutWindowCustomer";
         if(sideDrawerState.showSideDrawer === true){
             attachedClasses = "DrawerOpenCustomer";
@@ -48,4 +45,5 @@ const LayoutCustomer = (props) => {
     return (showLayout)
 }
 
-export default LayoutCustomer;
+const LayoutCustomerWithRourter = withRouter(LayoutCustomer)
+export default LayoutCustomerWithRourter;

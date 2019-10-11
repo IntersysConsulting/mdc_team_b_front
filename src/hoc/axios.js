@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const URL = 'http://127.0.0.1:5000/api/v1/'
+const URL = process.env.REACT_APP_API_URL
 const configDefault = {
-  baseURL: URL,
+  baseURL: "http://localhost:5000/api/v1/",
   responseType: "json",
   headers: {'Content-Type': 'multipart/form-data' }
 }
@@ -11,6 +11,7 @@ export function request (config = configDefault)  {
   const token = localStorage.getItem("access_token")
 
   if(token) {
+    console.log(token)
     config.headers['Authorization'] = `Bearer ${token}`
   }
 

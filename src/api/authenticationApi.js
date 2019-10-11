@@ -1,60 +1,134 @@
 import {
     authenticatedAction,
     unauthenticatedAction,
-    authentication_error
+    authentication_error,
+    validate_authentication,
+    save_user
 } from '../actions/authenticationCreator'
 import { request } from '../hoc/axios'
+import { makeRequest } from "./generalApi"
 
-function fetchToken(data, admin) {
-  if(admin) {
-    return request().post('admin/session/', data)
-  } else {
-    return request().post('session/', data)
-  }
-}
-  
-export function login(data, admin = false) {
-    return async function(dispatch) {
-      try {
-        await fetchToken(data, admin).then(
+export function requestGuest() {
+  return async function(dispatch) {
+    try {
+      await request()
+        .post("customers/guest", {})
+        .then(
           response => {
-            if(response.status === 200) {
-              dispatch(authenticatedAction(response))
+            if (response.status === 200) {
+              dispatch(authenticatedAction(response));
             } else {
-              dispatch(authentication_error(response))
+              dispatch(authentication_error(response));
             }
           },
-          error => console.log('An error accurred', error))
-      } catch (e) {
-        console.log(e)
-      }
+          error => console.log("An error accurred", error)
+        );
+    } catch (e) {
+      console.log(e);
     }
+  };
+}
+
+export function login(data, admin = false) {
+  return async function(dispatch) {
+    try {
+      await fetchToken(data, admin).then(
+        response => {
+          if (response.data.statusCode === 200) {
+            dispatch(authenticatedAction(response));
+            return true;
+          } else {
+            dispatch(authentication_error(response));
+          }
+        },
+        error => console.log("An error ocurred", error)
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
+function fetchToken(data, admin) {
+  if (admin) {
+    return request().post("admin/session/", data);
+  } else {
+    return request().post("session/", data);
+  }
 }
 
 function deleteToken(admin) {
-  let access_token = localStorage.getItem('access_token')
-  if(admin) {
-    return request(access_token).delete('admin/session/')
+  if (admin === "admin") {
+    return request().delete("admin/session/");
   } else {
-    return request(access_token).delete('session/')
+    return request().delete("session/");
   }
 }
 
-export function logout(admin = false) {
+export function logoutApi(admin = false) {
   return async function(dispatch) {
     try {
       await deleteToken(admin).then(
         response => {
-          if(response.status === 200) {
-            dispatch(unauthenticatedAction(response))
+          if (response.status === 200) {
+            dispatch(unauthenticatedAction(response));
           } else {
-            dispatch(authentication_error(response))
+            dispatch(authentication_error(response));
           }
         },
-        error => console.log('An error accurred', error))
+        error => console.log("An error accurred", error)
+      );
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 }
-  
+
+export function validateAuthentication() {
+  return async function(dispatch) {
+    try {
+      await request()
+        .get("identity/")
+        .then(
+          response => {
+            if (response.status === 200) {
+              dispatch(validate_authentication(response));
+            } else {
+              dispatch(authentication_error(response));
+            }
+          },
+          error => console.log("An error accurred", error)
+        );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+}
+
+// export const saveUser = (data, admin) => {
+//   let options = {
+//     method: "post", 
+//     actionSuccessful: save_user,
+//     actionError: authentication_error,
+//     data
+//   }
+
+//   if(admin) { 
+//     return makeRequest({...options, url: "admin/management/"})
+//   } else {
+//     return makeRequest({...options, url: "customer/"})
+//   }
+// }
+
+export const saveUser = (data) => {
+  let config = {
+    method: "post", 
+    actionSuccessful: save_user,
+    actionError: authentication_error
+  }
+  return makeRequest({...config, url: "customer/"}, data)
+}
+
+export const clusterSaveUser = data =>{
+  return saveUser(data)
+} ;

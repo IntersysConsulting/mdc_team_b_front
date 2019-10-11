@@ -23,6 +23,8 @@ const LayoutContainer = props => {
   useEffect(() => {
     if (token) {
       dispatch(validateAuthentication());
+    } else {
+      dispatch(requestGuest());
     }
   }, [dispatch, token]);
 

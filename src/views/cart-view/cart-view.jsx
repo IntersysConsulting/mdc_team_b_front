@@ -9,7 +9,6 @@ import {Link} from  'react-router-dom';
 import './cart-view.css';
 
 let token = "Bearer " + localStorage.getItem('access_token');
-
 const CartView = (props) => {
     const [cartProducts, setCartProducts] = useState({
         products: []

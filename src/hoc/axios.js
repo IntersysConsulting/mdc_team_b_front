@@ -8,13 +8,10 @@ const configDefault = {
 }
 
 export function request (config = configDefault)  {
-  const token = localStorage.getItem("access_token")
-
-  if(token) {
-    console.log(token)
-    config.headers['Authorization'] = `Bearer ${token}`
+  const access_token = localStorage.getItem("access_token")
+  if(access_token) {
+    config.headers['Authorization'] = `Bearer ${access_token}`
   }
-
   return axios.create(config)
 } 
 

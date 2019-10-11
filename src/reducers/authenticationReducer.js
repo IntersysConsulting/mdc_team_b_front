@@ -1,8 +1,8 @@
 import {
-    AUTHENTICATED,
-    UNAUTHENTICATED,
-    AUTHENTICATION_ERROR,
-    VALIDATE_AUTHENTICATION
+  AUTHENTICATED,
+  UNAUTHENTICATED,
+  AUTHENTICATION_ERROR,
+  VALIDATE_AUTHENTICATION
 } from "../constants/authenticationConstants";
 
 const initialState = {
@@ -60,6 +60,23 @@ export default function authenticationReducer(state = initialState, { type, auth
     if (autenticationTypes.hasOwnProperty(type)) {
         return autenticationTypes[type]({...state }, auth.data)
     } else {
-        return state
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      return {
+        role: "guest",
+        name: "Guest"
+      };
     }
+  }
+};
+
+export default function authenticationReducer(
+  state = initialState,
+  { type, auth }
+) {
+  if (autenticationTypes.hasOwnProperty(type)) {
+    return autenticationTypes[type]({ ...state }, auth.data);
+  } else {
+    return state;
+  }
 }

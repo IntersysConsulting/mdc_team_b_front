@@ -2,10 +2,7 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
-<<<<<<< HEAD
   SAVE_USER,
-=======
->>>>>>> 74955971410d2ddbebd1ea1e232cef8e4061ef13
   VALIDATE_AUTHENTICATION
 } from "../constants/authenticationConstants";
 
@@ -30,7 +27,6 @@ export function authentication_error(auth) {
   }
 }
 
-<<<<<<< HEAD
 export function save_user(auth) {
   return {
     type: SAVE_USER,
@@ -38,8 +34,6 @@ export function save_user(auth) {
   }
 }
 
-=======
->>>>>>> 74955971410d2ddbebd1ea1e232cef8e4061ef13
 export function validate_authentication(auth) {
   return {
     type: VALIDATE_AUTHENTICATION,

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const URL = process.env.REACT_APP_API_URL
 const configDefault = {
-  baseURL: "http://localhost:5000/api/v1/",
+  baseURL: URL,
   responseType: "json",
   headers: {'Content-Type': 'multipart/form-data' }
 }

@@ -1,19 +1,14 @@
 import { checkoutConstants } from '../constants/checkoutConstants';
 
 const INITIAL_STATE = {
-    products: [],
-    order: {
-        billing: 0,
-        shipping: 0,
-        payment: "fake",
-        products: []
-    },
+    order: {},
     shipping_address: [],
     billing_address: [],
     errors: undefined,
-    order_loading: false,
-    shipping_loading: false,
-    billing_loading: false,
+    loading_customer: false,
+    loading_put: false,
+    loading_order: false,
+    loading_create: false
 };
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
@@ -21,19 +16,19 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
 
         //Actions for checkout order
         case checkoutConstants.FETCH_ORDER_BEGIN:
-            return { ...state, order_loading: true }
+            return { ...state, loaing_order: true }
         case checkoutConstants.FETCH_ORDER_SUCCESS:
-            return { ...state, order_loading: false, order: action.payload };
+            return { ...state, loaing_order: false, order: action.payload };
         case checkoutConstants.FETCH_ORDER_ERROR:
-            return { ...state, order_loading: false, errors: action.payload };
-
-        //Actions for checkout order
+            return { ...state, loaing_order: false, errors: action.payload };
+            
+        //Actions for customer order
         case checkoutConstants.FETCH_CUSTOMER_BEGIN:
-            return { ...state, order_loading: true };
+            return { ...state, loading_customer: true };
         case checkoutConstants.FETCH_CUSTOMER_SUCCESS:
-            return { ...state, order_loading: false, products: action.payload };
+            return { ...state, loading_customer: false, shipping_address: action.payload.shipping_address, billing_address: action.payload.billing_address };
         case checkoutConstants.FETCH_CUSTOMER_ERROR:
-            return { ...state, order_loading: false, errors: action.payload };
+            return { ...state, loading_customer: false, errors: action.payload };
 
         default:
             return state;

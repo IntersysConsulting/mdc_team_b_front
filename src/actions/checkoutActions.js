@@ -2,29 +2,29 @@ import { checkoutConstants } from '../constants/checkoutConstants';
 import { checkoutApi } from '../api/checkoutApi';
 /**
  * Consts to get posts from API implementing API request convention
- * @function fetchCheckoutOrderBegin
- * @function fetchCheckoutOrderSuccess
- * @function fetchcheckoutOrderError
+ * @function fetchOrderBegin
+ * @function fetchOrderSuccess
+ * @function fetchOrderError
  * @function fetchCustomerBegin
  * @function fetchCustomerSuccess
  * @function fetchCustomerError
  */
 
 //---------------------- Order --------------------------------------------------
-const fetchCheckoutOrderBegin = () => {
+const fetchOrderBegin = () => {
     return {
         type: checkoutConstants.FETCH_ORDER_BEGIN,
     };
 };
 
-const fetchCheckoutOrderSuccess = (order) => {
+const fetchOrderSuccess = (order) => {
     return {
         type: checkoutConstants.FETCH_ORDER_SUCCESS,
         payload: order,
     };
 };
 
-const fetchCheckoutOrderError = (error) => {
+const fetchOrderError = (error) => {
     return {
         type: checkoutConstants.FETCH_ORDER_ERROR,
         payload: error.message,
@@ -38,10 +38,10 @@ const fetchCustomerBegin = () => {
     };
 };
 
-const fetchCustomerSuccess = (info) => {
+const fetchCustomerSuccess = (data) => {
     return {
         type: checkoutConstants.FETCH_CUSTOMER_SUCCESS,
-        payload: info,
+        payload: data,
     };
 };
 
@@ -55,11 +55,11 @@ const fetchCustomerError = (error) => {
 
 export const checkoutOrderActions = () => {
     return (dispatch) => {
-        dispatch(fetchCheckoutOrderBegin());
+        dispatch(fetchOrderBegin());
         checkoutApi.getOrderInfo().then((response) => {
-            dispatch(fetchCheckoutOrderSuccess(response.data.data[0]));
+            dispatch(fetchOrderSuccess(response.data.data[0]));
         }).catch((error) => {
-            dispatch(fetchCheckoutOrderError(error));
+            dispatch(fetchOrderError(error));
         });
     };
 };
@@ -67,7 +67,7 @@ export const checkoutOrderActions = () => {
 export const checkoutCustomerActions = () => {
     return (dispatch) => {
         dispatch(fetchCustomerBegin());
-        checkoutApi.getAllBillingAddresses().then((response) => {
+        checkoutApi.getCustomerInfo().then((response) => {
             dispatch(fetchCustomerSuccess(response.data.data));
         }).catch((error) => {
             dispatch(fetchCustomerError(error));

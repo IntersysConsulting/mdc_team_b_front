@@ -6,21 +6,19 @@ import CheckoutAddressModal from '../../components/checkout-address-modal/checko
 
 const ShippingAddress = (props) => {
 
-    const order = useSelector((state) => state.checkoutState.order);
-    const shipping_address =  useSelector((state) => state.checkoutState.shipping_address)
-
+    const address = useSelector((state) => state.checkoutState.shipping_address);
     const [shippingShow, shippingSetShow] = useState(false);
     const shippingHandleShow = () => shippingSetShow(!shippingShow);
 
     return (
         <Form id="shipping-address" className="col-xs-12 col-md-5 col-lg-4">
-            <Form.Control className="border-dark rounded margin-bottom" value={order.shipping !== 0 ? shipping_address[order.shipping].name : shipping_address[0].first_name +" " +shipping_address[0].last_name} readonly="readonly"/>
-            <Form.Control className="border-dark rounded margin-bottom" value={order.shipping !== 0 ? displayedShippingAddress.address : shipping_address[0].address} readonly="readonly"/>
-            <Form.Control className="border-dark rounded margin-bottom" value={order.shipping !== 0 ? displayedShippingAddress.zipCode : shipping_address[0].zip_code} readonly="readonly"/>
-            <Form.Control className="border-dark rounded margin-bottom" value={order.shipping !== 0 ? displayedShippingAddress.state : shipping_address[0].state} readonly="readonly"/>
-            <Form.Control className="border-dark rounded margin-bottom" value={order.shipping !== 0 ? displayedShippingAddress.country : shipping_address[0].country} readonly="readonly"/>
+            <Form.Control className="border-dark rounded margin-bottom" value={address.first_name + " " + address.last_name} readonly="readonly"/>
+            <Form.Control className="border-dark rounded margin-bottom" value={address.address} readonly="readonly"/>
+            <Form.Control className="border-dark rounded margin-bottom" value={address.zipCode} readonly="readonly"/>
+            <Form.Control className="border-dark rounded margin-bottom" value={address.state} readonly="readonly"/>
+            <Form.Control className="border-dark rounded margin-bottom" value={address.country} readonly="readonly"/>
             <EditButton className="col-12" onClick={props.shippingHandleShow}>Change</EditButton>
-            <CheckoutAddressModal type="shipping" title="Shipping Info" subtitle="Select one" show={shippingShow} handleShow={shippingHandleShow} url="/newShippingAdd" onClick={selectedShippingAddress}>
+            <CheckoutAddressModal type="shipping" title="Shipping Info" subtitle="Select one" show={shippingShow} handleShow={shippingHandleShow} url="/newShippingAdd" onClick={props.selectedShippingAddress}>
                 shipping
             </CheckoutAddressModal>
         </Form>

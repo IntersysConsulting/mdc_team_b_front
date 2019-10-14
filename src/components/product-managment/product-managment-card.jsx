@@ -4,10 +4,17 @@ import EditButton from "../edit-button/edit-button";
 import StorefrontImage from "../storefront-image/storefront-image";
 import './product-managment-card.css';
 import DeleteButton from "../delete-button/delete-button";
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteProductAction } from '../../actions/product-management/getProductActions';
 
-const CardProductManagment = (props) => (
+const CardProductManagment = (props) => {
+
+    const loading = useSelector((state) => state.viewProductsState.loading);
+    const dispatch = useDispatch();
+
+    return(
     <div className="pruduct-managment-container">
-        <DeleteButton className="btn-delete-product icon-22x22 btn-red"></DeleteButton>
+        <DeleteButton className="btn-delete-product icon-22x22 btn-red" onClick={() => { dispatch(deleteProductAction(props.id)); }} />
         <div className="image-container">
             <StorefrontImage url={props.url}></StorefrontImage>
         </div>
@@ -24,6 +31,7 @@ const CardProductManagment = (props) => (
             </div>
         </div>
     </div>
-)
+    )
+}
 
 export default CardProductManagment

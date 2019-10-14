@@ -181,7 +181,7 @@ const CartView = (props) => {
                     <div className="cart-view-checkout">
                         <div className="cart-view-subtotal">
                             <p className="cart-view-subtotal-text">SUBTOTAL: </p>
-                            <Price currency={'MXN'} price={subtotal}/>
+                            <Price className="cart-view-subtotal-price" currency={'MXN'} price={subtotal}/>
                         </div>
                         {updatingSpinner}
                     </div>

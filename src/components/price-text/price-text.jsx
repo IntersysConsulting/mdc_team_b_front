@@ -3,7 +3,7 @@ import './price-text.css'
 
 const Price = (props) => {
   return (
-    <p className="text-orange price-text"> {typeof props.price == "number" ? "$" + Number(props.price/100).toFixed(2)  :""} </p>
+    <p className="text-orange price-text"> {typeof props.price == "number" ? props.currency ? props.currency + " $" + Number(props.price/100).toFixed(2) : "$" + Number(props.price/100).toFixed(2)  :"NaN"} </p>
   );
 };
 

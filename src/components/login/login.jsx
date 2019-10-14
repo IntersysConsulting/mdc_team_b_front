@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
@@ -9,15 +10,21 @@ import AcceptButton from "../accept-button/accept-button.jsx";
 import "./login.css";
 
 const Login = props => {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({ email: "", password: "" });
 
-  const Send = event => {
+  const Send = (event) => {
     event.preventDefault();
     let formData = new FormData()
     formData.set('email', loginState.email)
     formData.set('password', loginState.password)
-    dispach(login(formData, props.admin))
+    dispatch(login(formData, props.admin)).then(() => {
+      if(props.admin){
+        props.history.push("/admin")
+      } else {
+        props.history.push("/") 
+      }
+    })
   };
 
   const onChangeInput = event => {
@@ -72,4 +79,5 @@ const Login = props => {
   );
 };
 
-export default Login;
+const loginWithRouter = withRouter(Login)
+export default loginWithRouter;

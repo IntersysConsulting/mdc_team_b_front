@@ -18,7 +18,7 @@ class Quantity extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: 1,
+      value: props.quantity,
       isDebouncing: false,
       debounceTimer: 0
     }
@@ -30,11 +30,11 @@ class Quantity extends React.Component {
           });
         }
         else{
-          this.props.onChange();
           this.setState({
             isDebouncing:false,
             debounceTimer: 0
           })
+          this.props.onChange(this.props.id, this.state.value);          
         }
       }
     },100)

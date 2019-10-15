@@ -26,22 +26,22 @@ const Checkout = () => {
         if(!loading_order){
             dispatch(checkoutOrderActions())
         }
-    },[]);
+    },[loading_order, dispatch]);
 
     useEffect(() => {
         if(!loading_order){
             dispatch(checkoutCustomerActions());
         }
-    }, [loading_order])
+    }, [loading_order, dispatch])
 
     useEffect(() =>  {
         if(order.products.length > 0 && !loading_customer && !loading_order){
             setCurrentView(1)
         }
-        else if(order.products.length == 0){
+        else if(order.products.length === 0){
             setCurrentView(5)
         }
-    },[loading_customer, loading_order])
+    },[loading_customer, loading_order, order.products.length])
 
     const updateOrder = () =>  {
         let formData = new FormData();

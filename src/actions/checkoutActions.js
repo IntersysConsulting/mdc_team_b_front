@@ -1,6 +1,5 @@
 import { checkoutConstants } from '../constants/checkoutConstants';
 import { checkoutApi } from '../api/checkoutApi';
-import { ResponsiveEmbed } from 'react-bootstrap';
 
 //---------------------- Order --------------------------------------------------
 const fetchOrderBegin = () => {

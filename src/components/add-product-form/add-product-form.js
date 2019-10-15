@@ -21,7 +21,7 @@ const AddProductForm = () => {
         let formData = new FormData()
 
         formData.set('name', productInfo.name)
-        formData.set('price', productInfo.price)
+        formData.set('price', productInfo.price*100)
         formData.append('image', imageToSave.selectedImage)
         formData.set('digital', productInfo.digital)
         formData.set('description', productInfo.description)
@@ -42,10 +42,10 @@ const AddProductForm = () => {
                 </div>
                 <Form onSubmit={handleSubmit} className="col-12 col-md-6 offset-md-3">
                     <Form.Group controlId="formProductName">
-                        <Form.Control type="text" placeholder="Product name" name="name" className="FormField" onChange={onChangeInput}/>
+                        <Form.Control type="text" required placeholder="Product name" name="name" className="FormField" onChange={onChangeInput}/>
                     </Form.Group>
                     <Form.Group controlId="formProductPrice">
-                        <Form.Control type="number" placeholder="Value" name="price" className="FormField" onChange={onChangeInput} />
+                        <Form.Control type="number" required min="0" step=".01" placeholder="Value" name="price" className="FormField" onChange={onChangeInput} />
                     </Form.Group>
                     <Form.Group controlId="formProductDescription">
                         <Form.Control as="textarea" rows="4" placeholder="Write your description here" name="description" className="FormField" onChange={onChangeInput} />

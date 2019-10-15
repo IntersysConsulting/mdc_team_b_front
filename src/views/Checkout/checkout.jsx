@@ -14,6 +14,7 @@ const Checkout = () => {
     const loading_order = useSelector((state) => state.checkoutState.loading_order);
     const loading_customer = useSelector((state) => state.checkoutState.loading_customer);
     const loading_put = useSelector((state) => state.checkoutState.loading_put);
+    const errorUpdate = useSelector((state) => state.checkoutState.errorUpdate);
     const updated = useSelector((state) => state.checkoutState.updated);
     const order = useSelector((state) => state.checkoutState.order);
     const newOrder = useSelector((state) => state.checkoutState.newOrder)
@@ -36,14 +37,15 @@ const Checkout = () => {
 
     useEffect(() =>  {
         if(order.products.length > 0 && !loading_customer && !loading_order){
-            setCurrentView(1)
+            setCurrentView(1);
         }
         else if(order.products.length === 0){
-            setCurrentView(5)
+            setCurrentView(5);
         }
     },[loading_customer, loading_order, order.products.length])
 
     const updateOrder = () =>  {
+        setCurrentView(0)
         let formData = new FormData();
         formData.set('payment', newOrder.payment);
         formData.set('user_billing', newOrder.billing_address);
@@ -52,9 +54,19 @@ const Checkout = () => {
     }
 
     useEffect(() => {
-        if(loading_put)
+        if(loading_put){
             setCurrentView(0)
-    }, [loading_put])
+        }
+    }, [loading_put]);
+
+    useEffect(() => {
+        if(errorUpdate){
+            alert("Ooops! something went wrong");
+            window.location.href = "/";
+        }
+    }, [errorUpdate]);
+
+
 
     useEffect (() => {
         if(updated)
@@ -79,7 +91,7 @@ const Checkout = () => {
         case 3: {
             return (
                 <div className="container-fluid">
-                    <CheckoutPayment currentView={currentView} backView={() => setCurrentView(2)} nextView={() => setCurrentView(0)} updateOrder={updateOrder}></CheckoutPayment>
+                    <CheckoutPayment currentView={currentView} backView={() => setCurrentView(2)} updateOrder={updateOrder}></CheckoutPayment>
                 </div>
             );
         }

@@ -15,7 +15,8 @@ const INITIAL_STATE = {
         billing_address: 0,
         shipping_address: 0,
         payment: "payment"
-    }
+    },
+    errorUpdate: undefined
 };
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
@@ -38,7 +39,7 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
         case checkoutConstants.FETCH_ORDER_UPDATE_SUCCESS:
             return { ...state, loading_put: false, newOrder: action.payload, updated:true };
         case checkoutConstants.FETCH_ORDER_UPDATE_ERROR:
-            return { ...state, loading_put: false, errors: action.payload };
+            return { ...state, loading_put: false, errorUpdate: action.payload };
 
         //Actions for checkout order
         case checkoutConstants.FETCH_ORDER_BEGIN:

@@ -8,15 +8,17 @@ import {Link} from  'react-router-dom';
 
 import './cart-view.css';
 
-let token = "Bearer " + localStorage.getItem('access_token');
 const CartView = (props) => {
     const [cartProducts, setCartProducts] = useState({
         products: []
-    });
-    const [isLoading, setIsLoading] = useState({ loading: true, updating: false})
-    const url = 'http://localhost:5000/api/v1/carts/';
-    const createOrderUrl = 'http://localhost:5000/api/v1/orders/';
-    const [defaultHeaders] = useState({
+     });
+     const [isLoading, setIsLoading] = useState({ loading: true, updating: false})
+     const [urls] = useState({
+         cart: process.env.REACT_APP_API_URL + 'carts/',
+         orders: process.env.REACT_APP_API_URL + 'orders/'
+     })
+     const token = "Bearer " + localStorage.getItem('access_token');
+     const [defaultHeaders] = useState({
         headers: {
             Authorization : token
         }
@@ -26,7 +28,7 @@ const CartView = (props) => {
         setIsLoading({
             loading: true
         })
-        axios.get(url, defaultHeaders)
+        axios.get(urls.cart, defaultHeaders)
         .then(response => {
             setIsLoading({
                 loading: false
@@ -41,7 +43,7 @@ const CartView = (props) => {
                 loading: false
             })
         })
-    }, [defaultHeaders]);
+    }, [defaultHeaders, urls]);
     
     const updateCart = (id,quantity) =>{
         setIsLoading({
@@ -49,7 +51,7 @@ const CartView = (props) => {
         });
         const newCartProducts = cartProducts.products.slice()
         newCartProducts.map(x => x._id === id ? x.quantity = quantity : x)
-        axios.put(url, {
+        axios.put(urls.cart, {
             product_id: id,
             quantity: quantity
         }, defaultHeaders)
@@ -76,7 +78,7 @@ const CartView = (props) => {
         body.data = {
             product_id:id
         }
-        axios.delete(url, body)
+        axios.delete(urls.cart, body)
         .then(response => {
             const newCartProducts = cartProducts.products.slice().filter(x => x._id !== id)
             setCartProducts({
@@ -97,7 +99,7 @@ const CartView = (props) => {
             updating: true
         });
 
-        axios.post(createOrderUrl, {}, defaultHeaders)
+        axios.post(urls.orders, {}, defaultHeaders)
         .then(response => {
             setIsLoading({
                 updating: false
@@ -179,7 +181,7 @@ const CartView = (props) => {
                     <div className="cart-view-checkout">
                         <div className="cart-view-subtotal">
                             <p className="cart-view-subtotal-text">SUBTOTAL: </p>
-                            <Price currency={'MXN'} price={subtotal}/>
+                            <Price className="cart-view-subtotal-price" currency={'MXN'} price={subtotal}/>
                         </div>
                         {updatingSpinner}
                     </div>

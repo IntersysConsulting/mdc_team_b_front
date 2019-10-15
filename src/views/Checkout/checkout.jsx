@@ -11,12 +11,11 @@ import CheckoutPayment from '../../components/checkout-view-components/CheckoutP
 
 const Checkout = () => {
 
-    const [currentView, setCurrentView] = useState();
+    const [currentView, setCurrentView] = useState(1);
 
     const loading_order = useSelector((state) => state.checkoutState.loading_order);
     const loading_customer = useSelector((state) => state.checkoutState.loading_customer);
     const loading_put = useSelector((state) => state.checkoutState.loading_put);
-    const errorUpdate = useSelector((state) => state.checkoutState.errorUpdate);
     const updated = useSelector((state) => state.checkoutState.updated);
     const order = useSelector((state) => state.checkoutState.order);
     const newOrder = useSelector((state) => state.checkoutState.newOrder)
@@ -47,9 +46,9 @@ const Checkout = () => {
     const updateOrder = () =>  {
         setCurrentView(0)
         let formData = new FormData();
-        formData.set('payment', newOrder.payment);
-        formData.set('user_billing', newOrder.billing_address);
-        formData.set('user_shipping', newOrder.shipping_address);
+        formData.set('payment', newOrder.payment ? newOrder.payment : "payment");
+        formData.set('user_billing', newOrder.billing_address ? newOrder.billing_address : 0);
+        formData.set('user_shipping', newOrder.shipping_address ? newOrder.shipping_address : 0);
         dispatch(checkoutOrderUpdateActions(formData))
     }
 
@@ -58,15 +57,6 @@ const Checkout = () => {
             setCurrentView(0)
         }
     }, [loading_put]);
-
-    useEffect(() => {
-        if(errorUpdate){
-            alert("Ooops! something went wrong");
-            //window.location.href = "/";
-        }
-    }, [errorUpdate]);
-
-
 
     useEffect (() => {
         if(updated)

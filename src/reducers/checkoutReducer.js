@@ -25,7 +25,7 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
 
-        //Action for update address
+        //Action for update order
         case checkoutConstants.UPDATE_BILLING_ADDRESS:
             return {...state, order:{...order, billing_address:action.payload.address}, newOrder:{...newOrder, billing_address: action.payload.key}};
         case checkoutConstants.UPDATE_SHIPPING_ADDRESS:
@@ -43,7 +43,7 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
 
         //Actions for checkout order
         case checkoutConstants.FETCH_ORDER_BEGIN:
-            return { ...state, loaing_order: true, updated: false}
+            return { ...state, loaing_order: true, updated: false, errorUpdate: undefined}
         case checkoutConstants.FETCH_ORDER_SUCCESS:
             return { ...state, loading_order: false, loading_put: false, order: action.payload, updated: false };
         case checkoutConstants.FETCH_ORDER_ERROR:
@@ -51,7 +51,7 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
             
         //Actions for customer order
         case checkoutConstants.FETCH_CUSTOMER_BEGIN:
-            return { ...state, loading_customer: true, updated: false };
+            return { ...state, loading_customer: true, updated: false, errorUpdate: undefined };
         case checkoutConstants.FETCH_CUSTOMER_SUCCESS:
             return { ...state, loading_customer: false, loading_put: false, shipping_address: action.payload.shipping_addresses, billing_address: action.payload.billing_addresses };
         case checkoutConstants.FETCH_CUSTOMER_ERROR:

@@ -1,135 +1,128 @@
-.pruduct-managment-card{
-    padding: 0;
-    width: 100%;
-    position: relative;
+.pruduct-managment-card {
+  padding: 0;
+  width: 100%;
+  position: relative;
 }
 
-.pruduct-managment-container{
-    margin: 10px;
-    margin-bottom: 20px;
-    position: relative;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.pruduct-managment-container {
+  margin: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-delete-product{
-    position: absolute;
-    right: 0;
-    border-radius: 0px 8px 0px 0px!important;
+.btn-delete-product {
+  position: absolute;
+  right: 0;
+  border-radius: 0px 8px 0px 0px !important;
 }
 
-.image-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.card-button-product{
-    width: 100%;
-    border-radius: 0px 0px 8px 0px!important;
-    min-height: 40px;
+.card-edit-button-product {
+  width: 100%;
+  border-radius: 0px 0px 8px 0px !important;
+  min-height: 40px;
 }
 
-.body-card-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+/* .body-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+} */
+
+.pruduct-managment-container .product-name {
+  padding-right: 1rem;
 }
 
-.product-name{
-    text-transform: capitalize;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    text-align: start;
-    padding: 5px;
-    margin: 0px!important;
-}
-
-.product-price{
-    text-transform: capitalize;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    margin: 0 5px 0 0!important;
-    text-align: start;
-    display: block;
+.product-price {
+  text-transform: capitalize;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  margin: 0 5px 0 0 !important;
+  text-align: start;
+  display: block;
 }
 
 /* resize images */
 .image-container img {
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    border-radius: 8px;
+  height: auto;
+  /* width: auto; */
+  max-width: 100%;
+  border-radius: 8px;
 }
 
-.card-button-product{
-    width: 100%;
+.card-edit-button-product {
+  width: 100%;
 }
 
-.name-price-card-container{
+@media (max-width: 576px) {
+  .pruduct-managment-container {
     display: flex;
+    width: 100%;
+    height: 150px;
+  }
+
+  .image-container {
+    height: 100%;
+    width: 100%;
+    max-width: 40%;
     padding: 5px;
+  }
+
+  .image-container img {
+    max-height: 100%;
+  }
+
+  .body-card-container {
+    width: 60%;
+  }
+
+  .card-edit-button-product {
+    border-radius: 0px 0px 8px 0px !important;
+    height: 40px !important;
+    min-height: 0px !important;
+    padding: 0 !important;
+  }
 }
 
-.text-card-container{
-    flex: auto;
-    vertical-align: middle;
+@media (min-width: 576px) {
+  .pruduct-managment-container {
+    padding: 0;
+    width: 220px;
+    height: 100%;
+    max-height: 360px;
+  }
+
+  .image-container {
+    height: 210px;
+    width: 100%;
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  .image-container img {
+    max-height: 210px;
+  }
+
+  .body-card-container {
+    width: 100%;
+    height: 140px;
+  }
+
+  .card-edit-button-product {
+    border-radius: 0px 0px 8px 8px !important;
+  }
 }
 
-@media (max-width: 576px){
-    .pruduct-managment-container{
-        display: flex;
-        width: 100%;
-        height: 150px;
-    }
-
-    .image-container{
-        height: 100%;
-        width: 100%;
-        max-width: 40%;
-        padding: 5px;
-    }
-
-    .image-container img{
-        max-height: 100%;
-    }
-
-    .body-card-container{
-        width: 60%;
-    }
-
-    .card-button-product{
-        border-radius: 0px 0px 8px 0px!important;
-        min-height: 40px;
-    }
-}
-
-@media (min-width: 576px){
-    .pruduct-managment-container{
-        padding: 0;
-        width: 220px;
-        height: 100%;
-        max-height: 360px;
-    }
-
-    .image-container{
-        height: 210px;
-        width: 100%;
-        max-width: 100%;
-        padding: 5px;
-    }
-
-    .image-container img{
-        max-height: 210px;
-    }
-
-    .body-card-container{
-        width: 100%;
-        min-height: 140px;
-    }
-    
-    .card-button-product{
-        border-radius: 0px 0px 8px 8px!important;
-    }
+@media screen and (max-width: 894px) {
+  .PagesDisplay {
+    margin-top: 50px;
+  }
 }

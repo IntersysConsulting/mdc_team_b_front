@@ -5,7 +5,8 @@
 }
 
 .pruduct-managment-container{
-    margin: 5px;
+    margin: 10px;
+    margin-bottom: 20px;
     position: relative;
     border-radius: 8px;
     background-color: white;
@@ -107,13 +108,13 @@
 @media (min-width: 576px){
     .pruduct-managment-container{
         padding: 0;
-        width: 240px;
+        width: 220px;
         height: 100%;
-        max-height: 420px;
+        max-height: 360px;
     }
 
     .image-container{
-        height: 220px;
+        height: 210px;
         width: 100%;
         max-width: 100%;
         padding: 5px;
@@ -125,7 +126,7 @@
 
     .body-card-container{
         width: 100%;
-        min-height: 200px;
+        min-height: 140px;
     }
     
     .card-button-product{

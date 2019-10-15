@@ -11,6 +11,8 @@ import CartView from "../views/cart-view/cart-view";
 import UserLogin from "../views/UserLogin/UserLogin";
 import Storefront from "../views/storefront/storefront";
 import Product from "../views/single-product/product";
+import ViewProducts from "../views/product-management/view-products"
+import AddProduct from "../views/product-management/add-product"
 import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
 
@@ -34,7 +36,9 @@ const LayoutContainer = props => {
       <LayoutAdmin accessLevelState={accessLevelState}>
         <Switch>
           <Route path="/admin" exact component={WorkInProgress} />
-          <Route path="/admin/products" exact component={WorkInProgress} />
+          <Route path="/admin/products" exact component={ViewProducts} />
+          <Route path = "/admin/products/add" exact component={AddProduct} />
+          <Route path = "/admin/products/edit=*" exact component={WorkInProgress} />
           <Route path="/admin/orders" exact component={WorkInProgress} />
           <Route path="/admin/staff" exact component={WorkInProgress} />
           <Route path="/admin/banners" exact component={WorkInProgress} />

@@ -1,0 +1,40 @@
+.ProductManagementDisplay{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.ProductsHeader{
+    padding-bottom: 35px;
+}
+
+.ProductsTitle{
+    font-size: 40px;
+    padding-bottom: 4px;
+}
+
+
+.SearchBarHeader{
+    padding-bottom: 35px;
+    padding-top: 10px;
+}
+
+.AddProductIcon{
+    width: 40px;
+    height: 40px;
+    margin-top: 12px;
+    margin-left: 12px;
+    background-color:#72c068;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.AddProductIcon:hover{
+    cursor: pointer;
+}
+
+.LinkToAdd{
+    text-decoration: none !important;
+    color: black !important;
+}

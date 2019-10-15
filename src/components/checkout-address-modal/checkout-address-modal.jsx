@@ -4,42 +4,53 @@ import '../checkout-address-modal/checkout-address-modal.css'
 import { Modal } from 'react-bootstrap'
 import Title from '../title/title'
 import AddressCard from './address-card'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateBilling, updateShipping } from '../../actions/checkoutActions'
 
 const CheckoutAddressModal = (props) => {
 
     const [redirect, setRedirect] = useState(false);
     const handleRedirect = () => setRedirect(true);
 
-    const shipping_addresses = useSelector((state) => state.checkoutState.shipping_address);
-    const billing_addresses = useSelector((state) => state.checkoutState.billing_address);
+    const shipping_address = useSelector((state) => state.checkoutState.shipping_address);
+    const billing_address = useSelector((state) => state.checkoutState.billing_address);
+    const dispatch = useDispatch();
+
+    const selectBilling = (key, billing_address) => {
+        dispatch(updateBilling(key, billing_address))
+    }
+
+    const selectShipping = (key, shipping_address) => {
+        dispatch(updateShipping(key, shipping_address))
+    }
 
     let component = null;
     let shipping_address_cards = [];
     let billing_address_cards = [];
 
-
-    for (let i=0; i<shipping_addresses.length; i++){
+    for (let i=0; i<shipping_address.length; i++){
         shipping_address_cards.push(
-        <AddressCard 
-        name={shipping_addresses[i].first_name+" "+shipping_addresses[i].last_name} 
-        address={shipping_addresses[i].address} 
-        country={shipping_addresses[i].country} 
-        state={shipping_addresses[i].state} 
-        zipCode={shipping_addresses[i].zip_code}
-        onClick={props.onClick}
+        <AddressCard
+        key={i} 
+        name={shipping_address[i].first_name+" "+shipping_address[i].last_name} 
+        address={shipping_address[i].address} 
+        country={shipping_address[i].country} 
+        state={shipping_address[i].state} 
+        zipCode={shipping_address[i].zip_code}
+        selectAddress={() => selectShipping(i,shipping_address[i])}
         />)
     }
 
-    for (let i=0; i<billing_addresses.length; i++){
+    for (let i=0; i<billing_address.length; i++){
         billing_address_cards.push(
         <AddressCard 
-        name={billing_addresses[i].first_name+" "+billing_addresses[i].last_name} 
-        address={billing_addresses[i].address} 
-        country={billing_addresses[i].country} 
-        state={billing_addresses[i].state} 
-        zipCode={billing_addresses[i].zip_code}
-        onClick={props.onClick}
+        key={i}
+        name={billing_address[i].first_name+" "+billing_address[i].last_name} 
+        address={billing_address[i].address} 
+        country={billing_address[i].country} 
+        state={billing_address[i].state} 
+        zipCode={billing_address[i].zip_code}
+        selectAddress={() => selectBilling(i,billing_address[i])}
         />)
     }
 

@@ -1,18 +1,8 @@
-/* Checkout landing page CSS: */
-#next-addresses-button{
-    margin-top: 100px;
-    margin-right: 20%;
-}
-
-#next-addresses-button-loading{
-    margin-top: 70px;
-    margin-right: 12%;
-}
-
-
-
-
 /* Checkout address page CSS: */
+.checkout-title {
+    margin-bottom: 10px !important ;
+}
+
 #shipping-address{
     margin-right: 100px;
 }
@@ -40,23 +30,6 @@
     }
 }
 
-
-
-
-
-/* Checkout payment page CSS: */
-#checkout-payment-title{
-    margin-bottom: 50px;
-}
-
-#cards-table-left-side{
-    margin-right: 100px;
-}
-
-#cards-table-right-side{
-    /* margin-left:100px; */
-}
-
 #new-card-link{
     text-decoration: underline;
     color: primary;
@@ -65,7 +38,6 @@
 
 #finish-order-button{
     margin-top: 50px;
-    margin-right: 25%;
 } 
 
 @media (max-width:768px){
@@ -75,12 +47,33 @@
     }
 }
 
-
-
-
-/* Checkout purchase complete CSS: */
 #purchase-complete-title{
     color: #72c068;
+    width: 450px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.checkout-spinner{
+    text-align: center;
+}
+
+.div-next-button{
+    text-align: right;
+}
+
+.button-checkout-right{
+    padding: 0;
+}
+
+.div-back-button{
+    text-align: left;
+    padding: 0;
+}
+
+/* Checkout purchase complete CSS: */
+#without-orders-title{
+    color: #f98f3e;
     width: 450px;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -90,4 +83,13 @@
     font-size: 30px;
     width: 450px;
     margin: 0 auto;
+}
+
+.button-checkout-right{
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.strange-button{
+    align-content: right;
 }

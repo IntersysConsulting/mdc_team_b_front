@@ -9,6 +9,17 @@ const getOrderInfo = () => {
         });
 };
 
+const updateOrder = (order) => {
+    return axios.put(process.env.REACT_APP_API_URL+'/orders/',order, { headers:{
+        'authorization':'Bearer '+localStorage.getItem('access_token'),
+        'Content-Type': 'multipart/form-data' 
+    }}).then((response) => {
+            return response
+        }).catch( (error) => {
+            return error
+        });
+};
+
 const getCustomerInfo = () => {
     return axios.get(process.env.REACT_APP_API_URL+'/customers/', { headers:{
         'authorization':'Bearer '+localStorage.getItem('access_token'),
@@ -22,5 +33,6 @@ const getCustomerInfo = () => {
 
 export const checkoutApi = {
     getOrderInfo,
-    getCustomerInfo
+    getCustomerInfo,
+    updateOrder
 };

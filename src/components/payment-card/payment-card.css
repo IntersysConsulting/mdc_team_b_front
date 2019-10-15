@@ -2,15 +2,10 @@
 #payment-card-whole{
     width: 400px;
     height: 100px;
-    /* margin-bottom: 30px; */
     border-top: 2px;
     border-top: solid;
     border-top-color: lightgrey;
-    margin-right: 70px;
 }
-
-
-
 
 #payment-card-button-container{
     display: block;
@@ -50,11 +45,6 @@
     background-color: #ccc;
   }
   
-  /* When the radio button is checked, add a blue background */
-  #payment-card-button-container input:checked ~ #payment-card-button-checkmark {
-    /* background-color: #2196F3; */
-  }
-  
   /* Create the indicator (the dot/circle - hidden when not checked) */
   #payment-card-button-checkmark:after {
     content: "";
@@ -77,10 +67,7 @@
     background: #72c068;
   }
 
-
-
 #payment-card-icon{
-    /* margin-top: -50px; */
     height: 30px;
     width: 38px;
     margin-left: 40px;
@@ -100,5 +87,4 @@
     font-size: 20px;
     float: right;
     margin-right: 40px;
-    /* margin-top: -20px; */
 }

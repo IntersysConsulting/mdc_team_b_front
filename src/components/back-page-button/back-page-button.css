@@ -1,4 +1,4 @@
-#next-page-button{
+#back-page-button{
     margin: 0 auto;
     background: none;
     padding: 0;
@@ -13,20 +13,20 @@
     justify-content: center;
 }
 
-#next-page-title{
+#back-page-title{
     margin-top: -3px;
 }
 
-#triangle{
+#triangle-back{
     height:20px;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
-    border-left: 25px solid #F98F3E;
+    border-right: 25px solid #F98F3E;
     margin-top: 4px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
-#next-page-text{
+#back-page-text{
     white-space: nowrap;
     text-align: center;
 }

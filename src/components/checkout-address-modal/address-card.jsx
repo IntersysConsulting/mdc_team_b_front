@@ -5,20 +5,9 @@ import "./address-card.css";
 
 const AddressCard = props => {
 
-    const returnSelectedAddress = () => {
-        let obj = {
-            name: props.name,
-            address: props.address,
-            country: props.country,
-            state: props.state,
-            zipCode: props.zipCode,
-        }
-
-        props.onClick(obj)
-    }
 
     return (
-        <a style={{ cursor: 'pointer' }} onClick={returnSelectedAddress} href>
+        <a style={{ cursor: 'pointer' }} onClick={props.selectAddress} href>
             <Card className="rounded-0 address-card">
                 <Card.Text>
                     <AddressText

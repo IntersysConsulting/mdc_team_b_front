@@ -11,6 +11,8 @@ import CheckoutPayment from '../../components/checkout-view-components/CheckoutP
 
 const Checkout = () => {
 
+    const [currentView, setCurrentView] = useState();
+
     const loading_order = useSelector((state) => state.checkoutState.loading_order);
     const loading_customer = useSelector((state) => state.checkoutState.loading_customer);
     const loading_put = useSelector((state) => state.checkoutState.loading_put);
@@ -18,8 +20,6 @@ const Checkout = () => {
     const updated = useSelector((state) => state.checkoutState.updated);
     const order = useSelector((state) => state.checkoutState.order);
     const newOrder = useSelector((state) => state.checkoutState.newOrder)
-
-    const [currentView, setCurrentView] = useState(0);
 
     const dispatch = useDispatch();
 
@@ -62,7 +62,7 @@ const Checkout = () => {
     useEffect(() => {
         if(errorUpdate){
             alert("Ooops! something went wrong");
-            window.location.href = "/";
+            //window.location.href = "/";
         }
     }, [errorUpdate]);
 
@@ -72,65 +72,76 @@ const Checkout = () => {
         if(updated)
             setCurrentView(4)
     }, [updated])
-    
-    switch (currentView) {
-        case 1: {
-            return (
-                <div className="container-fluid">
-                    <CheckoutTableDiv products={order.products} currentView={currentView} setCurrentView={() => setCurrentView(2)}></CheckoutTableDiv>
+
+    if(loading_customer || loading_order) {
+        return(
+            <div className="container-fluid">
+                <div className="checkout-spinner">
+                    <Spinner className="Spinner" animation="border" variant="warning"/>
                 </div>
-            );
-        }
-        case 2:{
-            return (
-                <div className="container-fluid">
-                    <AddressesContainer  currentView={currentView} backView={() => setCurrentView(1)} nextView={() => setCurrentView(3)}></AddressesContainer>
-                </div>
-            );
-        }
-        case 3: {
-            return (
-                <div className="container-fluid">
-                    <CheckoutPayment currentView={currentView} backView={() => setCurrentView(2)} updateOrder={updateOrder}></CheckoutPayment>
-                </div>
-            );
-        }
-        case 4: {
-            return (
-                <div id="puchase-complete-whole">
-                    <div id="purchase-complete-title" className="text-center">
-                        <CheckoutTitle currentView={currentView}></CheckoutTitle>
+            </div>
+        )
+    }
+    else {
+        switch (currentView) {
+            case 1: {
+                return (
+                    <div className="container-fluid">
+                        <CheckoutTableDiv products={order.products} currentView={currentView} setCurrentView={() => setCurrentView(2)}></CheckoutTableDiv>
                     </div>
-                    <div>
-                        <p id="purchase-complete-text" className="text-center">
-                            Your order was successfully processed! You will receive an email shortly with your receipt.
-                        </p>
+                );
+            }
+            case 2:{
+                return (
+                    <div className="container-fluid">
+                        <AddressesContainer  currentView={currentView} backView={() => setCurrentView(1)} nextView={() => setCurrentView(3)}></AddressesContainer>
                     </div>
-                </div>
-            );
-        }
-        case 5: {
-            return (
-                <div id="puchase-complete-whole">
-                    <div id="purchase-complete-title" className="text-center">
-                        <CheckoutTitle currentView={currentView}></CheckoutTitle>
+                );
+            }
+            case 3: {
+                return (
+                    <div className="container-fluid">
+                        <CheckoutPayment currentView={currentView} backView={() => setCurrentView(2)} updateOrder={updateOrder}></CheckoutPayment>
                     </div>
-                    <div>
-                        <p id="purchase-complete-text" className="text-center">
-                            Before we can work on your checkout process, you should head back to cart and confirm the order.
-                        </p>
+                );
+            }
+            case 4: {
+                return (
+                    <div id="puchase-complete-whole">
+                        <div id="purchase-complete-title" className="text-center">
+                            <CheckoutTitle currentView={currentView}></CheckoutTitle>
+                        </div>
+                        <div>
+                            <p id="purchase-complete-text" className="text-center">
+                                Your order was successfully processed! You will receive an email shortly with your receipt.
+                            </p>
+                        </div>
                     </div>
-                </div>
-            )
-        }
-        default: {
-            return (
-                <div className="container-fluid">
-                    <div className="checkout-spinner">
-                        <Spinner className="Spinner" animation="border" variant="warning"/>
+                );
+            }
+            case 5: {
+                return (
+                    <div id="puchase-complete-whole">
+                        <div id="purchase-complete-title" className="text-center">
+                            <CheckoutTitle currentView={currentView}></CheckoutTitle>
+                        </div>
+                        <div>
+                            <p id="purchase-complete-text" className="text-center">
+                                Before we can work on your checkout process, you should head back to cart and confirm the order.
+                            </p>
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            }
+            default: {
+                return (
+                    <div className="container-fluid">
+                        <div className="checkout-spinner">
+                            <Spinner className="Spinner" animation="border" variant="warning"/>
+                        </div>
+                    </div>
+                )
+            }
         }
     }
 }

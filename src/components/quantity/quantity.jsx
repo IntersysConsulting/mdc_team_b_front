@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
 import "./quantity.css";
-import { setInterval } from "timers";
 
 const QuantityButton = props => {
   return (
@@ -14,39 +13,43 @@ const QuantityButton = props => {
   );
 };
 
-class Quantity extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      value: props.quantity,
-      isDebouncing: false,
-      debounceTimer: 0
-    }
-    setInterval(()=>{
-      if(this.state.isDebouncing){
-        if(this.state.debounceTimer < 800 ){
-          this.setState({
-            debounceTimer: this.state.debounceTimer+100
-          });
-        }
-        else{
-          this.setState({
-            isDebouncing:false,
-            debounceTimer: 0
-          })
-          this.props.onChange(this.props.id, this.state.value);          
-        }
+const Quantity = (props) =>{
+  const [quantityValue, setValue] = useState(props.quantity)
+  const [isDebouncing, setDebouncing] = useState(false)
+  const [debounceTimer, setDebounceTimer] = useState(0)
+  const [productValues] = useState({
+    product_id: props.id
+  })
+  const callUpdate = props.onChange;
+
+  useEffect(()=> {
+    if(isDebouncing){
+      if(debounceTimer<=800){
+        setTimeout(()=>{
+          setDebounceTimer(debounceTimer+100)
+        },100)
       }
-    },100)
+      else{
+        setDebouncing(false);
+        callUpdate(productValues.product_id, quantityValue);      
+      }
+    }
+  }, [debounceTimer, callUpdate, productValues, quantityValue, isDebouncing])
+
+  const startClock = () => {
+    setDebouncing(true)
+    setDebounceTimer(0);
   }
 
-  decrease = () => {
-    this.setState({
-      isDebouncing: true,
-      debounceTimer: 0
-    });
+  const decrease = () => {
+    if(!isDebouncing){
+      startClock()
+    }
+    else{
+      setDebounceTimer(0);
+    }
 
-    let val = this.state.value;
+    let val = quantityValue;
     if(typeof(val) !== 'number') {
       val = 0;
     }
@@ -55,28 +58,32 @@ class Quantity extends React.Component {
       alert("You can't have 0 of a product, use delete instead");
       val = 1;
     }
-    this.setState({ value: val });
+    setValue(val);
   };
 
-  increase = () => {
-    this.setState({
-      isDebouncing: true,
-      debounceTimer: 0
-    });
+  const increase = () => {
+    if(!isDebouncing){
+      startClock()
+    }
+    else{
+      setDebounceTimer(0)
+    }
 
-    let val = this.state.value;
+    let val = quantityValue;
     if(typeof(val) !== 'number') {
       val = 1;
     }
     val > 99999 ? (val = 99999) : (val++);
-    this.setState({ value: val });
+    setValue(val);
   };
 
-  changeVal = event => {
-    this.setState({
-      isDebouncing: true,
-      debounceTimer: 0
-    });
+  const changeVal = event => {
+    if(!isDebouncing){
+      startClock()
+    }
+    else{
+      setDebounceTimer(0)
+    }
 
     let val = parseInt(event.target.value, 10);
     if(isNaN(val) || val <= 0) {
@@ -87,34 +94,32 @@ class Quantity extends React.Component {
       val = 99999;
     else if (val < 0)
       val = 0;
-    this.setState({ value: val });
+    setValue(val);
   };
 
-  render() {
-    return (
-      <div className="quantity-container">
+  return (
+    <div className="quantity-container">
         <QuantityButton
           className="value-button-left bg-dark  text-white"
           idVal="decrease"
           symbol="-"
-          onClick={this.decrease}
+          onClick={decrease}
         />
         <input
           className="border-dark border-top border-bottom"
           type="number"
           id="number"
-          value={this.state.value}
-          onChange={this.changeVal}
+          value={quantityValue}
+          onChange={changeVal}
         />
         <QuantityButton
           className="value-button-right bg-dark text-white"
           idVal="increase"
           symbol="+"
-          onClick={this.increase}
+          onClick={increase}
         />
       </div>
-    );
-  }
+  )
 
 };
 

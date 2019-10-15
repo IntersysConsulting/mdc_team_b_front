@@ -2,6 +2,7 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
+  SAVE_USER,
   VALIDATE_AUTHENTICATION
 } from "../constants/authenticationConstants";
 
@@ -30,5 +31,12 @@ export function validate_authentication(auth) {
   return {
     type: VALIDATE_AUTHENTICATION,
     auth: auth
+  }
+}
+
+export function save_user(auth) {
+  return {
+    type: SAVE_USER,
+    auth: auth 
   }
 }

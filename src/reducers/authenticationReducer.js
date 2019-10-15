@@ -2,6 +2,7 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
+  SAVE_USER,
   VALIDATE_AUTHENTICATION
 } from "../constants/authenticationConstants";
 
@@ -35,6 +36,9 @@ const autenticationTypes = {
     newState.role = "guest";
     newState.name = "Guest";
     return newState;
+  },
+  [SAVE_USER]: (newState, data) => {
+    alert("Done")
   },
   [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {

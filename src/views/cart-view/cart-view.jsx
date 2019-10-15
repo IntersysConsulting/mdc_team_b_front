@@ -14,17 +14,17 @@ const CartView = (props) => {
      });
      const [isLoading, setIsLoading] = useState({ loading: true, updating: false})
      const [urls] = useState({
-         cart: process.env.REACT_APP_API_URL + 'carts/',
-         orders: process.env.REACT_APP_API_URL + 'orders/'
+         cart: process.env.REACT_APP_API_URL + '/carts/',
+         orders: process.env.REACT_APP_API_URL + '/orders/'
      })
      const token = "Bearer " + localStorage.getItem('access_token');
      const [defaultHeaders] = useState({
         headers: {
             Authorization : token
         }
-     }) 
+    }) 
 
-     useEffect(() => {
+    useEffect(() => {
         setIsLoading({
             loading: true
         })

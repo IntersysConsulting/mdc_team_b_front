@@ -1,0 +1,32 @@
+#back-page-button{
+    margin: 0 auto;
+    background: none;
+    padding: 0;
+    border: none;
+    color: inherit;
+    margin-top: 50px;
+}
+
+#top-part{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+#back-page-title{
+    margin-top: -3px;
+}
+
+#triangle-back{
+    height:20px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 25px solid #F98F3E;
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+#back-page-text{
+    white-space: nowrap;
+    text-align: center;
+}

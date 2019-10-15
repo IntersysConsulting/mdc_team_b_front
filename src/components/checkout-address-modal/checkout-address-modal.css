@@ -1,0 +1,73 @@
+#checkout-address-modal{
+    margin-top: 100px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #116cb4;
+}
+
+#modal-text{
+    margin: auto;
+    height: auto;
+    min-height: 150px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+}
+
+#address-modal-header{
+    border: none;
+    height: 10px;
+    margin-top: -15px;
+    margin-left: 10px;
+    user-select: none;
+}
+
+#checkout-address-modal-subtitle{
+    margin-top: -10px;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+#checkout-modal-new-address-btn{
+    display: flex;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    user-select: none;
+    padding-left: 10px;
+    margin-top: 90px;
+    border: none;
+    background-color: white;
+}
+
+#checkout-modal-new-address-btn:hover{
+    color: #116cb4;
+    font-weight: bold; 
+}
+
+#plus-sign{
+    color: #72c068;
+    margin-right: 5px;
+    font-size: 80px;
+}
+
+#plus-sign-text{
+    margin-top: 48px;
+}
+
+#address-modal-content{
+    margin-top:-40px;
+    height: auto;
+    margin-left:-16px;
+    margin-right:-16px;
+}
+
+#aaa{
+    width:100%;
+}
+
+@media (min-width:576px){
+    #checkout-address-modal{
+        max-width: 300px;
+    }
+}

@@ -103,6 +103,11 @@
     font-family: "Roboto", sans-serif;
     font-size: 20px;
     font-weight: bolder;
+    padding-right: 5px;
+}
+
+.cart-view-subtotal-price {
+    white-space: nowrap;
 }
 
 .cart-view-checkout {
@@ -163,6 +168,10 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
+    }
+    .cart-view-subtotal {
+        flex-direction: column;
+        justify-content: space-between;
     }
     .cart-view-items-container {
         width: 63%;

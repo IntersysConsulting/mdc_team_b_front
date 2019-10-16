@@ -9,10 +9,10 @@ const CheckoutTable = props => {
       return (
         <tr>
           <td className="text-left">{product.name}</td>
-          <td>{"$" + (product.price / 100).toFixed(2)}</td>
-          <td>{product.qty}</td>
+          <td>{"$" + (product.unitary_price / 100).toFixed(2)}</td>
+          <td>{product.quantity}</td>
           <td className="text-right">
-            {"$" + (product.total / 100).toFixed(2)}
+            {"$" + ((product.unitary_price * product.quantity) / 100).toFixed(2)}
           </td>
         </tr>
       );
@@ -23,7 +23,7 @@ const CheckoutTable = props => {
     var sumTotal = 0;
 
     for (var i in props.products) {
-      sumTotal += Number(props.products[i].total);
+      sumTotal += Number(props.products[i].unitary_price);
     }
     return sumTotal;
   };

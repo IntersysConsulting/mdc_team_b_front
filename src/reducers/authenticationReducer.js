@@ -30,11 +30,11 @@ const autenticationTypes = {
     return newState;
   },
   [UNAUTHENTICATED]: newState => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    newState.role = "guest";
-    newState.name = "Guest";
-    return newState;
+    localStorage.clear();
+    return {
+      role: "guest",
+      name: "Guest"
+    };
   },
   [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {
@@ -43,8 +43,7 @@ const autenticationTypes = {
     if (newState.role === role) {
       return newState;
     } else {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
+      localStorage.clear();
       return {
         role: "guest",
         name: "Guest"

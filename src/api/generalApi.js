@@ -20,7 +20,8 @@ export function makeRequest(config) {
         try {
           await rest[config.method](config.url, config.data).then(
             response => {
-              if(response.status === 200) {
+              console.log(response)
+              if(response.data.statusCode === 200) {
                 dispatch(config.actionSuccessful(response))
               } else {
                 dispatch(config.actionError(response))

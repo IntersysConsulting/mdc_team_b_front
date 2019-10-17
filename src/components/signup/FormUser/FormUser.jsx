@@ -1,23 +1,77 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import Logo from "../../layout/logo/logo-blanco.png";
 import PasswordField from "../../../containers/password-field/password-field.js";
 import AcceptButton from "../../accept-button/accept-button.jsx";
 import Checkbox from "../../checkbox/Checkbox";
+import Alert from "../../alert/alert"
 
 const FormUser = props => {
-  const changeInput = e => {
+ const [disableSubmit, setDisableSubmit] = useState(true)
+ let setValues = props.set
+
+ let [messages, setMessages] = useState([])
+
+ useEffect(() =>{
+  let valuesInput = {first_name: "", last_name:"", email: "", password:"", confirm: "", accepted:false }  
+  setValues(valuesInput) 
+ },[setValues])   
+
+  const changeInput = ({target}) => {
+      let {name, value} = target
       let newValue = {...props.values}
-      newValue[e.target.name] = e.target.value
+
+      if (name === "accepted") {
+        newValue[name] = !newValue[name]
+      } else {
+        newValue[name] = value
+      }
+
+      let enableButton = Object.keys(newValue)
+        .map(k => !Boolean(newValue[k]))
+        .includes(true)
+
       props.set(newValue)
+      setDisableSubmit(enableButton)
+  }
+
+  const sendUser = (event) => {
+    event.preventDefault();
+    if(validation(props.values)) {
+      props.onClick()
+    }
+  }
+
+  const validation = values => {
+    let {password, confirm, email} = values
+    let msg = []
+
+    if( !(/\w+@\w+\.\w+/.test(email)) ) {
+      msg.push("Insert the right format in the email")
+    }
+
+    if ( password !== confirm ) {
+      msg.push("it doesn't match password and confirm password")
+      setMessages(msg)
+      return false
+    }
+
+    return true
   }
 
   return (
-    <div className="signup-holder">
+    <>
+      { messages.length  > 0   ?  
+        <Alert error show={true} confirmAction={() =>  setMessages([])}>
+          {messages.map(m => <ul><li key={m}>{m}</li></ul>)}
+        </Alert>
+        : null
+      } 
+      <div className="signup-holder"> 
       <div className="signup-card border-dark">
         <img alt="logo"  className="signup-header px-4 mt-4 mb-4" src={Logo}></img>
-        <Form.Group className="px-4">
+        <Form.Group className="px-4" controlId="formBasicEmail">
           <div className="signup-fullname mb-4">
             <Form.Control
               name="first_name"
@@ -55,18 +109,20 @@ const FormUser = props => {
               I have read and accept <Link  className="text-orange" to={'/terms'}>Terms of service</Link>.
             </Checkbox>
             <div className="signup-footer mb-2">
-              <AcceptButton type="submit" activate={props.values.accepted} className="  signup-button border-dark" onClick={props.onClick}>
+              <AcceptButton
+              disabled={disableSubmit}
+              type="submit" 
+              activate={props.values.accepted}
+              className="signup-button border-dark"
+              onClick={sendUser}>
                 Sign Up
               </AcceptButton>
             </div>
           </div>
         </Form.Group> 
         <div className="mb-4 px-4 signup-textlogin">
-          <span className="text-indigo">
-            Already have an account? 
-          </span>
           <Link to={"/login"} className="signup-login text-indigo">
-            Log in instead!
+            Already have an account?  Log in instead!
           </Link>
         </div>
       </div>
@@ -81,7 +137,8 @@ const FormUser = props => {
           Privacy
         </Link>
       </div>
-    </div>
+    </div> 
+    </>
   );
 }
 

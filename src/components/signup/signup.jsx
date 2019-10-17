@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from "react-router-dom"
 import FormAdmin from "./FormAdmin/FormAdmin"
 import FormUser from "./FormUser/FormUser"
 import {
@@ -7,13 +8,24 @@ import {
   save_user
 } from "../../actions/authenticationCreator"
 import { makeRequest } from "../../api/generalApi"
-
 import "./signup.css";
 
-const Signup = ({admin}) => {
+const Signup = props => {
   const dispatch = useDispatch()
+  const { admin } = (props.admin || false)
+  const auth = useSelector(store => store.authenticationState) 
+  const initialAuth = useState(auth)
   const [signupState, setSignupState] = useState({});
 
+  useEffect(() => {
+    if(JSON.stringify(auth) !== JSON.stringify(initialAuth[0])) {
+      if(admin){
+        props.history.push("/admin")
+      } else {
+        props.history.push("/") 
+      }
+    }
+  },[auth, initialAuth, admin, props.history])
 
   const setValues = (signupValues) =>{
     let formData = new FormData()
@@ -23,8 +35,7 @@ const Signup = ({admin}) => {
     return formData
   }
 
-  const Send = (event, signupValues = signupState) => {
-    event.preventDefault();
+  const Send = (signupValues = signupState) => {
     const data = setValues(signupValues)
     let options = {
       method: "post", 
@@ -33,15 +44,25 @@ const Signup = ({admin}) => {
       data: data
     }
   
-    if(admin) { 
+    if( admin ) {
       dispatch(makeRequest({...options, url: "admin/management/"}))
     } else {
       dispatch(makeRequest({...options, url: "customers/"}))
     }
   }
 
-  return (admin ? <FormAdmin onClick={Send} values={signupState} /> :
-    <FormUser onClick={Send} set={setSignupState} values={signupState}  />) 
+  return (
+    admin ?
+    <FormAdmin 
+      onClick={Send}
+      values={signupState}
+    /> :
+    <FormUser
+      onClick={Send}
+      set={setSignupState}
+      values={signupState}
+    />
+  ) 
 };
 
-export default Signup;
+export default withRouter(Signup);

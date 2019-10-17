@@ -13,11 +13,8 @@ const initialState = {
 
 const autenticationTypes = {
   [AUTHENTICATED]: (newState, data) => {
-    newState.name = data.customer_name
-      ? data.customer_name
-      : data.admin_name
-      ? data.admin_name
-      : newState.name;
+    newState.name = (data.customer_name || data.admin_name || newState.name ) 
+   
     newState.role =
       data.message === "Welcome admin"
         ? "admin"
@@ -38,7 +35,11 @@ const autenticationTypes = {
     return newState;
   },
   [SAVE_USER]: (newState, data) => {
-    alert("Done")
+    if(data.role === "Customer") {
+      newState.role  = "registeredUser"
+    }
+    newState.name = data.name
+    return newState;
   },
   [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {

@@ -128,7 +128,15 @@
   text-align: center;
 }
 
+.login-link-holder .text-conditions:hover {
+  text-decoration:underline;
+}
+
 .login-link-holder .text-privacy {
   text-align: right;
-  padding-right: 2rem;
+  padding-right: 3.5rem;
+}
+
+.login-link-holder .text-privacy:hover {
+  text-decoration:underline;
 }

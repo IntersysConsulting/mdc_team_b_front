@@ -11,8 +11,11 @@ import CartView from "../views/cart-view/cart-view";
 import UserLogin from "../views/UserLogin/UserLogin";
 import Storefront from "../views/storefront/storefront";
 import Product from "../views/single-product/product";
+import ViewProducts from "../views/product-management/view-products"
+import AddProduct from "../views/product-management/add-product"
 import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
+import Checkout from '../views/Checkout/checkout';
 
 const LayoutContainer = props => {
   let layout = null;
@@ -34,7 +37,9 @@ const LayoutContainer = props => {
       <LayoutAdmin accessLevelState={accessLevelState}>
         <Switch>
           <Route path="/admin" exact component={WorkInProgress} />
-          <Route path="/admin/products" exact component={WorkInProgress} />
+          <Route path="/admin/products" exact component={ViewProducts} />
+          <Route path = "/admin/products/add" exact component={AddProduct} />
+          <Route path = "/admin/products/edit=*" exact component={WorkInProgress} />
           <Route path="/admin/orders" exact component={WorkInProgress} />
           <Route path="/admin/staff" exact component={WorkInProgress} />
           <Route path="/admin/banners" exact component={WorkInProgress} />
@@ -46,8 +51,8 @@ const LayoutContainer = props => {
     layout = (
       <LayoutCustomer accessLevelState={accessLevelState}>
         <Switch>
-          <Route path="/cart" exact component={CartView} />
           <Route path="/" exact component={Storefront} />
+          <Route path="/cart" exact component={CartView} />
           <Route path="/product/*" exact component={Product} />
           <Route path="/account" exact component={WorkInProgress} />
           <Route path="/summary" exact component={WorkInProgress} />
@@ -60,8 +65,9 @@ const LayoutContainer = props => {
           <Route path="/help" exact component={WorkInProgress} />
           <Route path="/conditions" exact component={WorkInProgress} />
           <Route path="/privacy" exact component={WorkInProgress} />
-          <Route path="/*" exact component={NotFound} />
           <Route path="/image" exact component={DemoImage} />
+          <Route path="/checkout" exact component={Checkout}/>
+          <Route path="/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>
     );

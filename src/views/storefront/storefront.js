@@ -16,7 +16,7 @@ const Storefront = props => {
     page: 0,
     loading: true
   });
-  const [pageSize] = useState({ page_size: 15 });
+  const [pageSize] = useState({ page_size: 12 });
   const [isLoading, setIsLoading] = useState({ loading: true });
 
   //Effects
@@ -86,7 +86,7 @@ const Storefront = props => {
     ? (component = (
         <div>
           <Banner />
-          <div className="ProductsDisplay">
+          <div className="LoadingView">
             <Spinner className="Spinner" animation="border" variant="warning" />
           </div>
         </div>

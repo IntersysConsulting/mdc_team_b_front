@@ -5,6 +5,8 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { persistor } from './store';
 import LayoutContainer from "./containers/layout";
 import LoadingView from "./components/LoadingView/LoadingView";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = ({ store }) => {
 
@@ -13,6 +15,7 @@ const App = ({ store }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={<LoadingView />} persistor={persistor}>
+        <ToastContainer />
         <LayoutContainer/>
       </PersistGate>
     </Provider>

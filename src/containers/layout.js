@@ -70,5 +70,4 @@ const LayoutContainer = props => {
   return layout;
 };
 
-const layoutWithRouter = withRouter(LayoutContainer);
-export default layoutWithRouter;
+export default withRouter(LayoutContainer);

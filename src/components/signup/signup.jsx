@@ -8,6 +8,7 @@ import {
   save_user
 } from "../../actions/authenticationCreator"
 import { makeRequest } from "../../api/generalApi"
+import { toast } from 'react-toastify';
 import "./signup.css";
 
 const Signup = props => {
@@ -19,6 +20,7 @@ const Signup = props => {
 
   useEffect(() => {
     if(JSON.stringify(auth) !== JSON.stringify(initialAuth[0])) {
+      toast.success("Success Created!");
       if(admin){
         props.history.push("/admin")
       } else {

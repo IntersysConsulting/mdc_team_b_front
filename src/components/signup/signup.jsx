@@ -20,7 +20,7 @@ const Signup = props => {
 
   useEffect(() => {
     if(JSON.stringify(auth) !== JSON.stringify(initialAuth[0])) {
-      toast.success("Success Created!");
+      toast.success("Welcome!");
       if(admin){
         props.history.push("/admin")
       } else {

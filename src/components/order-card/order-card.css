@@ -1,0 +1,44 @@
+
+#order-card-whole{
+    width: 500px;
+    height: 120px;
+    border-top: 2px;
+    border-top: solid;
+    border-top-color: lightgrey;
+}
+
+#order-card-icon{
+    height: 70px;
+    width: 70px;
+    margin-top: 20px;
+    float: left;
+}
+
+#order-card-number{
+    font-weight: bold;
+    text-decoration: underline;
+    color: #116cb4;
+    margin-top: 10px;
+    margin-left: 100px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#order-card-status{
+    margin-left: 280px;
+    margin-top: -30px;
+}
+
+#order-card-product{
+    font-weight: bold;
+    margin-left: 100px;
+    user-select: none;
+}
+
+#order-card-cost{
+    font-weight: bold;
+    color: #f98f3e;
+    font-size: 20px;
+    margin-left: 100px;
+    user-select: none;
+}

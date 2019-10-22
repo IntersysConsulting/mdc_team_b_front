@@ -13,7 +13,7 @@ const OrderInfoModal = (props) => {
             
             <Modal.Header id="order-info-modal-header" closeButton/>
                 
-                <p id="order-info-modal-title">{props.title}</p>
+                <p id="order-info-modal-title">Order No: {props.title}</p>
                 <div id="order-info-modal-status">
                 <Status status={props.status}/>
                 </div>

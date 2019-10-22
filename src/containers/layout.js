@@ -59,7 +59,6 @@ const LayoutContainer = props => {
           <Route path="/summary" exact component={WorkInProgress} />
           <Route path="/billing-info" exact component={WorkInProgress} />
           <Route path="/shipping-info" exact component={WorkInProgress} />
-          <Route path="/orders" exact component={WorkInProgress} />
           <Route path="/login" exact component={UserLogin} />
           <Route path="/login-admin" exact component={AdminLogin} />
           <Route path="/sign-up" exact component={Signup} />
@@ -68,7 +67,7 @@ const LayoutContainer = props => {
           <Route path="/privacy" exact component={WorkInProgress} />
           <Route path="/image" exact component={DemoImage} />
           <Route path="/checkout" exact component={Checkout}/>
-          <Route path="/myorders" exact component={MyOrders}/>
+          <Route path="/orders" exact component={MyOrders}/> 
           <Route path="/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>

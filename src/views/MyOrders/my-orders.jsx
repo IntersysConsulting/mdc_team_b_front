@@ -1,34 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import '../MyOrders/my-orders.css';
 import OrderCard from '../../components/order-card/order-card';
 import Title from '../../components/title/title';
+import {Spinner} from 'react-bootstrap';
+import { myOrdersActions } from '../../actions/myOrdersActions';
 
-const MyOrders = (props) =>{
-    return (
+const MyOrders = (props) => {
 
-        <div>
+    const orders = useSelector((state) => state.myOrdersState.orders);
+    const loading = useSelector((state) => state.myOrdersState.loading);
+    const dispatch = useDispatch();
+    const [firstLoad, setFirstLoad] = useState(false);
+    const order_cards = [];
 
-            <div className="myorders-title col-8 offset-2">
-            <Title>My Orders</Title>
-            </div>
+    useEffect(()=>{
+        if (!firstLoad){
+            dispatch(myOrdersActions());
+        }
+        setFirstLoad(true);
+    },[firstLoad])
 
-            <div className="col-8 offset-2">
-                <div id="order-cards-table" className="row">
-                    <div id="order-cards-table-left-side" className="col-xs-10 col-lg-5">
-                        <OrderCard number="111111" status="Shipped" cost="10.00"></OrderCard>
-                        <OrderCard number="222222" status="Completed" cost="23.00"></OrderCard>
-                        <OrderCard number="333333" status="Declined" cost="596.00"></OrderCard>
-                    </div>
-                    <div className="col-xs-2 col-md-2 col-lg-2"></div>
-                    <div id="order-cards-table-right-side" className="col-xs-10 col-lg-5">
-                        <OrderCard number="444444" cost="320.00"></OrderCard>
-                        <OrderCard number="555555" cost="490.00"></OrderCard>
-                        <OrderCard number="666666" cost="1092.00"></OrderCard>
-                    </div>
+    useEffect(() =>  {
+        if(loading){
+        dispatch(myOrdersActions());}
+    },[loading])
+
+    for (let i=0; i<orders.length; i++){
+        order_cards.push(
+        <OrderCard
+        number="XXXXXX"
+        status={orders[i].status} 
+        cost={orders[i].total} 
+        />)
+    }
+
+
+    if (loading) {
+        return (
+            <Spinner className="Spinner" animation="border" variant="warning"/>
+        )
+    } else {
+        return (
+
+            <div className="offset-1">
+
+                <div className="myorders-title col-12">
+                    <Title>My Orders</Title>
+                </div>
+                <div id="order-cards-table" className="row col-12">
+                    {order_cards}
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default MyOrders;

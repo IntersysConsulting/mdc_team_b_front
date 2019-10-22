@@ -1,10 +1,10 @@
 
-#order-card-whole{
-    width: 500px;
+    #order-card-whole{
     height: 120px;
     border-top: 2px;
     border-top: solid;
     border-top-color: lightgrey;
+    padding: 0;
 }
 
 #order-card-icon{
@@ -41,4 +41,17 @@
     font-size: 20px;
     margin-left: 100px;
     user-select: none;
+}
+
+
+@media (max-width:500px){
+    #order-card-whole{
+        min-width: 400px;
+    }
+}
+
+@media (min-width: 700px){
+    #order-card-whole{
+        margin-right: 80px;
+    }
 }

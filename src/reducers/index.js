@@ -7,6 +7,7 @@ import authenticationReducer from './authenticationReducer';
 import getProductsReducer from './product-management/getProductsReducer';
 import addProductReducer from './product-management/addProductReducer';
 import checkoutReducer from './checkoutReducer';
+import adminReducer from './adminReducer';
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
@@ -19,7 +20,8 @@ const rootReducer = combineReducers(
         authenticationState: authenticationReducer,
         viewProductsState: getProductsReducer,
         addProductState: addProductReducer,
-        checkoutState: checkoutReducer
+        checkoutState: checkoutReducer,
+        adminState: adminReducer
     }
 );
 

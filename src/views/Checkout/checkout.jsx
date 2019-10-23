@@ -17,6 +17,7 @@ import CheckoutPayment from "../../components/checkout-view-components/CheckoutP
 
 const Checkout = () => {
   const [currentView, setCurrentView] = useState(0);
+  const [preventViewChange, setPreventViewChange] = useState(false);
 
   const [shippingPostStatus, setShippingPostStatus] = useState({
     started: false,
@@ -80,8 +81,10 @@ const Checkout = () => {
     dispatch(checkoutCustomerActions());
   }, [dispatch]);
 
+  useEffect(() => {});
+
   useEffect(() => {
-    if (currentView !== screens.SUCCESS) {
+    if (!preventViewChange) {
       if (loading_customer || loading_order) {
         setCurrentView(screens.LOADING);
       } else if (order.products.length > 0) {
@@ -103,7 +106,7 @@ const Checkout = () => {
     screens.CHECKOUT_TABLE,
     screens.ERROR,
     screens.SUCCESS,
-    currentView
+    preventViewChange
   ]);
 
   useEffect(() => {
@@ -190,7 +193,10 @@ const Checkout = () => {
 
   // If the order finished right, we display the success screen.
   useEffect(() => {
-    if (did_put_respond) setCurrentView(screens.SUCCESS);
+    if (did_put_respond) {
+      setPreventViewChange(true);
+      setCurrentView(screens.SUCCESS);
+    }
   }, [did_put_respond, screens.SUCCESS]);
 
   //#region Screens

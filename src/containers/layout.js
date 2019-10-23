@@ -56,7 +56,6 @@ const LayoutContainer = props => {
           <Route path="/cart" exact component={CartView} />
           <Route path="/product/*" exact component={Product} />
           <Route path="/account" exact component={MyAccount} />
-          <Route path="/summary" exact component={WorkInProgress} />
           <Route path="/account/billing" exact component={WorkInProgress} />
           <Route path="/account/shipping" exact component={WorkInProgress} />
           <Route path="/account/orders" exact component={WorkInProgress} />

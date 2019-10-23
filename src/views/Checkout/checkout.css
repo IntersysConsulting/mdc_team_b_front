@@ -1,95 +1,98 @@
 /* Checkout address page CSS: */
 .checkout-title {
-    margin-bottom: 10px !important ;
+  margin-bottom: 10px !important ;
 }
 
-#shipping-address{
-    margin-right: 100px;
+#shipping-address {
+  margin-right: 100px;
 }
 
-#shipping-address-title{
-    min-width: 400px;
+#shipping-address-title {
+  min-width: 400px;
 }
 
-#billing-address-title{
-    min-width: 400px;
+#billing-address-title {
+  min-width: 400px;
 }
 
-#next-payment-button{
-    margin-top: 50px;
-    margin-right: 20%;
+#next-payment-button {
+  margin-top: 50px;
+  margin-right: 20%;
 }
 
-.margin-bottom{
-    margin-bottom: 15px;
+.margin-bottom {
+  margin-bottom: 15px;
 }
 
-@media (max-width:768px){
-    #shipping-address{
-        margin-right: 0px;
-    }
-}
-
-#new-card-link{
-    text-decoration: underline;
-    color: primary;
-    font-size: 22px;
-} 
-
-#finish-order-button{
-    margin-top: 50px;
-} 
-
-@media (max-width:768px){
-    #finish-order-button{
-        margin-right: 0px;
-        text-align: center;
-    }
-}
-
-#purchase-complete-title{
-    color: #72c068;
-    width: 450px;
-    margin: 0 auto;
-    margin-bottom: 30px;
-}
-
-.checkout-spinner{
-    text-align: center;
-}
-
-.div-next-button{
-    text-align: right;
-}
-
-.button-checkout-right{
-    padding: 0;
-}
-
-.div-back-button{
+@media (max-width: 768px) {
+  #shipping-address {
+    margin-right: 0px;
+  }
+  .div-back-button {
     text-align: left;
-    padding: 0;
+    padding-left: 1rem !important;
+  }
+}
+
+#new-card-link {
+  text-decoration: underline;
+  color: primary;
+  font-size: 22px;
+}
+
+#finish-order-button {
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  #finish-order-button {
+    margin-right: 0px;
+    text-align: center;
+  }
+}
+
+#purchase-complete-title {
+  color: #72c068;
+  width: 450px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.checkout-spinner {
+  text-align: center;
+}
+
+.button-checkout-right {
+  padding: 0;
+}
+
+.div-next-button {
+  text-align: right;
+}
+.div-back-button {
+  text-align: left;
+  padding: 0;
 }
 
 /* Checkout purchase complete CSS: */
-#without-orders-title{
-    color: #f98f3e;
-    width: 450px;
-    margin: 0 auto;
-    margin-bottom: 30px;
+#without-orders-title {
+  color: #f98f3e;
+  width: 450px;
+  margin: 0 auto;
+  margin-bottom: 30px;
 }
 
-#purchase-complete-text{
-    font-size: 30px;
-    width: 450px;
-    margin: 0 auto;
+#purchase-complete-text {
+  font-size: 30px;
+  width: 450px;
+  margin: 0 auto;
 }
 
-.button-checkout-right{
-    margin-bottom: auto;
-    margin-top: auto;
+.button-checkout-right {
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
-.strange-button{
-    align-content: right;
+.strange-button {
+  align-content: right;
 }

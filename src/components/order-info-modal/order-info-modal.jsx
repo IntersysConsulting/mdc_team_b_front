@@ -7,7 +7,7 @@ const OrderInfoModal = (props) => {
 
     return (
 
-    <div>
+    <div className="col-10">
 
         <Modal id="order-info-modal" dialogClassName="custom-modal" show={props.show} onHide={props.handleShow}>
             
@@ -18,8 +18,28 @@ const OrderInfoModal = (props) => {
                 <Status status={props.status}/>
                 </div>
 
-            <Modal.Body id="order-info-modal-content">
-                {props.children}
+            <Modal.Body id="order-info-modal-content" className="offset-1 col-10">
+                <b>Date:</b>
+                <br></br>
+                {props.date}
+                <br></br>
+                <br></br>
+                <b>Billed To:</b>
+                <br></br>
+                {props.billedTo}
+                <br></br>
+                <br></br>
+                <b>Shipped To:</b>
+                <br></br>
+                {props.shippedTo}
+                <br></br>
+                <br></br>
+                <b>Products:</b>
+                <br></br>
+                - {props.products}
+                <br></br>
+                <br></br>
+                <b>Total: </b>${props.cost}
             </Modal.Body>
             
         </Modal>

@@ -9,27 +9,21 @@ const OrderCard = (props) => {
     const [orderModalShow, orderModalSetShow] = useState(false);
     const orderModalHandleShow = () => orderModalSetShow(!orderModalShow);
 
-    const [statusState] = useState({
-        allStatus: [
-            { status: 'Awaiting Payment' },
-            { status: 'Awaiting Fullfillment' },
-            { status: 'Awaiting Shipment' },
-            { status: 'Shipped' },
-            { status: 'Partially Shipped' },
-            { status: 'Refunded' },
-            { status: 'Partially Refunded' }, { status: 'Cancelled' },
-            { status: 'Declined' },
-            { status: 'Awaiting Pickup' },
-            { status: 'Completed' },
-            { status: 'Attention Required' },
-        ],
-    });
-
     return (
-            <div id="order-card-whole" className="col-sm-12 col-md-4">
-                <OrderInfoModal title={props.number} status={statusState.allStatus[0]} show={orderModalShow} handleShow={orderModalHandleShow}>
-                    PIZZA
+            <div id="order-card-whole" className="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+
+                <OrderInfoModal 
+                title={props.number} 
+                status={props.status} 
+                date={props.date}
+                billedTo={props.billedTo}
+                shippedTo={props.shippedTo}
+                products={props.products}
+                cost={props.cost} 
+                show={orderModalShow} 
+                handleShow={orderModalHandleShow}>
                 </OrderInfoModal>
+
                 <div>
                     <img id="order-card-icon" src={icon} alt="icon" />
                 </div>
@@ -37,10 +31,10 @@ const OrderCard = (props) => {
                     <a onClick={orderModalHandleShow} href>Order No: {props.number}</a>
                 </div>
                 <div id="order-card-status">
-                    <Status status={statusState.allStatus[0]} />
+                    <Status status={props.status} />
                 </div>
                 <div id="order-card-product">
-                    2x Awesome Product
+                    {props.quantity}x {props.firstProduct}
             </div>
                 <div id="order-card-cost">
                     USD ${props.cost}

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../MyOrders/my-orders.css';
 import OrderCard from '../../components/order-card/order-card';
 import Title from '../../components/title/title';
-import {Spinner} from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { myOrdersActions } from '../../actions/myOrdersActions';
 
 const MyOrders = (props) => {
@@ -14,31 +14,66 @@ const MyOrders = (props) => {
     const [firstLoad, setFirstLoad] = useState(false);
     const order_cards = [];
 
-    useEffect(()=>{
-        if (!firstLoad){
+    useEffect(() => {
+        if (!firstLoad) {
             dispatch(myOrdersActions());
         }
         setFirstLoad(true);
-    },[firstLoad])
+    }, [firstLoad])
 
-    useEffect(() =>  {
-        if(loading){
-        dispatch(myOrdersActions());}
-    },[loading])
+    useEffect(() => {
+        if (loading) {
+            dispatch(myOrdersActions());
+        }
+    }, [loading])
 
-    for (let i=0; i<orders.length; i++){
-        order_cards.push(
-        <OrderCard
-        number="XXXXXX"
-        status={orders[i].status} 
-        cost={orders[i].total} 
-        />)
+    for (let i = 0; i < orders.length; i++) {
+
+        let products = [];
+
+        if (orders[i].status !== "Pending") {
+
+            for (let n = 0; n < orders[i].products.length; n++) {
+                products.push(
+                    orders[i].products[n].quantity + "x " + orders[i].products[n].name
+                )
+            }
+
+            let order_no = (orders[i].order_no) ? orders[i].order_no : "123456"
+            let date = (orders[i].date) ? orders[i].date : "10/28/1991"
+
+            order_cards.push(
+                <OrderCard
+                    number = {order_no}
+                    status={{ status: orders[i].status }}
+                    date={date}
+                    billedTo={
+                        orders[i].billing_address.first_name + " " + orders[i].billing_address.last_name + ". " +
+                        orders[i].billing_address.address + ". " + orders[i].billing_address.city + " (" +
+                        orders[i].billing_address.state + "), " + orders[i].billing_address.country + ". " +
+                        orders[i].billing_address.zip_code
+                    }
+                    shippedTo={
+                        orders[i].shipping_address.first_name + " " + orders[i].shipping_address.last_name + ". " +
+                        orders[i].shipping_address.address + ". " + orders[i].shipping_address.city + " (" +
+                        orders[i].shipping_address.state + "), " + orders[i].shipping_address.country + ". " +
+                        orders[i].shipping_address.zip_code
+                    }
+                    cost={orders[i].total}
+                    quantity={orders[i].products[0].quantity}
+                    firstProduct={orders[i].products[0].name}
+                    products={products}
+                />)
+
+        }
     }
 
 
     if (loading) {
         return (
-            <Spinner className="Spinner" animation="border" variant="warning"/>
+            <div id="myorders-spinner">
+                <Spinner className="Spinner" animation="border" variant="warning" />
+            </div>
         )
     } else {
         return (

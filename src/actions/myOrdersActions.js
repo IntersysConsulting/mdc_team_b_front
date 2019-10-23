@@ -27,7 +27,6 @@ const fetchOrdersError = (error) => {
 export const myOrdersActions = () => {
     return (dispatch) => {
         dispatch(fetchOrdersBegin());
-        console.log("aqui alv")
         myOrdersApi.getAllOrders().then((response) => {
             dispatch(fetchOrdersSuccess(response.data.data));
         }).catch((error) => {

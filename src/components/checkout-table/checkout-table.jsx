@@ -8,11 +8,12 @@ const CheckoutTable = props => {
     return props.products.map(product => {
       return (
         <tr>
-          <td className="text-left">{product.name}</td>
+          <td className="text-left checkout-product-name">{product.name}</td>
           <td>{"$" + (product.unitary_price / 100).toFixed(2)}</td>
           <td>{product.quantity}</td>
           <td className="text-right">
-            {"$" + ((product.unitary_price * product.quantity) / 100).toFixed(2)}
+            {"$" +
+              ((product.unitary_price * product.quantity) / 100).toFixed(2)}
           </td>
         </tr>
       );

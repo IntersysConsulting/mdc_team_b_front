@@ -19,13 +19,13 @@ const MyOrders = (props) => {
             dispatch(myOrdersActions());
         }
         setFirstLoad(true);
-    }, [firstLoad])
+    }, [firstLoad, dispatch])
 
     useEffect(() => {
         if (loading) {
             dispatch(myOrdersActions());
         }
-    }, [loading])
+    }, [loading, dispatch])
 
     for (let i = 0; i < orders.length; i++) {
 

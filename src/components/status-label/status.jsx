@@ -54,7 +54,7 @@ const Status = ( props ) => {
     if(addIcon != null){
         component = (
             statusLabel = (
-            <div className = {statusLabel}> <label> <img src={addIcon} className="LabelIcon"/> {props.status.status} </label> </div>)
+            <div className = {statusLabel}> <label> <img src={addIcon} className="LabelIcon" alt=""/> {props.status.status} </label> </div>)
         );
     } else{
         component = (

@@ -29,7 +29,6 @@ const MyAccountView = props => {
             .get(urls.customer, defaultHeaders)
             .then(response => {
                 setIsLoading(false);
-                console.log(response)
                 if (Object.keys(response.data.data.billing_addresses).length !== 0) {
                     setDefaultBilling(response.data.data.billing_addresses[0]);
                 }

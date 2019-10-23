@@ -6,7 +6,7 @@ import { checkoutCustomerActions, checkoutOrderActions, checkoutOrderUpdateActio
 import CheckoutTableDiv from '../../components/checkout-view-components/CheckoutTableDiv';
 import CheckoutTitle from '../../components/checkout-view-components/CheckoutTitle';
 import AddressesContainer from '../../components/checkout-view-components/AddressesContainter';
-import CheckoutPayment from '../../components/checkout-view-components/CheckoutPayment';
+import CheckoutPayment from '../../views/payment/payment';
 
 
 const Checkout = () => {

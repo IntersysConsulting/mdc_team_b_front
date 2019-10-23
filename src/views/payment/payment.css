@@ -1,0 +1,15 @@
+.RegisteredCards{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.LabelAddNew{
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    margin-top: 35px;
+}
+
+.LabelAddNew:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

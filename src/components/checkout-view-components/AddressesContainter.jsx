@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ShippingAddress from "./ShippingAddress";
 import BillingAddress from "./BillingAddress";
 import NextPageButton from "../next-page-button/next-page-button";
@@ -12,14 +12,12 @@ import {
 
 const AddressesContainer = props => {
   const dispatch = useDispatch();
-  // const new_shipping = useSelector(state => state.checkoutState.new_shipping);
-  // const new_billing = useSelector(state => state.checkoutState.new_billing);
 
   useEffect(() => {
     dispatch(setPostAddresses(false));
     dispatch(setNewBilling(undefined));
     dispatch(setNewShipping(undefined));
-  }, []);
+  }, [dispatch]);
 
   const onNextPage = () => {
     dispatch(setPostAddresses(true));

@@ -101,7 +101,9 @@ const Checkout = () => {
     screens.NO_PRODUCTS,
     screens.LOADING,
     screens.CHECKOUT_TABLE,
-    screens.ERROR
+    screens.ERROR,
+    screens.SUCCESS,
+    currentView
   ]);
 
   useEffect(() => {
@@ -164,7 +166,8 @@ const Checkout = () => {
     loading_billing,
     billing_error,
     shipping_error,
-    screens.ERROR
+    screens.ERROR,
+    dispatch
   ]);
 
   const finishOrder = () => {

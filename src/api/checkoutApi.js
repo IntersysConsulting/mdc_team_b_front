@@ -1,5 +1,4 @@
 import axios from "axios";
-import BillingAddress from "../components/checkout-view-components/BillingAddress";
 
 const getOrderInfo = () => {
   return axios

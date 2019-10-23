@@ -49,10 +49,10 @@ const NavigationItems = (props) => {
                 <div className = "TitlesContainer">
                     <p className="SectionTitle">My Account</p>
                 </div>
-                <Item link="/summary">Summary</Item>
-                <Item link="/billing-info">Billing Info</Item>
-                <Item link="/shipping-info">Shipping Info</Item>
-                <Item link="/orders">Orders</Item>
+                <Item link="/account">My Account</Item>
+                <Item link="/account/billing">Billing Info</Item>
+                <Item link="/account/shipping">Shipping Info</Item>
+                <Item link="/account/orders">Orders</Item>
                 <Item onClick={logout}>Log out</Item>
 
             </ul>

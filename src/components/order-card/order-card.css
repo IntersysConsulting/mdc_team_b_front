@@ -1,6 +1,6 @@
 
     #order-card-whole{
-    height: 120px;
+    height: auto;
     border-top: 2px;
     border-top: solid;
     border-top-color: lightgrey;
@@ -20,19 +20,20 @@
     text-decoration: underline;
     color: #116cb4;
     margin-top: 10px;
-    margin-left: 100px;
+    margin-left: 90px;
     font-size: 20px;
     cursor: pointer;
+    justify-content: space-between;
 }
 
 #order-card-status{
-    margin-left: 280px;
-    margin-top: -30px;
+    margin-top: -4px;
+    margin-right: 10px;
 }
 
 #order-card-product{
     font-weight: bold;
-    margin-left: 100px;
+    margin-left: 90px;
     user-select: none;
 }
 
@@ -40,19 +41,24 @@
     font-weight: bold;
     color: #f98f3e;
     font-size: 20px;
-    margin-left: 100px;
+    margin-left: 90px;
     user-select: none;
 }
 
-
 @media (max-width:500px){
     #order-card-whole{
-        min-width: 400px;
+        min-width: 420px;
     }
 }
 
 @media (min-width: 700px){
     #order-card-whole{
         margin-right: 80px;
+    }
+}
+
+@media (min-width:769px) and (max-width:1120px){
+    #order-card-whole{
+        min-width: 500px;
     }
 }

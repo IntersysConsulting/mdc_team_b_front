@@ -26,6 +26,7 @@ const MyOrders = (props) => {
             dispatch(myOrdersActions());
         }
     }, [loading, dispatch])
+    
 
     for (let i = 0; i < orders.length; i++) {
 

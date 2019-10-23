@@ -1,9 +1,9 @@
 #order-info-modal{
     min-height: auto;
-    margin-top: 50px;
     border: solid;
     border-width: 3px;
-    border-color: #116cb4
+    border-color: #116cb4;
+    margin: 50px auto;
 }
 
 #order-info-modal-header{
@@ -21,8 +21,8 @@
 
 #order-info-modal-status{
     float: left;
-    margin-left: 344px;
-    margin-top: -55px;
+    margin-left: 294px;
+    margin-top: -58px;
 }
 
 #order-info-modal-content{
@@ -32,6 +32,14 @@
     border-width: 2px;
     border-color: #116cb4;
     margin-bottom: 30px;
+}
+
+.modal-backdrop{
+    display: none;
+}
+
+.modal{
+    background: rgba(0,0,0,0.5);
 }
 
 @media (max-width:600px){

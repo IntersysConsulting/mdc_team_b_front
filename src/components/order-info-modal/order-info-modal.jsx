@@ -9,7 +9,7 @@ const OrderInfoModal = (props) => {
 
     <div className="col-10">
 
-        <Modal id="order-info-modal" dialogClassName="custom-modal" show={props.show} onHide={props.handleShow}>
+        <Modal id="order-info-modal" dialogClassName="custom-modal center" show={props.show} onHide={props.handleShow} data-backdrop="">
             
             <Modal.Header id="order-info-modal-header" closeButton/>
                 

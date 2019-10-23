@@ -10,7 +10,7 @@ const OrderCard = (props) => {
     const orderModalHandleShow = () => orderModalSetShow(!orderModalShow);
 
     return (
-            <div id="order-card-whole" className="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+            <div id="order-card-whole" className="col-xs-12 col-md-7 col-lg-5">
 
                 <OrderInfoModal 
                 title={props.number} 
@@ -27,18 +27,22 @@ const OrderCard = (props) => {
                 <div>
                     <img id="order-card-icon" src={icon} alt="icon" />
                 </div>
-                <div id="order-card-number">
+
+                <div id="order-card-number" className="row">
                     <a onClick={orderModalHandleShow} href>Order No: {props.number}</a>
-                </div>
-                <div id="order-card-status">
+                    <div id="order-card-status">
                     <Status status={props.status} />
+                    </div>
                 </div>
+
                 <div id="order-card-product">
                     {props.quantity}x {props.firstProduct}
             </div>
+
                 <div id="order-card-cost">
                     USD ${props.cost}
                 </div>
+                
             </div>
     );
 }

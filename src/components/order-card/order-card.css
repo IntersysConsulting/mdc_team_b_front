@@ -1,5 +1,5 @@
 
-    #order-card-whole{
+#order-card-whole{
     height: auto;
     border-top: 2px;
     border-top: solid;
@@ -24,6 +24,16 @@
     font-size: 20px;
     cursor: pointer;
     justify-content: space-between;
+}
+
+#show-order-button{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 #order-card-status{

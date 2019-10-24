@@ -29,7 +29,7 @@ const OrderCard = (props) => {
                 </div>
 
                 <div id="order-card-number" className="row">
-                    <a onClick={orderModalHandleShow} href>Order No: {props.number}</a>
+                    <button id="show-order-button" onClick={orderModalHandleShow}>Order No: {props.number}</button>
                     <div id="order-card-status">
                     <Status status={props.status} />
                     </div>

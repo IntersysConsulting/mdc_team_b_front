@@ -45,6 +45,7 @@ const MyOrders = (props) => {
 
             order_cards.push(
                 <OrderCard
+                    key={i}
                     number = {order_no}
                     status={{ status: orders[i].status }}
                     date={date}

@@ -34,6 +34,10 @@
     margin-bottom: 30px;
 }
 
+#order-info-modal-products{
+    display: block;
+}
+
 .modal-backdrop{
     display: none;
 }

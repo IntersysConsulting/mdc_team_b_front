@@ -36,19 +36,18 @@ const MyOrders = (props) => {
 
             for (let n = 0; n < orders[i].products.length; n++) {
                 products.push(
-                    orders[i].products[n].quantity + "x " + orders[i].products[n].name
+                    orders[i].products[n].quantity + "x " + orders[i].products[n].name 
+                    + " $" +orders[i].products[n].unitary_price.toString().slice(0,-2)
+                    + "." +orders[i].products[n].unitary_price.toString().slice(-2)
                 )
             }
-
-            let order_no = (orders[i].order_no) ? orders[i].order_no : "123456"
-            let date = (orders[i].date) ? orders[i].date : "10/28/1991"
 
             order_cards.push(
                 <OrderCard
                     key={i}
-                    number = {order_no}
+                    number = {orders[i].order_no}
                     status={{ status: orders[i].status }}
-                    date={date}
+                    date={orders[i].date}
                     billedTo={
                         orders[i].billing_address.first_name + " " + orders[i].billing_address.last_name + ". " +
                         orders[i].billing_address.address + ". " + orders[i].billing_address.city + " (" +

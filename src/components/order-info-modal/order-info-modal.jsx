@@ -36,8 +36,9 @@ const OrderInfoModal = (props) => {
                 <br></br>
                 <b>Products:</b>
                 <br></br>
-                - {props.products}
-                <br></br>
+                {props.products.map((product, key) => (
+                <span id="order-info-modal-products" key={key}>- {product}</span>)
+                )}
                 <br></br>
                 <b>Total: </b>${props.cost}
             </Modal.Body>

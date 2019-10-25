@@ -302,7 +302,9 @@ const Checkout = () => {
       "user_shipping",
       order_put_fields.shipping_address ? order_put_fields.shipping_address : 0
     );
-    dispatch(checkoutOrderUpdateActions(formData));
+    // TODO: Implement Stripe payment here
+    var stripeInfo = undefined;
+    dispatch(checkoutOrderUpdateActions(formData, stripeInfo));
   };
 
   //#region Screens

@@ -27,6 +27,8 @@ const Checkbox = props => {
         id={props.id}
         onClick={props.onClick}
         defaultChecked={checkboxState.checked}
+        value={props.checked}
+        checked={props.checked}
       />
       <span className="checkmark"></span> {props.text}
     </label>

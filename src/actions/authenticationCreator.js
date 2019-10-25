@@ -2,7 +2,9 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
-  VALIDATE_AUTHENTICATION
+  SAVE_USER,
+  VALIDATE_AUTHENTICATION,
+  REFRESH_TOKEN
 } from "../constants/authenticationConstants";
 
 export function authenticatedAction(auth) {
@@ -30,5 +32,19 @@ export function validate_authentication(auth) {
   return {
     type: VALIDATE_AUTHENTICATION,
     auth: auth
+  }
+}
+
+export function save_user(auth) {
+  return {
+    type: SAVE_USER,
+    auth: auth 
+  }
+}
+
+export function refresh_token(auth) {
+  return {
+    type: REFRESH_TOKEN,
+    auth: auth 
   }
 }

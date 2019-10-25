@@ -21,7 +21,9 @@ const LayoutCustomer = (props) => {
 
     let showLayout = null;
     
-    if(props.location.pathname === "/login" || props.location.pathname === "/login-admin" ){
+    if( props.location.pathname === "/login" ||
+        props.location.pathname === "/login-admin" ||
+        props.location.pathname === "/sign-up" ){
         showLayout = <React.Fragment>{props.children}</React.Fragment>
     } else {
         let attachedClasses = "LayoutWindowCustomer";

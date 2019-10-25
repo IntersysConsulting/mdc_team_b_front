@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import Logo from "../layout/logo/logo.png";
@@ -13,24 +13,31 @@ import "./login.css"
 const Login = props => {
 
   const dispatch = useDispatch();
+  const auth = useSelector(store => store.authenticationState)
+  const {admin} = (props.admin || false)
+  const initialAuth = useState(auth)
   const [loginState, setLoginState] = useState({ email: "", password: "" });
   const [conditionsModalShow, conditionsModalSetShow] = useState(false);
   const conditionsModalHandleShow = () => conditionsModalSetShow(!conditionsModalShow);
   const [privacyModalShow, privacyModalSetShow] = useState(false);
   const privacyModalHandleShow = () => privacyModalSetShow(!privacyModalShow);
 
+  useEffect(() => {
+    if(JSON.stringify(auth) !== JSON.stringify(initialAuth[0])) {
+      if(admin){
+        props.history.push("/admin")
+      } else {
+        props.history.push("/") 
+      }
+    }
+  },[auth, initialAuth, admin, props.history])
+
   const Send = (event) => {
     event.preventDefault();
     let formData = new FormData()
     formData.set('email', loginState.email)
     formData.set('password', loginState.password)
-    dispatch(login(formData, props.admin)).then(() => {
-      if (props.admin) {
-        props.history.push("/admin")
-      } else {
-        props.history.push("/")
-      }
-    })
+    dispatch(login(formData, props.admin))
   };
 
   const onChangeInput = event => {
@@ -82,7 +89,7 @@ const Login = props => {
           </Link>
         </div>
         <div className="login-footer mt-4 px-4 mb-2">
-          <Link to={"/login"} className="login-signup text-indigo">
+          <Link to={"/sign-up"} className="login-signup text-indigo">
             Sign up instead!
           </Link>
           <AcceptButton border className="login-button" onClick={Send}>
@@ -111,5 +118,4 @@ const Login = props => {
   );
 };
 
-const loginWithRouter = withRouter(Login)
-export default loginWithRouter;
+export default withRouter(Login)

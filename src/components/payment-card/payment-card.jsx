@@ -1,10 +1,12 @@
 import React from 'react';
+import axios from "axios";
 import '../payment-card/payment-card.css';
 import icon from './icon.PNG';
 import visa from './visa.png';
 import mastercard from './mastercard.png';
 import american from './american-express.png'
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteCardAction } from "../../actions/paymentActions";
 import { updatePayment } from '../../actions/checkoutActions';
 
 const PaymentCard = (props) => {
@@ -27,6 +29,10 @@ const PaymentCard = (props) => {
             cardLogo = icon;
     }
 
+    const deleteCard = () => {
+        dispatch(deleteCardAction(props.id));
+    }
+
     return (
         <div id="payment-card-whole">
             <label id="payment-card-button-container">
@@ -39,7 +45,7 @@ const PaymentCard = (props) => {
             <div id="payment-card-number">
                 **** **** {props.number}
             </div>
-            <div id="payment-card-delete">
+            <div id="payment-card-delete" onClick={deleteCard}>
                 Delete
             </div>
         </div>

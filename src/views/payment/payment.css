@@ -3,13 +3,24 @@
     flex-flow: row wrap;
 }
 
-.LabelAddNew{
-    font-size: 20px;
+.NoCardsLabel{
+    font-size: 40px;
     font-family: "Roboto", sans-serif;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 
-.LabelAddNew:hover{
-    text-decoration: underline;
+.AddCardIcon{
+    width: 40px;
+    height: 40px;
+    margin-top: 6px;
+    margin-left: 12px;
+    background-color:#72c068;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.AddCardIcon:hover{
     cursor: pointer;
 }

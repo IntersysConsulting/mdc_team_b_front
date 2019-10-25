@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Elements, StripeProvider} from 'react-stripe-elements';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCardsAction, addCardAction, deleteCardAction } from "../../actions/paymentActions";
 import { updatePayment } from '../../actions/checkoutActions';
 import axios from "axios";
 import CheckoutTitle from '../../components/checkout-view-components/CheckoutTitle';
@@ -12,45 +13,42 @@ import PaymentCard from '../../components/payment-card/payment-card';
 import "./payment.css"
 
 const CheckoutPayment = (props) =>{
-    const dispatch = useDispatch();
     const [showCardForm, setShowCardForm] = useState( {showing: false} );
-    const [cardsRetrieved, setCardsRetrieved] = useState({ cards: [] });
+    const cards = useSelector(state => state.paymentState.cardsRetrieved);
+    const loading = useSelector(state => state.paymentState.loading);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        axios
-        .get(process.env.REACT_APP_API_URL + "/payment/cards", {
-            headers: {
-              authorization: "Bearer " + localStorage.getItem("access_token")
-            }
-          })
-          .then(response => {
-            setCardsRetrieved({ cards: response.data.data.cards.sources.data })
-            console.log(response)
-            dispatch(updatePayment(response.data.data.cards.default_source))
-          });
-      }, [dispatch]);
+        console.log("Hi");
+        dispatch(getCardsAction());
+        //dispatch(updatePayment(response.data.data.cards.default_source))
+    }, [dispatch]);
 
-      let cards = cardsRetrieved.cards.map(card => {
+    let cardsToShow = cards.map(card => {
         return (
-          <PaymentCard
-            id = {card.id}
-            number = {card.last4}
-            brand = {card.brand}
-            owner = "Pending name"
-          />
+            <PaymentCard
+                id = {card.id}
+                number = {card.last4}
+                brand = {card.brand}
+                owner = "Pending name"
+            />
         );
-      });
+    });
+
+    if(cards.length === 0){
+        cardsToShow = <p className="NoCardsLabel"> You have not any registered cards yet </p>
+    }
 
     return (
         <div className="container-fluid col-10 offset-1 justify-content-left">
             <div className="row">
                 <CheckoutTitle currentView={props.currentView}></CheckoutTitle>
+                <div className="AddCardIcon" onClick={ () => { setShowCardForm( { showing: !showCardForm.showing } ); }}> 
+                    + 
+                </div>{" "}
             </div>
-            <div className="row col-12 justify-content-left">
-                {cards}
-            </div>
-            <div className = "row">
-                <p className="LabelAddNew" onClick={ () => { setShowCardForm( { showing: !showCardForm.showing } ); }}> Add new card</p>
+            <div className="row ">
+                {cardsToShow}
             </div>
             <div className = "row">
                 { (showCardForm.showing) 

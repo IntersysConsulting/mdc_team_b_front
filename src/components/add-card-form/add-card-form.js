@@ -1,27 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { addCardAction } from "../../actions/paymentActions";
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import AcceptButton from '../accept-button/accept-button';
+import cardsIcon from './cards.jpg';
+
 import "./add-card-form.css"
 
 const AddCardForm = (props) => {
   const [errorMessage, setErrorMessage] = useState( {message: ""}  );
+  const dispatch = useDispatch();
 
 
   const submit = async (e) => {
     let {token} = await props.stripe.createToken({name: "Name"});
-    console.log(token.id)
-    axios
-      .put(process.env.REACT_APP_API_URL + "/payment/cards", { card_token: token.id }, 
-      { headers: { authorization: "Bearer " + localStorage.getItem("access_token") } } )
-      .then(response => {
-        console.log(response);
-      })
-      .catch( (error) => {
-        console.log(error)
-    });
+    dispatch(addCardAction(token.id));
   }
-
 
     return (
       <div className="container-fluid">

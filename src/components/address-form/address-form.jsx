@@ -38,9 +38,19 @@ const AddressForm = props => {
     if (props.values !== undefined) {
       setFormData(props.values);
     } else {
-      setFormData(NoAddress);
+      setFormData({
+        first_name: undefined,
+        last_name: undefined,
+        address: undefined,
+        between: undefined,
+        zip_code: undefined,
+        country: undefined,
+        state: undefined,
+        city: undefined,
+        delivery_notes: undefined
+      });
     }
-  }, [props.values, NoAddress]);
+  }, [props.values]);
 
   const StaticOnChange = e => {
     let tmpData = { ...formData };

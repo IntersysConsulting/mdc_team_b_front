@@ -47,3 +47,13 @@
 .adminCart-email {
     word-wrap: break-word;
 }
+
+#adminCart-delete {
+    font-size: 21px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#adminCart-delete span {
+    font-weight: bold;
+}

@@ -5,7 +5,7 @@ import { read_admins, error_admin }  from "../../../actions/adminActions"
 import AdminCart from "./AdminCart/AdminCart"
 import "./AdminList.css"
 
-const AdminList = () => {
+const AdminList = props => {
     const dispatch = useDispatch()
     const admin = useSelector(store => store.authenticationState)
     const adminStore = useSelector(store => store.adminState.admins)
@@ -16,7 +16,7 @@ const AdminList = () => {
             method: "get", 
             actionSuccessful: read_admins,
             actionError: error_admin,
-            url: "admin/management/"
+            url: "admin/management/?page_size=9000"
         }
         dispatch(makeRequest(options))
     },[dispatch])
@@ -31,24 +31,32 @@ const AdminList = () => {
     })
 
     let restAdmin = admins.filter(a => a.email !== currentAdmin.email)
+    let extra = restAdmin.length % 2
     let column1 = restAdmin.slice(0, Math.floor(restAdmin.length/2))
-    let column2 = restAdmin.slice(Math.floor(restAdmin.length/2) , restAdmin.length + 1)
+    let column2 = restAdmin.slice(Math.floor(restAdmin.length/2), restAdmin.length - extra)
+    let extcol = extra > 0 ? restAdmin.slice(-1) : null
 
     return (
         <>
         <div className="row">
             <div className="col-md-12" id="adminListCurrent">
-                { currentAdmin ? <AdminCart info={currentAdmin} current /> : null }
+                { currentAdmin ?
+                <AdminCart
+                    admin={currentAdmin}
+                    toggle={props.toggle}
+                    current
+                /> : null }
             </div>
         </div>
         <div className="row">
             <div className="col-xs-12 col-lg-12">
                 <div className="row">
                     <div className="col-xs-12  col-md-6 col-lg-6">
-                        {  column1 ? column1.map(a => <AdminCart info={a} />) : null }
+                        {  column1 ? column1.map(a => <AdminCart admin={a} />) : null }
+                        {  extcol ? extcol.map(a => <AdminCart admin={a} />) : null }
                     </div>
                     <div className="col-xs-12  col-md-6 col-lg-6">
-                    {  column2 ? column2.map(a => <AdminCart info={a} />) : null }
+                    {  column2 ? column2.map(a => <AdminCart admin={a} />) : null }
                 </div>
                 </div>
             </div>

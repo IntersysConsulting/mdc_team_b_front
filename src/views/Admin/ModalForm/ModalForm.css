@@ -1,19 +1,17 @@
-#SignupAdmin {
+#AdminModal {
     background: #F2F2F2;
-    /* eCommerce Secondary */
-    
     border: 2px solid #116CB4;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
-#SignupAdminButton {
+#AdminFormButtons {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-column-gap: 5px;
 }
 
-#SignupAdmin > input {
+#AdminModal > input {
     background: #FFFFFF;
     border: 1px solid #116CB4;
     box-sizing: border-box;

@@ -1,6 +1,5 @@
-export const CREATE_ADMIN = 'get_admins';
-export const READ_ADMIN = 'get_admins';
-export const UPDATE_ADMIN = 'gt_admins';
-export const DELETE_ADMIN = 'delete_admins';
+export const CREATE_ADMIN = 'create_admin';
+export const UPDATE_ADMIN = 'update_admin';
+export const DELETE_ADMIN = 'delete_admin';
 export const READ_ADMINS = 'read_admins';
 export const ERROR_ADMIN = 'error_admin';

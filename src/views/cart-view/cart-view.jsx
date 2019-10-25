@@ -182,7 +182,7 @@ const CartView = props => {
         return renderItem(e);
       });
       component = (
-        <div className="container cart-view">
+        <div className="container cart-view" id="cart-view">
           <div className="cart-view-items-container">
             <div className="cart-view-top-text">
               <div className="cart-view-title">
@@ -210,7 +210,7 @@ const CartView = props => {
       );
     } else {
       component = (
-        <div className="container cart-view-empty">
+        <div className="container cart-view-empty" id="cart-view">
           <div className="cart-view-empty-text">
             <h3>Your cart is empty!</h3>
             <p>

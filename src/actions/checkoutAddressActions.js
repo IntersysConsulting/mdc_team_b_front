@@ -153,3 +153,9 @@ export const cleanUp = () => {
     type: checkoutAddressConstants.CLEAN_UP
   };
 };
+
+export const toastReset = () => {
+  return {
+    type: checkoutAddressConstants.RESET_TOASTS
+  };
+};

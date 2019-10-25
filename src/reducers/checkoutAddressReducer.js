@@ -4,14 +4,17 @@ const INITIAL_STATE = {
   shipping_continue: false, // POST Returned or POST Was not necessary
   shipping_loading: false, // Are we waiting on it?
   shipping_error: undefined, // Did it fail ?
+  shipping_toast: false, // Doesn't get reset unless we get a hard reset
 
   billing_continue: false, // POST Returned or POST Was not necessary
   billing_loading: false, // Are we waiting on it?
-  billing_error: false, // Did it fail ?
+  billing_error: undefined, // Did it fail ?
+  billing_toast: false, // Doesn't get reset unless we get a hard reset
 
   info_continue: false, // PUT Returned or PUT Was not necessary
   info_loading: false, // Are we waiting on it?
-  info_error: false, // Did it fail ?
+  info_error: undefined, // Did it fail ?
+  info_toast: false, // Doesn't get reset unless we get a hard reset
 
   continue_requested: false // Signals to start POSTS and PUTS
 };
@@ -39,7 +42,8 @@ const checkoutAddressReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         shipping_loading: false,
-        shipping_continue: true
+        shipping_continue: true,
+        shipping_toast: true
       };
     case checkoutAddressConstants.POST_SHIPPING_ERROR:
       return {
@@ -64,7 +68,8 @@ const checkoutAddressReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         billing_loading: false,
-        billing_continue: true
+        billing_continue: true,
+        billing_toast: true
       };
     case checkoutAddressConstants.POST_BILLING_ERROR:
       return {
@@ -89,7 +94,8 @@ const checkoutAddressReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         info_loading: false,
-        info_continue: true
+        info_continue: true,
+        info_toast: true
       };
     case checkoutAddressConstants.PUT_INFO_ERROR:
       return {
@@ -108,13 +114,19 @@ const checkoutAddressReducer = (state = INITIAL_STATE, action) => {
 
         billing_continue: false,
         billing_loading: false,
-        billing_error: false,
+        billing_error: undefined,
 
         info_continue: false,
         info_loading: false,
-        info_error: false,
+        info_error: undefined,
 
         continue_requested: false
+      };
+    case checkoutAddressConstants.RESET_TOASTS:
+      return {
+        shipping_toast: false,
+        billing_toast: false,
+        info_toast: false
       };
     default:
       return state;

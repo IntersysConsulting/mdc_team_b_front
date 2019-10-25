@@ -22,18 +22,6 @@ const AddressForm = props => {
     delivery_notes: undefined
   });
 
-  const NoAddress = {
-    first_name: undefined,
-    last_name: undefined,
-    address: undefined,
-    between: undefined,
-    zip_code: undefined,
-    country: undefined,
-    state: undefined,
-    city: undefined,
-    delivery_notes: undefined
-  };
-
   useEffect(() => {
     if (props.values !== undefined) {
       setFormData(props.values);

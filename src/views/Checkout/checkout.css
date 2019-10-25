@@ -5,6 +5,11 @@
 
 #shipping-address {
   margin-right: 100px;
+  margin-bottom: 3.5rem;
+}
+
+#billing-address {
+  margin-bottom: 3.5rem;
 }
 
 #shipping-address-title {
@@ -95,4 +100,8 @@
 
 .strange-button {
   align-content: right;
+}
+
+.disabled-next-button {
+  opacity: 0.5;
 }

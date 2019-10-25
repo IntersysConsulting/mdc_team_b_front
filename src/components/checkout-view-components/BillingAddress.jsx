@@ -18,52 +18,25 @@ const BillingAddress = props => {
     city: undefined,
     state: undefined
   });
+
+  const NO_ADDRESS = {
+    first_name: undefined,
+    last_name: undefined,
+    country: undefined,
+    address: undefined,
+    zip_code: undefined,
+    city: undefined,
+    state: undefined
+  };
+
   const billingHandleShow = () => billingSetShow(!billingShow);
   const address = useSelector(state => state.checkoutState.billing_address);
-
-  const billingInfo = () => {
-    if (selectedAddress !== undefined) {
-      return [
-        {
-          field: "First Name",
-          value: selectedAddress.first_name
-        },
-        { field: "Last Name", value: selectedAddress.last_name },
-        { field: "Address", value: selectedAddress.address },
-        { field: "Zip Code", value: selectedAddress.zip_code },
-        { field: "Country", value: selectedAddress.country },
-        { field: "State", value: selectedAddress.state },
-        { field: "City", value: selectedAddress.city }
-      ];
-    } else {
-      return [
-        {
-          field: "First Name",
-          value: undefined
-        },
-        { field: "Last Name", value: undefined },
-        { field: "Address", value: undefined },
-        { field: "Zip Code", value: undefined },
-        { field: "Country", value: undefined },
-        { field: "State", value: undefined },
-        { field: "City", value: undefined }
-      ];
-    }
-  };
 
   useEffect(() => {
     if (address !== undefined && address.length >= selectedIndex) {
       setSelectedAddress(address[selectedIndex]);
     } else {
-      setSelectedAddress({
-        first_name: undefined,
-        last_name: undefined,
-        country: undefined,
-        address: undefined,
-        zip_code: undefined,
-        city: undefined,
-        state: undefined
-      });
+      setSelectedAddress(NO_ADDRESS);
     }
   }, [address, selectedIndex]);
 
@@ -71,8 +44,8 @@ const BillingAddress = props => {
     return (
       <div>
         <AddressForm
-          values={billingInfo()}
-          readonly
+          values={selectedAddress}
+          readonly={true}
           type="billing"
         ></AddressForm>
         <EditButton className="col-12" onClick={billingHandleShow}>
@@ -93,7 +66,7 @@ const BillingAddress = props => {
   };
 
   const NoAddressForm = () => {
-    return <AddressForm values={billingInfo()} type="billing" />;
+    return <AddressForm values={selectedAddress} type="billing" />;
   };
 
   return (
@@ -102,9 +75,9 @@ const BillingAddress = props => {
         currentView={props.currentView}
         shipping={false}
       ></CheckoutTitle>
-      {selectedAddress === undefined
-        ? NoAddressForm()
-        : NewDisplayAddressForm()}
+      {address && address.length > 0
+        ? NewDisplayAddressForm()
+        : NoAddressForm()}
     </Form>
   );
 };

@@ -6,10 +6,9 @@ import {
   checkoutCustomerActions,
   checkoutOrderActions,
   checkoutOrderUpdateActions,
-  postNewShipping,
-  postNewBilling,
   cleanUp
 } from "../../actions/checkoutActions";
+import { cleanUp as AddressCleanUp } from "../../actions/checkoutAddressActions";
 import CheckoutTableDiv from "../../components/checkout-view-components/CheckoutTableDiv";
 import CheckoutTitle from "../../components/checkout-view-components/CheckoutTitle";
 import AddressesContainer from "../../components/checkout-view-components/AddressesContainter";
@@ -19,14 +18,6 @@ const Checkout = () => {
   const [currentView, setCurrentView] = useState(0);
   const [preventViewChange, setPreventViewChange] = useState(false);
 
-  const [shippingPostStatus, setShippingPostStatus] = useState({
-    started: false,
-    finished: false
-  });
-  const [billingPostStatus, setBillingPostStatus] = useState({
-    started: false,
-    finished: false
-  });
   // const [canFinish, setCanFinish] = useState(false);
   const dispatch = useDispatch();
   // An enum of the implemented screens the checkout can go through
@@ -42,49 +33,71 @@ const Checkout = () => {
 
   //#region Selectors
 
+  //#region Loading Selectors
+  // Waiting on Order GET ?
   const loading_order = useSelector(state => state.checkoutState.loading_order);
+  // Did Order GET return an error ?
+  const order_error = useSelector(state => state.checkoutState.order_error);
+  // Waiting on Customer GET ?
   const loading_customer = useSelector(
     state => state.checkoutState.loading_customer
   );
-  const loading_put = useSelector(state => state.checkoutState.loading_put);
-  const did_put_respond = useSelector(
-    state => state.checkoutState.did_put_respond
-  );
-  const order = useSelector(state => state.checkoutState.order);
-  const order_put_fields = useSelector(state => state.checkoutState.newOrder);
-  const put_error = useSelector(state => state.checkoutState.put_error);
+  // Did Customer GET return an error ?
   const customer_error = useSelector(
     state => state.checkoutState.customer_error
   );
-  const order_error = useSelector(state => state.checkoutState.order_error);
-  const loading_shipping = useSelector(
-    state => state.checkoutState.loading_shipping
+  // Waiting on Order PUT ?
+  const loading_put = useSelector(state => state.checkoutState.loading_put);
+  // Did PUT return an error?
+  const put_error = useSelector(state => state.checkoutState.put_error);
+  // Signals that we can proceed to the final screen.
+  const did_put_respond = useSelector(
+    state => state.checkoutState.did_put_respond
   );
-  const loading_billing = useSelector(
-    state => state.checkoutState.loading_billing
-  );
-  const shipping_error = useSelector(
-    state => state.checkoutState.post_shipping_error
-  );
-  const billing_error = useSelector(
-    state => state.checkoutState.post_billing_error
-  );
-
-  const new_shipping = useSelector(state => state.checkoutState.new_shipping);
-  const new_billing = useSelector(state => state.checkoutState.new_billing);
-
   //#endregion
 
+  // Address Container Selectors
+  // These are used to prompt success/error messages
+  // But not just yet. Will be Uncommented on next Commit.
+  // TODO:
+  // const shipping_continue = useSelector(
+  //   state => state.checkoutAddressState.shipping_continue
+  // );
+  // const billing_continue = useSelector(
+  //   state => state.checkoutAddressState.billing_continue
+  // );
+  // const info_continue = useSelector(
+  //   state => state.checkoutAddressState.info_continue
+  // );
+  // const shipping_error = useSelector(
+  //   state => state.checkoutAddressState.shipping_error
+  // );
+  // const billing_error = useSelector(
+  //   state => state.checkoutAddressState.billing_error
+  // );
+  // const info_error = useSelector(
+  //   state => state.checkoutAddressState.info_error
+  // );
+
+  // #region Information Selectors
+  const order = useSelector(state => state.checkoutState.order); // Know about the GET
+  const order_put_fields = useSelector(state => state.checkoutState.newOrder); // Fields for the PUT
+
+  //#endregion
+  //#region UseEffects
   // Gets called once when the component loads
   useEffect(() => {
+    // To make sure the state is clean we tidy it up when we first load
+    dispatch(cleanUp());
+    dispatch(AddressCleanUp());
+    // Then we GET the data we need
     dispatch(checkoutOrderActions());
     dispatch(checkoutCustomerActions());
   }, [dispatch]);
 
-  useEffect(() => {});
-
+  // Is used while loading the component, waits on the two dispatches above.
   useEffect(() => {
-    if (!preventViewChange) {
+    const DetermineFirstScreen = () => {
       if (loading_customer || loading_order) {
         setCurrentView(screens.LOADING);
       } else if (order.products.length > 0) {
@@ -94,6 +107,10 @@ const Checkout = () => {
       } else {
         setCurrentView(screens.ERROR);
       }
+    };
+
+    if (!preventViewChange) {
+      DetermineFirstScreen();
     }
   }, [
     loading_customer,
@@ -109,6 +126,8 @@ const Checkout = () => {
     preventViewChange
   ]);
 
+  // Is used while PUTting the Order. If it fails it loads the error screen.
+  // The success screen is handled in the next useEffect
   useEffect(() => {
     if (loading_put) {
       setCurrentView(screens.LOADING);
@@ -117,61 +136,15 @@ const Checkout = () => {
     }
   }, [loading_put, put_error, screens.ERROR, screens.LOADING]);
 
+  // If the order finished right, we display the success screen.
   useEffect(() => {
-    if (shipping_error !== undefined || billing_error !== undefined) {
-      setCurrentView(screens.ERROR);
+    if (did_put_respond) {
+      setPreventViewChange(true);
+      setCurrentView(screens.SUCCESS);
     }
-  }, [shipping_error, billing_error, screens.ERROR, screens.LOADING]);
+  }, [did_put_respond, screens.SUCCESS]);
 
-  useEffect(() => {
-    if (billing_error !== undefined || shipping_error !== undefined) {
-      setCurrentView(screens.ERROR);
-    } else {
-      if (
-        new_shipping !== undefined &&
-        !loading_shipping &&
-        !shippingPostStatus.started
-      ) {
-        // If we haven't started the post, there's something in the new address and we aren't already loading...
-        setShippingPostStatus({ started: true, finished: false });
-        dispatch(postNewShipping(new_shipping));
-      } else if (
-        shippingPostStatus.started &&
-        !loading_shipping &&
-        new_shipping === undefined
-      ) {
-        // If the post was started. We are finished loading, and new_billing was reset to undefined we finished posting.
-        setShippingPostStatus({ started: true, finished: true });
-      }
-      if (
-        new_billing !== undefined &&
-        !loading_billing &&
-        !billingPostStatus.started
-      ) {
-        // If we haven't started the post, there's something in the new address and we aren't already loading...
-        setBillingPostStatus({ started: true, finished: false });
-        dispatch(postNewBilling(new_billing));
-      } else if (
-        billingPostStatus.started &&
-        !loading_billing &&
-        new_billing === undefined
-      ) {
-        // If the post was started. We are finished loading, and new_billing was reset to undefined we finished posting.
-        setBillingPostStatus({ started: true, finished: true });
-      }
-    }
-  }, [
-    shippingPostStatus,
-    billingPostStatus,
-    new_shipping,
-    new_billing,
-    loading_shipping,
-    loading_billing,
-    billing_error,
-    shipping_error,
-    screens.ERROR,
-    dispatch
-  ]);
+  //#endregion
 
   const finishOrder = () => {
     setCurrentView(screens.LOADING);
@@ -191,14 +164,6 @@ const Checkout = () => {
     dispatch(checkoutOrderUpdateActions(formData));
   };
 
-  // If the order finished right, we display the success screen.
-  useEffect(() => {
-    if (did_put_respond) {
-      setPreventViewChange(true);
-      setCurrentView(screens.SUCCESS);
-    }
-  }, [did_put_respond, screens.SUCCESS]);
-
   //#region Screens
 
   const LoadingScreen = () => {
@@ -213,10 +178,6 @@ const Checkout = () => {
               ? "Fetching your order's data!"
               : loading_put
               ? "We're wrapping it up for you!"
-              : loading_billing
-              ? "We're updating your billing address"
-              : loading_shipping
-              ? "We're updating your shipping address"
               : "Wait a second please!"}
           </h1>
         </div>
@@ -294,6 +255,23 @@ const Checkout = () => {
       </div>
     );
   };
+
+  const ErrorScreen = () => {
+    return (
+      <div className="container-fluid">
+        <h1>
+          Error Code: {currentView}. <br />
+          Errors:
+          <br />
+          {put_error ? "PUT ERROR: " + put_error : ""}
+          <br />
+          {customer_error ? "CUSTOMER ERROR:" + customer_error : ""}
+          <br />
+          {order_error ? "ORDER ERROR:" + order_error : ""}
+        </h1>
+      </div>
+    );
+  };
   //#endregion
 
   //#region Return Selector
@@ -320,24 +298,7 @@ const Checkout = () => {
         return NoProductsScreen();
       }
       default: {
-        return (
-          <div className="container-fluid">
-            <h1>
-              Unexpected case {currentView}. <br />
-              Errors:
-              <br />
-              {put_error ? "PUT ERROR: " + put_error : ""}
-              <br />
-              {customer_error ? "CUSTOMER ERROR:" + customer_error : ""}
-              <br />
-              {order_error ? "ORDER ERROR:" + order_error : ""}
-              <br />
-              {shipping_error ? "SHIPPING ERROR:" + shipping_error : ""}
-              <br />
-              {billing_error ? "BILLING ERROR:" + billing_error : ""}
-            </h1>
-          </div>
-        );
+        return ErrorScreen();
       }
     }
   }

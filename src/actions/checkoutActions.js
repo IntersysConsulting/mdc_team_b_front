@@ -113,17 +113,17 @@ export const checkoutCustomerActions = () => {
   };
 };
 
-export const updateBilling = (key, address) => {
+export const updateBilling = (index, address) => {
   return {
-    type: checkoutConstants.UPDATE_BILLING_ADDRESS,
-    payload: { address: address, key: key }
+    type: checkoutConstants.UPDATE_BILLING,
+    payload: { address: address, index: index }
   };
 };
 
-export const updateShipping = (key, address) => {
+export const updateShipping = (index, address) => {
   return {
-    type: checkoutConstants.UPDATE_SHIPPING_ADDRESS,
-    payload: { address: address, key: key }
+    type: checkoutConstants.UPDATE_SHIPPING,
+    payload: { address: address, index: index }
   };
 };
 
@@ -134,104 +134,10 @@ export const updatePayment = payment => {
   };
 };
 
-// New Shipping and Billing Implementation
-
-export const newShipping = address => {
+export const updateGuestInfo = guest => {
   return {
-    type: checkoutConstants.NEW_SHIPPING_ADDRESS,
-    payload: { address: address }
-  };
-};
-
-export const newBilling = address => {
-  return {
-    type: checkoutConstants.NEW_BILLING_ADDRESS,
-    payload: { address: address }
-  };
-};
-
-const fetchPostShippingBegin = () => {
-  return {
-    type: checkoutConstants.POST_NEW_SHIPPING_ADDRESS_BEGIN
-  };
-};
-
-const fetchPostShippingSuccess = () => {
-  return {
-    type: checkoutConstants.POST_NEW_SHIPPING_ADDRESS_SUCCESS
-  };
-};
-
-const fetchPostShippingError = error => {
-  return {
-    type: checkoutConstants.POST_NEW_SHIPPING_ADDRESS_ERROR,
-    payload: error.message
-  };
-};
-
-export const setNewShipping = address => {
-  return dispatch => {
-    dispatch(newShipping(address));
-  };
-};
-
-export const postNewShipping = address => {
-  return dispatch => {
-    dispatch(fetchPostShippingBegin(address));
-    checkoutApi
-      .postShippingAddress(address)
-      .then(response => {
-        dispatch(fetchPostShippingSuccess(response.data.data));
-      })
-      .catch(error => {
-        dispatch(fetchPostShippingError(error));
-      });
-  };
-};
-
-export const setPostAddresses = value => {
-  return {
-    type: checkoutConstants.SHOULD_POST_ADDRESSES,
-    payload: value
-  };
-};
-
-const fetchPostBillingBegin = () => {
-  return {
-    type: checkoutConstants.POST_NEW_BILLING_ADDRESS_BEGIN
-  };
-};
-
-const fetchPostBillingSuccess = () => {
-  return {
-    type: checkoutConstants.POST_NEW_BILLING_ADDRESS_SUCCESS
-  };
-};
-
-const fetchPostBillingError = error => {
-  return {
-    type: checkoutConstants.POST_NEW_BILLING_ADDRESS_ERROR,
-    payload: error.message
-  };
-};
-
-export const setNewBilling = address => {
-  return dispatch => {
-    dispatch(newBilling(address));
-  };
-};
-
-export const postNewBilling = address => {
-  return dispatch => {
-    dispatch(fetchPostBillingBegin(address));
-    checkoutApi
-      .postBillingAddress(address)
-      .then(response => {
-        dispatch(fetchPostBillingSuccess(response.data.data));
-      })
-      .catch(error => {
-        dispatch(fetchPostBillingError(error));
-      });
+    type: checkoutConstants.UPDATE_GUEST_INFO,
+    payload: guest
   };
 };
 

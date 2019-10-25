@@ -11,39 +11,40 @@ const INITIAL_STATE = {
   loading_customer: false,
   loading_put: false,
   loading_order: false,
-  loading_billing: false,
-  loading_shipping: false,
-  did_put_respond: false,
   newOrder: {
     billing_address: undefined,
     shipping_address: undefined,
     payment: undefined
   },
-  put_error: undefined,
-  new_billing: undefined,
-  post_billing_error: undefined,
-  new_shipping: undefined,
-  post_shipping_error: undefined,
-  should_update_addresses: false
+  guest_info: undefined,
+  did_put_respond: false,
+  put_error: undefined
 };
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
   let order = state.order;
   let newOrder = state.newOrder;
+  let shipping_address = state.shipping_address;
+  let billing_address = state.billing_address;
 
   switch (action.type) {
     // #region Action for writing billing, shipping and payment information
-    case checkoutConstants.UPDATE_BILLING_ADDRESS:
+    case checkoutConstants.UPDATE_BILLING:
       return {
         ...state,
-        order: { ...order, billing_address: action.payload.address },
-        newOrder: { ...newOrder, billing_address: action.payload.key }
+        newOrder: { ...newOrder, billing_address: action.payload.index },
+        billing_address: [...billing_address, action.payload.address]
       };
-    case checkoutConstants.UPDATE_SHIPPING_ADDRESS:
+    case checkoutConstants.UPDATE_SHIPPING:
       return {
         ...state,
-        order: { ...order, shipping_address: action.payload.address },
-        newOrder: { ...newOrder, shipping_address: action.payload.key }
+        newOrder: { ...newOrder, shipping_address: action.payload.index },
+        shipping_address: [...shipping_address, action.payload.address]
+      };
+    case checkoutConstants.UPDATE_GUEST_INFO:
+      return {
+        ...state,
+        guest_info: action.payload
       };
     case checkoutConstants.UPDATE_PAYMENT_ORDER:
       return {
@@ -83,8 +84,6 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
         loading_order: false,
         order_error: action.payload
       };
-    //#endregion
-    // #region Actions for sending and receiving the GET on the customer to the back end
     case checkoutConstants.FETCH_CUSTOMER_BEGIN:
       return {
         ...state,
@@ -94,28 +93,26 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading_customer: false,
-        shipping_address:
-          action.payload.shipping_addresses !== undefined
-            ? action.payload.shipping_addresses
-            : [],
         billing_address:
           action.payload.billing_addresses !== undefined
             ? action.payload.billing_addresses
             : [],
+        shipping_address:
+          action.payload.shipping_addresses !== undefined
+            ? action.payload.shipping_addresses
+            : [],
         newOrder: {
-          billing_address:
-            action.payload.billing_addresses !== undefined
-              ? action.payload.billing_addresses.length > 0
-                ? 0
-                : undefined
-              : undefined,
+          ...newOrder,
           shipping_address:
-            action.payload.shipping_addresses !== undefined
-              ? action.payload.shipping_addresses.length > 0
-                ? 0
-                : undefined
+            action.payload.shipping_addresses !== undefined &&
+            action.payload.shipping_addresses.length > 0
+              ? 0
               : undefined,
-          payment: undefined
+          billing_address:
+            action.payload.billing_addresses !== undefined &&
+            action.payload.billing_addresses.length > 0
+              ? 0
+              : undefined
         }
       };
     case checkoutConstants.FETCH_CUSTOMER_ERROR:
@@ -125,71 +122,6 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
         customer_error: action.payload
       };
     //#endregion
-    //#region Adding a new billing address
-    case checkoutConstants.NEW_BILLING_ADDRESS:
-      return {
-        ...state,
-        new_billing: action.payload.address,
-        should_update_addresses: false
-      };
-    case checkoutConstants.POST_NEW_BILLING_ADDRESS_BEGIN:
-      return {
-        ...state,
-        loading_billing: true
-      };
-    case checkoutConstants.POST_NEW_BILLING_ADDRESS_SUCCESS:
-      return {
-        ...state,
-        loading_billing: false,
-        new_billing: undefined,
-        newOrder: {
-          shipping_address: newOrder.shipping_address,
-          billing_address: 0,
-          payment: newOrder.payment
-        }
-      };
-    case checkoutConstants.POST_NEW_BILLING_ADDRESS_ERROR:
-      return {
-        ...state,
-        loading_billing: false,
-        post_billing_error: action.payload
-      };
-    //#endregion
-    //#region Adding a new billing address
-    case checkoutConstants.NEW_SHIPPING_ADDRESS:
-      return {
-        ...state,
-        new_shipping: action.payload.address,
-        should_update_addresses: false
-      };
-    case checkoutConstants.POST_NEW_SHIPPING_ADDRESS_BEGIN:
-      return {
-        ...state,
-        loading_shipping: true
-      };
-    case checkoutConstants.POST_NEW_SHIPPING_ADDRESS_SUCCESS:
-      return {
-        ...state,
-        loading_shipping: false,
-        new_shipping: undefined,
-        newOrder: {
-          shipping_address: 0,
-          billing_address: newOrder.billing_address,
-          payment: newOrder.payment
-        }
-      };
-    case checkoutConstants.POST_NEW_SHIPPING_ADDRESS_ERROR:
-      return {
-        ...state,
-        loading_shipping: false,
-        post_shipping_error: action.payload
-      };
-    //#endregion
-    case checkoutConstants.SHOULD_POST_ADDRESSES:
-      return {
-        ...state,
-        should_update_addresses: action.payload
-      };
     case checkoutConstants.CLEAN_UP:
       return {
         ...state,

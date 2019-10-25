@@ -23,59 +23,23 @@ const ShippingAddress = props => {
     between: undefined
   });
 
-  const shippingInfo = () => {
-    if (selectedAddress !== undefined) {
-      return [
-        {
-          field: "First Name",
-          value: selectedAddress.first_name
-        },
-        { field: "Last Name", value: selectedAddress.last_name },
-        { field: "Address", value: selectedAddress.address },
-        { field: "Between", value: selectedAddress.between },
-        { field: "Zip Code", value: selectedAddress.zip_code },
-        { field: "Country", value: selectedAddress.country },
-        { field: "State", value: selectedAddress.state },
-        { field: "City", value: selectedAddress.city },
-        {
-          field: "Delivery Notes",
-          value: selectedAddress.delivery_notes,
-          textarea: true
-        }
-      ];
-    } else {
-      return [
-        {
-          field: "First Name",
-          value: undefined
-        },
-        { field: "Last Name", value: undefined },
-        { field: "Address", value: undefined },
-        { field: "Between", value: undefined },
-        { field: "Zip Code", value: undefined },
-        { field: "Country", value: undefined },
-        { field: "State", value: undefined },
-        { field: "City", value: undefined },
-        { field: "Delivery Notes", value: undefined, textarea: true }
-      ];
-    }
+  const NO_ADDRESS = {
+    first_name: undefined,
+    last_name: undefined,
+    address: undefined,
+    country: undefined,
+    zip_code: undefined,
+    city: undefined,
+    state: undefined,
+    delivery_notes: undefined,
+    between: undefined
   };
 
   useEffect(() => {
     if (address !== undefined && address.length >= selectedIndex) {
       setSelectedAddress(address[selectedIndex]);
     } else {
-      setSelectedAddress({
-        first_name: undefined,
-        last_name: undefined,
-        country: undefined,
-        address: undefined,
-        zip_code: undefined,
-        city: undefined,
-        state: undefined,
-        between: undefined,
-        delivery_notes: undefined
-      });
+      setSelectedAddress(NO_ADDRESS);
     }
   }, [address, selectedIndex]);
 
@@ -83,8 +47,8 @@ const ShippingAddress = props => {
     return (
       <div>
         <AddressForm
-          values={shippingInfo()}
-          readonly
+          values={selectedAddress}
+          readonly={true}
           type="shipping"
         ></AddressForm>
         <EditButton className="col-12" onClick={shippingHandleShow}>
@@ -107,7 +71,7 @@ const ShippingAddress = props => {
   const NoAddressForm = () => {
     return (
       <div>
-        <AddressForm values={shippingInfo()} type="shipping"></AddressForm>
+        <AddressForm values={selectedAddress} type="shipping"></AddressForm>
       </div>
     );
   };

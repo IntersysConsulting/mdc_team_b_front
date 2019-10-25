@@ -165,7 +165,7 @@ const Checkout = () => {
         }, 10000);
       }
     }
-  }, [info_toast, pushToast, unshiftToast, hasToasted]);
+  }, [info_toast, pushToast, unshiftToast, hasToasted, role]);
   useEffect(() => {
     if (shipping_error !== undefined && !hasToasted.shipping_error) {
       setHasToasted({ ...hasToasted, shipping_error: true });

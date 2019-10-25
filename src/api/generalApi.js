@@ -8,10 +8,10 @@ const rest = {
         return request().get(url, values)
     },
     "delete": (url, values) => {
-        return request().get(url, values)
+        return request().delete(url, values)
     },
     "put": (url, values) => {
-        return request().get(url, values)
+        return request().put(url, values)
     }
 }
 

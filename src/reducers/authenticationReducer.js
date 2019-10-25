@@ -3,7 +3,8 @@ import {
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
   SAVE_USER,
-  VALIDATE_AUTHENTICATION
+  VALIDATE_AUTHENTICATION,
+  REFRESH_TOKEN
 } from "../constants/authenticationConstants";
 
 const initialState = {
@@ -55,6 +56,11 @@ const autenticationTypes = {
         name: "Guest"
       };
     }
+  },
+  [REFRESH_TOKEN]: (newState, data) => {
+    console.log(data)
+    
+    return newState
   }
 };
 

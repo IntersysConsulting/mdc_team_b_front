@@ -53,6 +53,9 @@ const FormUser = props => {
 
     if ( password !== confirm ) {
       msg.push("it doesn't match password and confirm password")
+    }
+
+    if(msg.length > 0 ) {
       setMessages(msg)
       return false
     }

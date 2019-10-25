@@ -89,7 +89,7 @@ const Login = props => {
           </Link>
         </div>
         <div className="login-footer mt-4 px-4 mb-2">
-          <Link to={"/login"} className="login-signup text-indigo">
+          <Link to={"/sign-up"} className="login-signup text-indigo">
             Sign up instead!
           </Link>
           <AcceptButton border className="login-button" onClick={Send}>

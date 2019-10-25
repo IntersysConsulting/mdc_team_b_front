@@ -38,7 +38,7 @@ const BillingAddress = props => {
     } else {
       setSelectedAddress(NO_ADDRESS);
     }
-  }, [address, selectedIndex]);
+  }, [address, selectedIndex, NO_ADDRESS]);
 
   const NewDisplayAddressForm = () => {
     return (

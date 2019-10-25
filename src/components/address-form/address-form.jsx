@@ -40,7 +40,7 @@ const AddressForm = props => {
     } else {
       setFormData(NoAddress);
     }
-  }, [props.values]);
+  }, [props.values, NoAddress]);
 
   const StaticOnChange = e => {
     let tmpData = { ...formData };
@@ -150,6 +150,8 @@ const AddressForm = props => {
     props.type,
     billing_canContinue,
     shipping_canContinue,
+    billing_loading,
+    shipping_loading,
     dispatch
   ]);
   //#endregion

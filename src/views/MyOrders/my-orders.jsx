@@ -31,14 +31,17 @@ const MyOrders = (props) => {
     for (let i = 0; i < orders.length; i++) {
 
         let products = [];
+        let addDecimalDot= (price) => {
+            price = "$" + price.toString().slice(0,-2) + "." + price.toString().slice(-2)
+            return(price)
+        }
 
         if (orders[i].status !== "Pending") {
 
             for (let n = 0; n < orders[i].products.length; n++) {
                 products.push(
                     orders[i].products[n].quantity + "x " + orders[i].products[n].name 
-                    + " $" +orders[i].products[n].unitary_price.toString().slice(0,-2)
-                    + "." +orders[i].products[n].unitary_price.toString().slice(-2)
+                    + " " + addDecimalDot(orders[i].products[n].unitary_price)
                 )
             }
 
@@ -60,7 +63,7 @@ const MyOrders = (props) => {
                         orders[i].shipping_address.state + "), " + orders[i].shipping_address.country + ". " +
                         orders[i].shipping_address.zip_code
                     }
-                    cost={orders[i].total}
+                    cost={addDecimalDot(orders[i].total)}
                     quantity={orders[i].products[0].quantity}
                     firstProduct={orders[i].products[0].name}
                     products={products}

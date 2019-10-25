@@ -19,7 +19,7 @@ const OrderCard = (props) => {
                 billedTo={props.billedTo}
                 shippedTo={props.shippedTo}
                 products={props.products}
-                cost={props.cost.toString().slice(0,-2)+"."+props.cost.toString().slice(-2)} 
+                cost={props.cost} 
                 show={orderModalShow} 
                 handleShow={orderModalHandleShow}>
                 </OrderInfoModal>
@@ -40,7 +40,7 @@ const OrderCard = (props) => {
             </div>
 
                 <div id="order-card-cost">
-                    USD ${props.cost.toString().slice(0,-2)+"."+props.cost.toString().slice(-2)}
+                    USD {props.cost}
                 </div>
                 
             </div>

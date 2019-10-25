@@ -72,7 +72,6 @@ export const getCardsAction = () => {
     PaymentApi
       .getCards()
       .then(response => {
-        console.log(response);
         (response.data.data.cards.sources.data)
         ? dispatch(fetchCardsSuccess(response.data.data.cards.sources.data))
         : dispatch(fetchCardsSuccess( [] ))

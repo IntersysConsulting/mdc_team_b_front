@@ -11,10 +11,15 @@ const AddCardForm = (props) => {
   const [errorMessage, setErrorMessage] = useState( {message: ""}  );
   const dispatch = useDispatch();
 
-
   const submit = async (e) => {
-    let {token} = await props.stripe.createToken({name: "Name"});
-    dispatch(addCardAction(token.id));
+    try{
+      let {token} = await props.stripe.createToken({name: "Name"});
+      dispatch(addCardAction(token.id));
+    }
+    catch(error){
+      alert("Looks like there's something wrong with the input");
+    }
+    
   }
 
     return (

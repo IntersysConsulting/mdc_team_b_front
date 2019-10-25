@@ -25,7 +25,7 @@ const paymentReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: true };
     
         case PaymentConstants.POST_CARD_SUCCESS:
-            return { ...state, loading: false, message: action.payload, cardsChanged : true };
+            return { ...state, message: action.payload, cardsChanged : true };
     
         case PaymentConstants.POST_CARD_ERROR:
             return { ...state, loading: false, errors: action.payload };
@@ -36,7 +36,7 @@ const paymentReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: true };
 
         case PaymentConstants.DELETE_CARD_SUCCESS:
-            return { ...state, loading: false, message: action.payload, cardsChanged : true };
+            return { ...state, message: action.payload, cardsChanged : true };
 
         case PaymentConstants.DELETE_CARD_ERROR:
             return { ...state, loading: false, errors: action.payload };

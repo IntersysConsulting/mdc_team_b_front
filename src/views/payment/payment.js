@@ -9,6 +9,7 @@ import AcceptButton from '../../components/accept-button/accept-button';
 import BackPageButton from '../../components/back-page-button/back-page-button';
 import AddCardForm from '../../components/add-card-form/add-card-form';
 import PaymentCard from '../../components/payment-card/payment-card';
+import Spinner from 'react-bootstrap/Spinner'
 
 import "./payment.css"
 
@@ -16,13 +17,20 @@ const CheckoutPayment = (props) =>{
     const [showCardForm, setShowCardForm] = useState( {showing: false} );
     const cards = useSelector(state => state.paymentState.cardsRetrieved);
     const loading = useSelector(state => state.paymentState.loading);
+    const accessLevel = useSelector(state => state.authenticationState.role);
+    const cardsChanged = useSelector(state => state.paymentState.cardsChanged)
     const dispatch = useDispatch();
+    let mainView = null;
 
     useEffect(() => {
-        console.log("Hi");
         dispatch(getCardsAction());
-        //dispatch(updatePayment(response.data.data.cards.default_source))
     }, [dispatch]);
+
+    useEffect(() => {
+        if (cardsChanged)
+            dispatch(getCardsAction());
+        //dispatch(updatePayment(response.data.data.cards.default_source))
+    }, [cardsChanged, dispatch]);
 
     let cardsToShow = cards.map(card => {
         return (
@@ -39,16 +47,27 @@ const CheckoutPayment = (props) =>{
         cardsToShow = <p className="NoCardsLabel"> You have not any registered cards yet </p>
     }
 
-    return (
+    (loading) 
+    ? mainView = (
+        <div>
+            <div className="row justify-content-center">
+                <Spinner className="Spinner" animation="border" variant="warning"/>
+            </div>
+            <div className="row justify-content-center">
+                <p className="LoadingMessage"> We are working on it...</p>
+            </div>
+        </div>
+        )
+    : mainView = (
         <div className="container-fluid col-10 offset-1 justify-content-left">
             <div className="row">
                 <CheckoutTitle currentView={props.currentView}></CheckoutTitle>
-                <div className="AddCardIcon" onClick={ () => { setShowCardForm( { showing: !showCardForm.showing } ); }}> 
-                    + 
-                </div>{" "}
             </div>
             <div className="row ">
                 {cardsToShow}
+            </div>
+            <div className="row">
+                <p className="AddCard" onClick={ () => { setShowCardForm( { showing: !showCardForm.showing } ) } }> Add new card</p>
             </div>
             <div className = "row">
                 { (showCardForm.showing) 
@@ -61,6 +80,12 @@ const CheckoutPayment = (props) =>{
                 : <p></p>
                 }
             </div>
+        </div>
+    )
+
+    return (
+        <div>
+            {mainView}
         </div>
     )
 }

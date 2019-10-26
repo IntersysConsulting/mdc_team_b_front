@@ -1,0 +1,115 @@
+.my-account-card-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.my-account-details-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 35px;
+}
+
+.my-account-details-container>* {
+    margin: 0;
+}
+
+#my-account-title {
+    font-weight: 700;
+}
+
+#my-account-username {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+#my-account-email {
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.my-account-big-cards-container {
+    width: 560px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.my-account-card-button-text-small {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.my-account-card-button-text-span {
+    margin: 0;
+    font-weight: 400;
+    padding: 0;
+    line-height: 1.2;
+    font-size: 23px;
+}
+
+.my-account-card-button-text {
+    display: inline-block;
+    font-size: 27px;
+    font-weight: 300;
+    padding-top: 8px;
+}
+
+.my-account-link {
+    text-decoration: underline;
+}
+
+.my-account-link:hover {
+    cursor: pointer;
+}
+
+.not-a-user {
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+    color: #575a61;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+}
+
+.error-not-user {
+    font-family: "Roboto", sans-serif;
+    font-size: 80px;
+    color: #575a61;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font-weight: 800px;
+}
+
+@media (min-width: 768px) {
+    .my-account-big-cards-container {
+        width: 732px;
+    }
+    .my-account-card-container {
+        margin-left: 25px;
+    }
+}
+
+@media (min-width: 992px) {
+    .my-account-card-container {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .my-account-card-container {
+        flex-direction: row;
+        margin-left: 35px;
+    }
+    .my-account-big-cards-container {
+        width: 732px;
+        justify-content: space-between;
+    }
+}

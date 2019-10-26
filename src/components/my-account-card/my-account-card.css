@@ -1,0 +1,84 @@
+.my-account-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 321px;
+    height: 220px;
+    margin-bottom: 1rem;
+}
+
+.my-account-card>.card-title {
+    display: inline-block;
+    margin-top: 0.5rem;
+    margin-bottom: 3px;
+    font-size: 1.37rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.my-account-card>.card-text {
+    line-height: 1.2;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+}
+
+.my-account-card>.card-text>* {
+    margin-bottom: 0;
+}
+
+.my-account-card-collapsable {
+    height: 65px;
+    font-family: "Roboto", sans-serif;
+}
+
+.my-account-button {
+    min-height: 0px !important;
+    height: 61px;
+    width: 100%;
+    padding-top: 1px;
+}
+
+.border-2 {
+    border-width: 2px;
+}
+
+.my-account-card-collapsable>.card-title {
+    display: none;
+}
+
+.my-account-card-collapsable>.card-text {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .my-account-card {
+        height: 290px;
+    }
+    .my-account-card-collapsable {
+        height: 65px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .my-account-card {
+        text-align: left;
+        width: 321px;
+        height: 290px;
+        margin-bottom: 1rem;
+    }
+    .my-account-button {
+        height: 61px;
+        width: 100%;
+    }
+    .my-account-card-collapsable>.card-title {
+        display: inline-block;
+    }
+    .my-account-card-collapsable>.card-text {
+        display: inline-block;
+    }
+}

@@ -16,6 +16,7 @@ import AddProduct from "../views/product-management/add-product"
 import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
 import Checkout from '../views/Checkout/checkout';
+import MyAccount from '../views/my-account/my-account';
 
 const LayoutContainer = props => {
   let layout = null;
@@ -54,11 +55,10 @@ const LayoutContainer = props => {
           <Route path="/" exact component={Storefront} />
           <Route path="/cart" exact component={CartView} />
           <Route path="/product/*" exact component={Product} />
-          <Route path="/account" exact component={WorkInProgress} />
-          <Route path="/summary" exact component={WorkInProgress} />
-          <Route path="/billing-info" exact component={WorkInProgress} />
-          <Route path="/shipping-info" exact component={WorkInProgress} />
-          <Route path="/orders" exact component={WorkInProgress} />
+          <Route path="/account" exact component={MyAccount} />
+          <Route path="/account/billing" exact component={WorkInProgress} />
+          <Route path="/account/shipping" exact component={WorkInProgress} />
+          <Route path="/account/orders" exact component={WorkInProgress} />
           <Route path="/login" exact component={UserLogin} />
           <Route path="/login-admin" exact component={AdminLogin} />
           <Route path="/sign-up" exact component={Signup} />

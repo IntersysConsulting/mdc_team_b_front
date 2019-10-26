@@ -20,6 +20,7 @@ const AcceptButton = props => {
       active={props.active}
       disabled={props.disabled}
       onClick={props.onClick}
+      type={props.type}
     >
       {props.children}
     </Button>

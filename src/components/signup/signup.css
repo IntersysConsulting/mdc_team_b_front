@@ -14,26 +14,10 @@
   border-radius: 5px;
 }
 
-.signup-header {
+img.signup-header {
   height: 45px;
   background: #fff;
-}
-
-.signup-header > img {
-  height: 100%;
-}
-
-.signup-body {
-  display: block;
-  width: 100%;
-}
-
-.signup-forgot {
-  display: block;
-  text-align: left;
-  margin-top: -1rem;
-  font-size: 13px;
-  font-weight: bold;
+  max-height: 100%;
 }
 
 .signup-footer {
@@ -82,13 +66,20 @@
 
 .signup-fullname {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+  height: 30px;
 }
 
-.signup-name {
-  margin-right: 1rem;
+.signup-span {
+  width: 10px;
 }
 
 .signup-checkbox {
   width: 100%;
+}
+
+.signup-row {
+  display: grid;
+  grid-template-columns: 100%;
 }

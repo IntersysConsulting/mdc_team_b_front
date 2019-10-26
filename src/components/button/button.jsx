@@ -16,6 +16,7 @@ const ButtonComponent = props => {
       active={props.active}
       disabled={props.disabled}
       onClick={props.onClick}
+      type={props.type}
     >
       <p className="">{props.children}</p>
       <div className={props.icon ? "button-icon-padding" : "hidden"}></div>

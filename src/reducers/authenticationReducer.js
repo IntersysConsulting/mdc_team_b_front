@@ -2,6 +2,7 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
+  SAVE_USER,
   VALIDATE_AUTHENTICATION,
   REFRESH_TOKEN
 } from "../constants/authenticationConstants";
@@ -13,11 +14,8 @@ const initialState = {
 
 const autenticationTypes = {
   [AUTHENTICATED]: (newState, data) => {
-    newState.name = data.customer_name
-      ? data.customer_name
-      : data.admin_name
-      ? data.admin_name
-      : newState.name;
+    newState.name = (data.customer_name || data.admin_name || newState.name ) 
+   
     newState.role =
       data.message === "Welcome admin"
         ? "admin"
@@ -37,6 +35,13 @@ const autenticationTypes = {
       name: "Guest"
     };
   },
+  [SAVE_USER]: (newState, data) => {
+    if(data.role === "Customer") {
+      newState.role  = "registeredUser"
+    }
+    newState.name = data.name
+    return newState;
+  },
   [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {
     let role = data.role.toLowerCase();
@@ -52,9 +57,8 @@ const autenticationTypes = {
     }
   },
   [REFRESH_TOKEN]: (newState, data) => {
-
     console.log(data)
-
+    
     return newState
   }
 };

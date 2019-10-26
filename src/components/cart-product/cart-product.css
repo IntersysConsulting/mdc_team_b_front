@@ -5,7 +5,7 @@
     justify-content: space-around;
     border: solid gray;
     border-width: 1px 0;
-    height: 125px;
+    height: 150px;
     width: 100%;
 }
 
@@ -123,7 +123,7 @@
     .cart-product-quantity-text-container {
         display: flex;
         flex-direction: row;
-        width: 150px;
+        width: 250px;
     }
     .cart-product-quantity-text-container>p {
         display: block;
@@ -138,7 +138,7 @@
     .cart-product-quantity-text-container {
         display: flex;
         flex-direction: row;
-        width: 150px;
+        width: 250px;
     }
     .quantity-container {
         width: 100px;

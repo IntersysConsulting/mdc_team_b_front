@@ -40,7 +40,7 @@ const LayoutContainer = props => {
     layout = (
       <LayoutAdmin accessLevelState={accessLevelState}>
         <Switch>
-          <Route path="/admin" exact component={ViewAdmin} />
+          <Route path="/admin" exact component={WorkInProgress} />
           <Route path="/admin/products" exact component={ViewProducts} />
           <Route path="/admin/products/add" exact component={AddProduct} />
           <Route
@@ -49,7 +49,7 @@ const LayoutContainer = props => {
             component={WorkInProgress}
           />
           <Route path="/admin/orders" exact component={WorkInProgress} />
-          <Route path="/admin/staff" exact component={WorkInProgress} />
+          <Route path="/admin/staff" exact component={ViewAdmin} />
           <Route path="/admin/banners" exact component={WorkInProgress} />
           <Route path="/*" exact component={NotFound} />
         </Switch>

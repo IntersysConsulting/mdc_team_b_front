@@ -67,13 +67,19 @@ const fetchOrderUpdateError = error => {
 
 //#endregion
 
-export const checkoutOrderUpdateActions = order => {
+export const checkoutOrderUpdateActions = (order, stripeInfo) => {
   return dispatch => {
     dispatch(fetchOrderUpdateBegin(order));
     checkoutApi
       .updateOrder(order)
       .then(response => {
         dispatch(fetchOrderUpdateSuccess(response.data.data));
+        // try{
+        //   //dispatch(payInStripe(stripeInfo.card, stripeInfo.orderId))
+        // }
+        // catch(stripeError){
+        //   // In case Stripe fails to charge
+        // }
       })
       .catch(error => {
         dispatch(fetchOrderUpdateError(error));

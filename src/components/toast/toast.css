@@ -1,0 +1,10 @@
+.toast-container {
+  position: fixed;
+  right: 2rem;
+  top: 100px;
+  z-index: 100;
+}
+
+/* .success-toast .toast-header {
+  background: #72c068;
+} */

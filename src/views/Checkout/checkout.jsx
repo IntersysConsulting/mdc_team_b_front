@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import "../Checkout/checkout.css";
@@ -8,11 +8,15 @@ import {
   checkoutOrderUpdateActions,
   cleanUp
 } from "../../actions/checkoutActions";
-import { cleanUp as AddressCleanUp } from "../../actions/checkoutAddressActions";
+import {
+  cleanUp as AddressCleanUp,
+  toastReset
+} from "../../actions/checkoutAddressActions";
 import CheckoutTableDiv from "../../components/checkout-view-components/CheckoutTableDiv";
 import CheckoutTitle from "../../components/checkout-view-components/CheckoutTitle";
 import AddressesContainer from "../../components/checkout-view-components/AddressesContainter";
 import CheckoutPayment from "../../components/checkout-view-components/CheckoutPayment";
+import Toast from "../../components/toast/toast";
 
 const Checkout = () => {
   const [currentView, setCurrentView] = useState(0);
@@ -54,30 +58,166 @@ const Checkout = () => {
   const did_put_respond = useSelector(
     state => state.checkoutState.did_put_respond
   );
+
+  const role = useSelector(state => state.authenticationState.role);
   //#endregion
 
-  // Address Container Selectors
+  //#region Address Container Selectors
   // These are used to prompt success/error messages
   // But not just yet. Will be Uncommented on next Commit.
   // TODO:
-  // const shipping_continue = useSelector(
-  //   state => state.checkoutAddressState.shipping_continue
-  // );
-  // const billing_continue = useSelector(
-  //   state => state.checkoutAddressState.billing_continue
-  // );
-  // const info_continue = useSelector(
-  //   state => state.checkoutAddressState.info_continue
-  // );
-  // const shipping_error = useSelector(
-  //   state => state.checkoutAddressState.shipping_error
-  // );
-  // const billing_error = useSelector(
-  //   state => state.checkoutAddressState.billing_error
-  // );
-  // const info_error = useSelector(
-  //   state => state.checkoutAddressState.info_error
-  // );
+  const shipping_toast = useSelector(
+    state => state.checkoutAddressState.shipping_toast
+  );
+  const billing_toast = useSelector(
+    state => state.checkoutAddressState.billing_toast
+  );
+  const info_toast = useSelector(
+    state => state.checkoutAddressState.info_toast
+  );
+
+  const shipping_error = useSelector(
+    state => state.checkoutAddressState.shipping_error
+  );
+  const billing_error = useSelector(
+    state => state.checkoutAddressState.billing_error
+  );
+  const info_error = useSelector(
+    state => state.checkoutAddressState.info_error
+  );
+
+  const [toasts, setToasts] = useState([]);
+
+  const pushToast = useCallback(
+    toast => {
+      console.log("callback push");
+      var tmp = [...toasts, toast];
+      setToasts(tmp);
+    },
+    [toasts]
+  );
+
+  const unshiftToast = useCallback(() => {
+    console.log("callback pop");
+    var tmp = [...toasts];
+    tmp.unshift();
+    setToasts(tmp);
+  }, [toasts]);
+
+  //#region Toast Making UseEffects
+
+  const [hasToasted, setHasToasted] = useState({
+    shipping_toast: false,
+    billing_toast: false,
+    info_toast: false,
+    shipping_error: false,
+    billing_error: false,
+    info_error: false
+  });
+
+  useEffect(() => {
+    if (shipping_toast && !hasToasted.shipping_toast) {
+      setHasToasted({ ...hasToasted, shipping_toast: true });
+      pushToast(
+        <Toast
+          title={"Succesfully added your shipping address!"}
+          body={"Your new shipping address is ready to go!"}
+          type="success"
+          show={true}
+        ></Toast>
+      );
+      setTimeout(() => {
+        unshiftToast();
+      }, 10000);
+    }
+  }, [shipping_toast, pushToast, unshiftToast, hasToasted]);
+
+  useEffect(() => {
+    if (billing_toast && !hasToasted.billing_toast) {
+      setHasToasted({ ...hasToasted, billing_toast: true });
+      pushToast(
+        <Toast
+          title={"Succesfully added your billing address!"}
+          body={"Your new billing address is ready to go!"}
+          type="success"
+          show={true}
+        ></Toast>
+      );
+      setTimeout(() => {
+        unshiftToast();
+      }, 10000);
+    }
+  }, [billing_toast, pushToast, unshiftToast, hasToasted]);
+  useEffect(() => {
+    if (info_toast && !hasToasted.info_toast) {
+      setHasToasted({ ...hasToasted, info_toast: true });
+      if (role === "guest") {
+        pushToast(
+          <Toast
+            title={"Succesfully added your customer information!"}
+            body={"You are ready to go!"}
+            type="success"
+            show={true}
+          ></Toast>
+        );
+        setTimeout(() => {
+          unshiftToast();
+        }, 10000);
+      }
+    }
+  }, [info_toast, pushToast, unshiftToast, hasToasted, role]);
+  useEffect(() => {
+    if (shipping_error !== undefined && !hasToasted.shipping_error) {
+      setHasToasted({ ...hasToasted, shipping_error: true });
+      pushToast(
+        <Toast
+          title={"We could not add your shipping address."}
+          body={"We had an issue: " + shipping_error}
+          type="error"
+          show={true}
+        ></Toast>
+      );
+      setTimeout(() => {
+        unshiftToast();
+      }, 10000);
+    }
+  }, [shipping_error, pushToast, unshiftToast, hasToasted]);
+  useEffect(() => {
+    if (billing_error !== undefined && !hasToasted.billing_error) {
+      setHasToasted({ ...hasToasted, billing_error: true });
+      pushToast(
+        <Toast
+          title={"We could not add your billing address."}
+          body={"We had an issue: " + billing_error}
+          type="error"
+          show={true}
+        ></Toast>
+      );
+      setTimeout(() => {
+        unshiftToast();
+      }, 10000);
+    }
+  }, [billing_error, pushToast, unshiftToast, hasToasted]);
+  useEffect(() => {
+    if (info_error !== undefined && !hasToasted.info_error) {
+      setHasToasted({ ...hasToasted, info_error: true });
+      pushToast(
+        <Toast
+          title={"We could not add your customer information."}
+          body={"We had an issue: " + info_error}
+          type="error"
+          show={true}
+        ></Toast>
+      );
+      setTimeout(() => {
+        unshiftToast();
+      }, 10000);
+    }
+  }, [info_error, pushToast, unshiftToast, hasToasted]);
+
+  //#endregion
+
+  //#endregion
 
   // #region Information Selectors
   const order = useSelector(state => state.checkoutState.order); // Know about the GET
@@ -139,10 +279,11 @@ const Checkout = () => {
   // If the order finished right, we display the success screen.
   useEffect(() => {
     if (did_put_respond) {
+      dispatch(toastReset());
       setPreventViewChange(true);
       setCurrentView(screens.SUCCESS);
     }
-  }, [did_put_respond, screens.SUCCESS]);
+  }, [did_put_respond, screens.SUCCESS, dispatch]);
 
   //#endregion
 
@@ -161,7 +302,9 @@ const Checkout = () => {
       "user_shipping",
       order_put_fields.shipping_address ? order_put_fields.shipping_address : 0
     );
-    dispatch(checkoutOrderUpdateActions(formData));
+    // TODO: Implement Stripe payment here
+    var stripeInfo = undefined;
+    dispatch(checkoutOrderUpdateActions(formData, stripeInfo));
   };
 
   //#region Screens
@@ -200,6 +343,7 @@ const Checkout = () => {
   const AddressSelectScreen = () => {
     return (
       <div className="container-fluid">
+        {/* <Toast title="bear" body="Bearington" show={true} /> */}
         <AddressesContainer
           currentView={currentView}
           backView={() => setCurrentView(screens.CHECKOUT_TABLE)}
@@ -274,34 +418,45 @@ const Checkout = () => {
   };
   //#endregion
 
-  //#region Return Selector
-  if (loading_customer || loading_order) {
-    return LoadingScreen();
-  } else {
-    switch (currentView) {
-      case screens.LOADING: {
-        return LoadingScreen();
-      }
-      case screens.CHECKOUT_TABLE: {
-        return CheckoutTableScreen();
-      }
-      case screens.ADDRESS_SELECT: {
-        return AddressSelectScreen();
-      }
-      case screens.PAYMENT_SELECT: {
-        return PaymentSelectScreen();
-      }
-      case screens.SUCCESS: {
-        return SuccessScreen();
-      }
-      case screens.NO_PRODUCTS: {
-        return NoProductsScreen();
-      }
-      default: {
-        return ErrorScreen();
+  const SelectScreen = () => {
+    if (loading_customer || loading_order) {
+      return LoadingScreen();
+    } else {
+      switch (currentView) {
+        case screens.LOADING: {
+          return LoadingScreen();
+        }
+        case screens.CHECKOUT_TABLE: {
+          return CheckoutTableScreen();
+        }
+        case screens.ADDRESS_SELECT: {
+          return AddressSelectScreen();
+        }
+        case screens.PAYMENT_SELECT: {
+          return PaymentSelectScreen();
+        }
+        case screens.SUCCESS: {
+          return SuccessScreen();
+        }
+        case screens.NO_PRODUCTS: {
+          return NoProductsScreen();
+        }
+        default: {
+          return ErrorScreen();
+        }
       }
     }
-  }
+  };
+
+  return (
+    <div>
+      <div className="toast-container">{toasts}</div>
+      {SelectScreen()}
+    </div>
+  );
+
+  //#region Return Selector
+
   //#endregion
 };
 

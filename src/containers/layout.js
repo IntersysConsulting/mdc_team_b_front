@@ -18,6 +18,7 @@ import AddProduct from "../views/product-management/add-product"
 import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
 import Checkout from '../views/Checkout/checkout';
+import MyOrders from '../views/MyOrders/my-orders';
 import MyAccount from '../views/my-account/my-account';
 
 const LayoutContainer = props => {
@@ -70,6 +71,7 @@ const LayoutContainer = props => {
           <Route path="/privacy" exact component={WorkInProgress} />
           <Route path="/image" exact component={DemoImage} />
           <Route path="/checkout" exact component={Checkout}/>
+          <Route path="/orders" exact component={MyOrders}/> 
           <Route path="/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>

@@ -130,6 +130,8 @@
 
 .login-link-holder .text-conditions:hover {
   text-decoration:underline;
+  cursor: pointer;
+  user-select: none;
 }
 
 .login-link-holder .text-privacy {
@@ -139,4 +141,6 @@
 
 .login-link-holder .text-privacy:hover {
   text-decoration:underline;
+  cursor: pointer;
+  user-select: none;
 }

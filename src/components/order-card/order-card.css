@@ -1,0 +1,74 @@
+
+#order-card-whole{
+    height: auto;
+    border-top: 2px;
+    border-top: solid;
+    border-top-color: lightgrey;
+    padding: 0;
+    margin-bottom:20px;
+}
+
+#order-card-icon{
+    height: 70px;
+    width: 70px;
+    margin-top: 20px;
+    float: left;
+}
+
+#order-card-number{
+    font-weight: bold;
+    text-decoration: underline;
+    color: #116cb4;
+    margin-top: 10px;
+    margin-left: 90px;
+    font-size: 20px;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+#show-order-button{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+#order-card-status{
+    margin-top: -4px;
+    margin-right: 10px;
+}
+
+#order-card-product{
+    font-weight: bold;
+    margin-left: 90px;
+    user-select: none;
+}
+
+#order-card-cost{
+    font-weight: bold;
+    color: #f98f3e;
+    font-size: 20px;
+    margin-left: 90px;
+    user-select: none;
+}
+
+@media (max-width:500px){
+    #order-card-whole{
+        min-width: 420px;
+    }
+}
+
+@media (min-width: 700px){
+    #order-card-whole{
+        margin-right: 80px;
+    }
+}
+
+@media (min-width:769px) and (max-width:1120px){
+    #order-card-whole{
+        min-width: 500px;
+    }
+}

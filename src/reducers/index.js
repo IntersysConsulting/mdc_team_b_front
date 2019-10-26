@@ -7,6 +7,7 @@ import authenticationReducer from './authenticationReducer';
 import getProductsReducer from './product-management/getProductsReducer';
 import addProductReducer from './product-management/addProductReducer';
 import checkoutReducer from './checkoutReducer';
+import myOrdersReducer from './myOrdersReducer';
 import adminReducer from './adminReducer';
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
@@ -20,8 +21,9 @@ const rootReducer = combineReducers(
         authenticationState: authenticationReducer,
         viewProductsState: getProductsReducer,
         addProductState: addProductReducer,
-        checkoutState: checkoutReducer,
-        adminState: adminReducer
+        adminState: adminReducer,
+        myOrdersState: myOrdersReducer,
+        checkoutState: checkoutReducer
     }
 );
 

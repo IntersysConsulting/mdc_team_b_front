@@ -1,12 +1,13 @@
 .Status{
-    padding: 7px;
+    padding: 5px;
     margin: 5px;
     box-shadow: 0 1px 3px #cccccc;
     text-align: center;
-    width: 100px;
-    height: 25px;
+    width: 150px;
+    height: 30px;
     display: inline-block;
-    font-size: 8px;
+    font-size: 12px;
+    font-weight: bold;
     color: black !important;
 }
 

@@ -43,7 +43,7 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
 
         //Actions for checkout order
         case checkoutConstants.FETCH_ORDER_BEGIN:
-            return { ...state, loaing_order: true, updated: false, errorUpdate: undefined}
+            return { ...state, loading_order: true, updated: false, errorUpdate: undefined}
         case checkoutConstants.FETCH_ORDER_SUCCESS:
             return { ...state, loading_order: false, loading_put: false, order: action.payload, updated: false };
         case checkoutConstants.FETCH_ORDER_ERROR:

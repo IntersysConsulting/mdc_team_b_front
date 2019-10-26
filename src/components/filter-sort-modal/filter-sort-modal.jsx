@@ -22,9 +22,11 @@ const FilterSortModal = props => {
   useEffect(() => {
     var filterList = [];
     if (isLoading.loading) {
-      props.filters.forEach((value, index, array) => {
-        filterList.push({ id: "checkbox-" + value, checked: true });
-      });
+      if (props.filters !== undefined) {
+        props.filters.forEach((value, index, array) => {
+          filterList.push({ id: "checkbox-" + value, checked: true });
+        });
+      }
       setFilter({ value: filterList });
       setIsLoading({ value: false });
     }
@@ -67,17 +69,19 @@ const FilterSortModal = props => {
 
   //#region Checkboxes
   const makeCheckboxes = () => {
-    props.filters.forEach((value, index, array) => {
-      Checkboxes.push(
-        <Checkbox
-          text={value}
-          id={filter.value[index].id}
-          key={filter.value[index].id}
-          checked={filter.value[index].checked}
-          onClick={handleCheckboxMark}
-        />
-      );
-    });
+    if (props.filters !== undefined) {
+      props.filters.forEach((value, index, array) => {
+        Checkboxes.push(
+          <Checkbox
+            text={value}
+            id={filter.value[index].id}
+            key={filter.value[index].id}
+            checked={filter.value[index].checked}
+            onClick={handleCheckboxMark}
+          />
+        );
+      });
+    }
   };
   const handleCheckboxMark = e => {
     const target = e.target.id;

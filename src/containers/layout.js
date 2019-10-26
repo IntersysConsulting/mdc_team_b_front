@@ -12,14 +12,14 @@ import CartView from "../views/cart-view/cart-view";
 import UserLogin from "../views/UserLogin/UserLogin";
 import Storefront from "../views/storefront/storefront";
 import Product from "../views/single-product/product";
-import ViewProducts from "../views/product-management/view-products"
-import ViewAdmin from "../views/Admin/Admin"
-import AddProduct from "../views/product-management/add-product"
+import ViewProducts from "../views/product-management/view-products";
+import ViewAdmin from "../views/Admin/Admin";
+import AddProduct from "../views/product-management/add-product";
 import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
-import Checkout from '../views/Checkout/checkout';
-import MyOrders from '../views/MyOrders/my-orders';
-import MyAccount from '../views/my-account/my-account';
+import Checkout from "../views/Checkout/checkout";
+import MyOrders from "../views/MyOrders/my-orders";
+import MyAccount from "../views/my-account/my-account";
 
 const LayoutContainer = props => {
   let layout = null;
@@ -42,8 +42,12 @@ const LayoutContainer = props => {
         <Switch>
           <Route path="/admin" exact component={ViewAdmin} />
           <Route path="/admin/products" exact component={ViewProducts} />
-          <Route path = "/admin/products/add" exact component={AddProduct} />
-          <Route path = "/admin/products/edit=*" exact component={WorkInProgress} />
+          <Route path="/admin/products/add" exact component={AddProduct} />
+          <Route
+            path="/admin/products/edit=*"
+            exact
+            component={WorkInProgress}
+          />
           <Route path="/admin/orders" exact component={WorkInProgress} />
           <Route path="/admin/staff" exact component={WorkInProgress} />
           <Route path="/admin/banners" exact component={WorkInProgress} />
@@ -61,7 +65,7 @@ const LayoutContainer = props => {
           <Route path="/account" exact component={MyAccount} />
           <Route path="/account/billing" exact component={WorkInProgress} />
           <Route path="/account/shipping" exact component={WorkInProgress} />
-          <Route path="/account/orders" exact component={WorkInProgress} />
+          <Route path="/account/orders" exact component={MyOrders} />
           <Route path="/login" exact component={UserLogin} />
           <Route path="/login-admin" exact component={AdminLogin} />
           <Route path="/sign-up" exact component={Signup} />
@@ -70,8 +74,8 @@ const LayoutContainer = props => {
           <Route path="/conditions" exact component={WorkInProgress} />
           <Route path="/privacy" exact component={WorkInProgress} />
           <Route path="/image" exact component={DemoImage} />
-          <Route path="/checkout" exact component={Checkout}/>
-          <Route path="/orders" exact component={MyOrders}/> 
+          <Route path="/checkout" exact component={Checkout} />
+          {/* <Route path="/orders" exact component={MyOrders} /> */}
           <Route path="/*" exact component={NotFound} />
         </Switch>
       </LayoutCustomer>

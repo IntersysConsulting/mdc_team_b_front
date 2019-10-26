@@ -1,0 +1,59 @@
+#adminCart {
+    border: 2px solid #4F4F4F;
+    box-sizing: border-box;
+    background: white;
+    display: grid;
+    grid-template-columns: 20% 52% 28%;
+    width: 317px;
+    height: 72px;
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+}
+
+#adminCart-icon img {
+ width: 100%;
+ margin-top: 5px;
+}
+
+#adminCart-icon svg {
+    display: block;
+    background: red;
+}
+
+#adminCart-buttom {
+    background: red;
+}
+
+#adminCart-button {
+    background: #F98F3E;
+    border: 0;
+}
+
+#adminCart-personalInformation {
+    margin: 10px 0;
+}
+
+#adminCart-personalInformation div:first-child {
+    font-size: 16px;
+    line-height: 19px;   
+}
+
+#adminCart-personalInformation div:nth-child(2n) {
+    font-size: 13px;
+    line-height: 15px;
+    word-wrap: break-word;
+}
+
+.adminCart-email {
+    word-wrap: break-word;
+}
+
+#adminCart-delete {
+    font-size: 21px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#adminCart-delete span {
+    font-weight: bold;
+}

@@ -1,15 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import "./password-field.css";
 
 const PasswordField = props => {
+  const [visiblePass, setVisiblePass] = useState(false)
+
+  const togglePass = () => {
+    setVisiblePass(!visiblePass)
+  }
+
   return (
     <div className="">
       <InputGroup className="mb-4 justify-content-md-center">
         <Form.Control
           name={props.name}
           className="col-11 mr-4 border-dark border-2 rounded"
-          type={props.open ? "text" : "password"}
+          type={visiblePass ? "text" : "password"}
           placeholder={props.placeholder}
           onChange={props.onChange}
         ></Form.Control>
@@ -17,9 +23,9 @@ const PasswordField = props => {
           <div
             className={
               "toggle-visibility-button " +
-              (props.open ? "open-eye" : "closed-eye")
+              (visiblePass ? "open-eye" : "closed-eye")
             }
-            onClick={props.onClick}
+            onClick={togglePass}
           ></div>
         </InputGroup.Append>
       </InputGroup>

@@ -2,7 +2,8 @@ import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
-  VALIDATE_AUTHENTICATION
+  VALIDATE_AUTHENTICATION,
+  REFRESH_TOKEN
 } from "../constants/authenticationConstants";
 
 export function authenticatedAction(auth) {
@@ -30,5 +31,12 @@ export function validate_authentication(auth) {
   return {
     type: VALIDATE_AUTHENTICATION,
     auth: auth
+  }
+}
+
+export function refresh_token(data) {
+  return {
+    type: REFRESH_TOKEN,
+    auth: data
   }
 }

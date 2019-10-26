@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../alert/alert.css'
 import { Modal } from 'react-bootstrap'
 import CancelButton from '../cancel-button/cancel-button'

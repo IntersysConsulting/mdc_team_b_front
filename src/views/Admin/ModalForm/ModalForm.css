@@ -1,0 +1,19 @@
+#AdminModal {
+    background: #F2F2F2;
+    border: 2px solid #116CB4;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#AdminFormButtons {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 5px;
+}
+
+#AdminModal > input {
+    background: #FFFFFF;
+    border: 1px solid #116CB4;
+    box-sizing: border-box;
+    border-radius: 5px;
+}

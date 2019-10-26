@@ -6,12 +6,14 @@ import NotFound from "../views/not-found/404";
 import LayoutCustomer from "../components/layout/layout-customer";
 import AdminLogin from "../views/AdminLogin/AdminLogin";
 import Signup from "../views/Signup/Signup";
+import SignupAdmin from "../views/SignupAdmin/SignupAdmin";
 import LayoutAdmin from "../components/layout/layout-admin";
 import CartView from "../views/cart-view/cart-view";
 import UserLogin from "../views/UserLogin/UserLogin";
 import Storefront from "../views/storefront/storefront";
 import Product from "../views/single-product/product";
 import ViewProducts from "../views/product-management/view-products"
+import ViewAdmin from "../views/Admin/Admin"
 import AddProduct from "../views/product-management/add-product"
 import DemoImage from "../components/upload-image/demo-image";
 import { validateAuthentication, requestGuest } from "../api/authenticationApi";
@@ -37,7 +39,7 @@ const LayoutContainer = props => {
     layout = (
       <LayoutAdmin accessLevelState={accessLevelState}>
         <Switch>
-          <Route path="/admin" exact component={WorkInProgress} />
+          <Route path="/admin" exact component={ViewAdmin} />
           <Route path="/admin/products" exact component={ViewProducts} />
           <Route path = "/admin/products/add" exact component={AddProduct} />
           <Route path = "/admin/products/edit=*" exact component={WorkInProgress} />
@@ -62,6 +64,7 @@ const LayoutContainer = props => {
           <Route path="/login" exact component={UserLogin} />
           <Route path="/login-admin" exact component={AdminLogin} />
           <Route path="/sign-up" exact component={Signup} />
+          <Route path="/sign-up-admin" exact component={SignupAdmin} />
           <Route path="/help" exact component={WorkInProgress} />
           <Route path="/conditions" exact component={WorkInProgress} />
           <Route path="/privacy" exact component={WorkInProgress} />

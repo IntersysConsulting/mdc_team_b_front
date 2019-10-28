@@ -13,15 +13,13 @@ import {
   toastReset
 } from "../../actions/checkoutAddressActions";
 
-import {
-  cleanUp as PaymentCleanUp,
-} from "../../actions/paymentActions";
+import { cleanUp as PaymentCleanUp } from "../../actions/paymentActions";
 
 import CheckoutTableDiv from "../../components/checkout-view-components/CheckoutTableDiv";
 import CheckoutTitle from "../../components/checkout-view-components/CheckoutTitle";
 import AddressesContainer from "../../components/checkout-view-components/AddressesContainter";
-import UserPayment from '../../views/payment/payment';
-import GuestPayment from '../../views/payment/guest-payment';
+import UserPayment from "../../views/payment/payment";
+import GuestPayment from "../../views/payment/guest-payment";
 import Toast from "../../components/toast/toast";
 
 const Checkout = () => {
@@ -61,7 +59,7 @@ const Checkout = () => {
   // Did PUT return an error?
   const put_error = useSelector(state => state.checkoutState.put_error);
   // Signals that we can proceed to the final screen.
-  
+
   /* Not used anymore.
   const did_put_respond = useSelector(
     state => state.checkoutState.did_put_respond
@@ -106,7 +104,6 @@ const Checkout = () => {
 
   const pushToast = useCallback(
     toast => {
-      console.log("callback push");
       var tmp = [...toasts, toast];
       setToasts(tmp);
     },
@@ -114,7 +111,6 @@ const Checkout = () => {
   );
 
   const unshiftToast = useCallback(() => {
-    console.log("callback pop");
     var tmp = [...toasts];
     tmp.unshift();
     setToasts(tmp);
@@ -294,21 +290,20 @@ const Checkout = () => {
 
   // If the order finished right, we display the success screen.
   useEffect(() => {
-      if(payment_completed){
-        dispatch(toastReset());
-        setPreventViewChange(true);
-        setCurrentView(screens.SUCCESS);
+    if (payment_completed) {
+      dispatch(toastReset());
+      setPreventViewChange(true);
+      setCurrentView(screens.SUCCESS);
+    } else {
+      if (payment_attempted) {
+        //handle error here
       }
-      else{
-        if(payment_attempted){
-          //handle error here
-        }
-      }
+    }
   }, [payment_completed, payment_attempted, screens.SUCCESS, dispatch]);
 
   //#endregion
 
-  const finishOrder = (stripeInfo) => {
+  const finishOrder = stripeInfo => {
     setCurrentView(screens.LOADING);
     let formData = new FormData();
     formData.set(
@@ -373,7 +368,7 @@ const Checkout = () => {
   };
 
   const PaymentSelectScreen = () => {
-    if(role === "registeredUser"){
+    if (role === "registeredUser") {
       return (
         <div className="container-fluid">
           <UserPayment
@@ -383,8 +378,7 @@ const Checkout = () => {
           ></UserPayment>
         </div>
       );
-    }
-    else{
+    } else {
       return (
         <div className="container-fluid">
           <GuestPayment

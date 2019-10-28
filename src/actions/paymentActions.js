@@ -1,7 +1,6 @@
 import { PaymentConstants } from "../constants/paymentConstants";
 import { PaymentApi } from "../api/paymentApi";
 
-
 const fetchCardsBegin = () => {
   return {
     type: PaymentConstants.FETCH_CARDS_BEGIN
@@ -22,28 +21,25 @@ const fetchCardsError = error => {
   };
 };
 
-
-
 const postCardBegin = () => {
-    return {
-      type: PaymentConstants.POST_CARD_BEGIN
-    };
+  return {
+    type: PaymentConstants.POST_CARD_BEGIN
+  };
 };
-  
-  const postCardsuccess = success => {
-    return {
-      type: PaymentConstants.POST_CARD_SUCCESS,
-      payload: success.message
-    };
-  };
-  
-  const postCardError = error => {
-    return {
-      type: PaymentConstants.POST_CARD_ERROR,
-      payload: error.message
-    };
-  };
 
+const postCardsuccess = success => {
+  return {
+    type: PaymentConstants.POST_CARD_SUCCESS,
+    payload: success.message
+  };
+};
+
+const postCardError = error => {
+  return {
+    type: PaymentConstants.POST_CARD_ERROR,
+    payload: error.message
+  };
+};
 
 const deleteCardBegin = () => {
   return {
@@ -88,12 +84,11 @@ const payInStripeError = error => {
 export const getCardsAction = () => {
   return dispatch => {
     dispatch(fetchCardsBegin());
-    PaymentApi
-      .getCards()
+    PaymentApi.getCards()
       .then(response => {
-        (response.data.data.cards.sources.data)
-        ? dispatch(fetchCardsSuccess(response.data.data.cards.sources.data))
-        : dispatch(fetchCardsSuccess( [] ))
+        response.data.data.cards.sources.data
+          ? dispatch(fetchCardsSuccess(response.data.data.cards.sources.data))
+          : dispatch(fetchCardsSuccess([]));
       })
       .catch(error => {
         dispatch(fetchCardsError(error));
@@ -102,24 +97,22 @@ export const getCardsAction = () => {
 };
 
 export const addCardAction = token_card => {
-    return dispatch => {
-      dispatch(postCardBegin());
-      PaymentApi
-        .postCard(token_card)
-        .then(response => {
-          dispatch(postCardsuccess(response.data));
-        })
-        .catch(error => {
-          dispatch(postCardError(error));
-        });
-    };
+  return dispatch => {
+    dispatch(postCardBegin());
+    PaymentApi.postCard(token_card)
+      .then(response => {
+        dispatch(postCardsuccess(response.data));
+      })
+      .catch(error => {
+        dispatch(postCardError(error));
+      });
+  };
 };
 
 export const deleteCardAction = id_card => {
   return dispatch => {
     dispatch(deleteCardBegin());
-    PaymentApi
-      .deleteCard(id_card)
+    PaymentApi.deleteCard(id_card)
       .then(response => {
         dispatch(deleteCardSuccess(response.data));
       })
@@ -129,21 +122,18 @@ export const deleteCardAction = id_card => {
   };
 };
 
-export const payInStripe = (paymentInfo) => {
+export const payInStripe = paymentInfo => {
   return dispatch => {
     dispatch(payInStripeBegin());
-    PaymentApi
-      .attemptStripePayment(paymentInfo)
+    PaymentApi.attemptStripePayment(paymentInfo)
       .then(response => {
-        console.log("Success: ", response);
         dispatch(payInStripeSuccess(response.data));
       })
       .catch(error => {
-        console.log("Error: ", error);
         dispatch(payInStripeError(error));
       });
   };
-} 
+};
 
 export const cleanUp = () => {
   return {

@@ -15,7 +15,8 @@ const MyAccountView = props => {
     const [isLoading, setIsLoading] = useState(true)
     const [email, setEmail] = useState("@");
     const [urls] = useState({
-        customer: process.env.REACT_APP_API_URL + "/customers/"
+        customer: process.env.REACT_APP_API_URL + "/customers/",
+        orders: process.env.REACT_APP_API_URL + "/orders/"
       });
     const [defaultHeaders] = useState({
         headers: {
@@ -28,7 +29,6 @@ const MyAccountView = props => {
             axios
             .get(urls.customer, defaultHeaders)
             .then(response => {
-                setIsLoading(false);
                 if (Object.keys(response.data.data.billing_addresses).length !== 0) {
                     setDefaultBilling(response.data.data.billing_addresses[0]);
                 }
@@ -36,6 +36,16 @@ const MyAccountView = props => {
                     setDefaultShipping(response.data.data.shipping_addresses[0]);
                 }
                 setEmail(response.data.data.email);
+                axios
+                .get(urls.orders, defaultHeaders)
+                .then(response => {
+                    setIsLoading(false)
+                    console.log(response)
+                })
+                .catch(error =>{
+                    setIsLoading(false)
+                    console.log(error)
+                })
             })
             .catch(error => {
                 setIsLoading(false);

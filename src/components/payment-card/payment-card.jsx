@@ -1,14 +1,36 @@
 import React from 'react';
 import '../payment-card/payment-card.css';
 import icon from './icon.PNG';
+import visa from './visa.png';
+import mastercard from './mastercard.png';
+import american from './american-express.png'
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteCardAction } from "../../actions/paymentActions";
 import { updatePayment } from '../../actions/checkoutActions';
 
 const PaymentCard = (props) => {
 
     const payment = useSelector((state) => state.checkoutState.order.payment)
-
     const dispatch = useDispatch();
+
+    let cardLogo;
+    switch(props.brand){
+        case("Visa"):
+            cardLogo = visa;
+        break;
+        case("MasterCard"):
+            cardLogo = mastercard;
+        break;
+        case("American Express"):
+            cardLogo = american;
+        break;
+        default:
+            cardLogo = icon;
+    }
+
+    const deleteCard = () => {
+        dispatch(deleteCardAction(props.id));
+    }
 
     return (
         <div id="payment-card-whole">
@@ -17,13 +39,13 @@ const PaymentCard = (props) => {
                 <span id="payment-card-button-checkmark"></span>
             </label>
             <div>
-                <img id="payment-card-icon" src={icon} alt="icon" />
+                <img id="payment-card-icon" src={cardLogo} alt="icon" />
             </div>
             <div id="payment-card-number">
-                {props.number}
+                **** **** {props.number}
             </div>
-            <div id="payment-card-owner">
-                {props.owner}
+            <div id="payment-card-delete" onClick={deleteCard}>
+                Delete
             </div>
         </div>
     );

@@ -14,8 +14,8 @@ const initialState = {
 
 const autenticationTypes = {
   [AUTHENTICATED]: (newState, data) => {
-    newState.name = (data.customer_name || data.admin_name || newState.name ) 
-   
+    newState.name = data.customer_name || data.admin_name || newState.name;
+
     newState.role =
       data.message === "Welcome admin"
         ? "admin"
@@ -36,10 +36,10 @@ const autenticationTypes = {
     };
   },
   [SAVE_USER]: (newState, data) => {
-    if(data.role === "Customer") {
-      newState.role  = "registeredUser"
+    if (data.role === "Customer") {
+      newState.role = "registeredUser";
     }
-    newState.name = data.name
+    newState.name = data.name;
     return newState;
   },
   [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
@@ -57,9 +57,9 @@ const autenticationTypes = {
     }
   },
   [REFRESH_TOKEN]: (newState, data) => {
-    console.log(data)
-    
-    return newState
+    console.log(data);
+
+    return newState;
   }
 };
 

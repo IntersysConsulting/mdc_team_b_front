@@ -4,7 +4,7 @@ import {
   requestRefreshAdmin
 } from '../hoc/axios'
 import { refresh_token } from "../actions/authenticationCreator"
-let refresh = true
+let refresh = false
 
 const rest = {
   "post": (url, values) => {

@@ -12,10 +12,11 @@ import { toast } from 'react-toastify';
 const UpdateAdmin = props => {
     const dispatch = useDispatch()
     const [inputValue, setInputValue] = useState({
-        email: props.admin.email,
+        first_name: props.admin.first_name,
+        last_name: props.admin.last_name,
         new_password:"",
         confirm:"",
-        current_password:"",
+        current_password:""
     });
     const [disableSubmit, setDisableSubmit] = useState(true)
     const [msg, setMsg] = useState([]);
@@ -44,12 +45,11 @@ const UpdateAdmin = props => {
     };
 
     const validation = values => {
-        let { email } = inputValue
         let msg = []
         setMsg([])
 
-        if( !(/\w+@\w+\.\w+/.test(email)) ) {
-            msg.push("Please, type the right format in the email")
+        if( inputValue.new_password !==  inputValue.confirm) {
+            msg.push("new password isn't equal with confirm password")
         }
 
         if(JSON.stringify(msg) !== JSON.stringify([])) {
@@ -96,20 +96,20 @@ const UpdateAdmin = props => {
             <Form>
             <div id="AdminFormButtons">
                 <Form.Control
-                type="text"
-                name="first_name"
-                placeholder="First Name"
-                value={props.admin.first_name }
-                className="border-dark border-2 mb-4"
-                disabled={true}
+                    type="text"
+                    name="first_name"
+                    placeholder="First Name"
+                    onChange={changeInput}
+                    value={inputValue.first_name }
+                    className="border-dark border-2 mb-4"
                 />
                 <Form.Control
-                type="text"
-                name="last_name"
-                placeholder="Last Name"
-                value={props.admin.last_name}
-                className="border-dark border-2 mb-4"
-                disabled={true}
+                    type="text"
+                    name="last_name"
+                    placeholder="Last Name"
+                    onChange={changeInput}
+                    value={inputValue.last_name}
+                    className="border-dark border-2 mb-4"
                 />
             </div>
             <Form.Control
@@ -117,8 +117,9 @@ const UpdateAdmin = props => {
                 name="email"
                 placeholder="Email" 
                 onChange={changeInput}
-                value={inputValue.email}
+                value={props.admin.email}
                 className="border-dark border-2 mb-4"
+                disabled={true}
             />
             <p>Change password?</p>
             <PasswordField

@@ -4,7 +4,7 @@ import {
   requestRefreshAdmin
 } from '../hoc/axios'
 import { refresh_token } from "../actions/authenticationCreator"
-let refresh = true
+let refresh = false
 
 const rest = {
   "post": (url, values) => {
@@ -17,9 +17,13 @@ const rest = {
     return request().delete(url, {data:values})
   },
   "put": (url, values) => {
+    console.log("put")
+
     return request().put(url, values)
   },
   "refresh": () => {
+    console.log("refresh")
+
     return request()
   },
 }
@@ -52,7 +56,9 @@ export function makeRequest(config) {
                 res => doDispatch(dispatch,config, res),
                 error => console.log(error)
             ).then(
-                res => refresh ? doDispatch(dispatch,config, res) : null,
+                res => {
+                  return refresh ? doDispatch(dispatch,config, res) : null
+                } ,
                 error => console.log(error)
             )
         } catch (e) {

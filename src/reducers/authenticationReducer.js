@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const autenticationTypes = {
-  [AUTHENTICATED]: (newState, data) => {
+  [AUTHENTICATED]: (newState, {data}) => {
     newState.name = data.customer_name || data.admin_name || newState.name;
 
     newState.role =
@@ -36,15 +36,14 @@ const autenticationTypes = {
     };
   },
   [SAVE_USER]: (newState, data) => {
-    if (data.role === "Customer") {
-      newState.role = "registeredUser";
-    }
-    newState.name = data.name;
+    newState.role = "registeredUser";
+    let fullName = data.inputs.first_name + " " + data.inputs.last_name
+    newState.name = fullName
     return newState;
   },
-  [AUTHENTICATION_ERROR]: (_, data) => alert(data.message),
+  [AUTHENTICATION_ERROR]: (newState, data) => alert(data.data.message),
   [VALIDATE_AUTHENTICATION]: (newState, data) => {
-    let role = data.role.toLowerCase();
+    let role = data.data.role.toLowerCase();
     role = role === "customer" ? "registeredUser" : role;
     if (newState.role === role) {
       return newState;
@@ -68,7 +67,7 @@ export default function authenticationReducer(
   { type, auth }
 ) {
   if (autenticationTypes.hasOwnProperty(type)) {
-    return autenticationTypes[type]({ ...state }, auth.data);
+    return autenticationTypes[type]({ ...state }, auth);
   } else {
     return state;
   }

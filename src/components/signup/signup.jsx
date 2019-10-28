@@ -37,10 +37,12 @@ const Signup = props => {
       method: "post", 
       actionSuccessful: save_user,
       actionError: authentication_error,
+      inputs: signupState,
+      url: "customers/",
       data: data
     }
   
-    dispatch(makeRequest({...options, url: "customers/"}))
+    dispatch(makeRequest(options))
   }
 
   return (

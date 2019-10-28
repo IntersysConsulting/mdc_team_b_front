@@ -68,7 +68,7 @@ export function logoutApi(admin = false) {
     try {
       await deleteToken(admin).then(
         response => {
-          if (response.status === 200) {
+          if (response.data.statusCode === 200) {
             dispatch(unauthenticatedAction(response));
           } else {
             dispatch(authentication_error(response));
@@ -89,7 +89,7 @@ export function validateAuthentication() {
         .get("identity/")
         .then(
           response => {
-            if (response.status === 200) {
+            if (response.data.statusCode === 200) {
               dispatch(validate_authentication(response));
             } else {
               dispatch(authentication_error(response));

@@ -3,8 +3,9 @@ import { PaymentConstants } from '../constants/paymentConstants';
 const INITIAL_STATE = {
     cardsRetrieved: [],
     cardsChanged: false,
-    errors: undefined,
-    message: undefined,
+    payment_completed: false,
+    success_message: undefined,
+    error_message: undefined,
     loading: true
 };
 
@@ -17,7 +18,7 @@ const paymentReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: false, cardsRetrieved: action.payload };
 
         case PaymentConstants.FETCH_CARDS_ERROR:
-            return { ...state, loading: false, errors: action.payload };
+            return { ...state, loading: false, error_message: action.payload };
 
 
 
@@ -25,10 +26,10 @@ const paymentReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: true };
     
         case PaymentConstants.POST_CARD_SUCCESS:
-            return { ...state, message: action.payload, cardsChanged : true };
+            return { ...state, success_message: action.payload, cardsChanged : true };
     
         case PaymentConstants.POST_CARD_ERROR:
-            return { ...state, loading: false, errors: action.payload };
+            return { ...state, loading: false, error_message: action.payload };
 
 
 
@@ -36,11 +37,23 @@ const paymentReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: true };
 
         case PaymentConstants.DELETE_CARD_SUCCESS:
-            return { ...state, message: action.payload, cardsChanged : true };
+            return { ...state, success_message: action.payload, cardsChanged : true };
 
         case PaymentConstants.DELETE_CARD_ERROR:
-            return { ...state, loading: false, errors: action.payload };
+            return { ...state, loading: false, error_message: action.payload };
 
+
+
+        case PaymentConstants.ATTEMPT_PAYMENT_BEGIN:
+            return { ...state };
+        
+        case PaymentConstants.ATTEMPT_PAYMENT_SUCCESS:
+            console.log("Reached reducer");
+            return { ...state, success_message: action.payload, payment_completed: true };
+        
+        case PaymentConstants.ATTEMPT_PAYMENT_ERROR:
+            return { ...state, error_message: action.payload, payment_completed: false };
+        
         default:
             return state;
     }

@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCardsAction, addCardAction, deleteCardAction } from "../../actions/paymentActions";
-import { updatePayment } from '../../actions/checkoutActions';
-import axios from "axios";
+import { getCardsAction } from "../../actions/paymentActions";
 import CheckoutTitle from '../../components/checkout-view-components/CheckoutTitle';
 import AcceptButton from '../../components/accept-button/accept-button';
 import BackPageButton from '../../components/back-page-button/back-page-button';
@@ -13,12 +11,16 @@ import Spinner from 'react-bootstrap/Spinner'
 
 import "./payment.css"
 
-const CheckoutPayment = (props) =>{
+const UserPayment = (props) =>{
+
     const [showCardForm, setShowCardForm] = useState( {showing: false} );
-    const cards = useSelector(state => state.paymentState.cardsRetrieved);
     const loading = useSelector(state => state.paymentState.loading);
-    const accessLevel = useSelector(state => state.authenticationState.role);
+    const cards = useSelector(state => state.paymentState.cardsRetrieved);
     const cardsChanged = useSelector(state => state.paymentState.cardsChanged)
+    //Info sent to stripe
+    const paymentMethod = useSelector(state => state.checkoutState.newOrder.payment);
+    const order_id = useSelector(state => state.checkoutState.order._id);
+
     const dispatch = useDispatch();
     let mainView = null;
 
@@ -32,7 +34,6 @@ const CheckoutPayment = (props) =>{
         //dispatch(updatePayment(response.data.data.cards.default_source))
     }, [cardsChanged, dispatch]);
 
-    console.log(cards)
     let cardsToShow = cards.map(card => {
         return (
             <PaymentCard
@@ -46,6 +47,15 @@ const CheckoutPayment = (props) =>{
 
     if(cards.length === 0){
         cardsToShow = <p className="NoCardsLabel"> You have not any registered cards yet </p>
+    }
+
+    const finishOrder = () => {
+        const stripeInfo = {
+            card_id : paymentMethod,
+            order_id : order_id
+        }
+        console.log(stripeInfo);
+        props.finishOrder(stripeInfo);
     }
 
     (loading) 
@@ -82,11 +92,17 @@ const CheckoutPayment = (props) =>{
                 }
             </div>
             <div className="row">
-                <div className="div-back-button col-4">
-                    <BackPageButton className="text-right" title="Back" text="Shipping and Billing" onClick={props.backView} />
+                <div className="offset-7 offset-md-9 col-3">
+                        <AcceptButton className="FinishOrderPayment" border="primary" onClick={() => {
+                            finishOrder();
+                        }}> 
+                            Finish order 
+                        </AcceptButton>
                 </div>
-                <div className="text-right button-checkout-right offset-4 col-4">
-                    <AcceptButton className="" onClick={props.updateOrder } border="primary">Finish order</AcceptButton>
+            </div>
+            <div className="row">
+                <div className="div-back-button BackForPayment">
+                    <BackPageButton className="text-right" title="Back" text="Shipping and Billing" onClick={props.backView} />
                 </div>
             </div>
         </div>
@@ -99,4 +115,4 @@ const CheckoutPayment = (props) =>{
     )
 }
 
-export default CheckoutPayment;
+export default UserPayment;

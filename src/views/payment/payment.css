@@ -26,3 +26,12 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.BackForPayment{
+    margin-left: -30px;
+    margin-top: -125px;
+}
+
+.FinishOrderPayment{
+    margin-top: 80px;
+}

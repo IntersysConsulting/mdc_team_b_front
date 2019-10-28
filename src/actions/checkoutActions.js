@@ -1,5 +1,6 @@
 import { checkoutConstants } from "../constants/checkoutConstants";
 import { checkoutApi } from "../api/checkoutApi";
+import { payInStripe } from "../actions/paymentActions";
 
 //---------------------- Order --------------------------------------------------
 const fetchOrderBegin = () => {
@@ -74,12 +75,12 @@ export const checkoutOrderUpdateActions = (order, stripeInfo) => {
       .updateOrder(order)
       .then(response => {
         dispatch(fetchOrderUpdateSuccess(response.data.data));
-        // try{
-        //   //dispatch(payInStripe(stripeInfo.card, stripeInfo.orderId))
-        // }
-        // catch(stripeError){
-        //   // In case Stripe fails to charge
-        // }
+        try{
+            dispatch(payInStripe(stripeInfo))
+        }
+        catch(stripeError){
+
+        }
       })
       .catch(error => {
         dispatch(fetchOrderUpdateError(error));

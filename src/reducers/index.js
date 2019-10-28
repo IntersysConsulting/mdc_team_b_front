@@ -8,6 +8,7 @@ import getProductsReducer from "./product-management/getProductsReducer";
 import addProductReducer from "./product-management/addProductReducer";
 import checkoutReducer from "./checkoutReducer";
 import checkoutAddressReducer from "./checkoutAddressReducer";
+import paymentReducer from './paymentReducer';
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   viewProductsState: getProductsReducer,
   addProductState: addProductReducer,
   checkoutState: checkoutReducer,
-  checkoutAddressState: checkoutAddressReducer
+  checkoutAddressState: checkoutAddressReducer,
+  paymentState: paymentReducer
 });
 
 export default rootReducer;

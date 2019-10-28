@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux';
 import { addCardAction } from "../../actions/paymentActions";
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import AcceptButton from '../accept-button/accept-button';
-import cardsIcon from './cards.jpg';
-
 import "./add-card-form.css"
 
 const AddCardForm = (props) => {
@@ -19,7 +17,6 @@ const AddCardForm = (props) => {
     catch(error){
       alert("Looks like there's something wrong with the input");
     }
-    
   }
 
     return (

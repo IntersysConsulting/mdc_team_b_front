@@ -45,14 +45,13 @@ const postCardBegin = () => {
   };
 
 
-
 const deleteCardBegin = () => {
   return {
     type: PaymentConstants.DELETE_CARD_BEGIN
   };
 };
 
-const deleteCardsuccess = success => {
+const deleteCardSuccess = success => {
   return {
     type: PaymentConstants.DELETE_CARD_SUCCESS,
     payload: success.message
@@ -62,6 +61,26 @@ const deleteCardsuccess = success => {
 const deleteCardError = error => {
   return {
     type: PaymentConstants.DELETE_CARD_ERROR,
+    payload: error.message
+  };
+};
+
+const payInStripeBegin = () => {
+  return {
+    type: PaymentConstants.ATTEMPT_PAYMENT_BEGIN
+  };
+};
+
+const payInStripeSuccess = success => {
+  return {
+    type: PaymentConstants.ATTEMPT_PAYMENT_SUCCESS,
+    payload: success.message
+  };
+};
+
+const payInStripeError = error => {
+  return {
+    type: PaymentConstants.ATTEMPT_PAYMENT_ERROR,
     payload: error.message
   };
 };
@@ -102,10 +121,24 @@ export const deleteCardAction = id_card => {
     PaymentApi
       .deleteCard(id_card)
       .then(response => {
-        dispatch(deleteCardsuccess(response.data));
+        dispatch(deleteCardSuccess(response.data));
       })
       .catch(error => {
         dispatch(deleteCardError(error));
       });
   };
 };
+
+export const payInStripe = (paymentInfo) => {
+  return dispatch => {
+    dispatch(payInStripeBegin());
+    PaymentApi
+      .attemptStripePayment(paymentInfo)
+      .then(response => {
+        dispatch(payInStripeSuccess(response.data));
+      })
+      .catch(error => {
+        dispatch(payInStripeError(error));
+      });
+  };
+} 

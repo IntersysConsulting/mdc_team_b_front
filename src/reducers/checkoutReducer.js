@@ -2,7 +2,8 @@ import { checkoutConstants } from "../constants/checkoutConstants";
 
 const INITIAL_STATE = {
   order: {
-    products: []
+    products: [],
+    _id: undefined
   },
   shipping_address: [],
   billing_address: [],

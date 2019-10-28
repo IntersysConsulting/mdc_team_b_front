@@ -15,7 +15,8 @@ import {
 import CheckoutTableDiv from "../../components/checkout-view-components/CheckoutTableDiv";
 import CheckoutTitle from "../../components/checkout-view-components/CheckoutTitle";
 import AddressesContainer from "../../components/checkout-view-components/AddressesContainter";
-import CheckoutPayment from "../../components/checkout-view-components/CheckoutPayment";
+import UserPayment from '../../views/payment/payment';
+import GuestPayment from '../../views/payment/guest-payment';
 import Toast from "../../components/toast/toast";
 
 const Checkout = () => {
@@ -58,7 +59,6 @@ const Checkout = () => {
   const did_put_respond = useSelector(
     state => state.checkoutState.did_put_respond
   );
-
   const role = useSelector(state => state.authenticationState.role);
   //#endregion
 
@@ -84,6 +84,10 @@ const Checkout = () => {
   );
   const info_error = useSelector(
     state => state.checkoutAddressState.info_error
+  );
+
+  const payment_completed = useSelector(
+    state => state.paymentState.payment_completed
   );
 
   const [toasts, setToasts] = useState([]);
@@ -278,16 +282,22 @@ const Checkout = () => {
 
   // If the order finished right, we display the success screen.
   useEffect(() => {
+    console.log("Entre al use effect");
     if (did_put_respond) {
-      dispatch(toastReset());
-      setPreventViewChange(true);
-      setCurrentView(screens.SUCCESS);
+      if(payment_completed){
+        dispatch(toastReset());
+        setPreventViewChange(true);
+        setCurrentView(screens.SUCCESS);
+      }
+      else{
+        setCurrentView(screens.ERROR);
+      }
     }
-  }, [did_put_respond, screens.SUCCESS, dispatch]);
+  }, [payment_completed, screens.SUCCESS, dispatch]);
 
   //#endregion
 
-  const finishOrder = () => {
+  const finishOrder = (stripeInfo) => {
     setCurrentView(screens.LOADING);
     let formData = new FormData();
     formData.set(
@@ -302,8 +312,6 @@ const Checkout = () => {
       "user_shipping",
       order_put_fields.shipping_address ? order_put_fields.shipping_address : 0
     );
-    // TODO: Implement Stripe payment here
-    var stripeInfo = undefined;
     dispatch(checkoutOrderUpdateActions(formData, stripeInfo));
   };
 
@@ -354,15 +362,28 @@ const Checkout = () => {
   };
 
   const PaymentSelectScreen = () => {
-    return (
-      <div className="container-fluid">
-        <CheckoutPayment
-          currentView={currentView}
-          backView={() => setCurrentView(screens.ADDRESS_SELECT)}
-          finishOrder={finishOrder}
-        ></CheckoutPayment>
-      </div>
-    );
+    if(role === "registeredUser"){
+      return (
+        <div className="container-fluid">
+          <UserPayment
+            currentView={currentView}
+            backView={() => setCurrentView(screens.ADDRESS_SELECT)}
+            finishOrder={finishOrder}
+          ></UserPayment>
+        </div>
+      );
+    }
+    else{
+      return (
+        <div className="container-fluid">
+          <GuestPayment
+            currentView={currentView}
+            backView={() => setCurrentView(screens.ADDRESS_SELECT)}
+            finishOrder={finishOrder}
+          ></GuestPayment>
+        </div>
+      );
+    }
   };
 
   const SuccessScreen = () => {

@@ -79,7 +79,7 @@ export const checkoutOrderUpdateActions = (order, stripeInfo) => {
             dispatch(payInStripe(stripeInfo))
         }
         catch(stripeError){
-
+          console.log(stripeError.message)
         }
       })
       .catch(error => {

@@ -12,6 +12,11 @@ import {
   cleanUp as AddressCleanUp,
   toastReset
 } from "../../actions/checkoutAddressActions";
+
+import {
+  cleanUp as PaymentCleanUp,
+} from "../../actions/paymentActions";
+
 import CheckoutTableDiv from "../../components/checkout-view-components/CheckoutTableDiv";
 import CheckoutTitle from "../../components/checkout-view-components/CheckoutTitle";
 import AddressesContainer from "../../components/checkout-view-components/AddressesContainter";
@@ -88,6 +93,10 @@ const Checkout = () => {
 
   const payment_completed = useSelector(
     state => state.paymentState.payment_completed
+  );
+
+  const payment_attempted = useSelector(
+    state => state.paymentState.payment_attempted
   );
 
   const [toasts, setToasts] = useState([]);
@@ -282,17 +291,16 @@ const Checkout = () => {
 
   // If the order finished right, we display the success screen.
   useEffect(() => {
-    console.log("Entre al use effect");
-    if (did_put_respond) {
       if(payment_completed){
         dispatch(toastReset());
         setPreventViewChange(true);
         setCurrentView(screens.SUCCESS);
       }
       else{
-        setCurrentView(screens.ERROR);
+        if(payment_attempted){
+          console.log("Error in payment!");
+        }
       }
-    }
   }, [payment_completed, screens.SUCCESS, dispatch]);
 
   //#endregion
@@ -387,8 +395,9 @@ const Checkout = () => {
   };
 
   const SuccessScreen = () => {
-    if (did_put_respond) {
+    if (payment_completed) {
       dispatch(cleanUp());
+      dispatch(PaymentCleanUp());
     }
     return (
       <div id="puchase-complete-whole">

@@ -135,10 +135,18 @@ export const payInStripe = (paymentInfo) => {
     PaymentApi
       .attemptStripePayment(paymentInfo)
       .then(response => {
+        console.log("Success: ", response);
         dispatch(payInStripeSuccess(response.data));
       })
       .catch(error => {
+        console.log("Error: ", error);
         dispatch(payInStripeError(error));
       });
   };
 } 
+
+export const cleanUp = () => {
+  return {
+    type: PaymentConstants.CLEAN_UP
+  };
+};

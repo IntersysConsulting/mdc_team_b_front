@@ -48,7 +48,6 @@ const deleteCard = id_card => {
 };
 
 const attemptStripePayment = paymentInfo => {
-  console.log("Got to request");
   return axios
   .put(process.env.REACT_APP_API_URL + "/payment/", { card: paymentInfo.card_id, order_id: paymentInfo.order_id }, 
       { 
@@ -56,11 +55,9 @@ const attemptStripePayment = paymentInfo => {
       } 
   )
   .then(response => {
-    console.log("Success in payment, ", response);
     return response;
   })
   .catch( (error) => {
-    console.log("Error, ", error);
     return error;
   });
 };

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCardAction } from "../../actions/paymentActions";
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import AcceptButton from '../accept-button/accept-button';
@@ -7,15 +7,38 @@ import "./add-card-form.css"
 
 const AddCardForm = (props) => {
   const [errorMessage, setErrorMessage] = useState( {message: ""}  );
+  const role = useSelector(state => state.authenticationState.role);
+  const order_id = useSelector(state => state.checkoutState.order._id);
   const dispatch = useDispatch();
 
-  const submit = async (e) => {
+  const decideStripeAction = () => {
+    (role === "registeredUser")
+    ? saveCardUser()
+    : finishGuestOrder()
+  }
+
+  const saveCardUser = async () => {
     try{
       let {token} = await props.stripe.createToken({name: "Name"});
       dispatch(addCardAction(token.id));
     }
     catch(error){
-      alert("Looks like there's something wrong with the input");
+      alert("Looks like there's something wrong");
+    }
+  }
+
+  const finishGuestOrder = async () => {
+    try{
+      let {token} = await props.stripe.createToken({name: "Guest"});
+      const stripeInfo = {
+        card_id : token.id,
+        order_id : order_id
+      }
+      console.log("Guest: ", stripeInfo);
+      props.finishOrder(stripeInfo);
+    }
+    catch(error){
+      alert("Looks like there's something wrong");
     }
   }
 
@@ -29,7 +52,7 @@ const AddCardForm = (props) => {
               : setErrorMessage( {message: ""} )
             } 
           } />
-          <AcceptButton className="col-md-2 SaveCard" onClick={submit} >Save</AcceptButton>
+          <AcceptButton className="col-md-2 SaveCard" onClick={decideStripeAction} >Save</AcceptButton>
           <p className="col-12 CardErrorMessage"> {errorMessage.message} </p>
         </div>
       </div>

@@ -32,16 +32,7 @@ const GuestPayment = (props) => {
                 </StripeProvider>
             </div>
             <div className="row">
-                <div className="offset-7 offset-md-9 col-3">
-                    <AcceptButton className="FinishOrderPayment" border="primary" onClick={() => {
-                        finishOrder();
-                    }}> 
-                        Finish order 
-                    </AcceptButton>
-                </div>
-            </div>
-            <div className="row">
-                <div className="div-back-button BackForPayment">
+                <div className="div-back-button">
                     <BackPageButton className="text-right" title="Back" text="Shipping and Billing" onClick={props.backView} />
                 </div>
             </div>

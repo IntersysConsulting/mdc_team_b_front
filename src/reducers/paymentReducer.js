@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     cardsRetrieved: [],
     cardsChanged: false,
     payment_completed: false,
+    payment_attempted: false,
     success_message: undefined,
     error_message: undefined,
     loading: true
@@ -45,15 +46,18 @@ const paymentReducer = (state = INITIAL_STATE, action) => {
 
 
         case PaymentConstants.ATTEMPT_PAYMENT_BEGIN:
-            return { ...state };
+            return { ...state, payment_attempted: false };
         
         case PaymentConstants.ATTEMPT_PAYMENT_SUCCESS:
-            console.log("Reached reducer");
-            return { ...state, success_message: action.payload, payment_completed: true };
+            return { ...state, success_message: action.payload, payment_attempted: true, payment_completed: true };
         
         case PaymentConstants.ATTEMPT_PAYMENT_ERROR:
-            return { ...state, error_message: action.payload, payment_completed: false };
+            return { ...state, error_message: action.payload, payment_attempted: true, payment_completed: false };
         
+
+        case PaymentConstants.CLEAN_UP:
+        return { ...state, cardsRetrieved: [], cardsChanged: false, payment_attempted: false, payment_completed: false, success_message: undefined, error_message: undefined,};
+
         default:
             return state;
     }

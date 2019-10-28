@@ -54,7 +54,6 @@ const UserPayment = (props) =>{
             card_id : paymentMethod,
             order_id : order_id
         }
-        console.log(stripeInfo);
         props.finishOrder(stripeInfo);
     }
 

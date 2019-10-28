@@ -61,9 +61,12 @@ const Checkout = () => {
   // Did PUT return an error?
   const put_error = useSelector(state => state.checkoutState.put_error);
   // Signals that we can proceed to the final screen.
+  
+  /* Not used anymore.
   const did_put_respond = useSelector(
     state => state.checkoutState.did_put_respond
-  );
+  ); */
+
   const role = useSelector(state => state.authenticationState.role);
   //#endregion
 
@@ -298,10 +301,10 @@ const Checkout = () => {
       }
       else{
         if(payment_attempted){
-          console.log("Error in payment!");
+          //handle error here
         }
       }
-  }, [payment_completed, screens.SUCCESS, dispatch]);
+  }, [payment_completed, payment_attempted, screens.SUCCESS, dispatch]);
 
   //#endregion
 

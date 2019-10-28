@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import '../payment-card/payment-card.css';
 import icon from './icon.PNG';
 import visa from './visa.png';

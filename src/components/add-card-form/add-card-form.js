@@ -42,6 +42,11 @@ const AddCardForm = (props) => {
     }
   }
 
+  let buttonMessage = null;
+  (role === "registeredUser")
+  ? buttonMessage = "Save"
+  : buttonMessage = "Finish order"
+
     return (
       <div className="container-fluid">
         <div className="CardFormContainer row col-md-10 col-lg-6">
@@ -52,7 +57,7 @@ const AddCardForm = (props) => {
               : setErrorMessage( {message: ""} )
             } 
           } />
-          <AcceptButton className="col-md-2 SaveCard" onClick={decideStripeAction} >Save</AcceptButton>
+          <AcceptButton className="col-md-2 SaveCard" onClick={decideStripeAction} > {buttonMessage} </AcceptButton>
           <p className="col-12 CardErrorMessage"> {errorMessage.message} </p>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const DEFAULT_HEADERS = {
-  authorization: "Bearer " + localStorage.getItem("access_token"),
-  "Content-Type": "multipart/form-data"
-};
-
 const putInfo = info => {
+  const DEFAULT_HEADERS = {
+    authorization: "Bearer " + localStorage.getItem("access_token"),
+    "Content-Type": "multipart/form-data"
+  };
+
   let formData = new FormData();
   formData.set("first_name", info.first_name);
   formData.set("last_name", info.last_name);
@@ -25,6 +25,11 @@ const putInfo = info => {
 };
 
 const postShipping = address => {
+  const DEFAULT_HEADERS = {
+    authorization: "Bearer " + localStorage.getItem("access_token"),
+    "Content-Type": "multipart/form-data"
+  };
+
   let formData = new FormData();
   formData.set("address", address.address);
   formData.set("between", address.between);
@@ -48,6 +53,10 @@ const postShipping = address => {
 };
 
 const postBilling = address => {
+  const DEFAULT_HEADERS = {
+    authorization: "Bearer " + localStorage.getItem("access_token"),
+    "Content-Type": "multipart/form-data"
+  };
   let formData = new FormData();
   formData.set("address", address.address);
   formData.set("country", address.country);

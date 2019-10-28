@@ -41,6 +41,8 @@ const LayoutContainer = props => {
       <LayoutAdmin accessLevelState={accessLevelState}>
         <Switch>
           <Route path="/admin" exact component={WorkInProgress} />
+          {/* This is a bad solution but it looks better than a 404 */}
+          <Route path="/login-admin" exact component={WorkInProgress} />
           <Route path="/admin/products" exact component={ViewProducts} />
           <Route path="/admin/products/add" exact component={AddProduct} />
           <Route

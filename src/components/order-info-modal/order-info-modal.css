@@ -13,16 +13,23 @@
 }
 
 #order-info-modal-title{
-    float: left;
-    margin-left: 38px;
-    font-size: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: -20px;
+}
+
+#order-info-modal-ordernumber{
+    text-align: center;
+    margin-top: -20px;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
 #order-info-modal-status{
-    float: left;
-    margin-left: 294px;
-    margin-top: -58px;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 #order-info-modal-content{
@@ -51,15 +58,14 @@
         max-width: 365px;
     }
     #order-info-modal-title{
-        text-align: center;
-        margin-left: 0;
-        margin-top: -30px;
-        margin-bottom:50px;
+        margin-top: -20px;
+        margin-bottom: 10px;
     }
     
     #order-info-modal-status{
         text-align: center;
         margin-left: 0;
+        margin-bottom: 20px;
     }
     #order-info-modal-content{
         max-width: 300px;

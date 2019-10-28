@@ -32,6 +32,7 @@ const CheckoutPayment = (props) =>{
         //dispatch(updatePayment(response.data.data.cards.default_source))
     }, [cardsChanged, dispatch]);
 
+    console.log(cards)
     let cardsToShow = cards.map(card => {
         return (
             <PaymentCard
@@ -79,6 +80,14 @@ const CheckoutPayment = (props) =>{
                     </StripeProvider>)
                 : <p></p>
                 }
+            </div>
+            <div className="row">
+                <div className="div-back-button col-4">
+                    <BackPageButton className="text-right" title="Back" text="Shipping and Billing" onClick={props.backView} />
+                </div>
+                <div className="text-right button-checkout-right offset-4 col-4">
+                    <AcceptButton className="" onClick={props.updateOrder } border="primary">Finish order</AcceptButton>
+                </div>
             </div>
         </div>
     )

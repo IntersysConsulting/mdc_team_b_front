@@ -14,7 +14,6 @@ const Login = props => {
 
   const dispatch = useDispatch();
   const auth = useSelector(store => store.authenticationState)
-  const {admin} = (props.admin || false)
   const initialAuth = useState(auth)
   const [loginState, setLoginState] = useState({ email: "", password: "" });
   const [conditionsModalShow, conditionsModalSetShow] = useState(false);
@@ -24,13 +23,9 @@ const Login = props => {
 
   useEffect(() => {
     if(JSON.stringify(auth) !== JSON.stringify(initialAuth[0])) {
-      if(admin){
-        props.history.push("/admin")
-      } else {
-        props.history.push("/") 
-      }
+      props.history.push("/") 
     }
-  },[auth, initialAuth, admin, props.history])
+  },[auth, initialAuth, props.history])
 
   const Send = (event) => {
     event.preventDefault();

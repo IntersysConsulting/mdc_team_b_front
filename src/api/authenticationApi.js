@@ -89,6 +89,7 @@ export function validateAuthentication() {
         .get("identity/")
         .then(
           response => {
+            console.log(response)
             if (response.data.statusCode === 200) {
               dispatch(validate_authentication(response));
             } else {

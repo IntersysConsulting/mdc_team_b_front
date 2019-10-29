@@ -56,8 +56,7 @@ const autenticationTypes = {
     }
   },
   [REFRESH_TOKEN]: (newState, data) => {
-    console.log(data);
-
+    localStorage.setItem("access_token", data.data.access_token);
     return newState;
   }
 };

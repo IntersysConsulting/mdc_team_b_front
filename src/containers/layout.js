@@ -16,10 +16,15 @@ import ViewProducts from "../views/product-management/view-products";
 import ViewAdmin from "../views/Admin/Admin";
 import AddProduct from "../views/product-management/add-product";
 import DemoImage from "../components/upload-image/demo-image";
-import { validateAuthentication, requestGuest } from "../api/authenticationApi";
+import { requestGuest } from "../api/authenticationApi";
 import Checkout from "../views/Checkout/checkout";
 import MyOrders from "../views/MyOrders/my-orders";
 import MyAccount from "../views/my-account/my-account";
+import { makeRequest } from "../api/generalApi"
+import {
+  authentication_error,
+  validate_authentication
+} from "../actions/authenticationCreator";
 
 const LayoutContainer = props => {
   let layout = null;
@@ -29,7 +34,13 @@ const LayoutContainer = props => {
 
   useEffect(() => {
     if (token) {
-      dispatch(validateAuthentication());
+      let options = {
+        method: "get", 
+        actionSuccessful: validate_authentication,
+        actionError: authentication_error,
+        url: "identity/",
+      }
+      dispatch(makeRequest(options))
     } else {
       dispatch(requestGuest());
     }

@@ -75,6 +75,9 @@
         height: 61px;
         width: 100%;
     }
+    .my-account-card-collapsable {
+        margin-left: 36px;
+    }
     .my-account-card-collapsable>.card-title {
         display: inline-block;
     }

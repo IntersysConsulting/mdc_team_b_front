@@ -15,15 +15,21 @@
     float: left;
 }
 
+#order-card-icon:hover{
+    cursor: pointer;
+}
+
 #order-card-number{
     font-weight: bold;
-    text-decoration: underline;
     color: #116cb4;
-    margin-top: 10px;
-    margin-left: 90px;
-    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 80px;
+    font-size: 1rem;
     cursor: pointer;
-    justify-content: space-between;
+}
+
+#show-order-button{
+    text-decoration: underline;
 }
 
 #show-order-button{
@@ -43,7 +49,7 @@
 
 #order-card-product{
     font-weight: bold;
-    margin-left: 90px;
+    margin-left: 80px;
     user-select: none;
 }
 
@@ -51,13 +57,14 @@
     font-weight: bold;
     color: #f98f3e;
     font-size: 20px;
-    margin-left: 90px;
+    margin-left: 80px;
     user-select: none;
+    justify-content: space-between;
 }
 
 @media (max-width:500px){
     #order-card-whole{
-        min-width: 420px;
+        min-width: 440px;
     }
 }
 
@@ -67,7 +74,7 @@
     }
 }
 
-@media (min-width:769px) and (max-width:1120px){
+@media (min-width:765px) and (max-width:1180px){
     #order-card-whole{
         min-width: 500px;
     }

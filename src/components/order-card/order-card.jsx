@@ -25,22 +25,22 @@ const OrderCard = (props) => {
                 </OrderInfoModal>
 
                 <div>
-                    <img id="order-card-icon" src={icon} alt="icon" />
+                    <img id="order-card-icon"  onClick={orderModalHandleShow} src={icon} alt="icon" />
                 </div>
 
-                <div id="order-card-number" className="row">
+                <div id="order-card-number">
                     <button id="show-order-button" onClick={orderModalHandleShow}>Order No: {props.number}</button>
-                    <div id="order-card-status">
-                    <Status status={props.status} />
-                    </div>
                 </div>
 
                 <div id="order-card-product">
                     {props.quantity}x {props.firstProduct}
             </div>
 
-                <div id="order-card-cost">
+                <div id="order-card-cost" className="row">
                     USD {props.cost}
+                    <div id="order-card-status">
+                    <Status status={props.status} />
+                    </div>
                 </div>
                 
             </div>

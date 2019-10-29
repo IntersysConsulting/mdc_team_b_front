@@ -24,7 +24,9 @@ const CheckoutTable = props => {
     var sumTotal = 0;
 
     for (var i in props.products) {
-      sumTotal += Number(props.products[i].unitary_price);
+      sumTotal += Number(
+        props.products[i].unitary_price * props.products[i].quantity
+      );
     }
     return sumTotal;
   };

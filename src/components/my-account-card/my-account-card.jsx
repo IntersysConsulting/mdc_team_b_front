@@ -12,7 +12,7 @@ const MyAccountCard = props => {
         {props.children ? props.children : "Something went wrong"}
       </Card.Text>
       <ChangeViewButton
-        className={`my-account-button rounded-0 ${props.collapsable?'my-account-card-collapsable':''}`}
+        className={`my-account-button rounded-0 ${props.collapsable?'my-account-card-collapsable-btn':''}`}
         onClick={props.onClick}
       >
         {props.buttonText?props.buttonText:"See more"}

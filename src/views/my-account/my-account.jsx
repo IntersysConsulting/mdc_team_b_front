@@ -11,11 +11,16 @@ const MyAccountView = props => {
     const token = "Bearer " + localStorage.getItem("access_token");
     const [defaultBilling, setDefaultBilling] = useState({});
     const [defaultShipping, setDefaultShipping] = useState({});
+    const [lastOrder, setLastOrder] = useState({});
+    const [hasOrders, setHasOrders] = useState(false)
+    const [hasBilling, setHasBilling] = useState(false)
+    const [hasShipping, setHasShipping] = useState(false)
     const [hasErrors, setHasErrors] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [email, setEmail] = useState("@");
     const [urls] = useState({
-        customer: process.env.REACT_APP_API_URL + "/customers/"
+        customer: process.env.REACT_APP_API_URL + "/customers/",
+        orders: process.env.REACT_APP_API_URL + "/orders/"
       });
     const [defaultHeaders] = useState({
         headers: {
@@ -28,14 +33,28 @@ const MyAccountView = props => {
             axios
             .get(urls.customer, defaultHeaders)
             .then(response => {
-                setIsLoading(false);
                 if (Object.keys(response.data.data.billing_addresses).length !== 0) {
                     setDefaultBilling(response.data.data.billing_addresses[0]);
+                    setHasBilling(true)
                 }
                 if (Object.keys(response.data.data.shipping_addresses).length !== 0) {
                     setDefaultShipping(response.data.data.shipping_addresses[0]);
+                    setHasShipping(true)
                 }
                 setEmail(response.data.data.email);
+                axios
+                .get(urls.orders, defaultHeaders)
+                .then(response => {
+                    setIsLoading(false)
+                    if (Object.keys(response.data.data).length !== 0) {
+                        setLastOrder(response.data.data[0])
+                        setHasOrders(true)
+                    }
+                })
+                .catch(error =>{
+                    setIsLoading(false)
+                    setHasErrors(true)
+                })
             })
             .catch(error => {
                 setIsLoading(false);
@@ -78,27 +97,38 @@ const MyAccountView = props => {
         <span className={"my-account-card-button-text"}>See my orders</span>
     )
 
-    const myAccount = (
-        <div className="container">
-            <h1 id={"my-account-title"}>My Account</h1>
-            <div className={"my-account-details-container"}>
-                <p id={"my-account-username"}>{name}</p>
-                <p id={"my-account-email"}>{email}</p>
-            </div>            
-            <div className="my-account-card-container">
-                <div className="my-account-big-cards-container">
-                    <MyAccountCard
-                        title="Preferred Billing Address"
-                        onClick={toBilling}
-                        buttonText={billingButtonText}
-                    >
-                        {defaultBilling.first_name} {defaultBilling.last_name}<br/>
-                        {defaultBilling.address}<br/>
-                        {defaultBilling.city}<br/>
-                        {defaultBilling.state}, {defaultBilling.zip_code}<br/>
-                        {defaultBilling.country}<br/>
-                    </MyAccountCard>
-                    <MyAccountCard
+    let billingCard = null;
+    let shippingCard = null;
+    let lastOrderCard = null;
+    if(hasBilling){
+        billingCard = (
+            <MyAccountCard
+                title="Preferred Billing Address"
+                onClick={toBilling}
+                buttonText={billingButtonText}
+            >
+                {defaultBilling.first_name} {defaultBilling.last_name}<br/>
+                {defaultBilling.address}<br/>
+                {defaultBilling.city}<br/>
+                {defaultBilling.state}, {defaultBilling.zip_code}<br/>
+                {defaultBilling.country}<br/>
+            </MyAccountCard>
+        )
+    } else {
+        billingCard = (
+            <MyAccountCard
+                title="Preferred Billing Address"
+                onClick={toBilling}
+                buttonText={billingButtonText}
+            >
+                You don't have a billing address yet
+            </MyAccountCard>
+        )
+    }
+
+    if(hasShipping){
+        shippingCard = (
+            <MyAccountCard
                         title="Preferred Shipping Address"
                         onClick={toShipping}
                         buttonText={shippingButtonText}
@@ -109,8 +139,38 @@ const MyAccountView = props => {
                         {defaultShipping.state}, {defaultShipping.zip_code}<br/>
                         {defaultShipping.country}<br/>
                     </MyAccountCard>
-                </div>
-                <MyAccountCard
+        )
+    } else {
+        shippingCard = (
+            <MyAccountCard
+                        title="Preferred Shipping Address"
+                        onClick={toShipping}
+                        buttonText={shippingButtonText}
+                    >
+                You don't have a shipping address yet
+            </MyAccountCard>
+        )
+    }
+
+    if(hasOrders){
+        let firstProduct = lastOrder.products[0]
+        let productsQty = lastOrder.products.length -1
+        let moreProductsString = productsQty > 0 ? "And "+productsQty+" more products" : ""
+        lastOrderCard = (
+            <MyAccountCard
+                    title="My last order"
+                    collapsable
+                    onClick={toOrders}
+                    buttonText={ordersButtonText}
+                >
+                    Order No: {lastOrder._id}<br/><br/>
+                    {firstProduct.name}<br/>
+                    {moreProductsString}
+                </MyAccountCard>
+        )
+    } else {
+        lastOrderCard = (
+            <MyAccountCard
                     title="My last order"
                     collapsable
                     onClick={toOrders}
@@ -118,6 +178,22 @@ const MyAccountView = props => {
                 >
                     You haven't purchased anything yet.
                 </MyAccountCard>
+        )
+    }
+
+    const myAccount = (
+        <div className="container">
+            <h1 id={"my-account-title"}>My Account</h1>
+            <div className={"my-account-details-container"}>
+                <p id={"my-account-username"}>{name}</p>
+                <p id={"my-account-email"}>{email}</p>
+            </div>            
+            <div className="my-account-card-container">
+                <div className="my-account-big-cards-container">
+                    {billingCard}
+                    {shippingCard}
+                </div>
+                {lastOrderCard}
             </div>
         </div>
     )

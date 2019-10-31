@@ -1,8 +1,7 @@
 import {
   authenticatedAction,
   unauthenticatedAction,
-  authentication_error,
-  validate_authentication
+  authentication_error
 } from "../actions/authenticationCreator";
 import { request } from "../hoc/axios";
 
@@ -76,27 +75,6 @@ export function logoutApi(admin = false) {
         },
         error => console.log("An error accurred", error)
       );
-    } catch (e) {
-      console.log(e);
-    }
-  };
-}
-
-export function validateAuthentication() {
-  return async function(dispatch) {
-    try {
-      await request()
-        .get("identity/")
-        .then(
-          response => {
-            if (response.data.statusCode === 200) {
-              dispatch(validate_authentication(response));
-            } else {
-              dispatch(authentication_error(response));
-            }
-          },
-          error => console.log("An error accurred", error)
-        );
     } catch (e) {
       console.log(e);
     }

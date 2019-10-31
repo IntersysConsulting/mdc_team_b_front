@@ -4,56 +4,53 @@ import {
   requestRefreshAdmin
 } from '../hoc/axios'
 import { refresh_token } from "../actions/authenticationCreator"
-let refresh = false
 
 const rest = {
-  "post": (url, values) => {
-    return request().post(url, values)
+  "post": ({url, data}) => {
+    return request().post(url, data)
   },
-  "get": (url, values) => {
-    return request().get(url, values)
+  "get": ({url, data}) => {
+    if(data) {
+      return request().get(url, data)
+    } else {
+     return request().get(url, data)
+    }
   },
-  "delete": (url, values) => {
-    return request().delete(url, {data:values})
+  "delete": ({url, data}) => {
+    return request().delete(url, {data:data})
   },
-  "put": (url, values) => {
-    return request().put(url, values)
+  "put": ({url, data}) => {
+    return request().put(url, data)
   },
   "refresh": () => {
     return request()
   },
 }
 
-const doDispatch = (dispatch, config, response ) => {
-  if(response.data.statusCode === 200) {
-    if(config.method === "get") {
-      dispatch(config.actionSuccessful(response))
+const doDispatch = (dispatch, options, response, error=false ) => {
+  if ( error && response.status === 401 ){
+    if (options.role === "admin" ) {
+      requestRefreshAdmin().then(res => dispatch(refresh_token(res)))
     } else {
-      dispatch(config.actionSuccessful(config))
-    }
-  } else if (response.data.statusCode === 401) {
-    if(refresh === false) {
-      refresh = true
-      if (config.role === "admin" ) {
-        requestRefreshAdmin().then(res => dispatch(refresh_token(res)))
-      } else {
-        requestRefreshUser().then(res => dispatch(refresh_token(res)))
-      }
+      requestRefreshUser().then(res => dispatch(refresh_token(res)))
     }
   } else {
-    dispatch(config.actionError(response))
+    if(response.data.statusCode === 200) {
+      if(options.method === "get") {
+        dispatch(options.actionSuccessful(response))
+      } else {
+        dispatch(options.actionSuccessful(options))
+      }
+    }
   }
 }
 
-export function makeRequest(config) {
+export function makeRequest(options) {
     return async function(dispatch) {
         try {
-            await rest[config.method](config.url, config.data).then(
-                res => doDispatch(dispatch,config, res),
-                error => console.log(error)
-            ).then(
-                res => refresh ? doDispatch(dispatch,config, res) : null,
-                error => console.log(error)
+            await rest[options.method](options).then(
+                res => doDispatch(dispatch,options, res),
+                error => doDispatch(dispatch,options, error.response, true)
             )
         } catch (e) {
           console.log(e)

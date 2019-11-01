@@ -35,7 +35,7 @@ const SingleProduct = props => {
       body.data = { product_id: url };
 
       request
-        .delete("http://localhost:5000/api/v1/carts/", body)
+        .delete(process.env.REACT_APP_API_URL + "/carts/", body)
         .then(response => {
           if (response.status === 200) {
             removeProductResult(true);
@@ -69,7 +69,7 @@ const SingleProduct = props => {
     if (access_token) {
       let formData = { product_id: url, quantity: 1 };
       request
-        .put("http://localhost:5000/api/v1/carts/", formData, {
+        .put(process.env.REACT_APP_API_URL + "/carts/", formData, {
           headers: { Authorization: "Bearer " + access_token }
         })
         .then(response => {
@@ -89,7 +89,7 @@ const SingleProduct = props => {
 
   useEffect(() => {
     request
-      .get("http://localhost:5000/api/v1/products/?product_id=" + url)
+      .get(process.env.REACT_APP_API_URL + "/products/?product_id=" + url)
       .then(response => {
         setIsLoading({
           loading: false

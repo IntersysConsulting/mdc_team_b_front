@@ -28,7 +28,7 @@ const Storefront = props => {
     });
 
     axios
-      .get("http://localhost:5000/api/v1/products/", {
+      .get(process.env.REACT_APP_API_URL + "/products/", {
         params: {
           page: currentPage.page,
           page_size: pageSize.page_size,

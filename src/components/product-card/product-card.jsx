@@ -31,7 +31,7 @@ const CardProduct = props => {
       body.data = { product_id: props.product_id };
 
       request
-        .delete("http://localhost:5000/api/v1/carts/", body)
+        .delete(process.env.REACT_APP_API_URL + "/carts/", body)
         .then(response => {
           if (response.status === 200) {
             removeProductResult(true);
@@ -65,7 +65,7 @@ const CardProduct = props => {
     if (access_token) {
       let formData = { product_id: props.product_id, quantity: 1 };
       request
-        .put("http://localhost:5000/api/v1/carts/", formData, {
+        .put(process.env.REACT_APP_API_URL + "/carts/", formData, {
           headers: { Authorization: "Bearer " + access_token }
         })
         .then(response => {
